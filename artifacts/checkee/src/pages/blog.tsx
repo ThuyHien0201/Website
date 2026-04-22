@@ -31,12 +31,12 @@ export default function Blog() {
   ];
 
   return (
-    <div className="flex flex-col w-full bg-[#060B25]">
+    <div className="flex flex-col w-full bg-[#0A1340]">
       <section className="pt-40 pb-20">
         <div className="container px-6 md:px-12 max-w-[800px] mx-auto space-y-6">
-          <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-4">Tạp chí Pháp lý & Thiết kế</div>
+          <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-4">Tạp chí Pháp lý & Thiết kế</div>
           <h1 className="text-4xl md:text-5xl font-normal text-white leading-tight">
-            Góc nhìn <span className="italic font-light text-[#B8B5AE]">chuyên sâu.</span>
+            Góc nhìn <span className="italic font-light text-[#C8D0E8]">chuyên sâu.</span>
           </h1>
         </div>
       </section>
@@ -47,14 +47,14 @@ export default function Blog() {
             {articles.map((article, i) => (
               <article key={i} className="group hairline-b py-10 transition-colors duration-500 hover:bg-white/5">
                 <div className="grid md:grid-cols-4 gap-4 px-4">
-                  <div className="md:col-span-1 text-[11px] uppercase tracking-wider text-[#83776D] pt-1">
+                  <div className="md:col-span-1 text-[11px] uppercase tracking-wider text-[#FF6B47] pt-1">
                     {article.date}
                   </div>
                   <div className="md:col-span-3 space-y-3">
-                    <span className="text-[10px] tracking-[0.1em] uppercase border border-white/20 px-2 py-1 rounded-sm text-[#B8B5AE]">
+                    <span className="text-[10px] tracking-[0.1em] uppercase border border-white/20 px-2 py-1 rounded-sm text-[#C8D0E8]">
                       {article.category}
                     </span>
-                    <h2 className="text-xl font-normal text-white group-hover:text-[#B8B5AE] transition-colors duration-300 leading-snug">
+                    <h2 className="text-xl font-normal text-white group-hover:text-[#C8D0E8] transition-colors duration-300 leading-snug">
                       <Link href="#" className="focus:outline-none">{article.title}</Link>
                     </h2>
                     <div className="pt-4 overflow-hidden h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-300">

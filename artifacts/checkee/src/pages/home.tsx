@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[100vh] min-h-[700px] w-full overflow-hidden bg-[#060B25]">
+      <section ref={heroRef} className="relative h-[100vh] min-h-[700px] w-full overflow-hidden bg-[#0A1340]">
         <motion.div 
           style={{ y }}
           className="absolute inset-0 w-full h-full"
@@ -31,7 +31,7 @@ export default function Home() {
         </motion.div>
         
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060B25]/30 via-[#060B25]/50 to-[#060B25]/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1340]/30 via-[#0A1340]/50 to-[#0A1340]/90 pointer-events-none" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
           <motion.div 
@@ -43,7 +43,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-[1.1] mb-6">
               Niềm tin minh bạch cho mọi <br className="hidden md:block" /> sản phẩm <span className="italic font-light">Việt</span>
             </h1>
-            <p className="text-[13px] md:text-[14px] text-[#F5F5F0]/80 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[13px] md:text-[14px] text-[#FFFFFF]/80 max-w-2xl mx-auto leading-relaxed">
               Giải pháp số hoá sản phẩm toàn diện. Vượt qua mọi rào cản pháp lý khắt khe nhất, từ Thông tư 02 đến ESPR Châu Âu, bằng một trải nghiệm thương hiệu hoàn mỹ.
             </p>
             <div className="mt-10 flex justify-center">
@@ -105,7 +105,7 @@ export default function Home() {
                 </select>
               </div>
 
-              <button type="submit" className="w-full md:w-auto md:ml-2 mt-4 md:mt-0 bg-[#83776D] hover:bg-[#83776D]/90 text-white rounded-full p-4 md:p-5 flex items-center justify-center transition-colors">
+              <button type="submit" className="w-full md:w-auto md:ml-2 mt-4 md:mt-0 bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white rounded-full p-4 md:p-5 flex items-center justify-center transition-colors">
                 <Search className="w-5 h-5" />
               </button>
             </form>
@@ -114,18 +114,18 @@ export default function Home() {
       </section>
 
       {/* PRODUCTS SECTION matching Yacht for Charter */}
-      <section className="py-32 bg-[#060B25] text-white">
+      <section className="py-32 bg-[#0A1340] text-white">
         <div className="container px-6 md:px-12 max-w-[1400px] mx-auto">
           
           {/* Section Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
-              <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-4">05 Sản phẩm</div>
+              <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-4">05 Sản phẩm</div>
               <h2 className="text-3xl md:text-4xl font-normal leading-tight">
-                Sản phẩm cho mọi <span className="italic font-light text-[#B8B5AE]">quy mô</span>
+                Sản phẩm cho mọi <span className="italic font-light text-[#C8D0E8]">quy mô</span>
               </h2>
             </div>
-            <Link href="/pricing" className="text-[13px] text-[#B8B5AE] hover:text-white link-hover uppercase tracking-wide">
+            <Link href="/pricing" className="text-[13px] text-[#C8D0E8] hover:text-white link-hover uppercase tracking-wide">
               Xem bảng giá &rarr;
             </Link>
           </div>
@@ -174,15 +174,15 @@ export default function Home() {
                 href: "/tem-phu"
               }
             ].map((prod) => (
-              <Link key={prod.id} href={prod.href} className="group block bg-[#0A1130] rounded-md overflow-hidden hairline-t hairline-b border-x border-white/5 transition-all duration-500 hover:bg-[#0E1538]">
+              <Link key={prod.id} href={prod.href} className="group block bg-[#16205A] rounded-md overflow-hidden hairline-t hairline-b border-x border-white/5 transition-all duration-500 hover:bg-[#0E1538]">
                 <div className="aspect-[4/3] w-full overflow-hidden relative">
-                  <div className="absolute inset-0 bg-[#060B25]/20 z-10 group-hover:bg-transparent transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-[#0A1340]/20 z-10 group-hover:bg-transparent transition-colors duration-500" />
                   <img src={prod.image} alt={prod.title} className="w-full h-full object-cover image-hover" />
                 </div>
                 <div className="p-8">
-                  <div className="text-[10px] text-[#83776D] uppercase tracking-[0.15em] mb-3">{prod.label}</div>
+                  <div className="text-[10px] text-[#FF6B47] uppercase tracking-[0.15em] mb-3">{prod.label}</div>
                   <h3 className="text-xl font-normal text-white mb-2">{prod.title}</h3>
-                  <p className="text-[13px] text-[#B8B5AE]">{prod.desc}</p>
+                  <p className="text-[13px] text-[#C8D0E8]">{prod.desc}</p>
                 </div>
               </Link>
             ))}
@@ -191,7 +191,7 @@ export default function Home() {
       </section>
 
       {/* Process Section */}
-      <section className="py-32 bg-[#040613] text-white">
+      <section className="py-32 bg-[#060C2A] text-white">
         <div className="container px-6 md:px-12 max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             
@@ -203,9 +203,9 @@ export default function Home() {
               className="space-y-16"
             >
               <div>
-                <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-4">Tinh giản quy trình</div>
+                <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-4">Tinh giản quy trình</div>
                 <h2 className="text-3xl md:text-4xl font-normal leading-tight">
-                  Tạo dấu ấn <span className="italic font-light text-[#B8B5AE]">điện tử</span>
+                  Tạo dấu ấn <span className="italic font-light text-[#C8D0E8]">điện tử</span>
                 </h2>
               </div>
               
@@ -216,10 +216,10 @@ export default function Home() {
                   { num: "03.", title: "Khẳng định thương hiệu", desc: "Tem QR được đính kết lên bao bì, mở ra không gian tương tác vô tận với khách hàng cao cấp." }
                 ].map((step, i) => (
                   <div key={i} className="flex gap-8 group">
-                    <div className="text-[13px] font-normal text-[#83776D] pt-1">{step.num}</div>
+                    <div className="text-[13px] font-normal text-[#FF6B47] pt-1">{step.num}</div>
                     <div className="space-y-2">
                       <h3 className="text-lg font-normal text-white">{step.title}</h3>
-                      <p className="text-[#B8B5AE] text-[13px] leading-relaxed max-w-sm">{step.desc}</p>
+                      <p className="text-[#C8D0E8] text-[13px] leading-relaxed max-w-sm">{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -237,7 +237,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="aspect-[4/5] overflow-hidden rounded-md bg-[#0A1130]"
+              className="aspect-[4/5] overflow-hidden rounded-md bg-[#16205A]"
             >
               <img 
                 src="/images/hero-saigon.png" 
@@ -251,20 +251,20 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-[#060B25] text-center border-t border-white/5">
+      <section className="py-32 bg-[#0A1340] text-center border-t border-white/5">
         <div className="container px-6 max-w-3xl mx-auto">
-          <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-6">Tham gia cùng chúng tôi</div>
+          <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-6">Tham gia cùng chúng tôi</div>
           <h2 className="text-4xl md:text-5xl font-normal leading-tight text-white mb-10">
-            Sẵn sàng nâng tầm <br/><span className="italic font-light text-[#B8B5AE]">thương hiệu?</span>
+            Sẵn sàng nâng tầm <br/><span className="italic font-light text-[#C8D0E8]">thương hiệu?</span>
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link href="/contact">
-              <Button className="w-full sm:w-auto rounded-md bg-[#83776D] hover:bg-[#83776D]/90 text-white uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto">
+              <Button className="w-full sm:w-auto rounded-md bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto">
                 Liên hệ đối tác
               </Button>
             </Link>
             <Link href="/demo">
-              <Button variant="outline" className="w-full sm:w-auto rounded-md bg-transparent border-white/20 text-white hover:bg-white hover:text-[#060B25] uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto transition-all duration-300">
+              <Button variant="outline" className="w-full sm:w-auto rounded-md bg-transparent border-white/20 text-white hover:bg-white hover:text-[#0A1340] uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto transition-all duration-300">
                 Trải nghiệm mẫu
               </Button>
             </Link>

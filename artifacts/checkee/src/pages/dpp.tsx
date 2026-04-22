@@ -3,23 +3,23 @@ import { Button } from "@/components/ui/button";
 
 export default function DPP() {
   return (
-    <div className="flex flex-col w-full bg-[#060B25]">
+    <div className="flex flex-col w-full bg-[#0A1340]">
       <section className="relative h-[70vh] min-h-[600px] w-full overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <img src="/images/hero-lacquer.png" alt="DPP" className="w-full h-full object-cover" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060B25]/30 via-[#060B25]/50 to-[#060B25]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1340]/30 via-[#0A1340]/50 to-[#0A1340]" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10 pt-20">
-          <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-6">ESPR Regulation (EU) 2024/1781</div>
+          <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-6">ESPR Regulation (EU) 2024/1781</div>
           <h1 className="text-4xl md:text-6xl text-white font-normal leading-[1.1] mb-6">
-            Hộ chiếu <span className="italic font-light text-[#F5F5F0]/80">số hoá</span>
+            Hộ chiếu <span className="italic font-light text-[#FFFFFF]/80">số hoá</span>
           </h1>
-          <p className="text-[13px] md:text-[14px] text-[#B8B5AE] max-w-xl mx-auto leading-relaxed mb-10">
+          <p className="text-[13px] md:text-[14px] text-[#C8D0E8] max-w-xl mx-auto leading-relaxed mb-10">
             Digital Product Passport. Tấm vé thượng lưu đưa sản phẩm Việt Nam vào thị trường Châu Âu với chuẩn mực bền vững và minh bạch cao nhất.
           </p>
           <Link href="/demo?product=dpp">
-            <Button className="rounded-md bg-[#83776D] hover:bg-[#83776D]/90 text-white uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto">
+            <Button className="rounded-md bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto">
               Trải nghiệm mẫu
             </Button>
           </Link>
@@ -29,9 +29,9 @@ export default function DPP() {
       <section className="py-32 border-t border-white/5">
         <div className="container px-6 md:px-12 max-w-[1200px] mx-auto">
           <div className="max-w-2xl mb-20">
-            <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-4">Cấu trúc dữ liệu</div>
+            <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-4">Cấu trúc dữ liệu</div>
             <h2 className="text-3xl font-normal text-white">
-              Tuyên ngôn <span className="italic font-light text-[#B8B5AE]">của sự bền vững.</span>
+              Tuyên ngôn <span className="italic font-light text-[#C8D0E8]">của sự bền vững.</span>
             </h2>
           </div>
 
@@ -44,7 +44,7 @@ export default function DPP() {
             ].map((item, i) => (
               <div key={i} className="space-y-4">
                 <h3 className="text-lg font-normal text-white">{item.title}</h3>
-                <p className="text-[13px] text-[#B8B5AE] leading-relaxed">{item.desc}</p>
+                <p className="text-[13px] text-[#C8D0E8] leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>

@@ -57,32 +57,32 @@
 }
 
 :root, .dark {
-  /* Deep Navy-Black Palette */
-  --background: 231 72% 6%; /* #060B25 */
-  --foreground: 60 14% 96%; /* #F5F5F0 */
+  /* Vibrant Royal Navy + Coral Palette (matches Checkee logo) */
+  --background: 230 65% 14%; /* #0A1340 brighter royal navy */
+  --foreground: 0 0% 100%;
 
-  --border: 0 0% 100% / 0.08;
-  --input: 0 0% 100% / 0.08;
-  --ring: 26 10% 47%; /* Accent taupe */
+  --border: 0 0% 100% / 0.12;
+  --input: 0 0% 100% / 0.10;
+  --ring: 16 100% 64%; /* coral accent */
 
-  --card: 229 66% 11%; /* #0A1130 */
-  --card-foreground: 60 14% 96%;
-  --card-border: 0 0% 100% / 0.08;
+  --card: 230 55% 19%; /* #16205A elevated card */
+  --card-foreground: 0 0% 100%;
+  --card-border: 0 0% 100% / 0.12;
 
-  --popover: 229 66% 11%;
-  --popover-foreground: 60 14% 96%;
-  --popover-border: 0 0% 100% / 0.08;
+  --popover: 230 55% 19%;
+  --popover-foreground: 0 0% 100%;
+  --popover-border: 0 0% 100% / 0.12;
 
-  --primary: 231 72% 6%;
-  --primary-foreground: 60 14% 96%;
+  --primary: 215 70% 50%; /* logo blue */
+  --primary-foreground: 0 0% 100%;
   
-  --secondary: 231 66% 5%; /* #040613 */
-  --secondary-foreground: 60 14% 96%;
+  --secondary: 230 70% 10%; /* #060C2A deeper for contrast */
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 229 66% 15%;
-  --muted-foreground: 40 4% 63%; /* #B8B5AE / #878787 */
+  --muted: 230 40% 25%;
+  --muted-foreground: 220 20% 78%;
 
-  --accent: 26 10% 47%; /* #83776D */
+  --accent: 16 100% 64%; /* #FF6B47 vibrant coral */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
