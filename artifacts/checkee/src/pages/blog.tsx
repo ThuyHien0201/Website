@@ -1,78 +1,71 @@
 import { Link } from "wouter";
-import { ArrowRight, Calendar, BookOpen } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Blog() {
   const articles = [
     {
-      title: "TT 02/2024 — 10 trường thông tin bắt buộc doanh nghiệp cần biết",
+      title: "Thông tư 02/2024 — Giải mã 10 trường thông tin định danh hàng hoá",
       date: "12 Tháng 3, 2024",
       category: "Trace",
-      desc: "Phân tích chi tiết Thông tư 02/2024/TT-BKHCN về truy xuất nguồn gốc. Các bước chuẩn bị để doanh nghiệp không bị phạt từ 01/06.",
-      color: "text-[#1D9E75]"
     },
     {
-      title: "NĐ 37/2026 chính thức hiệu lực: Doanh nghiệp nhập khẩu cần làm gì?",
+      title: "Kỷ nguyên nhãn số: Khi bao bì trút bỏ gánh nặng văn bản (NĐ 37/2026)",
       date: "28 Tháng 2, 2024",
-      category: "E-label & Tem Phụ",
-      desc: "Nhãn điện tử và tem phụ số sẽ định hình lại cách chúng ta phân phối hàng hoá. Hãy cùng tìm hiểu lộ trình chuyển đổi.",
-      color: "text-[#0C447C]"
+      category: "E-label",
     },
     {
-      title: "EU ESPR và Hộ chiếu số sản phẩm — Cơ hội xuất khẩu 2027",
+      title: "Digital Product Passport — Tấm thẻ bài cho sản phẩm thượng lưu tiến vào Châu Âu",
       date: "15 Tháng 2, 2024",
       category: "DPP",
-      desc: "Châu Âu áp dụng Digital Product Passport. Doanh nghiệp dệt may, điện tử Việt Nam cần chuẩn bị những dữ liệu gì từ bây giờ?",
-      color: "text-[#3C3489]"
     },
     {
-      title: "QĐ 1246 và bài học từ các vụ ngộ độc bếp ăn trường học",
+      title: "Nghệ thuật quản trị rủi ro ẩm thực với hệ thống lưu mẫu chuẩn QĐ 1246",
       date: "05 Tháng 2, 2024",
       category: "F&B",
-      desc: "Lưu mẫu thức ăn đúng chuẩn không chỉ là chống đối cơ quan kiểm tra, mà là tự bảo vệ doanh nghiệp và sức khoẻ học sinh.",
-      color: "text-[#854F0B]"
     },
     {
-      title: "So sánh toàn diện: Tem giấy dán đè vs QR Tem phụ điện tử",
+      title: "Tem phụ điện tử — Giải pháp thanh lịch cho các xa xỉ phẩm nhập khẩu",
       date: "20 Tháng 1, 2024",
       category: "Tem Phụ",
-      desc: "Bài toán chi phí in ấn, thẩm mỹ bao bì gốc và sự tiện lợi khi thay đổi thông tin nhà phân phối.",
-      color: "text-[#712B13]"
     }
   ];
 
   return (
     <div className="flex flex-col w-full">
-      <section className="pt-20 pb-16 bg-background">
-        <div className="container px-4 md:px-6 max-w-5xl mx-auto space-y-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
-            Blog & Cập nhật Pháp lý
+      <section className="pt-32 pb-24 bg-background">
+        <div className="container px-6 md:px-12 max-w-5xl mx-auto space-y-8">
+          <div className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground text-center">
+            Tạp chí Pháp lý & Thiết kế
+          </div>
+          <h1 className="text-5xl md:text-7xl font-serif text-primary leading-[0.95] text-center">
+            Góc nhìn<br/>chuyên sâu.
           </h1>
-          <p className="text-xl text-muted-foreground">
-            Tổng hợp tin tức, diễn giải nghị định và hướng dẫn áp dụng công nghệ vào quản lý thông tin sản phẩm.
-          </p>
         </div>
       </section>
 
-      <section className="pb-24 bg-background">
-        <div className="container px-4 md:px-6 max-w-5xl mx-auto">
-          <div className="grid gap-8">
+      <section className="pb-32 bg-background">
+        <div className="container px-6 md:px-12 max-w-4xl mx-auto">
+          <div className="border-t border-border/40">
             {articles.map((article, i) => (
-              <article key={i} className="group bg-white rounded-2xl border p-6 md:p-8 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center space-x-4 mb-4 text-sm font-medium">
-                  <span className={article.color}>{article.category}</span>
-                  <span className="text-muted-foreground flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" /> {article.date}
-                  </span>
+              <article key={i} className="group border-b border-border/40 py-12 transition-all duration-500 hover:bg-secondary/5">
+                <div className="grid md:grid-cols-4 gap-6 items-baseline px-4">
+                  <div className="md:col-span-1 text-xs tracking-widest uppercase text-muted-foreground font-medium">
+                    {article.date}
+                  </div>
+                  <div className="md:col-span-3 space-y-4">
+                    <span className="text-[10px] tracking-[0.2em] uppercase border border-border/60 px-3 py-1 rounded-full text-muted-foreground">
+                      {article.category}
+                    </span>
+                    <h2 className="text-2xl font-serif text-primary group-hover:text-secondary transition-colors duration-500 leading-snug">
+                      <Link href="#" className="focus:outline-none">{article.title}</Link>
+                    </h2>
+                    <div className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <Link href="#" className="inline-flex items-center text-xs tracking-widest uppercase font-medium text-secondary">
+                        Khám phá <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <h2 className="text-2xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
-                  <Link href="#" className="focus:outline-none">{article.title}</Link>
-                </h2>
-                <p className="text-muted-foreground mb-6 text-lg">
-                  {article.desc}
-                </p>
-                <Link href="#" className="inline-flex items-center text-primary font-medium hover:underline">
-                  Đọc tiếp <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
               </article>
             ))}
           </div>

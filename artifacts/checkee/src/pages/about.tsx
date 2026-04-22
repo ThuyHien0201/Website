@@ -1,50 +1,63 @@
 import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (
     <div className="flex flex-col w-full">
-      <section className="pt-20 pb-16 bg-background">
-        <div className="container px-4 md:px-6 max-w-4xl mx-auto space-y-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
+      <section className="pt-32 pb-32 md:pt-48 md:pb-40 bg-background border-b border-border/40">
+        <div className="container px-6 md:px-12 max-w-3xl mx-auto text-center space-y-12">
+          <div className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground">
             Câu chuyện thương hiệu
+          </div>
+          <h1 className="text-5xl md:text-7xl font-serif text-primary leading-[0.95]">
+            Nghệ thuật <br/>của sự thật.
           </h1>
-          <p className="text-xl text-muted-foreground font-medium italic">
-            "Vì người tiêu dùng Việt"
+          <p className="text-xl text-muted-foreground font-light leading-relaxed font-serif italic">
+            "Chúng tôi không xây dựng một phần mềm tuân thủ. Chúng tôi thiết kế một lăng kính để phơi bày vẻ đẹp của những thương hiệu chân chính."
           </p>
         </div>
       </section>
 
-      <section className="pb-24 bg-background">
-        <div className="container px-4 md:px-6 max-w-3xl mx-auto space-y-12">
-          <div className="prose prose-lg max-w-none text-foreground/80">
-            <p>
-              Được thành lập với sứ mệnh minh bạch hoá thị trường hàng hoá tại Việt Nam, Checkee không chỉ là một công ty phần mềm, mà là một nỗ lực để xây dựng lại niềm tin giữa doanh nghiệp và người tiêu dùng.
+      <section className="py-32 bg-background">
+        <div className="container px-6 md:px-12 max-w-3xl mx-auto space-y-24">
+          
+          <div className="space-y-8">
+            <h2 className="text-3xl font-serif text-primary">Tái định nghĩa sự tuân thủ</h2>
+            <p className="text-lg text-foreground font-light leading-relaxed">
+              Các quy định như Thông tư 02 hay Nghị định 37 thường được nhìn nhận như những gánh nặng hành chính. Một mã QR vuông vức, khô khan, trỏ về một trang web của cơ quan nhà nước với thiết kế từ thập kỷ trước.
             </p>
-            
-            <h3 className="font-serif text-2xl font-bold mt-12 mb-4 text-foreground">Bài toán pháp lý và Cơ hội thương hiệu</h3>
-            <p>
-              Các quy định pháp luật như Thông tư 02/2024, Nghị định 37/2026, hay xa hơn là ESPR của Liên minh Châu Âu đang đặt ra những yêu cầu khắt khe về minh bạch thông tin sản phẩm. 
-            </p>
-            <p>
-              Tuy nhiên, chúng tôi không nhìn nhận đây là những "gánh nặng tuân thủ" (compliance burden). Tại Checkee, chúng tôi tin rằng minh bạch là <strong>lợi thế cạnh tranh lớn nhất</strong> trong kỷ nguyên số. Mã QR trên bao bì không nên chỉ là một ô vuông đen trắng nhàm chán trỏ về một trang web của cơ quan quản lý. Nó phải là một điểm chạm thương hiệu sang trọng, trực quan và thuyết phục.
-            </p>
-
-            <h3 className="font-serif text-2xl font-bold mt-12 mb-4 text-foreground">Thiết kế cho người Việt</h3>
-            <p>
-              Giao diện của Checkee được thiết kế với sự tỉ mỉ mang âm hưởng của nghệ thuật thủ công cao cấp Việt Nam. Chúng tôi chối bỏ sự khô khan của các phần mềm quản lý nhà nước thông thường. Checkee mang đến sự mượt mà, đẳng cấp và đáng tin cậy.
-            </p>
-            
-            <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-xl my-8">
-              <p className="m-0 italic text-foreground/90 font-medium">
-                "Chúng tôi muốn mỗi khi người tiêu dùng nhấc điện thoại lên quét một mã Checkee QR tại siêu thị, họ lập tức cảm thấy: Sản phẩm này được làm ra bởi một doanh nghiệp tử tế."
-              </p>
-            </div>
-
-            <h3 className="font-serif text-2xl font-bold mt-12 mb-4 text-foreground">Tầm nhìn 2030</h3>
-            <p>
-              Checkee đặt mục tiêu trở thành tiêu chuẩn vàng về số hoá thông tin sản phẩm tại Đông Nam Á, hỗ trợ 10.000 doanh nghiệp Việt xuất khẩu thành công sang các thị trường khó tính nhất nhờ việc đáp ứng trước các rào cản kỹ thuật số.
+            <p className="text-lg text-foreground font-light leading-relaxed">
+              Tại Checkee, chúng tôi từ chối sự tầm thường đó. Chúng tôi tin rằng minh bạch là lợi thế cạnh tranh xa xỉ nhất. Khi một khách hàng nhấc điện thoại lên để truy xuất nguồn gốc, đó là khoảnh khắc vàng để thương hiệu kể câu chuyện của mình — một câu chuyện về sự tận tâm, chuẩn xác và thanh lịch.
             </p>
           </div>
+
+          <div className="border-l border-primary pl-8 py-4 my-16">
+            <p className="text-2xl font-serif text-primary italic leading-relaxed">
+              Mã QR trên bao bì không nên là một con tem vô hồn. Nó phải là cánh cửa mở ra một không gian triển lãm, nơi mỗi công đoạn sản xuất là một tác phẩm nghệ thuật.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            <h2 className="text-3xl font-serif text-primary">Thiết kế cho giới tinh hoa</h2>
+            <p className="text-lg text-foreground font-light leading-relaxed">
+              Checkee được tạo hình với ngôn ngữ thiết kế của các tạp chí kiến trúc và thời trang cao cấp. Chúng tôi lược bỏ những biểu tượng sặc sỡ, những màu sắc cảnh báo chói lọi, để nhường chỗ cho không gian trắng, nghệ thuật chữ (typography) sắc nét, và những gam màu trầm mặc.
+            </p>
+            <p className="text-lg text-foreground font-light leading-relaxed">
+              Sản phẩm của Việt Nam đang ngày càng vươn lên phân khúc cao cấp — từ cà phê đặc sản, gốm sứ thủ công, đến thời trang bền vững. Nền tảng hiển thị thông tin của chúng cũng phải xứng tầm với chất lượng đó.
+            </p>
+          </div>
+
+          <div className="border-t border-border/40 pt-16 mt-16 text-center">
+            <div className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-8">
+              Tham gia cùng chúng tôi
+            </div>
+            <Link href="/contact">
+              <Button className="h-14 px-12 rounded-none bg-primary text-primary-foreground tracking-widest uppercase text-xs hover:bg-primary/90 transition-all duration-500">
+                Trở thành đối tác
+              </Button>
+            </Link>
+          </div>
+
         </div>
       </section>
     </div>

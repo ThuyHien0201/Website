@@ -30,3 +30,27 @@ id = "0WS5HZBshrI6nDNrygWaA"
 uri = "file://artifacts/checkee/public/images/luxury-cosmetic.png"
 type = "image"
 title = "Luxury cosmetic with QR"
+
+[[generated]]
+id = "9iGKkdL_clHd2S0ZQnqED"
+uri = "file://artifacts/checkee/public/images/tea-jar-editorial.png"
+type = "image"
+title = "Ceramic tea jar with QR"
+
+[[generated]]
+id = "lDq8zIvM0Erna68O9i6ok"
+uri = "file://artifacts/checkee/public/images/lacquer-box-editorial.png"
+type = "image"
+title = "Silk lacquer box macro"
+
+[[generated]]
+id = "IEpl7Uedx_v8NQyJhxByq"
+uri = "file://artifacts/checkee/public/images/coffee-package-editorial.png"
+type = "image"
+title = "Luxury coffee package flat-lay"
+
+[[generated]]
+id = "Mb7uSptxhbLrox5K1hgau"
+uri = "file://artifacts/checkee/public/images/fish-sauce-editorial.png"
+type = "image"
+title = "Fish sauce bottle elegant"
