@@ -1,0 +1,32 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Nc1XndKmnfxTJM8lKn6yy"
+uri = "file://artifacts/checkee/public/images/hero-product.png"
+type = "image"
+title = "QR on Vietnamese product"
+
+[[generated]]
+id = "gQNgLWxb8TVlZUbi0DlDh"
+uri = "file://artifacts/checkee/public/images/scan-supermarket.png"
+type = "image"
+title = "Phone scanning modern label"
+
+[[generated]]
+id = "ZNmnCrCzPPYQhA7nlFMFe"
+uri = "file://artifacts/checkee/public/images/factory-floor.png"
+type = "image"
+title = "Modern factory floor tags"
+
+[[generated]]
+id = "neMrnAP9NP_-dE8k24ZNP"
+uri = "file://artifacts/checkee/public/images/chef-logging.png"
+type = "image"
+title = "Chef logging food sample"
+
+[[generated]]
+id = "0WS5HZBshrI6nDNrygWaA"
+uri = "file://artifacts/checkee/public/images/luxury-cosmetic.png"
+type = "image"
+title = "Luxury cosmetic with QR"

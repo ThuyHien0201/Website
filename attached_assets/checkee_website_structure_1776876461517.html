@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkee — Cấu trúc website & Bảng giá</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --brand: #1D9E75;
+  --brand-dark: #085041;
+  --brand-light: #E1F5EE;
+  --text: #1A1A18;
+  --muted: #5F5E5A;
+  --border: #E0DED6;
+  --bg: #FAFAF8;
+  --white: #FFFFFF;
+  --amber: #854F0B;
+  --amber-light: #FEF3E2;
+  --blue: #0C447C;
+  --blue-light: #EAF2FB;
+  --purple: #3C3489;
+  --purple-light: #EEEDFE;
+  --coral: #712B13;
+  --coral-light: #FAECE7;
+  --red: #A32D2D;
+  --red-light: #FCEBEB;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
+
+/* NAV */
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(250,250,248,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: center; gap: 0; height: 56px; }
+.logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--brand); margin-right: 40px; }
+.logo span { color: var(--text); }
+.nav-links { display: flex; gap: 4px; }
+.nav-link { font-size: 13px; font-weight: 500; color: var(--muted); padding: 6px 12px; border-radius: 6px; cursor: pointer; border: none; background: none; transition: all 0.15s; white-space: nowrap; }
+.nav-link:hover, .nav-link.active { background: var(--brand-light); color: var(--brand-dark); }
+
+/* SECTIONS */
+.section { display: none; padding: 48px 32px; max-width: 1200px; margin: 0 auto; }
+.section.active { display: block; }
+
+/* PAGE HEADER */
+.page-title { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--text); margin-bottom: 8px; }
+.page-sub { font-size: 15px; color: var(--muted); margin-bottom: 40px; line-height: 1.7; }
+
+/* SITE STRUCTURE */
+.site-tree { display: flex; flex-direction: column; gap: 16px; }
+.tree-layer { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.tree-layer-header { padding: 14px 20px; background: var(--text); display: flex; align-items: center; gap: 10px; }
+.tree-layer-header.brand { background: var(--brand); }
+.tree-layer-header.light { background: var(--bg); border-bottom: 1px solid var(--border); }
+.layer-num { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; }
+.layer-title { font-size: 14px; font-weight: 700; color: #fff; }
+.light .layer-num, .light .layer-title { color: var(--muted); }
+.tree-layer-body { padding: 20px; }
+.page-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.page-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: var(--bg); }
+.page-card-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.page-card-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.page-card-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
+.tag-teal { background: var(--brand-light); color: var(--brand-dark); }
+.tag-amber { background: var(--amber-light); color: var(--amber); }
+.tag-blue { background: var(--blue-light); color: var(--blue); }
+.tag-purple { background: var(--purple-light); color: var(--purple); }
+.tag-coral { background: var(--coral-light); color: var(--coral); }
+.tag-gray { background: #F1EFE8; color: #444; }
+
+.sub-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.sub-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px; background: var(--bg); }
+.sub-card-title { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.sub-card ul { list-style: none; padding: 0; }
+.sub-card ul li { font-size: 11px; color: var(--muted); padding: 2px 0; display: flex; align-items: flex-start; gap: 5px; }
+.sub-card ul li::before { content: '·'; color: var(--brand); flex-shrink: 0; margin-top: 0; }
+
+/* FLOW ROW */
+.flow-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.flow-step { background: var(--brand); color: #fff; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; white-space: nowrap; }
+.flow-arrow { color: var(--muted); font-size: 16px; }
+.flow-step.gray { background: #F1EFE8; color: var(--text); }
+.flow-step.dark { background: var(--text); color: #fff; }
+
+/* PRICING */
+.pricing-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
+.ptab { font-size: 12px; font-weight: 600; padding: 7px 16px; border-radius: 20px; cursor: pointer; border: 1.5px solid var(--border); background: var(--white); color: var(--muted); transition: all 0.15s; }
+.ptab.on { border-color: var(--brand); background: var(--brand-light); color: var(--brand-dark); }
+.pricing-section { display: none; }
+.pricing-section.on { display: block; }
+
+.price-hero { background: var(--brand); border-radius: 16px; padding: 28px 32px; margin-bottom: 28px; color: #fff; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.price-hero h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.price-hero p { font-size: 13px; opacity: 0.8; max-width: 500px; }
+.price-hero .law-badge { background: rgba(255,255,255,0.15); font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; backdrop-filter: blur(4px); white-space: nowrap; }
+
+.price-table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+table.price { width: 100%; border-collapse: collapse; background: var(--white); }
+table.price th { font-size: 13px; font-weight: 700; padding: 14px 16px; text-align: center; background: var(--text); color: #fff; }
+table.price th:first-child { text-align: left; background: var(--brand-dark); }
+table.price td { font-size: 13px; padding: 12px 16px; text-align: center; border-top: 1px solid var(--border); color: var(--text); }
+table.price td:first-child { text-align: left; font-weight: 600; color: var(--muted); font-size: 12px; background: var(--bg); }
+table.price tr:nth-child(even) td { background: var(--bg); }
+table.price tr:nth-child(even) td:first-child { background: #F1EFE8; }
+.price-val { font-size: 13px; font-weight: 700; color: var(--text); }
+.price-sub { font-size: 10px; color: var(--muted); display: block; margin-top: 2px; }
+.unlimited { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--brand-dark); font-weight: 600; }
+.note-row td { background: #FFFDF5 !important; font-size: 11px; color: var(--muted); font-style: italic; text-align: left !important; padding: 10px 16px; }
+.highlight-col { background: var(--brand-light) !important; }
+.badge-pop { display: inline-block; font-size: 9px; font-weight: 700; background: var(--brand); color: #fff; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+
+/* COMPARE TABLE */
+.compare-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); margin-top: 28px; }
+table.compare { width: 100%; border-collapse: collapse; background: var(--white); min-width: 700px; }
+table.compare th { font-size: 12px; font-weight: 700; padding: 12px 14px; background: var(--text); color: #fff; text-align: center; }
+table.compare th:first-child { text-align: left; }
+table.compare td { font-size: 12px; padding: 10px 14px; border-top: 1px solid var(--border); text-align: center; }
+table.compare td:first-child { text-align: left; font-weight: 600; color: var(--muted); font-size: 11px; background: var(--bg); }
+.check { color: var(--brand); font-size: 16px; }
+.dash { color: #ccc; }
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .sub-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .section { padding: 28px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">Check<span>ee</span></div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showSection('structure')">Cấu trúc website</button>
+    <button class="nav-link" onclick="showSection('pricing')">Bảng giá</button>
+    <button class="nav-link" onclick="showSection('compare')">So sánh gói</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     SECTION 1: CẤU TRÚC WEBSITE
+══════════════════════════════════════ -->
+<section class="section active" id="section-structure">
+  <div class="page-title">Cấu trúc website Checkee</div>
+  <p class="page-sub">Website marketing tích hợp demo thử — 7 lớp, từ trang chủ đến người dùng cuối. Mục tiêu: doanh nghiệp thử → thấy QR đẹp → liên hệ mua.</p>
+
+  <div class="site-tree">
+
+    <!-- LỚP 1 -->
+    <div class="tree-layer">
+      <div class="tree-layer-header brand">
+        <span class="layer-num">LỚP 1</span>
+        <span class="layer-title">Trang chủ (Homepage)</span>
+      </div>
+      <div class="tree-layer-body">
+        <div class="page-grid">
+          <div class="page-card">
+            <div class="page-card-title">Hero section</div>
+            <div class="page-card-desc">Tagline + CTA "Thử miễn phí ngay, không cần đăng ký"</div>
+            <span class="page-card-tag tag-teal">Chuyển đổi #1</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">5 Product cards</div>
+            <div class="page-card-desc">Mỗi card có badge pháp lý + nút dẫn vào demo</div>
+            <span class="page-card-tag tag-gray">Navigation</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Social proof</div>
+            <div class="page-card-desc">Logo đối tác, số lượng QR đã tạo, testimonials</div>
+            <span class="page-card-tag tag-gray">Trust</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Quy trình 3 bước</div>
+            <div class="page-card-desc">Điền → Tạo QR → Dán lên sản phẩm</div>
+            <span class="page-card-tag tag-gray">Education</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Bảng giá tóm tắt</div>
+            <div class="page-card-desc">Highlight gói phổ biến + CTA liên hệ</div>
+            <span class="page-card-tag tag-teal">Chuyển đổi #2</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Footer</div>
+            <div class="page-card-desc">Liên hệ, pháp lý, mạng xã hội, hotline</div>
+            <span class="page-card-tag tag-gray">Utility</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LỚP 2 -->
+    <div class="tree-layer">
+      <div class="tree-layer-header">
+        <span class="layer-num">LỚP 2</span>
+        <span class="layer-title">5 Trang sản phẩm</span>
+      </div>
+      <div class="tree-layer-body">
+        <div class="sub-grid">
+          <div class="sub-card">
+            <div class="sub-card-title" style="color:var(--brand-dark)">Trace</div>
+            <ul>
+              <li>Giới thiệu + cơ sở pháp lý TT 02/2024</li>
+              <li>Demo thử ngay</li>
+              <li>Banner upsell → DPP</li>
+              <li>Bảng giá Trace</li>
+              <li>FAQ Trace</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <div class="sub-card-title" style="color:var(--blue)">E-label</div>
+            <ul>
+              <li>Giới thiệu + NĐ 37/2026</li>
+              <li>Demo thử ngay</li>
+              <li>Showcase 6 nhóm hàng</li>
+              <li>Bảng giá E-label</li>
+              <li>FAQ E-label</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <div class="sub-card-title" style="color:var(--purple)">DPP</div>
+            <ul>
+              <li>Giới thiệu + ESPR EU 2024</li>
+              <li>Demo thử (kế thừa Trace)</li>
+              <li>Bảng 8 nhóm thông tin DPP</li>
+              <li>Bảng giá DPP</li>
+              <li>FAQ xuất khẩu EU</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <div class="sub-card-title" style="color:var(--amber)">F&B</div>
+            <ul>
+              <li>Giới thiệu + QĐ 1246/QĐ-BYT</li>
+              <li>Demo 2 loại QR</li>
+              <li>Showcase: bếp trường / nhà hàng</li>
+              <li>Bảng giá F&B</li>
+              <li>FAQ lưu mẫu</li>
+            </ul>
+          </div>
+          <div class="sub-card">
+            <div class="sub-card-title" style="color:var(--coral)">Tem phụ</div>
+            <ul>
+              <li>Giới thiệu + NĐ 37/2026 khoản 2</li>
+              <li>Demo thử ngay</li>
+              <li>So sánh: tem giấy vs QR</li>
+              <li>Bảng giá Tem phụ</li>
+              <li>FAQ hàng NK</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LỚP 3 -->
+    <div class="tree-layer">
+      <div class="tree-layer-header">
+        <span class="layer-num">LỚP 3</span>
+        <span class="layer-title">Luồng demo thử — 3 bước (chung cả 5 SP)</span>
+      </div>
+      <div class="tree-layer-body">
+        <div class="flow-row">
+          <div class="flow-step gray">Chọn nhóm hàng</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step gray">Điền 3–5 trường nhanh</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">QR hiện ngay</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step gray">Tải PNG / PDF</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step dark">Không cần đăng ký</div>
+        </div>
+        <div style="margin-top:14px;padding:12px 16px;background:var(--purple-light);border-radius:8px;font-size:12px;color:var(--purple)">
+          <strong>Riêng DPP:</strong> Sau khi tạo Trace → banner "Nâng cấp DPP chỉ cần thêm vài trường — dữ liệu đã sẵn" → form DPP tự điền dữ liệu Trace, chỉ bổ sung carbon footprint, tái chế, vòng đời, chứng nhận CE/RoHS/ISO.
+        </div>
+        <div style="margin-top:10px;padding:12px 16px;background:var(--amber-light);border-radius:8px;font-size:12px;color:var(--amber)">
+          <strong>Riêng F&B:</strong> Tạo template món ăn 1 lần → mỗi ca chọn template + điền giờ → sinh đồng thời <strong>2 QR</strong>: QR hộp lưu mẫu (cho cơ quan kiểm tra) + QR menu/khay (cho khách hàng).
+        </div>
+      </div>
+    </div>
+
+    <!-- LỚP 4 -->
+    <div class="tree-layer">
+      <div class="tree-layer-header">
+        <span class="layer-num">LỚP 4</span>
+        <span class="layer-title">Landing page khi quét QR (mobile-first)</span>
+      </div>
+      <div class="tree-layer-body">
+        <div class="page-grid">
+          <div class="page-card">
+            <div class="page-card-title">Trace landing</div>
+            <div class="page-card-desc">Timeline chuỗi cung ứng, tiêu chuẩn, NSX</div>
+            <span class="page-card-tag tag-teal">Người tiêu dùng</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">E-label landing</div>
+            <div class="page-card-desc">Nhãn điện tử đầy đủ, đa ngôn ngữ</div>
+            <span class="page-card-tag tag-blue">Người tiêu dùng</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">DPP landing</div>
+            <div class="page-card-desc">Hộ chiếu số: carbon, tái chế, vòng đời, CE</div>
+            <span class="page-card-tag tag-purple">Đối tác EU</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">F&B — Hộp lưu mẫu</div>
+            <div class="page-card-desc">Hồ sơ lưu mẫu theo QĐ 1246: nguyên liệu, người lấy, nhiệt độ, thời gian</div>
+            <span class="page-card-tag tag-amber">Cơ quan kiểm tra</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">F&B — Menu/Khay</div>
+            <div class="page-card-desc">Tên món, giờ chế biến, ca bếp, chứng nhận ATTP</div>
+            <span class="page-card-tag tag-amber">Khách / Phụ huynh</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Tem phụ landing</div>
+            <div class="page-card-desc">Toàn bộ thông tin tiếng Việt theo NĐ 37</div>
+            <span class="page-card-tag tag-coral">Người tiêu dùng</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:12px 16px;background:var(--brand-light);border-radius:8px;font-size:12px;color:var(--brand-dark)">
+          <strong>CTA cuối mỗi landing:</strong> "Dùng thật cho doanh nghiệp của bạn → Liên hệ ngay" — đây là điểm chuyển đổi từ người tiêu dùng cuối thành lead mới.
+        </div>
+      </div>
+    </div>
+
+    <!-- LỚP 5 -->
+    <div class="tree-layer">
+      <div class="tree-layer-header">
+        <span class="layer-num">LỚP 5</span>
+        <span class="layer-title">Chuyển đổi & Tài khoản</span>
+      </div>
+      <div class="tree-layer-body">
+        <div class="page-grid">
+          <div class="page-card">
+            <div class="page-card-title">Đăng ký tài khoản</div>
+            <div class="page-card-desc">Lưu lịch sử QR, quản lý hàng loạt, cấp quyền nhân viên</div>
+            <span class="page-card-tag tag-teal">Upsell</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Trang liên hệ</div>
+            <div class="page-card-desc">Form tư vấn, hotline, lịch demo 1-on-1</div>
+            <span class="page-card-tag tag-teal">Lead gen</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Trang giá</div>
+            <div class="page-card-desc">Bảng giá đầy đủ 5 sản phẩm + so sánh gói</div>
+            <span class="page-card-tag tag-gray">Utility</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Blog / Pháp lý</div>
+            <div class="page-card-desc">Cập nhật TT 02/2024, NĐ 37/2026, ESPR EU — SEO</div>
+            <span class="page-card-tag tag-gray">SEO</span>
+          </div>
+          <div class="page-card">
+            <div class="page-card-title">Về Checkee</div>
+            <div class="page-card-desc">Câu chuyện thương hiệu, đội ngũ, đối tác</div>
+            <span class="page-card-tag tag-gray">Trust</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 2: BẢNG GIÁ
+══════════════════════════════════════ -->
+<section class="section" id="section-pricing">
+  <div class="page-title">Bảng giá 5 sản phẩm</div>
+  <p class="page-sub">Mỗi sản phẩm có gói riêng theo quy mô doanh nghiệp — từ startup nhỏ đến doanh nghiệp xuất khẩu lớn.</p>
+
+  <div class="pricing-tabs">
+    <button class="ptab on" onclick="showPricing('trace')">🔍 Trace</button>
+    <button class="ptab" onclick="showPricing('elabel')">🏷️ E-label</button>
+    <button class="ptab" onclick="showPricing('dpp')">📘 DPP</button>
+    <button class="ptab" onclick="showPricing('fb')">🍜 F&B</button>
+    <button class="ptab" onclick="showPricing('tem')">🇻🇳 Tem phụ</button>
+  </div>
+
+  <!-- TRACE -->
+  <div class="pricing-section on" id="price-trace">
+    <div class="price-hero">
+      <div>
+        <h2>Checkee Trace</h2>
+        <p>Truy xuất nguồn gốc sản phẩm — đáp ứng 10 thông tin bắt buộc theo Thông tư 02/2024/TT-BKHCN</p>
+      </div>
+      <div class="law-badge">TT 02/2024 • Hiệu lực 01/06/2024</div>
+    </div>
+    <div class="price-table-wrap">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>Tính năng</th>
+            <th>&lt; 5 dòng SP</th>
+            <th>&lt; 20 dòng SP <span class="badge-pop">Phổ biến</span></th>
+            <th>&lt; 50 dòng SP</th>
+            <th>&gt; 50 dòng SP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Giá hàng năm</td>
+            <td><span class="price-val">1.200.000đ</span></td>
+            <td class="highlight-col"><span class="price-val">3.600.000đ</span></td>
+            <td><span class="price-val">6.000.000đ</span></td>
+            <td><span class="price-val">9.000.000đ</span></td>
+          </tr>
+          <tr>
+            <td>Mã TXNG kèm theo gói</td>
+            <td>10.000</td>
+            <td class="highlight-col">20.000</td>
+            <td>50.000</td>
+            <td>100.000</td>
+          </tr>
+          <tr>
+            <td>Tài khoản nguyên vật liệu đầu vào</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td class="highlight-col"><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Tài khoản vận chuyển</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td class="highlight-col"><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Tài khoản hệ thống phân phối</td>
+            <td>Dưới 5 TK</td>
+            <td class="highlight-col">Dưới 5 TK</td>
+            <td>Dưới 5 TK</td>
+            <td>Dưới 5 TK</td>
+          </tr>
+          <tr class="note-row">
+            <td colspan="5">Tài khoản sẽ được tạo và chuyển giao cho đối tượng tham gia trong chuỗi cung ứng và bán lẻ. Phát sinh thêm: 1 tài khoản = 1.000.000đ</td>
+          </tr>
+          <tr>
+            <td>Kết nối Cổng TXNG Quốc gia</td>
+            <td>Theo số lượng mã trong gói</td>
+            <td class="highlight-col">Theo số lượng mã trong gói</td>
+            <td>Theo số lượng mã trong gói</td>
+            <td>Theo số lượng mã trong gói</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- E-LABEL -->
+  <div class="pricing-section" id="price-elabel">
+    <div class="price-hero" style="background:var(--blue)">
+      <div>
+        <h2>Checkee E-label</h2>
+        <p>Nhãn điện tử — cập nhật không cần in lại, đa ngôn ngữ, đáp ứng NĐ 37/2026</p>
+      </div>
+      <div class="law-badge">NĐ 37/2026 • Hiệu lực 23/01/2026</div>
+    </div>
+    <div class="price-table-wrap">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>Tính năng</th>
+            <th>Starter<br/><small style="font-weight:400;opacity:.7">&lt; 10 nhãn</small></th>
+            <th>Growth <span class="badge-pop">Phổ biến</span><br/><small style="font-weight:400;opacity:.7">&lt; 50 nhãn</small></th>
+            <th>Pro<br/><small style="font-weight:400;opacity:.7">&lt; 200 nhãn</small></th>
+            <th>Enterprise<br/><small style="font-weight:400;opacity:.7">Không giới hạn</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Giá hàng năm</td>
+            <td><span class="price-val">1.800.000đ</span></td>
+            <td class="highlight-col"><span class="price-val">4.800.000đ</span></td>
+            <td><span class="price-val">9.600.000đ</span></td>
+            <td><span class="price-val">Liên hệ</span></td>
+          </tr>
+          <tr>
+            <td>Số nhãn điện tử</td>
+            <td>10 nhãn</td>
+            <td class="highlight-col">50 nhãn</td>
+            <td>200 nhãn</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Số lần quét QR / tháng</td>
+            <td>5.000 lượt</td>
+            <td class="highlight-col">50.000 lượt</td>
+            <td>500.000 lượt</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Cập nhật nội dung nhãn</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td class="highlight-col"><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Ngôn ngữ hiển thị</td>
+            <td>Tiếng Việt</td>
+            <td class="highlight-col">Việt + English</td>
+            <td>Việt + 3 ngôn ngữ</td>
+            <td>Không giới hạn</td>
+          </tr>
+          <tr>
+            <td>Nhóm hàng theo Phụ lục I</td>
+            <td>2 nhóm</td>
+            <td class="highlight-col">6 nhóm đầy đủ</td>
+            <td>6 nhóm + tuỳ chỉnh</td>
+            <td>Tuỳ chỉnh hoàn toàn</td>
+          </tr>
+          <tr>
+            <td>Tài khoản quản lý</td>
+            <td>1 tài khoản</td>
+            <td class="highlight-col">3 tài khoản</td>
+            <td>10 tài khoản</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Xuất PDF tem (80×120mm)</td>
+            <td>✓</td>
+            <td class="highlight-col">✓</td>
+            <td>✓ + tuỳ kích thước</td>
+            <td>✓ + white-label</td>
+          </tr>
+          <tr>
+            <td>Analytics quét QR</td>
+            <td>—</td>
+            <td class="highlight-col">Cơ bản</td>
+            <td>Nâng cao</td>
+            <td>Đầy đủ + API</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DPP -->
+  <div class="pricing-section" id="price-dpp">
+    <div class="price-hero" style="background:var(--purple)">
+      <div>
+        <h2>Checkee DPP — Hộ chiếu số sản phẩm</h2>
+        <p>Digital Product Passport chuẩn EU — kế thừa dữ liệu Trace, bổ sung carbon, tái chế, vòng đời, chứng nhận</p>
+      </div>
+      <div class="law-badge">ESPR (EU) 2024/1781 • Bắt buộc từ 2027</div>
+    </div>
+    <div class="price-table-wrap">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>Tính năng</th>
+            <th>Starter<br/><small style="font-weight:400;opacity:.7">&lt; 5 SP xuất khẩu</small></th>
+            <th>Pro <span class="badge-pop">Phổ biến</span><br/><small style="font-weight:400;opacity:.7">&lt; 20 SP</small></th>
+            <th>Business<br/><small style="font-weight:400;opacity:.7">&lt; 50 SP</small></th>
+            <th>Enterprise<br/><small style="font-weight:400;opacity:.7">&gt; 50 SP</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Giá hàng năm</td>
+            <td><span class="price-val">3.600.000đ</span></td>
+            <td class="highlight-col"><span class="price-val">9.600.000đ</span></td>
+            <td><span class="price-val">18.000.000đ</span></td>
+            <td><span class="price-val">Liên hệ</span></td>
+          </tr>
+          <tr>
+            <td>Kế thừa dữ liệu từ Trace</td>
+            <td>✓ Tự động</td>
+            <td class="highlight-col">✓ Tự động</td>
+            <td>✓ Tự động</td>
+            <td>✓ Tự động</td>
+          </tr>
+          <tr>
+            <td>Số sản phẩm DPP</td>
+            <td>5 SP</td>
+            <td class="highlight-col">20 SP</td>
+            <td>50 SP</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Carbon footprint (kg CO₂e)</td>
+            <td>✓ Nhập tay</td>
+            <td class="highlight-col">✓ + hỗ trợ tính</td>
+            <td>✓ + tích hợp EPD</td>
+            <td>✓ + API</td>
+          </tr>
+          <tr>
+            <td>Thông tin tái chế / vòng đời</td>
+            <td>✓</td>
+            <td class="highlight-col">✓</td>
+            <td>✓</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>Chứng nhận CE / RoHS / ISO</td>
+            <td>Upload file PDF</td>
+            <td class="highlight-col">Upload + link xác thực</td>
+            <td>Upload + QR riêng</td>
+            <td>API tích hợp bên thứ 3</td>
+          </tr>
+          <tr>
+            <td>Declaration of Conformity</td>
+            <td>✓</td>
+            <td class="highlight-col">✓</td>
+            <td>✓</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>Cấu trúc dữ liệu chuẩn EU (GS1/ISO)</td>
+            <td>—</td>
+            <td class="highlight-col">✓</td>
+            <td>✓</td>
+            <td>✓ + tuỳ chỉnh</td>
+          </tr>
+          <tr>
+            <td>Hỗ trợ khai báo hải quan EU</td>
+            <td>—</td>
+            <td class="highlight-col">Tư vấn</td>
+            <td>Hỗ trợ trực tiếp</td>
+            <td>Dedicated support</td>
+          </tr>
+          <tr class="note-row">
+            <td colspan="5">Gói DPP yêu cầu đã có gói Trace. Nếu mua kèm Trace, được giảm 15% tổng giá trị.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- F&B -->
+  <div class="pricing-section" id="price-fb">
+    <div class="price-hero" style="background:var(--amber)">
+      <div>
+        <h2>Checkee F&B</h2>
+        <p>Lưu mẫu thức ăn + truy xuất nguyên liệu cho nhà hàng, bếp ăn công nghiệp, bếp ăn trường học</p>
+      </div>
+      <div class="law-badge">QĐ 1246/QĐ-BYT • Bắt buộc</div>
+    </div>
+    <div class="price-table-wrap">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>Tính năng</th>
+            <th>Basic<br/><small style="font-weight:400;opacity:.7">1 cơ sở</small></th>
+            <th>Standard <span class="badge-pop">Phổ biến</span><br/><small style="font-weight:400;opacity:.7">&lt; 3 cơ sở</small></th>
+            <th>Chain<br/><small style="font-weight:400;opacity:.7">&lt; 10 cơ sở</small></th>
+            <th>Enterprise<br/><small style="font-weight:400;opacity:.7">Chuỗi lớn</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Giá hàng năm</td>
+            <td><span class="price-val">2.400.000đ</span></td>
+            <td class="highlight-col"><span class="price-val">6.000.000đ</span></td>
+            <td><span class="price-val">15.000.000đ</span></td>
+            <td><span class="price-val">Liên hệ</span></td>
+          </tr>
+          <tr>
+            <td>Số cơ sở bếp</td>
+            <td>1 cơ sở</td>
+            <td class="highlight-col">3 cơ sở</td>
+            <td>10 cơ sở</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Template món ăn</td>
+            <td>20 món</td>
+            <td class="highlight-col">100 món</td>
+            <td>500 món</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Hồ sơ lưu mẫu / tháng</td>
+            <td>300 hồ sơ</td>
+            <td class="highlight-col">1.000 hồ sơ</td>
+            <td>5.000 hồ sơ</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>QR hộp lưu mẫu (QĐ 1246)</td>
+            <td>✓</td>
+            <td class="highlight-col">✓</td>
+            <td>✓</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <td>QR menu / khay cho khách</td>
+            <td>✓</td>
+            <td class="highlight-col">✓</td>
+            <td>✓</td>
+            <td>✓ + white-label</td>
+          </tr>
+          <tr>
+            <td>Cảnh báo vi phạm QĐ 1246</td>
+            <td>✓ Cơ bản</td>
+            <td class="highlight-col">✓ Real-time</td>
+            <td>✓ Real-time + email</td>
+            <td>✓ + SMS + API</td>
+          </tr>
+          <tr>
+            <td>Lịch sử lưu mẫu</td>
+            <td>3 tháng</td>
+            <td class="highlight-col">12 tháng</td>
+            <td>36 tháng</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Tài khoản nhân viên bếp</td>
+            <td>3 tài khoản</td>
+            <td class="highlight-col">15 tài khoản</td>
+            <td>50 tài khoản</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Xuất báo cáo kiểm tra ATTP</td>
+            <td>—</td>
+            <td class="highlight-col">PDF tháng</td>
+            <td>PDF + Excel</td>
+            <td>API tích hợp</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TEM PHỤ -->
+  <div class="pricing-section" id="price-tem">
+    <div class="price-hero" style="background:var(--coral)">
+      <div>
+        <h2>Checkee Tem phụ</h2>
+        <p>QR nhãn tiếng Việt cho hàng nhập khẩu — thay dán đè nhãn giấy, giữ bao bì gốc đẹp</p>
+      </div>
+      <div class="law-badge">NĐ 37/2026 khoản 2 • Hiệu lực 23/01/2026</div>
+    </div>
+    <div class="price-table-wrap">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>Tính năng</th>
+            <th>Starter<br/><small style="font-weight:400;opacity:.7">&lt; 10 mặt hàng</small></th>
+            <th>Growth <span class="badge-pop">Phổ biến</span><br/><small style="font-weight:400;opacity:.7">&lt; 50 mặt hàng</small></th>
+            <th>Pro<br/><small style="font-weight:400;opacity:.7">&lt; 200 mặt hàng</small></th>
+            <th>Enterprise<br/><small style="font-weight:400;opacity:.7">Nhà NK lớn</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Giá hàng năm</td>
+            <td><span class="price-val">1.500.000đ</span></td>
+            <td class="highlight-col"><span class="price-val">4.200.000đ</span></td>
+            <td><span class="price-val">9.000.000đ</span></td>
+            <td><span class="price-val">Liên hệ</span></td>
+          </tr>
+          <tr>
+            <td>Số mặt hàng / SKU</td>
+            <td>10 SKU</td>
+            <td class="highlight-col">50 SKU</td>
+            <td>200 SKU</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Số lần quét QR / tháng</td>
+            <td>10.000 lượt</td>
+            <td class="highlight-col">100.000 lượt</td>
+            <td>1.000.000 lượt</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Nhóm hàng theo Phụ lục I NĐ 37</td>
+            <td>3 nhóm</td>
+            <td class="highlight-col">6 nhóm đầy đủ</td>
+            <td>6 nhóm + tuỳ chỉnh</td>
+            <td>Tuỳ chỉnh hoàn toàn</td>
+          </tr>
+          <tr>
+            <td>Cập nhật thông tin nhãn</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td class="highlight-col"><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr>
+            <td>Xuất PDF tem (80×120mm)</td>
+            <td>✓</td>
+            <td class="highlight-col">✓ + nhiều kích thước</td>
+            <td>✓ + white-label</td>
+            <td>✓ + in hàng loạt</td>
+          </tr>
+          <tr>
+            <td>Tích hợp khai báo hải quan</td>
+            <td>—</td>
+            <td class="highlight-col">—</td>
+            <td>Tư vấn</td>
+            <td>Hỗ trợ trực tiếp</td>
+          </tr>
+          <tr>
+            <td>Tài khoản quản lý</td>
+            <td>1 tài khoản</td>
+            <td class="highlight-col">3 tài khoản</td>
+            <td>10 tài khoản</td>
+            <td><span class="unlimited">∞ Không giới hạn</span></td>
+          </tr>
+          <tr class="note-row">
+            <td colspan="5">Mua kèm Trace hoặc E-label được giảm 10% giá Tem phụ. Phát sinh thêm SKU: 500.000đ / 10 SKU / năm.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 3: SO SÁNH GÓI
+══════════════════════════════════════ -->
+<section class="section" id="section-compare">
+  <div class="page-title">So sánh tất cả sản phẩm</div>
+  <p class="page-sub">Chọn đúng giải pháp cho nhu cầu doanh nghiệp — có thể mua lẻ hoặc kết hợp nhiều sản phẩm.</p>
+
+  <div class="compare-wrap">
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Tiêu chí</th>
+          <th>Trace</th>
+          <th>E-label</th>
+          <th>DPP</th>
+          <th>F&B</th>
+          <th>Tem phụ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cơ sở pháp lý VN</td>
+          <td class="check">✓ TT 02/2024</td>
+          <td class="check">✓ NĐ 37/2026</td>
+          <td class="dash">—</td>
+          <td class="check">✓ QĐ 1246</td>
+          <td class="check">✓ NĐ 37/2026</td>
+        </tr>
+        <tr>
+          <td>Cơ sở pháp lý EU</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+          <td class="check">✓ ESPR 2024</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+        </tr>
+        <tr>
+          <td>QR cho người tiêu dùng</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>QR cho cơ quan kiểm tra</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+          <td class="check">✓</td>
+          <td class="dash">—</td>
+        </tr>
+        <tr>
+          <td>Phù hợp hàng xuất khẩu EU</td>
+          <td class="check">✓ Nền tảng</td>
+          <td class="dash">—</td>
+          <td class="check">✓ Bắt buộc</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+        </tr>
+        <tr>
+          <td>Phù hợp hàng nhập khẩu VN</td>
+          <td class="dash">—</td>
+          <td class="check">✓</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+          <td class="check">✓ Chuyên biệt</td>
+        </tr>
+        <tr>
+          <td>Giá khởi điểm / năm</td>
+          <td>1.200.000đ</td>
+          <td>1.800.000đ</td>
+          <td>3.600.000đ</td>
+          <td>2.400.000đ</td>
+          <td>1.500.000đ</td>
+        </tr>
+        <tr>
+          <td>Kế thừa dữ liệu từ SP khác</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+          <td class="check">✓ Từ Trace</td>
+          <td class="dash">—</td>
+          <td class="dash">—</td>
+        </tr>
+        <tr>
+          <td>Ưu đãi mua kèm</td>
+          <td class="dash">—</td>
+          <td>-10% khi kèm Tem phụ</td>
+          <td>-15% khi kèm Trace</td>
+          <td class="dash">—</td>
+          <td>-10% khi kèm Trace/E-label</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+    <div style="background:var(--brand-light);border-radius:12px;padding:20px">
+      <div style="font-size:13px;font-weight:700;color:var(--brand-dark);margin-bottom:8px">🏭 Nhà sản xuất / Xuất khẩu</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">Khuyến nghị: <strong>Trace + DPP</strong> — tiết kiệm 15%, dữ liệu tự kế thừa, đáp ứng cả thị trường VN lẫn EU 2027.</div>
+    </div>
+    <div style="background:var(--blue-light);border-radius:12px;padding:20px">
+      <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px">🛒 Nhà nhập khẩu / Phân phối</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">Khuyến nghị: <strong>Tem phụ + E-label</strong> — đáp ứng NĐ 37/2026, thay nhãn giấy, tiết kiệm 10%.</div>
+    </div>
+    <div style="background:var(--amber-light);border-radius:12px;padding:20px">
+      <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">🍜 Nhà hàng / Bếp ăn</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">Khuyến nghị: <strong>F&B</strong> — lưu mẫu đúng QĐ 1246, template món ăn, 2 loại QR cho khách và cơ quan kiểm tra.</div>
+    </div>
+    <div style="background:var(--purple-light);border-radius:12px;padding:20px">
+      <div style="font-size:13px;font-weight:700;color:var(--purple);margin-bottom:8px">🌿 Thương hiệu / Bán lẻ</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.6">Khuyến nghị: <strong>E-label</strong> — nhãn điện tử không cần in lại khi cập nhật, đa ngôn ngữ, phù hợp mỹ phẩm / thời trang / điện tử.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+function showPricing(id) {
+  document.querySelectorAll('.pricing-section').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('on'));
+  document.getElementById('price-' + id).classList.add('on');
+  event.target.classList.add('on');
+}
+</script>
+</body>
+</html>

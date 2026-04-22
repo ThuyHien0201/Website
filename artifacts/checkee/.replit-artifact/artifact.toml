@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Checkee"
+version = "1.0.0"
+id = "artifacts/checkee"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24457
+
+[services.development]
+run = "pnpm --filter @workspace/checkee run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/checkee", "run", "build" ]
+publicDir = "artifacts/checkee/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24457"
+BASE_PATH = "/"
