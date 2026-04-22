@@ -3,59 +3,49 @@ import { Button } from "@/components/ui/button";
 
 export default function TemPhu() {
   return (
-    <div className="flex flex-col w-full">
-      <section className="pt-32 pb-32 md:pt-48 md:pb-40 bg-background border-b border-border/40">
-        <div className="container px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-16 lg:gap-8 items-start">
-            <div className="lg:col-span-6 space-y-12">
-              <div className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground">
-                NĐ 37/2026 Khoản 2
-              </div>
-              <h1 className="text-5xl md:text-7xl font-serif text-primary leading-[0.95]">
-                Tôn vinh <br/>bản gốc.
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed max-w-md">
-                Tem phụ điện tử thanh tẩy bao bì nhập khẩu khỏi những miếng dán giấy nham nhở. Trả lại sự sang trọng nguyên bản cho các xa xỉ phẩm.
-              </p>
-              <div className="flex gap-6 pt-4">
-                <Link href="/demo?product=tem-phu">
-                  <Button size="lg" className="h-14 px-10 text-xs tracking-widest uppercase rounded-none bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-500">
-                    Trải nghiệm mẫu
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="lg:col-span-5 lg:col-start-8">
-              <div className="aspect-[3/4] w-full overflow-hidden">
-                <img src="/images/coffee-package-editorial.png" alt="Sản phẩm nhập khẩu cao cấp" className="object-cover w-full h-full" />
-              </div>
-            </div>
-          </div>
+    <div className="flex flex-col w-full bg-[#060B25]">
+      <section className="relative h-[70vh] min-h-[600px] w-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full">
+          <img src="/images/hero-silk.png" alt="Tem phụ" className="w-full h-full object-cover" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060B25]/30 via-[#060B25]/50 to-[#060B25]" />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10 pt-20">
+          <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-6">NĐ 37/2026 Khoản 2</div>
+          <h1 className="text-4xl md:text-6xl text-white font-normal leading-[1.1] mb-6">
+            Tôn vinh <span className="italic font-light text-[#F5F5F0]/80">bản gốc</span>
+          </h1>
+          <p className="text-[13px] md:text-[14px] text-[#B8B5AE] max-w-xl mx-auto leading-relaxed mb-10">
+            Tem phụ điện tử thanh tẩy bao bì nhập khẩu khỏi những miếng dán giấy nham nhở. Trả lại sự sang trọng nguyên bản cho các xa xỉ phẩm.
+          </p>
+          <Link href="/demo?product=tem-phu">
+            <Button className="rounded-md bg-[#83776D] hover:bg-[#83776D]/90 text-white uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto">
+              Trải nghiệm mẫu
+            </Button>
+          </Link>
         </div>
       </section>
 
-      <section className="py-32 bg-background border-b border-border/40">
-        <div className="container px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="max-w-3xl mb-24">
-            <div className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-8">
-              Nghệ thuật phân phối
-            </div>
-            <h2 className="text-3xl md:text-5xl font-serif text-primary leading-tight">
-              Dấu ấn tinh tế,<br/>thông tin trọn vẹn.
+      <section className="py-32">
+        <div className="container px-6 md:px-12 max-w-[1000px] mx-auto">
+          <div className="mb-20">
+            <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-4">Nghệ thuật phân phối</div>
+            <h2 className="text-3xl font-normal text-white">
+              Dấu ấn tinh tế. <span className="italic font-light text-[#B8B5AE]">Thông tin trọn vẹn.</span>
             </h2>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 pt-12 border-t border-border/40">
-            <div className="space-y-6 opacity-40">
-              <h3 className="text-sm font-serif italic text-muted-foreground">Tem phụ giấy truyền thống</h3>
-              <p className="font-light leading-relaxed text-sm">
+          <div className="grid lg:grid-cols-2 gap-16 pt-12 hairline-t">
+            <div className="space-y-6 opacity-50">
+              <h3 className="text-[13px] text-[#B8B5AE] uppercase tracking-wide">Tem phụ giấy truyền thống</h3>
+              <p className="font-normal leading-relaxed text-[13px] text-[#B8B5AE]">
                 Xâm phạm thiết kế gốc của nhà mốt. Phông chữ siêu nhỏ thách thức thị giác. Sai sót chính tả buộc phải hủy cả lô in ấn đắt đỏ.
               </p>
             </div>
             
             <div className="space-y-6">
-              <h3 className="text-sm font-serif italic text-primary">QR Tem phụ Checkee</h3>
-              <p className="font-light leading-relaxed text-sm text-foreground">
+              <h3 className="text-[13px] text-white uppercase tracking-wide">QR Tem phụ Checkee</h3>
+              <p className="font-normal leading-relaxed text-[13px] text-white">
                 Dấu ấn QR siêu nhỏ (1.5cm) nép mình khiêm nhường trên góc bao bì. Mở ra trang thông tin tiếng Việt trang nhã, phông chữ lớn, tuỳ biến tức thời mọi sai sót mà không tốn một trang giấy.
               </p>
             </div>

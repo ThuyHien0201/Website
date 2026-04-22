@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -47,7 +47,7 @@
   --color-temphu: hsl(15 40% 35%);
 
   --font-sans: var(--app-font-sans);
-  --font-serif: var(--app-font-serif);
+  --font-serif: var(--app-font-sans);
   --font-mono: var(--app-font-mono);
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -56,42 +56,42 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-:root {
-  --background: 42 33% 96%; /* #FAF7F0 Warm Ivory */
-  --foreground: 213 24% 7%; /* #0E1217 Near black ink */
+:root, .dark {
+  /* Deep Navy-Black Palette */
+  --background: 231 72% 6%; /* #060B25 */
+  --foreground: 60 14% 96%; /* #F5F5F0 */
 
-  --border: 40 20% 88%;
-  --input: 40 20% 88%;
-  --ring: 213 73% 16%; /* Midnight Navy */
+  --border: 0 0% 100% / 0.08;
+  --input: 0 0% 100% / 0.08;
+  --ring: 26 10% 47%; /* Accent taupe */
 
-  --card: 0 0% 100%;
-  --card-foreground: 213 24% 7%;
-  --card-border: 40 20% 88%;
+  --card: 229 66% 11%; /* #0A1130 */
+  --card-foreground: 60 14% 96%;
+  --card-border: 0 0% 100% / 0.08;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 213 24% 7%;
-  --popover-border: 40 20% 88%;
+  --popover: 229 66% 11%;
+  --popover-foreground: 60 14% 96%;
+  --popover-border: 0 0% 100% / 0.08;
 
-  --primary: 213 73% 16%; /* #0B2545 Midnight Navy */
-  --primary-foreground: 0 0% 100%;
+  --primary: 231 72% 6%;
+  --primary-foreground: 60 14% 96%;
   
-  --secondary: 213 70% 39%; /* #1E5BA8 Cobalt */
-  --secondary-foreground: 0 0% 100%;
+  --secondary: 231 66% 5%; /* #040613 */
+  --secondary-foreground: 60 14% 96%;
 
-  --muted: 42 20% 90%;
-  --muted-foreground: 30 6% 34%; /* #5C5752 Graphite */
+  --muted: 229 66% 15%;
+  --muted-foreground: 40 4% 63%; /* #B8B5AE / #878787 */
 
-  --accent: 10 77% 60%; /* #E8654A Warm Coral */
+  --accent: 26 10% 47%; /* #83776D */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --app-font-sans: 'Be Vietnam Pro', sans-serif;
-  --app-font-serif: 'Fraunces', serif;
+  --app-font-sans: 'Inter', sans-serif;
   --app-font-mono: Menlo, monospace;
   
-  --radius: 0;
+  --radius: 0.375rem;
 }
 
 @layer base {
@@ -99,11 +99,26 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground font-light leading-relaxed;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+    @apply font-sans antialiased bg-background text-foreground font-normal leading-relaxed text-[13px] md:text-[14px];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
     background-attachment: fixed;
+    background-color: hsl(var(--background));
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-foreground tracking-tight;
+    @apply font-sans text-foreground tracking-tight font-normal;
+  }
+  
+  /* Utilities for the aesthetic */
+  .hairline-b {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .hairline-t {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .link-hover {
+    @apply relative after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:bg-current after:w-0 hover:after:w-full after:transition-all after:duration-300;
+  }
+  .image-hover {
+    @apply transition-transform duration-1000 ease-out hover:scale-105;
   }
 }

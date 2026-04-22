@@ -11,8 +11,8 @@ export default function DemoPreview() {
   
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const name = searchParams.get("name") || "Tách trà Gốm sành";
-    const company = searchParams.get("company") || "Nghệ nhân Bát Tràng";
+    const name = searchParams.get("name") || "Cà phê Robusta Măng Đen";
+    const company = searchParams.get("company") || "HTX Nông nghiệp Măng Đen";
     setQueryParams({ name, company });
   }, [location]);
 
@@ -21,105 +21,65 @@ export default function DemoPreview() {
   const type = params.type;
 
   const BottomCTA = () => (
-    <div className="fixed bottom-0 left-0 right-0 p-6 bg-background/90 backdrop-blur-md border-t border-border/40 z-50 flex justify-center">
+    <div className="fixed bottom-0 left-0 right-0 p-6 bg-[#040613]/90 backdrop-blur-md hairline-t z-50 flex justify-center">
       <Link href="/contact" className="w-full max-w-sm">
-        <Button className="w-full h-14 rounded-none bg-primary hover:bg-primary/90 text-primary-foreground tracking-widest uppercase text-xs transition-all duration-500">
+        <Button className="w-full h-12 rounded-md bg-[#83776D] hover:bg-[#83776D]/90 text-white tracking-[0.15em] uppercase text-[11px] transition-all duration-300">
           Khởi tạo cho doanh nghiệp
         </Button>
       </Link>
     </div>
   );
 
-  // 1. TRACE
-  if (type === "trace") {
-    return (
-      <div className="min-h-[100dvh] bg-background pb-32 max-w-md mx-auto shadow-2xl relative font-sans text-foreground">
-        <div className="h-72 relative">
-          <img src="/images/tea-jar-editorial.png" className="w-full h-full object-cover" alt="Product" />
-          <div className="absolute inset-0 bg-black/20" />
-          <Link href="/demo" className="absolute top-6 left-6 p-3 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-colors">
-            <ArrowLeft className="h-5 w-5" />
-          </Link>
-        </div>
-        
-        <div className="px-8 -mt-12 relative z-10">
-          <div className="bg-background border border-border/40 p-8 shadow-2xl">
-            <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
-              Xác thực nguồn gốc
-            </div>
-            <h1 className="text-3xl font-serif text-primary mb-2 leading-tight">{queryParams.name}</h1>
-            <p className="text-muted-foreground font-light text-sm">{queryParams.company}</p>
-          </div>
-
-          <div className="mt-12 space-y-12">
-            <div className="text-xs tracking-[0.2em] uppercase text-primary font-medium text-center border-b border-border/40 pb-4">
-              Hành trình chế tác
-            </div>
-            
-            <div className="space-y-12">
-              <div className="flex gap-6">
-                <div className="text-xs font-serif italic text-muted-foreground pt-1">I.</div>
-                <div>
-                  <h3 className="font-serif text-xl text-primary mb-1">Tinh tuyển nguyên liệu</h3>
-                  <p className="text-xs text-muted-foreground mb-2">12 Tháng 3, 2024</p>
-                  <p className="text-sm font-light leading-relaxed">Đất sét tinh tuyển từ mỏ Trúc Thôn, ủ trong 30 ngày.</p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <div className="text-xs font-serif italic text-muted-foreground pt-1">II.</div>
-                <div>
-                  <h3 className="font-serif text-xl text-primary mb-1">Tạo hình & Nung</h3>
-                  <p className="text-xs text-muted-foreground mb-2">15 Tháng 4, 2024</p>
-                  <p className="text-sm font-light leading-relaxed">Vuốt tay thủ công bởi nghệ nhân. Nung củi ở nhiệt độ 1200°C.</p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <div className="text-xs font-serif italic text-muted-foreground pt-1">III.</div>
-                <div>
-                  <h3 className="font-serif text-xl text-primary mb-1">Phân phối</h3>
-                  <p className="text-xs text-muted-foreground mb-2">20 Tháng 4, 2024</p>
-                  <p className="text-sm font-light leading-relaxed">Gallery Gốm Việt, Quận 1, TP.HCM.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <BottomCTA />
-      </div>
-    );
-  }
-
-  // Generic fallback for other types using similar editorial styling
   return (
-    <div className="min-h-[100dvh] bg-background pb-32 max-w-md mx-auto shadow-2xl relative font-sans text-foreground">
-      <div className="p-8 pt-12 border-b border-border/40">
-        <Link href="/demo" className="inline-block p-3 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors mb-12">
-          <ArrowLeft className="h-5 w-5" />
+    <div className="min-h-[100dvh] bg-[#060B25] pb-32 max-w-md mx-auto shadow-2xl relative font-sans text-white border-x border-white/5">
+      <div className="h-64 relative">
+        <img src="/images/hero-coffee.png" className="w-full h-full object-cover opacity-70" alt="Product" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#060B25]" />
+        <Link href="/demo" className="absolute top-6 left-6 p-3 rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/40 transition-colors border border-white/10">
+          <ArrowLeft className="h-4 w-4" />
         </Link>
-        <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-4">
-          {type.toUpperCase()} DOCUMENT
-        </div>
-        <h1 className="text-4xl font-serif text-primary mb-4 leading-tight">{queryParams.name}</h1>
-        <p className="text-muted-foreground font-light">{queryParams.company}</p>
       </div>
+      
+      <div className="px-8 -mt-16 relative z-10">
+        <div className="bg-[#0A1130] border border-white/10 p-8 rounded-md shadow-2xl">
+          <div className="text-[10px] tracking-[0.15em] uppercase text-[#83776D] mb-4">
+            Xác thực nguồn gốc
+          </div>
+          <h1 className="text-2xl font-normal text-white mb-2 leading-tight">{queryParams.name}</h1>
+          <p className="text-[#B8B5AE] font-light text-[13px]">{queryParams.company}</p>
+        </div>
 
-      <div className="p-8 space-y-12">
-        <div className="space-y-6">
-           <h3 className="font-serif text-xl text-primary">Thông tin định danh</h3>
-           <div className="space-y-4 text-sm font-light border-t border-border/40 pt-4">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Mã định danh</span>
-                <span>LOT-88291</span>
+        <div className="mt-12 space-y-10">
+          <div className="text-[11px] tracking-[0.15em] uppercase text-[#83776D] mb-6 hairline-b pb-4">
+            Hành trình chế tác
+          </div>
+          
+          <div className="space-y-10">
+            <div className="flex gap-6">
+              <div className="text-[13px] text-[#B8B5AE] pt-1">01.</div>
+              <div>
+                <h3 className="font-normal text-[15px] text-white mb-1">Thu hoạch</h3>
+                <p className="text-[11px] uppercase tracking-wide text-[#B8B5AE] mb-3">12 Tháng 3, 2024</p>
+                <p className="text-[13px] text-[#B8B5AE] leading-relaxed">Hái chọn lọc 100% trái chín tại nông trại Măng Đen, độ cao 1200m.</p>
               </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Ngày khởi tạo</span>
-                <span>24/10/2024</span>
+            </div>
+            <div className="flex gap-6">
+              <div className="text-[13px] text-[#B8B5AE] pt-1">02.</div>
+              <div>
+                <h3 className="font-normal text-[15px] text-white mb-1">Sơ chế & Rang mộc</h3>
+                <p className="text-[11px] uppercase tracking-wide text-[#B8B5AE] mb-3">15 Tháng 4, 2024</p>
+                <p className="text-[13px] text-[#B8B5AE] leading-relaxed">Sơ chế Honey, phơi giàn kính. Rang mộc chuẩn Medium Dark.</p>
               </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Trạng thái pháp lý</span>
-                <span className="text-secondary">Đã xác thực</span>
+            </div>
+            <div className="flex gap-6">
+              <div className="text-[13px] text-[#B8B5AE] pt-1">03.</div>
+              <div>
+                <h3 className="font-normal text-[15px] text-white mb-1">Đóng gói</h3>
+                <p className="text-[11px] uppercase tracking-wide text-[#B8B5AE] mb-3">20 Tháng 4, 2024</p>
+                <p className="text-[13px] text-[#B8B5AE] leading-relaxed">Đóng gói van một chiều, dán tem truy xuất nguồn gốc Checkee.</p>
               </div>
-           </div>
+            </div>
+          </div>
         </div>
       </div>
       <BottomCTA />

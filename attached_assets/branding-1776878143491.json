@@ -1,0 +1,141 @@
+{
+  "colorScheme": "dark",
+  "fonts": [
+    {
+      "family": "Aeonik",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#060B25",
+    "secondary": "#040613",
+    "accent": "#83776D",
+    "background": "#070C26",
+    "textPrimary": "#070C26",
+    "link": "#070C26"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Aeonik",
+      "heading": "Aeonik"
+    },
+    "fontStacks": {
+      "heading": [
+        "Aeonik",
+        "sans-serif"
+      ],
+      "body": [
+        "Aeonik",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Aeonik",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "44px",
+      "h2": "36px",
+      "body": "12px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "3px"
+  },
+  "components": {
+    "input": {
+      "background": "transparent",
+      "textColor": "#878787",
+      "borderColor": null,
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    },
+    "buttonPrimary": {
+      "background": "#83776D",
+      "textColor": "#FFFFFF",
+      "borderRadius": "8px",
+      "borderRadiusCorners": {
+        "topLeft": "8px",
+        "topRight": "8px",
+        "bottomRight": "8px",
+        "bottomLeft": "8px"
+      },
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#F2F2F3",
+      "textColor": "#FFFFFF",
+      "borderRadius": "8px",
+      "borderRadiusCorners": {
+        "topLeft": "8px",
+        "topRight": "8px",
+        "bottomRight": "8px",
+        "bottomLeft": "8px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "https://www.bluemoreyachting.com/logo.svg",
+    "favicon": "https://www.bluemoreyachting.com/favicon.ico",
+    "ogImage": "File saved at: attached_assets/ogImage.jpg",
+    "logoHref": "File saved at: attached_assets/logoHref.html",
+    "logoAlt": "Blue More Yachting Logo"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and the alt text matches the brand name 'Blue More Yachting'.",
+    "confidence": 0.95,
+    "source": "llm"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 7,
+      "text": "Send now",
+      "reasoning": "Button #5 with text 'Send now' has a vibrant red/orange background (#83776D), making it stand out as a primary call-to-action. The text 'Send now' is action-oriented, indicating a strong CTA."
+    },
+    "secondary": {
+      "index": 5,
+      "text": "LengthSelect Length",
+      "reasoning": "Button #7 with text 'LengthSelect Length' has a different background color (#F2F2F3) and serves as a secondary option with a less vibrant appearance."
+    },
+    "confidence": 0.95
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "affluent travelers seeking luxury yacht charters"
+  },
+  "designSystem": {
+    "framework": "tailwind",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.95,
+    "colors": 0.9,
+    "overall": 0.925
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 0,
+        "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and the alt text matches the brand name 'Blue More Yachting'.",
+        "confidence": 0.95
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}

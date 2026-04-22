@@ -54,3 +54,45 @@ id = "Mb7uSptxhbLrox5K1hgau"
 uri = "file://artifacts/checkee/public/images/fish-sauce-editorial.png"
 type = "image"
 title = "Fish sauce bottle elegant"
+
+[[generated]]
+id = "ZTDzWeGzzZ7OFhBebrzrT"
+uri = "file://artifacts/checkee/public/images/hero-coffee.png"
+type = "image"
+title = "Coffee plantation dawn"
+
+[[generated]]
+id = "UPSepQqKhQQ7j8bG4U1c6"
+uri = "file://artifacts/checkee/public/images/hero-rice.png"
+type = "image"
+title = "Terraced rice fields"
+
+[[generated]]
+id = "kYzh3Mu4uywZIcSIOM9GL"
+uri = "file://artifacts/checkee/public/images/hero-factory.png"
+type = "image"
+title = "Modern factory bokeh"
+
+[[generated]]
+id = "RJdaZfzjHVeyYJX6L-1aK"
+uri = "file://artifacts/checkee/public/images/hero-lacquer.png"
+type = "image"
+title = "Lacquerware workshop"
+
+[[generated]]
+id = "hqdahq8UWYOhSTei18ZGT"
+uri = "file://artifacts/checkee/public/images/hero-silk.png"
+type = "image"
+title = "Silk weaving twilight"
+
+[[generated]]
+id = "iqYPYrUdP-KPcSoN2cbSS"
+uri = "file://artifacts/checkee/public/images/hero-saigon.png"
+type = "image"
+title = "Saigon rooftop dusk"
+
+[[generated]]
+id = "0QopX84stZC9o0RVd6xU2"
+uri = "file://artifacts/checkee/public/images/hero-tea.png"
+type = "image"
+title = "Tea ceremony"

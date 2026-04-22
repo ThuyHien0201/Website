@@ -14,30 +14,28 @@ export default function Pricing() {
   ];
 
   return (
-    <div className="flex flex-col w-full">
-      <section className="pt-32 pb-24 bg-background">
-        <div className="container px-6 md:px-12 max-w-7xl mx-auto space-y-16">
-          <div className="space-y-6 max-w-3xl">
-            <div className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground">
-              Đầu tư cho thương hiệu
-            </div>
-            <h1 className="text-5xl md:text-7xl font-serif text-primary leading-[0.95]">
-              Giá trị <br/>đích thực.
+    <div className="flex flex-col w-full bg-[#060B25] min-h-screen">
+      <section className="pt-40 pb-32">
+        <div className="container px-6 md:px-12 max-w-[1200px] mx-auto space-y-16">
+          <div className="space-y-6 max-w-2xl">
+            <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D]">Đầu tư cho thương hiệu</div>
+            <h1 className="text-4xl md:text-5xl font-normal text-white leading-tight">
+              Giá trị <span className="italic font-light text-[#B8B5AE]">đích thực</span>
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed">
+            <p className="text-[13px] text-[#B8B5AE] leading-relaxed">
               Chi phí được thiết kế minh bạch cho mọi quy mô doanh nghiệp. Sự sang trọng không nằm ở giá cao, mà ở giá trị bạn nhận được.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-8 border-b border-border/40 pb-8">
+          <div className="flex flex-wrap gap-8 hairline-b pb-4">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`text-sm font-medium tracking-[0.1em] uppercase pb-2 border-b-2 transition-all duration-500 ${
+                className={`text-[11px] font-normal tracking-[0.15em] uppercase pb-4 border-b transition-all duration-300 relative top-[1px] ${
                   activeTab === tab.id 
-                    ? "border-primary text-primary" 
-                    : "border-transparent text-muted-foreground hover:text-foreground"
+                    ? "border-white text-white" 
+                    : "border-transparent text-[#B8B5AE] hover:text-white"
                 }`}
               >
                 {tab.label}
@@ -47,38 +45,43 @@ export default function Pricing() {
 
           <div className="pt-8 animate-in fade-in duration-700">
             {activeTab === "trace" && (
-              <div className="grid md:grid-cols-4 gap-x-8 gap-y-16">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { name: "< 5 dòng SP", price: "1.200.000", codes: "10.000", acc: "Dưới 5 TK" },
                   { name: "< 20 dòng SP", price: "3.600.000", codes: "20.000", acc: "Dưới 5 TK", highlight: true },
                   { name: "< 50 dòng SP", price: "6.000.000", codes: "50.000", acc: "Dưới 5 TK" },
                   { name: "> 50 dòng SP", price: "9.000.000", codes: "100.000", acc: "Dưới 5 TK" },
                 ].map((tier, i) => (
-                  <div key={i} className="flex flex-col">
-                    <h3 className="text-sm font-serif italic text-muted-foreground mb-4">{tier.name}</h3>
-                    <div className="text-3xl font-serif text-primary mb-8">{tier.price} <span className="text-xs font-sans text-muted-foreground uppercase tracking-widest">VNĐ/năm</span></div>
+                  <div key={i} className={`flex flex-col bg-[#0A1130] p-8 rounded-md border ${tier.highlight ? "border-[#83776D] shadow-[0_0_20px_rgba(131,119,109,0.1)]" : "border-white/10"} relative`}>
+                    {tier.highlight && (
+                      <div className="absolute top-0 right-8 -translate-y-1/2 bg-[#83776D] text-white text-[10px] uppercase tracking-[0.1em] px-3 py-1 rounded-full">
+                        Phổ biến
+                      </div>
+                    )}
+                    <h3 className="text-[13px] text-[#B8B5AE] mb-6">{tier.name}</h3>
+                    <div className="text-2xl font-light text-white mb-8">{tier.price} <span className="text-[10px] text-[#B8B5AE] uppercase tracking-widest ml-1">VNĐ/năm</span></div>
                     
-                    <div className="space-y-4 text-sm font-light text-foreground border-t border-border/40 pt-8 flex-1">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Mã QR</span>
+                    <div className="space-y-4 text-[13px] text-white hairline-t pt-8 flex-1">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[#B8B5AE]">Mã QR</span>
                         <span>{tier.codes}</span>
                       </div>
-                      <div className="flex justify-between border-t border-border/20 pt-4">
-                        <span className="text-muted-foreground">Tài khoản NVL</span>
+                      <div className="flex justify-between items-center hairline-t pt-4">
+                        <span className="text-[#B8B5AE]">Tài khoản NVL</span>
                         <span>Vô hạn</span>
                       </div>
-                      <div className="flex justify-between border-t border-border/20 pt-4">
-                        <span className="text-muted-foreground">Hệ thống phân phối</span>
+                      <div className="flex justify-between items-center hairline-t pt-4">
+                        <span className="text-[#B8B5AE]">Phân phối</span>
                         <span>{tier.acc}</span>
                       </div>
-                      <div className="flex justify-between border-t border-border/20 pt-4">
-                        <span className="text-muted-foreground">Cổng QG</span>
-                        <span>Đã kết nối</span>
+                      <div className="flex justify-between items-center hairline-t pt-4">
+                        <span className="text-[#B8B5AE]">Cổng QG</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#83776D]"></span>
                       </div>
                     </div>
                     
-                    <Link href="/contact" className="mt-12 block">
-                      <Button variant={tier.highlight ? "default" : "outline"} className={`w-full h-12 rounded-none tracking-widest uppercase text-xs ${tier.highlight ? "bg-primary text-primary-foreground" : "border-foreground/20 text-foreground"}`}>
+                    <Link href="/contact" className="mt-10 block">
+                      <Button className={`w-full rounded-md tracking-[0.15em] uppercase text-[11px] h-12 ${tier.highlight ? "bg-[#83776D] hover:bg-[#83776D]/90 text-white" : "bg-transparent border border-white/20 text-white hover:bg-white hover:text-[#060B25]"}`}>
                         Lựa chọn
                       </Button>
                     </Link>
@@ -88,38 +91,43 @@ export default function Pricing() {
             )}
 
             {activeTab === "elabel" && (
-              <div className="grid md:grid-cols-4 gap-x-8 gap-y-16">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { name: "Starter", price: "1.800.000", labels: "10 nhãn", scans: "5.000/tháng", lang: "Tiếng Việt" },
-                  { name: "Growth", price: "4.800.000", labels: "50 nhãn", scans: "50.000/tháng", lang: "Việt + Anh", highlight: true },
-                  { name: "Pro", price: "9.600.000", labels: "200 nhãn", scans: "500.000/tháng", lang: "Đa ngôn ngữ" },
+                  { name: "Starter", price: "1.800.000", labels: "10 nhãn", scans: "5.000/th", lang: "Tiếng Việt" },
+                  { name: "Growth", price: "4.800.000", labels: "50 nhãn", scans: "50.000/th", lang: "Việt + Anh", highlight: true },
+                  { name: "Pro", price: "9.600.000", labels: "200 nhãn", scans: "500.000/th", lang: "Đa ngôn ngữ" },
                   { name: "Enterprise", price: "Liên hệ", labels: "Vô hạn", scans: "Vô hạn", lang: "Vô hạn" },
                 ].map((tier, i) => (
-                  <div key={i} className="flex flex-col">
-                    <h3 className="text-sm font-serif italic text-muted-foreground mb-4">{tier.name}</h3>
-                    <div className="text-3xl font-serif text-primary mb-8">{tier.price} {tier.price !== "Liên hệ" && <span className="text-xs font-sans text-muted-foreground uppercase tracking-widest">VNĐ/năm</span>}</div>
+                  <div key={i} className={`flex flex-col bg-[#0A1130] p-8 rounded-md border ${tier.highlight ? "border-[#83776D] shadow-[0_0_20px_rgba(131,119,109,0.1)]" : "border-white/10"} relative`}>
+                    {tier.highlight && (
+                      <div className="absolute top-0 right-8 -translate-y-1/2 bg-[#83776D] text-white text-[10px] uppercase tracking-[0.1em] px-3 py-1 rounded-full">
+                        Phổ biến
+                      </div>
+                    )}
+                    <h3 className="text-[13px] text-[#B8B5AE] mb-6">{tier.name}</h3>
+                    <div className="text-2xl font-light text-white mb-8">{tier.price} {tier.price !== "Liên hệ" && <span className="text-[10px] text-[#B8B5AE] uppercase tracking-widest ml-1">VNĐ/năm</span>}</div>
                     
-                    <div className="space-y-4 text-sm font-light text-foreground border-t border-border/40 pt-8 flex-1">
-                      <div className="flex justify-between">
-                        <span className="text-muted-foreground">Số nhãn</span>
+                    <div className="space-y-4 text-[13px] text-white hairline-t pt-8 flex-1">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[#B8B5AE]">Số nhãn</span>
                         <span>{tier.labels}</span>
                       </div>
-                      <div className="flex justify-between border-t border-border/20 pt-4">
-                        <span className="text-muted-foreground">Lượt quét</span>
+                      <div className="flex justify-between items-center hairline-t pt-4">
+                        <span className="text-[#B8B5AE]">Lượt quét</span>
                         <span>{tier.scans}</span>
                       </div>
-                      <div className="flex justify-between border-t border-border/20 pt-4">
-                        <span className="text-muted-foreground">Ngôn ngữ</span>
+                      <div className="flex justify-between items-center hairline-t pt-4">
+                        <span className="text-[#B8B5AE]">Ngôn ngữ</span>
                         <span>{tier.lang}</span>
                       </div>
-                      <div className="flex justify-between border-t border-border/20 pt-4">
-                        <span className="text-muted-foreground">Cập nhật</span>
-                        <span>Không giới hạn</span>
+                      <div className="flex justify-between items-center hairline-t pt-4">
+                        <span className="text-[#B8B5AE]">Cập nhật</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#83776D]"></span>
                       </div>
                     </div>
                     
-                    <Link href="/contact" className="mt-12 block">
-                      <Button variant={tier.highlight ? "default" : "outline"} className={`w-full h-12 rounded-none tracking-widest uppercase text-xs ${tier.highlight ? "bg-primary text-primary-foreground" : "border-foreground/20 text-foreground"}`}>
+                    <Link href="/contact" className="mt-10 block">
+                      <Button className={`w-full rounded-md tracking-[0.15em] uppercase text-[11px] h-12 ${tier.highlight ? "bg-[#83776D] hover:bg-[#83776D]/90 text-white" : "bg-transparent border border-white/20 text-white hover:bg-white hover:text-[#060B25]"}`}>
                         Lựa chọn
                       </Button>
                     </Link>
@@ -128,12 +136,11 @@ export default function Pricing() {
               </div>
             )}
 
-            {/* Other tabs follow the exact same editorial structure */}
             {(activeTab === "dpp" || activeTab === "fnb" || activeTab === "tem") && (
-               <div className="py-24 text-center">
-                 <p className="text-muted-foreground font-serif italic text-lg">Bảng giá chuyên sâu đang được biên soạn. Vui lòng liên hệ tư vấn viên.</p>
-                 <Link href="/contact" className="mt-8 inline-block">
-                    <Button className="h-12 px-8 rounded-none bg-primary text-primary-foreground tracking-widest uppercase text-xs">
+               <div className="py-24 text-center bg-[#0A1130] rounded-md border border-white/10">
+                 <p className="text-[#B8B5AE] text-[13px] mb-8">Bảng giá chuyên sâu đang được biên soạn. Vui lòng liên hệ tư vấn viên.</p>
+                 <Link href="/contact">
+                    <Button className="h-12 px-8 rounded-md bg-[#83776D] hover:bg-[#83776D]/90 text-white tracking-[0.15em] uppercase text-[11px]">
                       Liên hệ trực tiếp
                     </Button>
                  </Link>

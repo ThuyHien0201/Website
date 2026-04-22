@@ -31,37 +31,35 @@ export default function Blog() {
   ];
 
   return (
-    <div className="flex flex-col w-full">
-      <section className="pt-32 pb-24 bg-background">
-        <div className="container px-6 md:px-12 max-w-5xl mx-auto space-y-8">
-          <div className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground text-center">
-            Tạp chí Pháp lý & Thiết kế
-          </div>
-          <h1 className="text-5xl md:text-7xl font-serif text-primary leading-[0.95] text-center">
-            Góc nhìn<br/>chuyên sâu.
+    <div className="flex flex-col w-full bg-[#060B25]">
+      <section className="pt-40 pb-20">
+        <div className="container px-6 md:px-12 max-w-[800px] mx-auto space-y-6">
+          <div className="text-[11px] uppercase tracking-[0.15em] text-[#83776D] mb-4">Tạp chí Pháp lý & Thiết kế</div>
+          <h1 className="text-4xl md:text-5xl font-normal text-white leading-tight">
+            Góc nhìn <span className="italic font-light text-[#B8B5AE]">chuyên sâu.</span>
           </h1>
         </div>
       </section>
 
-      <section className="pb-32 bg-background">
-        <div className="container px-6 md:px-12 max-w-4xl mx-auto">
-          <div className="border-t border-border/40">
+      <section className="pb-32">
+        <div className="container px-6 md:px-12 max-w-[800px] mx-auto">
+          <div className="hairline-t">
             {articles.map((article, i) => (
-              <article key={i} className="group border-b border-border/40 py-12 transition-all duration-500 hover:bg-secondary/5">
-                <div className="grid md:grid-cols-4 gap-6 items-baseline px-4">
-                  <div className="md:col-span-1 text-xs tracking-widest uppercase text-muted-foreground font-medium">
+              <article key={i} className="group hairline-b py-10 transition-colors duration-500 hover:bg-white/5">
+                <div className="grid md:grid-cols-4 gap-4 px-4">
+                  <div className="md:col-span-1 text-[11px] uppercase tracking-wider text-[#83776D] pt-1">
                     {article.date}
                   </div>
-                  <div className="md:col-span-3 space-y-4">
-                    <span className="text-[10px] tracking-[0.2em] uppercase border border-border/60 px-3 py-1 rounded-full text-muted-foreground">
+                  <div className="md:col-span-3 space-y-3">
+                    <span className="text-[10px] tracking-[0.1em] uppercase border border-white/20 px-2 py-1 rounded-sm text-[#B8B5AE]">
                       {article.category}
                     </span>
-                    <h2 className="text-2xl font-serif text-primary group-hover:text-secondary transition-colors duration-500 leading-snug">
+                    <h2 className="text-xl font-normal text-white group-hover:text-[#B8B5AE] transition-colors duration-300 leading-snug">
                       <Link href="#" className="focus:outline-none">{article.title}</Link>
                     </h2>
-                    <div className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <Link href="#" className="inline-flex items-center text-xs tracking-widest uppercase font-medium text-secondary">
-                        Khám phá <ArrowRight className="ml-2 h-4 w-4" />
+                    <div className="pt-4 overflow-hidden h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <Link href="#" className="inline-flex items-center text-[11px] tracking-[0.15em] uppercase text-white">
+                        Đọc tiếp <ArrowRight className="ml-2 h-3 w-3" />
                       </Link>
                     </div>
                   </div>
