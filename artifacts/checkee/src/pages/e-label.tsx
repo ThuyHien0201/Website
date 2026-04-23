@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowRight, FileCheck, RefreshCw, Languages, Smartphone, ShieldCheck, QrCode, Globe } from "lucide-react";
+import { ArrowRight, FileCheck, RefreshCw, Languages, Smartphone, ShieldCheck, QrCode, Globe, BarChart3 } from "lucide-react";
 
 export default function ELabel() {
   return (
