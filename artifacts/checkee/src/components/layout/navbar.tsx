@@ -98,9 +98,6 @@ export function Navbar() {
           <Link href="/blog" className={linkClass(location === "/blog")}>
             Tin tức
           </Link>
-          <Link href="/demo" className={linkClass(location === "/demo")}>
-            Dùng thử miễn phí
-          </Link>
           <Link href="/contact" className={linkClass(location === "/contact")}>
             Liên hệ
           </Link>
