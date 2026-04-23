@@ -63,7 +63,7 @@ export function Navbar() {
               className={`flex items-center gap-1.5 ${linkClass(isProductActive)}`}
               onClick={() => setProductOpen((v) => !v)}
             >
-              Sản phẩm
+              Giải pháp
               <ChevronDown className={`w-4 h-4 transition-transform ${productOpen ? "rotate-180" : ""}`} />
             </button>
             <div

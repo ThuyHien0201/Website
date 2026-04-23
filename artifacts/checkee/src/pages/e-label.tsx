@@ -1,44 +1,24 @@
-import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
+import { ProductHero } from "@/components/layout/product-hero";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowRight, FileCheck, RefreshCw, Languages, Smartphone, ShieldCheck, QrCode, Globe, BarChart3 } from "lucide-react";
+import { FileCheck, RefreshCw, Languages, Smartphone, ShieldCheck, QrCode, Globe, BarChart3 } from "lucide-react";
 
 export default function ELabel() {
   return (
     <div className="flex flex-col w-full bg-white">
-      {/* Hero */}
-      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-[#FAFBFC]">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <div className="lg:col-span-7 space-y-8 relative z-10">
-              <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                NHÃN ĐIỆN TỬ E-LABEL
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
-                Không gian số hóa cho bao bì thông minh
-              </h1>
-              <p className="text-[#4A5868] text-lg max-w-xl leading-relaxed">
-                Checkee E-label giải phóng bao bì khỏi những khối văn bản dày đặc. Đưa thông tin thành phần, cảnh báo, và đa ngôn ngữ lên không gian số thanh lịch theo chuẩn NĐ 43/2017/NĐ-CP và EU Reg 2021/2117.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
-                <Link href="/pricing">
-                  <Button variant="outline" className="rounded-full border-2 border-[#0B4F6C] text-[#0B4F6C] hover:bg-[#0B4F6C] hover:text-white px-6 py-3 h-auto font-semibold">
-                    Xem bảng giá
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl shadow-xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px]">
-                <img src="/images/hero-factory.png" alt="E-label" className="w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProductHero
+        eyebrow="E-label"
+        title="Không gian số hóa cho bao bì thông minh"
+        description="Giải phóng bao bì khỏi những khối văn bản dày đặc. Thành phần, cảnh báo, đa ngôn ngữ — tất cả lên không gian số theo NĐ 43/2017/NĐ-CP và EU Reg 2021/2117."
+        image="/images/hero-factory.png"
+        imageAlt="Nhãn điện tử E-label"
+        badge={{ icon: Smartphone, label: "Trải nghiệm tương tác đa ngôn ngữ" }}
+        stats={[
+          { value: "8", label: "Ngôn ngữ tự động" },
+          { value: "0đ", label: "Chi phí in lại nhãn" },
+          { value: "EU 2021", label: "Sẵn sàng xuất khẩu" },
+        ]}
+      />
 
       {/* Compliance Callout */}
       <section className="py-12 bg-white">

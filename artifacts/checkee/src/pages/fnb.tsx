@@ -1,43 +1,23 @@
-import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
-import { ArrowRight, FileCheck, ClipboardList, ShieldCheck, Clock, CheckCircle2 } from "lucide-react";
+import { ProductHero } from "@/components/layout/product-hero";
+import { FileCheck, ClipboardList, ShieldCheck, Clock } from "lucide-react";
 
 export default function FNB() {
   return (
     <div className="flex flex-col w-full bg-white">
-      {/* Hero */}
-      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-[#FAFBFC]">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <div className="lg:col-span-7 space-y-8 relative z-10">
-              <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                LƯU MẪU THỰC PHẨM
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
-                Số hóa nhật ký lưu mẫu nhà hàng
-              </h1>
-              <p className="text-[#4A5868] text-lg max-w-xl leading-relaxed">
-                Biến quy trình lưu mẫu thức ăn thủ công thành giao thức điện tử chuẩn xác. Tuân thủ NĐ 15/2018/NĐ-CP và QĐ 1246/QĐ-BYT về an toàn thực phẩm.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
-                <Link href="/pricing">
-                  <Button variant="outline" className="rounded-full border-2 border-[#0B4F6C] text-[#0B4F6C] hover:bg-[#0B4F6C] hover:text-white px-6 py-3 h-auto font-semibold">
-                    Xem bảng giá
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl shadow-xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px]">
-                <img src="/images/hero-rice.png" alt="F&B" className="w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProductHero
+        eyebrow="F&B"
+        title="Số hóa nhật ký lưu mẫu nhà hàng"
+        description="Biến quy trình lưu mẫu thức ăn thủ công thành giao thức điện tử chuẩn xác. Tuân thủ NĐ 15/2018/NĐ-CP và QĐ 1246/QĐ-BYT về an toàn thực phẩm."
+        image="/images/hero-rice.png"
+        imageAlt="Lưu mẫu thực phẩm"
+        badge={{ icon: ShieldCheck, label: "Truy xuất sự cố trong 3 giây" }}
+        stats={[
+          { value: "3 giây", label: "Truy xuất hồ sơ mẫu" },
+          { value: "24/7", label: "Giám sát chuỗi nhà hàng" },
+          { value: "QĐ 1246", label: "Tuân thủ Bộ Y tế" },
+        ]}
+      />
 
       {/* Compliance Callout */}
       <section className="py-12 bg-white">

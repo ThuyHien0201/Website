@@ -1,43 +1,24 @@
-import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
+import { ProductHero } from "@/components/layout/product-hero";
 import { CtaButton } from "@/components/ui/cta-button";
-import { FileCheck, Globe, Clock, PackageCheck } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { FileCheck, Globe, Clock, PackageCheck, QrCode, Languages, RefreshCw, Sparkles, Printer, Smartphone, Layers, ArrowRight } from "lucide-react";
 
 export default function TemPhu() {
   return (
     <div className="flex flex-col w-full bg-white">
-      {/* Hero */}
-      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-[#FAFBFC]">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <div className="lg:col-span-7 space-y-8 relative z-10">
-              <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                TEM PHỤ NHẬP KHẨU
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
-                Giải pháp nhãn phụ thanh lịch
-              </h1>
-              <p className="text-[#4A5868] text-lg max-w-xl leading-relaxed">
-                Tôn vinh thiết kế nguyên bản của các sản phẩm nhập khẩu cao cấp. Đáp ứng Nghị định 43/2017/NĐ-CP bằng tem QR nhỏ gọn thay vì những khối văn bản giấy khổng lồ.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
-                <Link href="/pricing">
-                  <Button variant="outline" className="rounded-full border-2 border-[#0B4F6C] text-[#0B4F6C] hover:bg-[#0B4F6C] hover:text-white px-6 py-3 h-auto font-semibold">
-                    Xem bảng giá
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl shadow-xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px]">
-                <img src="/images/hero-silk.png" alt="Tem phụ" className="w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProductHero
+        eyebrow="Tem phụ"
+        title="Tem phụ thanh lịch cho hàng nhập khẩu cao cấp"
+        description="Thay những khối văn bản giấy cồng kềnh bằng tem QR nhỏ gọn. Tôn vinh thiết kế nguyên bản — vẫn đáp ứng đầy đủ Nghị định 43/2017/NĐ-CP về nhãn hàng hóa nhập khẩu."
+        image="/images/hero-silk.png"
+        imageAlt="Tem phụ Checkee"
+        badge={{ icon: PackageCheck, label: "In nhãn phụ chỉ trong 5 phút" }}
+        stats={[
+          { value: "5 phút", label: "In tem phụ mới" },
+          { value: "8", label: "Ngôn ngữ hỗ trợ" },
+          { value: "100%", label: "Tuân thủ NĐ 43" },
+        ]}
+      />
 
       {/* Compliance Callout */}
       <section className="py-12 bg-white">
@@ -82,15 +63,101 @@ export default function TemPhu() {
         </div>
       </section>
 
+      {/* Tính năng */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">TÍNH NĂNG</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Vượt xa một chiếc tem nhỏ</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {[
+              { icon: QrCode, title: "QR động", desc: "Cập nhật nội dung nhãn phụ bất cứ lúc nào mà không cần in lại tem dán." },
+              { icon: Languages, title: "8 ngôn ngữ", desc: "Tự động hiển thị tiếng Việt, Anh, Pháp, Đức, Nhật, Hàn, Trung, Thái theo thiết bị." },
+              { icon: Printer, title: "Xuất PDF in ấn", desc: "Mẫu tem chuẩn kích thước 30×20mm hoặc tùy chỉnh, sẵn sàng in trực tiếp." },
+              { icon: RefreshCw, title: "Sửa lỗi không cần in lại", desc: "Phát hiện sai sót thông tin? Chỉnh sửa trên app, mã QR cũ vẫn hiển thị đúng." },
+              { icon: Smartphone, title: "Quét bằng camera thường", desc: "Người tiêu dùng không cần cài app — mở camera điện thoại là đọc được." },
+              { icon: Layers, title: "Lưu trữ CO/CQ", desc: "Đính kèm chứng từ xuất xứ, tờ khai hải quan, COA dạng PDF có thể tải về." },
+            ].map((feat, i) => (
+              <div key={i} className="space-y-3">
+                <feat.icon className="w-8 h-8 text-[#1A7EA4]" />
+                <h4 className="text-[#0F1B2D] font-bold text-lg">{feat.title}</h4>
+                <p className="text-[#4A5868] text-sm leading-relaxed">{feat.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* So sánh */}
+      <section className="py-24 bg-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">SO SÁNH</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Tem giấy truyền thống vs. Tem QR Checkee</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <div className="bg-white border border-[#E5EAF0] rounded-2xl p-8">
+              <div className="text-xs uppercase tracking-widest font-semibold text-[#7D9E94] mb-4">Tem giấy truyền thống</div>
+              <ul className="space-y-3 text-[#4A5868] text-sm">
+                <li className="flex gap-3"><span className="text-[#C45B17]">✕</span><span>Khối văn bản dày đặc che mất thiết kế bao bì</span></li>
+                <li className="flex gap-3"><span className="text-[#C45B17]">✕</span><span>Sai một chữ phải in lại toàn bộ lô tem</span></li>
+                <li className="flex gap-3"><span className="text-[#C45B17]">✕</span><span>Chỉ một ngôn ngữ duy nhất</span></li>
+                <li className="flex gap-3"><span className="text-[#C45B17]">✕</span><span>Không có dữ liệu lượt xem</span></li>
+              </ul>
+            </div>
+            <div className="bg-[#0B4F6C] text-white rounded-2xl p-8 shadow-xl">
+              <div className="text-xs uppercase tracking-widest font-semibold text-[#D9EEF5] mb-4 flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5" /> Tem QR Checkee
+              </div>
+              <ul className="space-y-3 text-[#D9EEF5]/90 text-sm">
+                <li className="flex gap-3"><span className="text-[#C45B17]">✓</span><span>Tem nhỏ gọn 30×20mm, tôn vinh thiết kế gốc</span></li>
+                <li className="flex gap-3"><span className="text-[#C45B17]">✓</span><span>Sửa thông tin online, không cần in lại</span></li>
+                <li className="flex gap-3"><span className="text-[#C45B17]">✓</span><span>8 ngôn ngữ tự động</span></li>
+                <li className="flex gap-3"><span className="text-[#C45B17]">✓</span><span>Dashboard phân tích lượt quét</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">CÂU HỎI THƯỜNG GẶP</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Giải đáp thắc mắc</h2>
+          </div>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              {[
+                { q: "Tem QR có thay thế hoàn toàn nhãn giấy không?", a: "Có. Theo Nghị định 43/2017/NĐ-CP, các thông tin bắt buộc có thể hiển thị qua mã QR truy xuất, miễn là người tiêu dùng có thể tiếp cận đầy đủ nội dung. Checkee cung cấp giao diện chuẩn để đáp ứng yêu cầu này." },
+                { q: "Cơ quan quản lý thị trường có chấp nhận không?", a: "Có. Tem QR Checkee hiển thị đầy đủ các trường thông tin theo luật định, có thể truy cập ngay khi quét bằng camera thường, đáp ứng tiêu chí 'người tiêu dùng dễ dàng tiếp cận'." },
+                { q: "Chi phí in tem QR như thế nào?", a: "Tem QR có kích thước nhỏ (chỉ 30×20mm), nên chi phí in ấn rẻ hơn 60-80% so với nhãn phụ giấy đầy đủ thông tin." },
+                { q: "Sản phẩm đã dán tem rồi mà cần sửa thông tin thì sao?", a: "Đây là điểm mạnh của Checkee. Bạn chỉ cần đăng nhập, sửa nội dung trên dashboard — mã QR cũ vẫn hoạt động và hiển thị thông tin mới ngay lập tức." },
+              ].map((faq, i) => (
+                <AccordionItem key={i} value={`item-${i}`}>
+                  <AccordionTrigger className="text-lg font-semibold text-[#0B4F6C]">{faq.q}</AccordionTrigger>
+                  <AccordionContent className="text-[#4A5868] text-base leading-relaxed">{faq.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Strip */}
       <section className="py-24 bg-[#0B4F6C] text-white text-center">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Tôn vinh sản phẩm nguyên bản</h2>
           <p className="text-lg text-[#D9EEF5]/80 max-w-2xl mx-auto">
-            Số hóa nhãn phụ ngay hôm nay.
+            Số hóa nhãn phụ ngay hôm nay — vừa đẹp vừa đúng luật.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">
             <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
+            <a href="/contact" className="text-sm text-[#D9EEF5]/70 hover:text-white inline-flex items-center gap-1 mt-2">
+              Hoặc liên hệ tư vấn riêng <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </section>

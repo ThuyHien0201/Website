@@ -1,45 +1,25 @@
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
+import { ProductHero } from "@/components/layout/product-hero";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowRight, FileCheck, Award, Workflow, Database, Globe, QrCode, MapPin, Languages, BarChart3, Shield } from "lucide-react";
-import { motion } from "framer-motion";
+import { FileCheck, Award, Workflow, Database, Globe, QrCode, MapPin, Languages, BarChart3, Shield, ShieldCheck } from "lucide-react";
 
 export default function Trace() {
   return (
     <div className="flex flex-col w-full bg-white">
-      {/* Hero */}
-      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-[#FAFBFC]">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            <div className="lg:col-span-7 space-y-8 relative z-10">
-              <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                TRUY XUẤT NGUỒN GỐC
-              </div>
-              <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
-                Truy xuất nguồn gốc điện tử — Chuẩn quốc tế GS1/EPCIS
-              </h1>
-              <p className="text-[#4A5868] text-lg max-w-xl leading-relaxed">
-                Checkee Trace cung cấp giải pháp truy xuất nguồn gốc chuẩn mực, đáp ứng trọn vẹn 10 trường thông tin bắt buộc, minh bạch chuỗi cung ứng theo tiêu chuẩn quốc gia và quốc tế.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
-                <Link href="/pricing">
-                  <Button variant="outline" className="rounded-full border-2 border-[#0B4F6C] text-[#0B4F6C] hover:bg-[#0B4F6C] hover:text-white px-6 py-3 h-auto font-semibold">
-                    Xem bảng giá
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            
-            <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl shadow-xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px]">
-                <img src="/images/hero-coffee.png" alt="Truy xuất" className="w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProductHero
+        eyebrow="Trace"
+        title="Truy xuất nguồn gốc điện tử — Chuẩn quốc tế GS1/EPCIS"
+        description="Giải pháp truy xuất chuẩn mực, đáp ứng trọn vẹn 10 trường thông tin bắt buộc theo Thông tư 02/2024 — minh bạch toàn bộ chuỗi cung ứng."
+        image="/images/hero-coffee.png"
+        imageAlt="Truy xuất nguồn gốc"
+        badge={{ icon: ShieldCheck, label: "Đã xác thực · GS1 · TT 02/2024" }}
+        stats={[
+          { value: "10/10", label: "Trường thông tin bắt buộc" },
+          { value: "GS1", label: "Chuẩn quốc tế EPCIS" },
+          { value: "5,000+", label: "Sản phẩm đã triển khai" },
+        ]}
+      />
 
       {/* Compliance Callout */}
       <section className="py-12 bg-white">
