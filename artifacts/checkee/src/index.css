@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -40,12 +40,6 @@
   --color-destructive-foreground: hsl(var(--destructive-foreground));
   --color-destructive-border: var(--destructive-border);
 
-  --color-trace: hsl(160 30% 30%);
-  --color-elabel: hsl(210 40% 30%);
-  --color-dpp: hsl(260 30% 35%);
-  --color-fnb: hsl(35 40% 30%);
-  --color-temphu: hsl(15 40% 35%);
-
   --font-sans: var(--app-font-sans);
   --font-serif: var(--app-font-sans);
   --font-mono: var(--app-font-mono);
@@ -57,32 +51,32 @@
 }
 
 :root, .dark {
-  /* Vibrant Royal Navy + Coral Palette (matches Checkee logo) */
-  --background: 230 65% 14%; /* #0A1340 brighter royal navy */
-  --foreground: 0 0% 100%;
+  /* LIGHT PROFESSIONAL THEME */
+  --background: 0 0% 100%; /* #FFFFFF pure white */
+  --foreground: 216 50% 12%; /* #0F1B2D near black */
 
-  --border: 0 0% 100% / 0.12;
-  --input: 0 0% 100% / 0.10;
-  --ring: 16 100% 64%; /* coral accent */
+  --border: 212 28% 92%; /* #E5EAF0 */
+  --input: 212 28% 92%;
+  --ring: 200 73% 37%; /* #1A7EA4 Arctic Blue */
 
-  --card: 230 55% 19%; /* #16205A elevated card */
-  --card-foreground: 0 0% 100%;
-  --card-border: 0 0% 100% / 0.12;
+  --card: 0 0% 100%;
+  --card-foreground: 216 50% 12%;
+  --card-border: 212 28% 92%;
 
-  --popover: 230 55% 19%;
-  --popover-foreground: 0 0% 100%;
-  --popover-border: 0 0% 100% / 0.12;
+  --popover: 0 0% 100%;
+  --popover-foreground: 216 50% 12%;
+  --popover-border: 212 28% 92%;
 
-  --primary: 215 70% 50%; /* logo blue */
+  --primary: 200 82% 23%; /* #0B4F6C Deep Fjord */
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 230 70% 10%; /* #060C2A deeper for contrast */
-  --secondary-foreground: 0 0% 100%;
+  --secondary: 195 56% 91%; /* #D9EEF5 Mist */
+  --secondary-foreground: 200 82% 23%;
 
-  --muted: 230 40% 25%;
-  --muted-foreground: 220 20% 78%;
+  --muted: 212 17% 35%; /* #4A5868 */
+  --muted-foreground: 161 14% 55%; /* #7D9E94 Slate Sage */
 
-  --accent: 16 100% 64%; /* #FF6B47 vibrant coral */
+  --accent: 23 79% 43%; /* #C45B17 Amber Ember */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
@@ -91,7 +85,7 @@
   --app-font-sans: 'Inter', sans-serif;
   --app-font-mono: Menlo, monospace;
   
-  --radius: 0.375rem;
+  --radius: 0.5rem;
 }
 
 @layer base {
@@ -99,24 +93,24 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground font-normal leading-relaxed text-[13px] md:text-[14px];
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    @apply font-sans antialiased bg-background text-foreground font-normal leading-relaxed text-[14px] md:text-[15px];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
     background-attachment: fixed;
     background-color: hsl(var(--background));
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans text-foreground tracking-tight font-normal;
+    @apply font-sans text-foreground tracking-tight font-bold;
   }
   
   /* Utilities for the aesthetic */
   .hairline-b {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--border);
   }
   .hairline-t {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--border);
   }
   .link-hover {
-    @apply relative after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:bg-current after:w-0 hover:after:w-full after:transition-all after:duration-300;
+    @apply relative after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-[#1A7EA4] after:w-0 hover:after:w-full after:transition-all after:duration-300 hover:text-[#1A7EA4];
   }
   .image-hover {
     @apply transition-transform duration-1000 ease-out hover:scale-105;

@@ -1,52 +1,122 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { CtaButton } from "@/components/ui/cta-button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ArrowRight, FileCheck, Globe, Database, Leaf, Shield, CheckCircle2 } from "lucide-react";
 
 export default function DPP() {
   return (
-    <div className="flex flex-col w-full bg-[#0A1340]">
-      <section className="relative h-[70vh] min-h-[600px] w-full overflow-hidden">
-        <div className="absolute inset-0 w-full h-full">
-          <img src="/images/hero-lacquer.png" alt="DPP" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1340]/30 via-[#0A1340]/50 to-[#0A1340]" />
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10 pt-20">
-          <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-6">ESPR Regulation (EU) 2024/1781</div>
-          <h1 className="text-4xl md:text-6xl text-white font-normal leading-[1.1] mb-6">
-            Hộ chiếu <span className="italic font-light text-[#FFFFFF]/80">số hoá</span>
-          </h1>
-          <p className="text-[13px] md:text-[14px] text-[#C8D0E8] max-w-xl mx-auto leading-relaxed mb-10">
-            Digital Product Passport. Tấm vé thượng lưu đưa sản phẩm Việt Nam vào thị trường Châu Âu với chuẩn mực bền vững và minh bạch cao nhất.
-          </p>
-          <Link href="/demo?product=dpp">
-            <Button className="rounded-md bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto">
-              Trải nghiệm mẫu
-            </Button>
-          </Link>
+    <div className="flex flex-col w-full bg-white">
+      {/* Hero */}
+      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            <div className="lg:col-span-7 space-y-8 relative z-10">
+              <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
+                DIGITAL PRODUCT PASSPORT
+              </div>
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
+                Hộ chiếu số xuất khẩu Châu Âu
+              </h1>
+              <p className="text-[#4A5868] text-lg max-w-xl leading-relaxed">
+                Tấm vé thông hành đưa sản phẩm Việt Nam vào thị trường EU. Tuân thủ hoàn toàn Quy định ESPR (EU Regulation 2024/1781) với chuẩn mực minh bạch và phát triển bền vững cao nhất.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
+                <Link href="/pricing">
+                  <Button variant="outline" className="rounded-full border-2 border-[#0B4F6C] text-[#0B4F6C] hover:bg-[#0B4F6C] hover:text-white px-6 py-3 h-auto font-semibold">
+                    Xem bảng giá
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-2xl shadow-xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px]">
+                <img src="/images/hero-lacquer.png" alt="DPP" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-32 border-t border-white/5">
-        <div className="container px-6 md:px-12 max-w-[1200px] mx-auto">
-          <div className="max-w-2xl mb-20">
-            <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-4">Cấu trúc dữ liệu</div>
-            <h2 className="text-3xl font-normal text-white">
-              Tuyên ngôn <span className="italic font-light text-[#C8D0E8]">của sự bền vững.</span>
-            </h2>
+      {/* Compliance Callout */}
+      <section className="py-12 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="bg-[#D9EEF5] rounded-3xl p-8 lg:p-12 flex flex-col md:flex-row gap-8 items-center">
+            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0">
+              <FileCheck className="w-8 h-8 text-[#0B4F6C]" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-[#0B4F6C] mb-3">Đáp ứng quy định ESPR EU 2024/1781</h3>
+              <p className="text-[#0B4F6C]/80 text-base leading-relaxed">
+                Lộ trình bắt buộc: Pin (2027), Dệt may (2030), và tiếp theo là Điện tử, Hóa chất, Đồ chơi. Chuẩn bị nền tảng dữ liệu ngay hôm nay để không mất quyền tiếp cận thị trường chung Châu Âu.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 hairline-t pt-16">
+      {/* Lợi ích */}
+      <section className="py-24 bg-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">LỢI ÍCH</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Sẵn sàng vươn tầm toàn cầu</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Carbon Footprint", desc: "Dấu chân carbon trên mỗi đơn vị, thể hiện trách nhiệm sinh thái." },
-              { title: "Vật liệu tái chế", desc: "Minh bạch tỷ lệ nguyên liệu tuần hoàn trong chuỗi chế tác." },
-              { title: "Độ bền & Sửa chữa", desc: "Chỉ số Repairability Score và cẩm nang bảo dưỡng chuyên sâu." },
-              { title: "Chứng nhận EU", desc: "Tích hợp nguyên vẹn CE, RoHS, REACH, ISO, EPD." }
+              { icon: Globe, title: "Bắt buộc xuất EU", desc: "Điều kiện tiên quyết để lưu thông hàng hóa tại EU theo lộ trình ESPR. Tránh nguy cơ bị từ chối thông quan." },
+              { icon: Database, title: "Minh bạch chuỗi giá trị", desc: "Chứng minh nguồn gốc, tỷ lệ vật liệu tái chế, dấu chân carbon trên một nền tảng dữ liệu đồng nhất." },
+              { icon: Leaf, title: "ESG Reporting", desc: "Cung cấp dữ liệu lõi cho báo cáo phát triển bền vững (ESG), thu hút nhà đầu tư và đối tác xanh." },
+              { icon: Shield, title: "Vòng đời sản phẩm", desc: "Cung cấp thông tin sửa chữa, bảo trì, tái chế cho người tiêu dùng, thúc đẩy nền kinh tế tuần hoàn." }
             ].map((item, i) => (
-              <div key={i} className="space-y-4">
-                <h3 className="text-lg font-normal text-white">{item.title}</h3>
-                <p className="text-[13px] text-[#C8D0E8] leading-relaxed">{item.desc}</p>
+              <div key={i} className="bg-white border border-[#E5EAF0] rounded-2xl p-7 hover:shadow-xl transition-shadow">
+                <div className="bg-[#D4EDE6] text-[#1A6B52] w-12 h-12 flex items-center justify-center rounded-xl mb-5">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-[#0B4F6C] text-lg mb-3">{item.title}</h3>
+                <p className="text-[#4A5868] text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ngành hàng */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">LỘ TRÌNH TRIỂN KHAI</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Các ngành công nghiệp ưu tiên</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              "Pin và Ắc quy (2027)",
+              "Dệt may và Thời trang (2030)",
+              "Đồ điện tử và CNTT",
+              "Sắt, thép, nhôm",
+              "Hóa chất và Nhựa",
+              "Đồ nội thất"
+            ].map((nganh, i) => (
+              <div key={i} className="flex items-center gap-4 p-6 bg-[#FAFBFC] border border-[#E5EAF0] rounded-xl">
+                <CheckCircle2 className="w-6 h-6 text-[#1A6B52]" />
+                <span className="font-bold text-[#0F1B2D] text-lg">{nganh}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Strip */}
+      <section className="py-24 bg-[#0B4F6C] text-white text-center">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Khởi tạo Hộ chiếu số</h2>
+          <p className="text-lg text-[#D9EEF5]/80 max-w-2xl mx-auto">
+            Sẵn sàng cho thị trường xuất khẩu khó tính nhất thế giới.
+          </p>
+          <div className="pt-4 flex flex-col items-center gap-4">
+            <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
           </div>
         </div>
       </section>

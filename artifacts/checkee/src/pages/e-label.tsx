@@ -1,57 +1,123 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { CtaButton } from "@/components/ui/cta-button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ArrowRight, FileCheck, RefreshCw, Languages, Smartphone, ShieldCheck, QrCode, Globe } from "lucide-react";
 
 export default function ELabel() {
   return (
-    <div className="flex flex-col w-full bg-[#0A1340]">
-      <section className="relative h-[70vh] min-h-[600px] w-full overflow-hidden">
-        <div className="absolute inset-0 w-full h-full">
-          <img src="/images/hero-factory.png" alt="E-label" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1340]/30 via-[#0A1340]/50 to-[#0A1340]" />
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10 pt-20">
-          <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-6">NĐ 37/2026 Điều 42 Khoản 1</div>
-          <h1 className="text-4xl md:text-6xl text-white font-normal leading-[1.1] mb-6">
-            Không gian <span className="italic font-light text-[#FFFFFF]/80">vô tận</span>
-          </h1>
-          <p className="text-[13px] md:text-[14px] text-[#C8D0E8] max-w-xl mx-auto leading-relaxed mb-10">
-            Checkee E-label giải phóng bao bì khỏi những khối văn bản dày đặc. Đưa thông tin thành phần, cảnh báo, và đa ngôn ngữ lên không gian số thanh lịch.
-          </p>
-          <Link href="/demo?product=e-label">
-            <Button className="rounded-md bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white uppercase text-[11px] tracking-[0.15em] px-8 py-6 h-auto">
-              Trải nghiệm mẫu
-            </Button>
-          </Link>
+    <div className="flex flex-col w-full bg-white">
+      {/* Hero */}
+      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            <div className="lg:col-span-7 space-y-8 relative z-10">
+              <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
+                NHÃN ĐIỆN TỬ E-LABEL
+              </div>
+              <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
+                Không gian số hóa cho bao bì thông minh
+              </h1>
+              <p className="text-[#4A5868] text-lg max-w-xl leading-relaxed">
+                Checkee E-label giải phóng bao bì khỏi những khối văn bản dày đặc. Đưa thông tin thành phần, cảnh báo, và đa ngôn ngữ lên không gian số thanh lịch theo chuẩn NĐ 43/2017/NĐ-CP và EU Reg 2021/2117.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
+                <Link href="/pricing">
+                  <Button variant="outline" className="rounded-full border-2 border-[#0B4F6C] text-[#0B4F6C] hover:bg-[#0B4F6C] hover:text-white px-6 py-3 h-auto font-semibold">
+                    Xem bảng giá
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-2xl shadow-xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-[600px]">
+                <img src="/images/hero-factory.png" alt="E-label" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-32">
-        <div className="container px-6 md:px-12 max-w-[1200px] mx-auto">
-          <div className="grid md:grid-cols-3 gap-16 md:gap-12">
+      {/* Compliance Callout */}
+      <section className="py-12 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="bg-[#D9EEF5] rounded-3xl p-8 lg:p-12 flex flex-col md:flex-row gap-8 items-center">
+            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0">
+              <FileCheck className="w-8 h-8 text-[#0B4F6C]" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-[#0B4F6C] mb-3">Tuân thủ đầy đủ quy định pháp lý</h3>
+              <p className="text-[#0B4F6C]/80 text-base leading-relaxed">
+                Đáp ứng Nghị định 43/2017/NĐ-CP, Nghị định 111/2021/NĐ-CP về nhãn hàng hóa và quy định EU Reg 2021/2117 về nhãn điện tử cho rượu vang và đồ uống có cồn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lợi ích */}
+      <section className="py-24 bg-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">LỢI ÍCH</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Tối ưu hóa quy trình in ấn</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              {
-                num: "I.",
-                title: "Thẩm mỹ thiết kế",
-                desc: "Bao bì sản phẩm được trả lại vẻ đẹp nguyên bản, tối giản và sang trọng. Mọi văn bản pháp lý khô khan được chuyển đổi mượt mà sang giao diện điện thoại."
-              },
-              {
-                num: "II.",
-                title: "Linh hoạt tuyệt đối",
-                desc: "Hiệu chỉnh thành phần, cập nhật cảnh báo an toàn tức thì. Không cần phải tiêu huỷ và in lại hàng vạn nhãn mác vật lý khi có thay đổi."
-              },
-              {
-                num: "III.",
-                title: "Thấu hiểu khách hàng",
-                desc: "Mỗi lượt quét mở ra một điểm mù dữ liệu. Nắm bắt được thời điểm, địa điểm và sở thích của giới tinh hoa tiêu dùng."
-              }
-            ].map((feat, i) => (
-              <div key={i} className="space-y-6">
-                <div className="text-[13px] text-[#FF6B47]">{feat.num}</div>
-                <h3 className="text-xl font-normal text-white">{feat.title}</h3>
-                <p className="text-[#C8D0E8] font-normal leading-relaxed text-[13px]">{feat.desc}</p>
+              { icon: RefreshCw, title: "Cập nhật tức thì", desc: "Thay đổi thông tin thành phần, HDSD, cảnh báo mà không cần hủy bỏ bao bì cũ, tiết kiệm chi phí in ấn khổng lồ." },
+              { icon: Languages, title: "Đa ngôn ngữ tự động", desc: "Tự động hiển thị ngôn ngữ phù hợp với thiết bị của người dùng, sẵn sàng cho xuất khẩu." },
+              { icon: Smartphone, title: "Trải nghiệm tương tác", desc: "Nhãn dinh dưỡng động, video hướng dẫn, gợi ý kết hợp sản phẩm tạo ra trải nghiệm mua sắm mới." },
+              { icon: ShieldCheck, title: "Thẩm mỹ thiết kế", desc: "Giữ bao bì vật lý sạch sẽ, tối giản. Dịch chuyển các thông tin bắt buộc cồng kềnh lên không gian số." }
+            ].map((item, i) => (
+              <div key={i} className="bg-white border border-[#E5EAF0] rounded-2xl p-7 hover:shadow-xl transition-shadow">
+                <div className="bg-[#D4EDE6] text-[#1A6B52] w-12 h-12 flex items-center justify-center rounded-xl mb-5">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-[#0B4F6C] text-lg mb-3">{item.title}</h3>
+                <p className="text-[#4A5868] text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tính năng */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">TÍNH NĂNG</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Vượt xa một chiếc nhãn</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {[
+              { icon: QrCode, title: "Dynamic QR", desc: "Mã QR động có thể chỉnh sửa đích đến bất kỳ lúc nào." },
+              { icon: Globe, title: "Địa phương hóa", desc: "Hiển thị nội dung theo khu vực địa lý quét mã." },
+              { icon: FileCheck, title: "Bảng dinh dưỡng số", desc: "Hiển thị bảng giá trị dinh dưỡng, calo chuẩn FDA/EU." },
+              { icon: Languages, title: "Quản lý ngôn ngữ", desc: "Biên dịch và quản lý song song nhiều phiên bản ngôn ngữ." },
+              { icon: BarChart3, title: "Customer Insights", desc: "Đo lường thời gian xem nhãn, nội dung được quan tâm nhất." },
+              { icon: ShieldCheck, title: "Cảnh báo dị ứng", desc: "Làm nổi bật các thành phần gây dị ứng an toàn cho người dùng." }
+            ].map((feat, i) => (
+              <div key={i} className="space-y-4">
+                <feat.icon className="w-8 h-8 text-[#1A7EA4]" />
+                <h4 className="text-[#0F1B2D] font-bold text-xl">{feat.title}</h4>
+                <p className="text-[#4A5868] text-base leading-relaxed">{feat.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Strip */}
+      <section className="py-24 bg-[#0B4F6C] text-white text-center">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Nâng cấp bao bì ngay hôm nay</h2>
+          <p className="text-lg text-[#D9EEF5]/80 max-w-2xl mx-auto">
+            Số hóa thông tin sản phẩm bằng Checkee E-label.
+          </p>
+          <div className="pt-4 flex flex-col items-center gap-4">
+            <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
           </div>
         </div>
       </section>

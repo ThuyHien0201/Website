@@ -1,88 +1,143 @@
-import { useRoute, useLocation, Link } from "wouter";
+import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+import { QRCodeCanvas } from "qrcode.react";
+import logoPng from "@/assets/logo.png";
 
 export default function DemoPreview() {
-  const [match, params] = useRoute("/demo/preview/:type");
   const [location] = useLocation();
-  
-  const [queryParams, setQueryParams] = useState({ name: "Sản phẩm Mẫu", company: "Thương hiệu Mẫu" });
-  
+  const [params, setParams] = useState({
+    name: "Sản phẩm Mẫu",
+    company: "Thương hiệu Mẫu",
+  });
+
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const name = searchParams.get("name") || "Cà phê Robusta Măng Đen";
     const company = searchParams.get("company") || "HTX Nông nghiệp Măng Đen";
-    setQueryParams({ name, company });
+    setParams({ name, company });
   }, [location]);
 
-  if (!match || !params) return <div>Invalid URL</div>;
-
-  const type = params.type;
-
-  const BottomCTA = () => (
-    <div className="fixed bottom-0 left-0 right-0 p-6 bg-[#060C2A]/90 backdrop-blur-md hairline-t z-50 flex justify-center">
-      <Link href="/contact" className="w-full max-w-sm">
-        <Button className="w-full h-12 rounded-md bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white tracking-[0.15em] uppercase text-[11px] transition-all duration-300">
-          Khởi tạo cho doanh nghiệp
-        </Button>
-      </Link>
-    </div>
-  );
-
   return (
-    <div className="min-h-[100dvh] bg-[#0A1340] pb-32 max-w-md mx-auto shadow-2xl relative font-sans text-white border-x border-white/5">
-      <div className="h-64 relative">
-        <img src="/images/hero-coffee.png" className="w-full h-full object-cover opacity-70" alt="Product" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0A1340]" />
-        <Link href="/demo" className="absolute top-6 left-6 p-3 rounded-full bg-black/20 backdrop-blur-md text-white hover:bg-black/40 transition-colors border border-white/10">
-          <ArrowLeft className="h-4 w-4" />
-        </Link>
-      </div>
-      
-      <div className="px-8 -mt-16 relative z-10">
-        <div className="bg-[#16205A] border border-white/10 p-8 rounded-md shadow-2xl">
-          <div className="text-[10px] tracking-[0.15em] uppercase text-[#FF6B47] mb-4">
-            Xác thực nguồn gốc
+    <div className="min-h-[100dvh] bg-white flex justify-center font-sans text-[#0F1B2D]">
+      <div className="w-full max-w-[420px] bg-white shadow-2xl relative flex flex-col border-x border-[#E5EAF0]">
+        
+        {/* Header */}
+        <div className="px-5 py-4 border-b border-[#E5EAF0] flex items-center justify-between bg-white shrink-0 sticky top-0 z-20">
+          <div className="flex items-center gap-2">
+            <img src={logoPng} className="h-6" alt="logo" />
+            <span className="text-lg font-bold text-[#0B4F6C]">Checkee</span>
           </div>
-          <h1 className="text-2xl font-normal text-white mb-2 leading-tight">{queryParams.name}</h1>
-          <p className="text-[#C8D0E8] font-light text-[13px]">{queryParams.company}</p>
+          <div className="bg-[#D4EDE6] text-[#1A6B52] px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+            <CheckCircle2 className="w-4 h-4" /> Đã xác thực
+          </div>
         </div>
 
-        <div className="mt-12 space-y-10">
-          <div className="text-[11px] tracking-[0.15em] uppercase text-[#FF6B47] mb-6 hairline-b pb-4">
-            Hành trình chế tác
+        {/* Image */}
+        <div className="h-64 relative shrink-0">
+          <img src="/images/hero-coffee.png" className="w-full h-full object-cover" alt="Product" />
+        </div>
+
+        {/* Hero */}
+        <div className="px-6 py-6 bg-white shrink-0">
+          <h2 className="text-2xl font-bold text-[#0F1B2D] mb-1">{params.name}</h2>
+          <p className="text-base text-[#7D9E94]">{params.company}</p>
+          <div className="mt-3 inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold">
+            Thực phẩm
           </div>
-          
-          <div className="space-y-10">
-            <div className="flex gap-6">
-              <div className="text-[13px] text-[#C8D0E8] pt-1">01.</div>
+        </div>
+
+        {/* Description */}
+        <div className="px-6 py-4 bg-white shrink-0">
+          <p className="text-sm text-[#4A5868] leading-relaxed whitespace-pre-wrap">
+            Sản phẩm được trồng và thu hoạch thủ công tại nông trại Măng Đen, với độ cao 1200m so với mực nước biển, mang đến hương vị đậm đà nguyên bản.
+          </p>
+        </div>
+
+        {/* Origin */}
+        <div className="px-6 py-5 bg-[#FAFBFC] border-y border-[#E5EAF0] shrink-0">
+          <div className="uppercase text-xs text-[#7D9E94] font-bold mb-4 tracking-wider">NGUỒN GỐC</div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <div className="text-xs text-[#7D9E94] uppercase mb-1">Vùng SX</div>
+              <div className="text-sm text-[#0F1B2D] font-semibold">Lâm Đồng, VN</div>
+            </div>
+            <div>
+              <div className="text-xs text-[#7D9E94] uppercase mb-1">Ngày SX</div>
+              <div className="text-sm text-[#0F1B2D] font-semibold">15/04/2024</div>
+            </div>
+            <div>
+              <div className="text-xs text-[#7D9E94] uppercase mb-1">HSD</div>
+              <div className="text-sm text-[#0F1B2D] font-semibold">15/04/2025</div>
+            </div>
+            <div>
+              <div className="text-xs text-[#7D9E94] uppercase mb-1">Lô</div>
+              <div className="text-sm text-[#0F1B2D] font-semibold">BATCH-2024-05</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Certs */}
+        <div className="px-6 py-5 bg-white border-b border-[#E5EAF0] shrink-0">
+          <div className="uppercase text-xs text-[#7D9E94] font-bold mb-4 tracking-wider">CHỨNG NHẬN</div>
+          <div className="flex flex-wrap gap-2">
+            <div className="bg-[#1A6B52] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" /> VietGAP
+            </div>
+            <div className="bg-[#1A6B52] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" /> ISO 22000
+            </div>
+          </div>
+        </div>
+
+        {/* Journey */}
+        <div className="px-6 py-6 bg-[#FAFBFC] border-b border-[#E5EAF0] shrink-0">
+          <div className="uppercase text-xs text-[#7D9E94] font-bold mb-6 tracking-wider">HÀNH TRÌNH SẢN PHẨM</div>
+          <div className="space-y-6 relative">
+            <div className="absolute left-[13px] top-6 bottom-[10px] w-px bg-[#E5EAF0]" />
+            <div className="flex gap-4 relative">
+              <div className="w-7 h-7 rounded-full bg-[#1A6B52] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
+                1
+              </div>
               <div>
-                <h3 className="font-normal text-[15px] text-white mb-1">Thu hoạch</h3>
-                <p className="text-[11px] uppercase tracking-wide text-[#C8D0E8] mb-3">12 Tháng 3, 2024</p>
-                <p className="text-[13px] text-[#C8D0E8] leading-relaxed">Hái chọn lọc 100% trái chín tại nông trại Măng Đen, độ cao 1200m.</p>
+                <div className="text-base font-bold text-[#0F1B2D] mb-1">Thu hoạch</div>
+                <div className="text-sm text-[#7D9E94] mb-1.5">Lâm Đồng</div>
+                <div className="text-sm text-[#4A5868]">Hái thủ công khi quả chín đỏ 100%.</div>
               </div>
             </div>
-            <div className="flex gap-6">
-              <div className="text-[13px] text-[#C8D0E8] pt-1">02.</div>
+            <div className="flex gap-4 relative">
+              <div className="w-7 h-7 rounded-full bg-[#1A6B52] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
+                2
+              </div>
               <div>
-                <h3 className="font-normal text-[15px] text-white mb-1">Sơ chế & Rang mộc</h3>
-                <p className="text-[11px] uppercase tracking-wide text-[#C8D0E8] mb-3">15 Tháng 4, 2024</p>
-                <p className="text-[13px] text-[#C8D0E8] leading-relaxed">Sơ chế Honey, phơi giàn kính. Rang mộc chuẩn Medium Dark.</p>
+                <div className="text-base font-bold text-[#0F1B2D] mb-1">Sản xuất & Chế biến</div>
+                <div className="text-sm text-[#7D9E94] mb-1.5">TP HCM</div>
+                <div className="text-sm text-[#4A5868]">Sơ chế Honey, rang mộc chuẩn Medium Dark.</div>
               </div>
             </div>
-            <div className="flex gap-6">
-              <div className="text-[13px] text-[#C8D0E8] pt-1">03.</div>
+            <div className="flex gap-4 relative">
+              <div className="w-7 h-7 rounded-full bg-[#1A6B52] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
+                3
+              </div>
               <div>
-                <h3 className="font-normal text-[15px] text-white mb-1">Đóng gói</h3>
-                <p className="text-[11px] uppercase tracking-wide text-[#C8D0E8] mb-3">20 Tháng 4, 2024</p>
-                <p className="text-[13px] text-[#C8D0E8] leading-relaxed">Đóng gói van một chiều, dán tem truy xuất nguồn gốc Checkee.</p>
+                <div className="text-base font-bold text-[#0F1B2D] mb-1">Đóng gói</div>
+                <div className="text-sm text-[#7D9E94] mb-1.5">Nhà máy Bình Dương</div>
+                <div className="text-sm text-[#4A5868]">Đóng gói van 1 chiều, dán tem QR Checkee.</div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <div className="px-6 py-10 bg-[#0B4F6C] text-white text-center mt-auto shrink-0">
+          <div className="bg-white p-3 rounded-xl w-fit mx-auto mb-4">
+            <QRCodeCanvas value={window.location.href} size={100} fgColor="#0F1B2D" level="H" />
+          </div>
+          <div className="text-sm font-medium text-[#D9EEF5] mb-2">Quét mã QR để kiểm tra</div>
+          <div className="text-xs text-[#D9EEF5]/70 mb-4">Powered by Checkee · checkee.vn</div>
+        </div>
+
       </div>
-      <BottomCTA />
     </div>
   );
 }

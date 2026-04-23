@@ -1,0 +1,142 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Quicksand",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#5F9654",
+    "secondary": "#577566",
+    "accent": "#27683B",
+    "background": "#F9F8F6",
+    "textPrimary": "#262626",
+    "link": "#27683B"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Quicksand",
+      "heading": "Quicksand"
+    },
+    "fontStacks": {
+      "heading": [
+        "Quicksand",
+        "sans-serif"
+      ],
+      "body": [
+        "Quicksand",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Quicksand",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "16px",
+      "h2": "72px",
+      "body": "14px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "input": {
+      "background": "#FFFFFF",
+      "textColor": "#18251F",
+      "borderColor": "#D3DED3",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    },
+    "buttonPrimary": {
+      "background": "#5F9654",
+      "textColor": "#FFFFFF",
+      "borderRadius": "12px",
+      "borderRadiusCorners": {
+        "topLeft": "12px",
+        "topRight": "12px",
+        "bottomRight": "12px",
+        "bottomLeft": "12px"
+      },
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#F9F8F6",
+      "textColor": "#27683B",
+      "borderColor": "#27683B",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "https://esgvalley.com/images/logo-white.png",
+    "favicon": "https://esgvalley.com/favicon.png",
+    "ogImage": null,
+    "logoHref": "File saved at: attached_assets/logoHref.html",
+    "logoAlt": "ESG Valley"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 1,
+    "reasoning": "Selected #1 because it is visible, medium-sized, located in the header, and links to the homepage with alt text matching the brand 'ESG Valley'.",
+    "confidence": 0.9,
+    "source": "llm"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 6,
+      "text": "View detail",
+      "reasoning": "Button #1 has a vibrant green background (#5F9654), which is a brand color, and the text 'View detail' suggests a primary call-to-action."
+    },
+    "secondary": {
+      "index": 1,
+      "text": "View All Products",
+      "reasoning": "Button #2 has a different background color (#F9F8F6) and serves as a secondary action with the text 'View All Products'."
+    },
+    "confidence": 0.95
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "business professionals interested in ESG"
+  },
+  "designSystem": {
+    "framework": "tailwind",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.95,
+    "colors": 0.9,
+    "overall": 0.925
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 1,
+        "selectedLogoReasoning": "Selected #1 because it is visible, medium-sized, located in the header, and links to the homepage with alt text matching the brand 'ESG Valley'.",
+        "confidence": 0.9
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}

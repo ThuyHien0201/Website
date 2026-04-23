@@ -2,65 +2,105 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 
 export default function Blog() {
+  const categories = ["Tất cả", "Trace", "E-label", "DPP", "F&B", "Tem Phụ"];
+  
   const articles = [
     {
-      title: "Thông tư 02/2024 — Giải mã 10 trường thông tin định danh hàng hoá",
+      title: "Thông tư 02/2024 — 11 nhóm sản phẩm bắt buộc truy xuất",
       date: "12 Tháng 3, 2024",
       category: "Trace",
+      excerpt: "Nắm bắt chi tiết quy định mới nhất về 10 trường thông tin bắt buộc trong truy xuất nguồn gốc sản phẩm.",
+      img: "/images/hero-tea.png",
+      author: "Hoàng Nam"
     },
     {
-      title: "Kỷ nguyên nhãn số: Khi bao bì trút bỏ gánh nặng văn bản (NĐ 37/2026)",
+      title: "ESPR EU 2024 — Lộ trình triển khai DPP",
       date: "28 Tháng 2, 2024",
-      category: "E-label",
-    },
-    {
-      title: "Digital Product Passport — Tấm thẻ bài cho sản phẩm thượng lưu tiến vào Châu Âu",
-      date: "15 Tháng 2, 2024",
       category: "DPP",
+      excerpt: "Khám phá quy định thiết kế sinh thái mới của Châu Âu và tại sao Hộ chiếu số sản phẩm (DPP) lại là tấm vé sống còn.",
+      img: "/images/hero-lacquer.png",
+      author: "Minh Anh"
     },
     {
-      title: "Nghệ thuật quản trị rủi ro ẩm thực với hệ thống lưu mẫu chuẩn QĐ 1246",
-      date: "05 Tháng 2, 2024",
-      category: "F&B",
-    },
-    {
-      title: "Tem phụ điện tử — Giải pháp thanh lịch cho các xa xỉ phẩm nhập khẩu",
-      date: "20 Tháng 1, 2024",
+      title: "Hướng dẫn áp dụng NĐ 43/2017 cho hàng nhập khẩu",
+      date: "15 Tháng 2, 2024",
       category: "Tem Phụ",
+      excerpt: "Cách tối ưu không gian bao bì cho hàng nhập khẩu xa xỉ thông qua giải pháp tem phụ điện tử.",
+      img: "/images/hero-silk.png",
+      author: "Lê Thảo"
+    },
+    {
+      title: "Case study: Cà phê Mê Trang xuất khẩu EU nhờ Checkee",
+      date: "05 Tháng 2, 2024",
+      category: "Trace",
+      excerpt: "Câu chuyện thành công trong việc minh bạch chuỗi cung ứng, chinh phục thị trường khó tính nhất thế giới.",
+      img: "/images/hero-coffee.png",
+      author: "Hoàng Nam"
+    },
+    {
+      title: "5 sai lầm thường gặp khi triển khai QR truy xuất",
+      date: "20 Tháng 1, 2024",
+      category: "Trace",
+      excerpt: "Tránh những lỗi phổ biến khiến mã QR trở thành điểm nghẽn trải nghiệm thay vì công cụ marketing hiệu quả.",
+      img: "/images/hero-factory.png",
+      author: "Tuấn Trần"
+    },
+    {
+      title: "Tem phụ điện tử — Giải pháp cho nhà nhập khẩu",
+      date: "10 Tháng 1, 2024",
+      category: "E-label",
+      excerpt: "Khắc phục triệt để vấn đề in sai nhãn, thiếu thông tin và ảnh hưởng thiết kế gốc của sản phẩm phân phối.",
+      img: "/images/hero-rice.png",
+      author: "Minh Anh"
     }
   ];
 
   return (
-    <div className="flex flex-col w-full bg-[#0A1340]">
-      <section className="pt-40 pb-20">
-        <div className="container px-6 md:px-12 max-w-[800px] mx-auto space-y-6">
-          <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-4">Tạp chí Pháp lý & Thiết kế</div>
-          <h1 className="text-4xl md:text-5xl font-normal text-white leading-tight">
-            Góc nhìn <span className="italic font-light text-[#C8D0E8]">chuyên sâu.</span>
-          </h1>
+    <div className="flex flex-col w-full bg-white font-sans min-h-[100dvh]">
+      <section className="pt-32 pb-24 bg-[#FAFBFC] border-b border-[#E5EAF0]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center">
+          <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] mb-6">Tin tức & Tài nguyên</h1>
+          <p className="text-lg text-[#4A5868] max-w-2xl mx-auto mb-10">
+            Cập nhật kiến thức pháp lý, xu hướng công nghệ và kinh nghiệm triển khai số hóa chuỗi cung ứng.
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-2">
+            {categories.map((cat, i) => (
+              <button key={i} className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${i === 0 ? 'bg-[#0B4F6C] text-white' : 'bg-white border border-[#E5EAF0] text-[#4A5868] hover:bg-[#E5EAF0]'}`}>
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="pb-32">
-        <div className="container px-6 md:px-12 max-w-[800px] mx-auto">
-          <div className="hairline-t">
+      <section className="py-24">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article, i) => (
-              <article key={i} className="group hairline-b py-10 transition-colors duration-500 hover:bg-white/5">
-                <div className="grid md:grid-cols-4 gap-4 px-4">
-                  <div className="md:col-span-1 text-[11px] uppercase tracking-wider text-[#FF6B47] pt-1">
-                    {article.date}
+              <article key={i} className="group bg-white rounded-2xl overflow-hidden border border-[#E5EAF0] shadow-sm hover:shadow-xl transition-all">
+                <div className="aspect-video relative overflow-hidden">
+                  <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase">
+                    {article.category}
                   </div>
-                  <div className="md:col-span-3 space-y-3">
-                    <span className="text-[10px] tracking-[0.1em] uppercase border border-white/20 px-2 py-1 rounded-sm text-[#C8D0E8]">
-                      {article.category}
-                    </span>
-                    <h2 className="text-xl font-normal text-white group-hover:text-[#C8D0E8] transition-colors duration-300 leading-snug">
-                      <Link href="#" className="focus:outline-none">{article.title}</Link>
-                    </h2>
-                    <div className="pt-4 overflow-hidden h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <Link href="#" className="inline-flex items-center text-[11px] tracking-[0.15em] uppercase text-white">
-                        Đọc tiếp <ArrowRight className="ml-2 h-3 w-3" />
-                      </Link>
+                  <img src={article.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={article.title} />
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-[#0B4F6C] mb-3 group-hover:text-[#1A7EA4] transition-colors leading-snug line-clamp-2">
+                    <Link href="#">{article.title}</Link>
+                  </h3>
+                  <p className="text-[#4A5868] text-sm mb-6 line-clamp-2">{article.excerpt}</p>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-[#E5EAF0]">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#D9EEF5] text-[#0B4F6C] flex items-center justify-center text-xs font-bold">
+                        {article.author.split(' ').map(n=>n[0]).join('')}
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-[#0F1B2D]">{article.author}</div>
+                        <div className="text-xs text-[#7D9E94]">{article.date}</div>
+                      </div>
                     </div>
                   </div>
                 </div>

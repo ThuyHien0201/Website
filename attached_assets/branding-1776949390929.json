@@ -1,0 +1,150 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Roboto",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#121726",
+    "secondary": "#060C23",
+    "accent": "#FFFFFF",
+    "background": "#FFFFFF",
+    "textPrimary": "#060C20",
+    "link": "#060C20"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Roboto",
+      "heading": "Roboto"
+    },
+    "fontStacks": {
+      "heading": [
+        "Roboto",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ],
+      "body": [
+        "Roboto",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Roboto",
+        "Helvetica Neue",
+        "Helvetica",
+        "Arial",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "50px",
+      "h2": "46px",
+      "body": "14px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "20px"
+  },
+  "components": {
+    "input": {
+      "background": "#FFFFFF",
+      "textColor": "#000000",
+      "borderColor": null,
+      "borderRadius": "35px",
+      "borderRadiusCorners": {
+        "topLeft": "35px",
+        "topRight": "35px",
+        "bottomRight": "35px",
+        "bottomLeft": "35px"
+      },
+      "shadow": "none"
+    },
+    "buttonPrimary": {
+      "background": "#FFFFFF",
+      "textColor": "#000000",
+      "borderRadius": "35px",
+      "borderRadiusCorners": {
+        "topLeft": "35px",
+        "topRight": "35px",
+        "bottomRight": "35px",
+        "bottomLeft": "35px"
+      },
+      "shadow": "rgba(18, 160, 105, 0.22) 0px 0px 40px 0px"
+    },
+    "buttonSecondary": {
+      "background": "#060C23",
+      "textColor": "#42464E",
+      "borderRadius": "0px",
+      "borderRadiusCorners": {
+        "topLeft": "0px",
+        "topRight": "0px",
+        "bottomRight": "0px",
+        "bottomLeft": "0px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "File saved at: attached_assets/logo.svg",
+    "favicon": "File saved at: attached_assets/favicon.ico",
+    "ogImage": "File saved at: attached_assets/ogImage.jpg",
+    "logoHref": "File saved at: attached_assets/logoHref.html",
+    "logoAlt": "Sapo logo"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 1,
+    "reasoning": "Selected #0 because it is visible, medium-sized, and located at the top of the page, linking to the homepage, which is typical for a main brand logo.",
+    "confidence": 0.95,
+    "source": "llm"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 3,
+      "text": "Dùng thử miễn phí",
+      "reasoning": "Button #3 has a light background (#FFFFFF) which contrasts with the dark theme of the other buttons, making it stand out as a primary CTA. It also has additional classes indicating a special role."
+    },
+    "secondary": {
+      "index": 0,
+      "text": "Dùng thử miễn phí",
+      "reasoning": "Button #0 is from a different color group (#060C23) and has a similar action-oriented text, making it suitable as a secondary CTA."
+    },
+    "confidence": 0.9
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "business owners and retailers in Vietnam"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.9,
+    "colors": 0.9,
+    "overall": 0.9
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 0,
+        "selectedLogoReasoning": "Selected #0 because it is visible, medium-sized, and located at the top of the page, linking to the homepage, which is typical for a main brand logo.",
+        "confidence": 0.95
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}

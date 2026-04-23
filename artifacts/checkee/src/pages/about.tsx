@@ -1,64 +1,106 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { CtaButton } from "@/components/ui/cta-button";
+import { ShieldCheck, HeartHandshake, Lightbulb, Users } from "lucide-react";
 
 export default function About() {
   return (
-    <div className="flex flex-col w-full bg-[#0A1340]">
-      <section className="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
-        <div className="absolute inset-0 w-full h-full">
-          <img src="/images/hero-saigon.png" alt="About Checkee" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-[#0A1340]/70" />
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10 pt-20 max-w-3xl mx-auto">
-          <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-6">Câu chuyện thương hiệu</div>
-          <h1 className="text-4xl md:text-6xl text-white font-normal leading-[1.1] mb-6">
-            Nghệ thuật <span className="italic font-light text-[#FFFFFF]/80">của sự thật</span>
+    <div className="flex flex-col w-full bg-white font-sans">
+      {/* Hero */}
+      <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-[#FAFBFC] to-white border-b border-[#E5EAF0]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center max-w-4xl">
+          <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide mb-6">
+            SỨ MỆNH CỦA CHÚNG TÔI
+          </div>
+          <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight mb-8">
+            Minh bạch hóa chuỗi giá trị toàn cầu
           </h1>
-          <p className="text-[15px] text-[#C8D0E8] leading-relaxed font-light italic">
-            "Chúng tôi không xây dựng một phần mềm tuân thủ. Chúng tôi thiết kế một lăng kính để phơi bày vẻ đẹp của những thương hiệu chân chính."
+          <p className="text-[#4A5868] text-lg leading-relaxed">
+            Checkee ra đời với niềm tin rằng sự minh bạch không chỉ là trách nhiệm pháp lý, mà là một lợi thế cạnh tranh thiết yếu. Chúng tôi giúp các thương hiệu kể câu chuyện sản phẩm chân thực nhất đến người tiêu dùng.
           </p>
         </div>
       </section>
 
-      <section className="py-32">
-        <div className="container px-6 md:px-12 max-w-2xl mx-auto space-y-24">
-          
-          <div className="space-y-6">
-            <h2 className="text-2xl font-normal text-white">Tái định nghĩa sự tuân thủ</h2>
-            <p className="text-[13px] text-[#C8D0E8] leading-relaxed">
-              Các quy định như Thông tư 02 hay Nghị định 37 thường được nhìn nhận như những gánh nặng hành chính. Một mã QR vuông vức, khô khan, trỏ về một trang web của cơ quan nhà nước với thiết kế từ thập kỷ trước.
-            </p>
-            <p className="text-[13px] text-[#C8D0E8] leading-relaxed">
-              Tại Checkee, chúng tôi từ chối sự tầm thường đó. Chúng tôi tin rằng minh bạch là lợi thế cạnh tranh xa xỉ nhất. Khi một khách hàng nhấc điện thoại lên để truy xuất nguồn gốc, đó là khoảnh khắc vàng để thương hiệu kể câu chuyện của mình — một câu chuyện về sự tận tâm, chuẩn xác và thanh lịch.
-            </p>
+      {/* Sứ mệnh body */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
+              <img src="/images/hero-coffee.png" className="w-full h-full object-cover" alt="Sứ mệnh" />
+            </div>
+            <div className="space-y-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#0B4F6C]">Xây dựng cầu nối niềm tin</h2>
+              <p className="text-[#4A5868] text-base leading-relaxed">
+                Trong một thế giới đầy biến động về chuỗi cung ứng, người tiêu dùng ngày càng quan tâm đến nguồn gốc xuất xứ của những gì họ tiêu dùng hàng ngày. Họ cần biết sản phẩm đến từ đâu, được tạo ra như thế nào, và tác động của nó đến môi trường.
+              </p>
+              <p className="text-[#4A5868] text-base leading-relaxed">
+                Nhiệm vụ của Checkee là số hóa quá trình đó một cách đơn giản, đáng tin cậy và tuân thủ các tiêu chuẩn quốc tế khắc khe nhất.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="border-l-2 border-[#FF6B47] pl-8 py-2">
-            <p className="text-xl font-normal text-white italic leading-relaxed">
-              Mã QR trên bao bì không nên là một con tem vô hồn. Nó phải là cánh cửa mở ra một không gian triển lãm.
-            </p>
+      {/* Giá trị cốt lõi */}
+      <section className="py-24 bg-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C]">Giá trị cốt lõi</h2>
           </div>
-
-          <div className="space-y-6">
-            <h2 className="text-2xl font-normal text-white">Thiết kế cho giới tinh hoa</h2>
-            <p className="text-[13px] text-[#C8D0E8] leading-relaxed">
-              Checkee được tạo hình với ngôn ngữ thiết kế của các tạp chí kiến trúc và thời trang cao cấp. Chúng tôi lược bỏ những biểu tượng sặc sỡ, những màu sắc cảnh báo chói lọi, để nhường chỗ cho không gian trắng, nghệ thuật typography sắc nét, và những gam màu trầm mặc.
-            </p>
-            <p className="text-[13px] text-[#C8D0E8] leading-relaxed">
-              Sản phẩm của Việt Nam đang ngày càng vươn lên phân khúc cao cấp. Nền tảng hiển thị thông tin của chúng cũng phải xứng tầm với chất lượng đó.
-            </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: ShieldCheck, title: "Minh bạch", desc: "Cam kết cung cấp dữ liệu rõ ràng, có thể kiểm chứng được ở mọi khâu của quy trình." },
+              { icon: HeartHandshake, title: "Tin cậy", desc: "Xây dựng sự an tâm tuyệt đối cho doanh nghiệp, đối tác và người tiêu dùng." },
+              { icon: Lightbulb, title: "Đổi mới", desc: "Không ngừng áp dụng công nghệ mới để giải quyết các bài toán phức tạp của chuỗi cung ứng." },
+              { icon: Users, title: "Đồng hành", desc: "Luôn sát cánh cùng doanh nghiệp trên hành trình chuyển đổi số và nâng tầm thương hiệu." }
+            ].map((val, i) => (
+              <div key={i} className="bg-white border border-[#E5EAF0] p-8 rounded-2xl text-center hover:shadow-xl transition-shadow">
+                <div className="w-16 h-16 bg-[#D9EEF5] text-[#0B4F6C] rounded-full flex items-center justify-center mx-auto mb-6">
+                  <val.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold text-[#0B4F6C] mb-3">{val.title}</h3>
+                <p className="text-[#4A5868] text-sm leading-relaxed">{val.desc}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="hairline-t pt-16 text-center">
-            <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47] mb-6">Tham gia cùng chúng tôi</div>
-            <Link href="/contact">
-              <Button className="h-12 px-10 rounded-md bg-[#FF6B47] text-white tracking-[0.15em] uppercase text-[11px] hover:bg-[#FF6B47]/90 transition-all duration-300">
-                Trở thành đối tác
-              </Button>
-            </Link>
+      {/* Timeline */}
+      <section className="py-24 bg-white">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C]">Câu chuyện thương hiệu</h2>
           </div>
+          <div className="max-w-4xl mx-auto space-y-12">
+            {[
+              { year: "2020", title: "Khởi nguồn ý tưởng", desc: "Nhận thấy khoảng trống trong việc ứng dụng công nghệ để giải quyết vấn nạn hàng giả, đội ngũ sáng lập bắt đầu phác thảo mô hình truy xuất nguồn gốc đầu tiên." },
+              { year: "2022", title: "Ra mắt phiên bản 1.0", desc: "Phiên bản Checkee đầu tiên ra mắt, phục vụ cho ngành nông sản với các tiêu chuẩn cơ bản của VietGAP." },
+              { year: "2024", title: "Tuân thủ chuẩn quốc tế", desc: "Nâng cấp toàn diện kiến trúc hệ thống để tuân thủ Thông tư 02/2024 và chuẩn bị nền tảng cho DPP xuất khẩu Châu Âu." },
+              { year: "2026", title: "Tầm nhìn tương lai", desc: "Trở thành nền tảng định danh số hàng hóa hàng đầu khu vực, ứng dụng blockchain vào toàn chuỗi cung ứng." }
+            ].map((milestone, i) => (
+              <div key={i} className="flex gap-6">
+                <div className="w-24 shrink-0 text-right font-bold text-[#C45B17] text-xl pt-1">{milestone.year}</div>
+                <div className="relative border-l-2 border-[#E5EAF0] pl-8 pb-12 last:pb-0">
+                  <div className="absolute w-4 h-4 rounded-full bg-[#1A6B52] -left-[9px] top-2" />
+                  <h3 className="text-xl font-bold text-[#0B4F6C] mb-2">{milestone.title}</h3>
+                  <p className="text-[#4A5868] text-base leading-relaxed">{milestone.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      <section className="py-24 bg-[#0B4F6C] text-white text-center">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Cùng chúng tôi tạo nên thay đổi</h2>
+          <p className="text-lg text-[#D9EEF5]/80 max-w-2xl mx-auto">
+            Liên hệ để trao đổi về cơ hội hợp tác và phát triển.
+          </p>
+          <div className="pt-4 flex flex-col items-center gap-4">
+            <CtaButton href="/contact" size="large">Trở thành đối tác</CtaButton>
+          </div>
         </div>
       </section>
     </div>

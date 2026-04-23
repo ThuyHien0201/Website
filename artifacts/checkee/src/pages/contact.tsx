@@ -2,85 +2,126 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { CtaButton } from "@/components/ui/cta-button";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export default function Contact() {
   return (
-    <div className="flex flex-col w-full bg-[#0A1340]">
-      <section className="relative min-h-[600px] w-full overflow-hidden pt-40 pb-32">
-        {/* Background elements */}
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-30">
-          <img src="/images/hero-saigon.png" alt="Contact" className="w-full h-full object-cover mask-image-linear-gradient" style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black)' }} />
+    <div className="flex flex-col w-full bg-white font-sans">
+      <section className="py-16 lg:py-24 bg-[#FAFBFC] border-b border-[#E5EAF0]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center">
+          <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] mb-6">Liên hệ tư vấn</h1>
+          <p className="text-lg text-[#4A5868] max-w-2xl mx-auto">
+            Đội ngũ chuyên gia của chúng tôi luôn sẵn sàng hỗ trợ bạn thiết kế giải pháp minh bạch phù hợp nhất với quy mô doanh nghiệp.
+          </p>
         </div>
+      </section>
 
-        <div className="container px-6 md:px-12 max-w-[1200px] mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div className="space-y-16">
-              <div className="space-y-6">
-                <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47]">Phòng Quan hệ Đối tác</div>
-                <h1 className="text-4xl md:text-6xl text-white font-normal leading-[1.1]">
-                  Thiết lập <br/><span className="italic font-light text-[#C8D0E8]">tiêu chuẩn</span>
-                </h1>
-              </div>
-
-              <div className="space-y-10">
-                <div className="space-y-2">
-                  <h3 className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47]">Đường dây trực tiếp</h3>
-                  <p className="text-xl font-normal text-white">1900 1234</p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47]">Thư điện tử</h3>
-                  <p className="text-xl font-normal text-white">hello@checkee.vn</p>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47]">Văn phòng đại diện</h3>
-                  <p className="text-[13px] text-[#C8D0E8] leading-relaxed">
-                    Tháp văn phòng Viettel, Tầng 12<br/>
-                    285 Cách Mạng Tháng Tám, Quận 10, TP.HCM
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#16205A] p-10 md:p-12 rounded-md border border-white/10 shadow-2xl">
-              <div className="mb-10">
-                <h2 className="text-2xl font-normal text-white mb-3">Lịch hẹn tư vấn</h2>
-                <p className="text-[#C8D0E8] text-[13px]">Chuyên viên sẽ liên hệ thiết kế giải pháp pháp lý dành riêng cho thương hiệu của bạn.</p>
-              </div>
-
-              <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.15em] text-[#FF6B47]">Đại diện liên hệ</label>
-                  <Input className="h-12 rounded-none border-t-0 border-x-0 border-b border-white/20 bg-transparent px-0 text-white focus-visible:ring-0 focus-visible:border-[#FF6B47] transition-colors shadow-none text-[14px]" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.15em] text-[#FF6B47]">Thương hiệu</label>
-                  <Input className="h-12 rounded-none border-t-0 border-x-0 border-b border-white/20 bg-transparent px-0 text-white focus-visible:ring-0 focus-visible:border-[#FF6B47] transition-colors shadow-none text-[14px]" />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-[0.15em] text-[#FF6B47]">Điện thoại</label>
-                    <Input className="h-12 rounded-none border-t-0 border-x-0 border-b border-white/20 bg-transparent px-0 text-white focus-visible:ring-0 focus-visible:border-[#FF6B47] transition-colors shadow-none text-[14px]" />
+      <section className="py-24">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
+            
+            {/* LEFT: Form */}
+            <div className="lg:col-span-7">
+              <div className="bg-white border border-[#E5EAF0] rounded-2xl p-8 lg:p-10 shadow-sm">
+                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label className="text-[#0B4F6C] font-semibold">Họ và tên *</Label>
+                      <Input placeholder="Nhập họ và tên..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-[#0B4F6C] font-semibold">Email *</Label>
+                      <Input type="email" placeholder="Địa chỉ email công việc..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
+                    </div>
                   </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label className="text-[#0B4F6C] font-semibold">Số điện thoại *</Label>
+                      <Input type="tel" placeholder="Số điện thoại liên hệ..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-[#0B4F6C] font-semibold">Tên doanh nghiệp</Label>
+                      <Input placeholder="Công ty của bạn..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
+                    </div>
+                  </div>
+                  
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-[0.15em] text-[#FF6B47]">Sản phẩm quan tâm</label>
-                    <select className="w-full h-12 rounded-none border-t-0 border-x-0 border-b border-white/20 bg-transparent px-0 text-white focus-visible:ring-0 focus-visible:border-[#FF6B47] transition-colors outline-none cursor-pointer text-[14px] appearance-none">
-                      <option className="bg-[#16205A]">Trace (Nguồn gốc)</option>
-                      <option className="bg-[#16205A]">E-label (Nhãn số)</option>
-                      <option className="bg-[#16205A]">DPP (Xuất khẩu)</option>
-                      <option className="bg-[#16205A]">Tem phụ nhập khẩu</option>
+                    <Label className="text-[#0B4F6C] font-semibold">Sản phẩm quan tâm</Label>
+                    <select className="flex h-9 w-full rounded-md border border-[#E5EAF0] bg-[#FAFBFC] px-3 py-1 text-base focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#1A7EA4] md:text-sm text-[#0F1B2D]">
+                      <option>Checkee Trace (Truy xuất nguồn gốc)</option>
+                      <option>Checkee E-label (Nhãn điện tử)</option>
+                      <option>Checkee DPP (Hộ chiếu sản phẩm)</option>
+                      <option>Checkee F&B (Lưu mẫu)</option>
+                      <option>Checkee Tem Phụ</option>
                     </select>
                   </div>
-                </div>
-
-                <div className="pt-6">
-                  <Button type="submit" className="w-full h-12 rounded-md bg-[#FF6B47] text-white tracking-[0.15em] uppercase text-[11px] hover:bg-[#FF6B47]/90 transition-all duration-300">
-                    Gửi yêu cầu
-                  </Button>
-                </div>
-              </form>
+                  
+                  <div className="space-y-2">
+                    <Label className="text-[#0B4F6C] font-semibold">Lời nhắn</Label>
+                    <Textarea rows={4} placeholder="Hãy cho chúng tôi biết nhu cầu cụ thể của bạn..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
+                  </div>
+                  
+                  <div className="pt-4">
+                    <CtaButton type="submit" className="w-full justify-center">Gửi yêu cầu</CtaButton>
+                  </div>
+                </form>
+              </div>
             </div>
+            
+            {/* RIGHT: Info */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="bg-[#0B4F6C] rounded-2xl p-8 text-white shadow-lg">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-[#D9EEF5]" />
+                  </div>
+                  <div>
+                    <div className="text-[#D9EEF5] text-sm uppercase tracking-wider font-semibold mb-1">Hotline tư vấn</div>
+                    <div className="text-3xl font-bold">1900 1234</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white border border-[#E5EAF0] rounded-2xl p-8 flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#D9EEF5] flex items-center justify-center shrink-0">
+                  <Mail className="w-6 h-6 text-[#0B4F6C]" />
+                </div>
+                <div>
+                  <div className="text-[#7D9E94] text-sm uppercase tracking-wider font-semibold mb-1">Email hỗ trợ</div>
+                  <div className="text-lg font-bold text-[#0F1B2D]">hello@checkee.vn</div>
+                </div>
+              </div>
+              
+              <div className="bg-white border border-[#E5EAF0] rounded-2xl p-8 flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#D9EEF5] flex items-center justify-center shrink-0">
+                  <MapPin className="w-6 h-6 text-[#0B4F6C]" />
+                </div>
+                <div>
+                  <div className="text-[#7D9E94] text-sm uppercase tracking-wider font-semibold mb-1">Văn phòng TP.HCM</div>
+                  <div className="text-base font-medium text-[#0F1B2D] leading-relaxed">
+                    Tầng 12, Tòa nhà Viettel<br/>
+                    285 Cách Mạng Tháng Tám, Quận 10
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white border border-[#E5EAF0] rounded-2xl p-8 flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#D4EDE6] flex items-center justify-center shrink-0">
+                  <Clock className="w-6 h-6 text-[#1A6B52]" />
+                </div>
+                <div>
+                  <div className="text-[#7D9E94] text-sm uppercase tracking-wider font-semibold mb-1">Giờ làm việc</div>
+                  <div className="text-base font-medium text-[#0F1B2D]">
+                    Thứ Hai - Thứ Sáu<br/>
+                    08:00 - 17:30
+                  </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>

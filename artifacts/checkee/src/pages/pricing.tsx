@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { CtaButton } from "@/components/ui/cta-button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CheckCircle2 } from "lucide-react";
 
 export default function Pricing() {
   const [activeTab, setActiveTab] = useState("trace");
@@ -14,28 +17,34 @@ export default function Pricing() {
   ];
 
   return (
-    <div className="flex flex-col w-full bg-[#0A1340] min-h-screen">
-      <section className="pt-40 pb-32">
-        <div className="container px-6 md:px-12 max-w-[1200px] mx-auto space-y-16">
-          <div className="space-y-6 max-w-2xl">
-            <div className="text-[11px] uppercase tracking-[0.15em] text-[#FF6B47]">Đầu tư cho thương hiệu</div>
-            <h1 className="text-4xl md:text-5xl font-normal text-white leading-tight">
-              Giá trị <span className="italic font-light text-[#C8D0E8]">đích thực</span>
+    <div className="flex flex-col w-full bg-white font-sans min-h-[100dvh]">
+      <section className="pt-32 pb-24 lg:pt-48 lg:pb-32 bg-[#FAFBFC] border-b border-[#E5EAF0]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto space-y-6">
+            <div className="text-[11px] uppercase tracking-[0.15em] text-[#C45B17] font-semibold">Đầu tư cho thương hiệu</div>
+            <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
+              Bảng giá minh bạch
             </h1>
-            <p className="text-[13px] text-[#C8D0E8] leading-relaxed">
-              Chi phí được thiết kế minh bạch cho mọi quy mô doanh nghiệp. Sự sang trọng không nằm ở giá cao, mà ở giá trị bạn nhận được.
+            <p className="text-[#4A5868] text-lg leading-relaxed">
+              Chi phí được thiết kế linh hoạt cho mọi quy mô doanh nghiệp. Thanh toán hàng năm.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="flex flex-wrap gap-8 hairline-b pb-4">
+      <section className="py-24">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-16">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`text-[11px] font-normal tracking-[0.15em] uppercase pb-4 border-b transition-all duration-300 relative top-[1px] ${
+                className={`px-6 py-3 rounded-full text-sm font-semibold transition-all ${
                   activeTab === tab.id 
-                    ? "border-white text-white" 
-                    : "border-transparent text-[#C8D0E8] hover:text-white"
+                    ? "bg-[#0B4F6C] text-white shadow-md" 
+                    : "bg-[#FAFBFC] text-[#4A5868] hover:bg-[#E5EAF0] border border-[#E5EAF0]"
                 }`}
               >
                 {tab.label}
@@ -43,46 +52,51 @@ export default function Pricing() {
             ))}
           </div>
 
-          <div className="pt-8 animate-in fade-in duration-700">
+          <div className="animate-in fade-in duration-500">
             {activeTab === "trace" && (
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
-                  { name: "< 5 dòng SP", price: "1.200.000", codes: "10.000", acc: "Dưới 5 TK" },
-                  { name: "< 20 dòng SP", price: "3.600.000", codes: "20.000", acc: "Dưới 5 TK", highlight: true },
-                  { name: "< 50 dòng SP", price: "6.000.000", codes: "50.000", acc: "Dưới 5 TK" },
-                  { name: "> 50 dòng SP", price: "9.000.000", codes: "100.000", acc: "Dưới 5 TK" },
+                  { name: "Khởi đầu", subtitle: "< 5 dòng SP", price: "1.200.000", codes: "10.000", acc: "Dưới 5 TK", highlight: false },
+                  { name: "Tăng trưởng", subtitle: "< 20 dòng SP", price: "3.600.000", codes: "20.000", acc: "Dưới 5 TK", highlight: true },
+                  { name: "Chuyên nghiệp", subtitle: "< 50 dòng SP", price: "6.000.000", codes: "50.000", acc: "Dưới 5 TK", highlight: false },
+                  { name: "Doanh nghiệp", subtitle: "> 50 dòng SP", price: "9.000.000", codes: "100.000", acc: "Dưới 5 TK", highlight: false },
                 ].map((tier, i) => (
-                  <div key={i} className={`flex flex-col bg-[#16205A] p-8 rounded-md border ${tier.highlight ? "border-[#FF6B47] shadow-[0_0_20px_rgba(131,119,109,0.1)]" : "border-white/10"} relative`}>
+                  <div key={i} className={`flex flex-col bg-white p-8 rounded-2xl border ${tier.highlight ? "border-[#C45B17] border-2 shadow-xl" : "border-[#E5EAF0] shadow-sm"} relative transition-shadow hover:shadow-xl`}>
                     {tier.highlight && (
-                      <div className="absolute top-0 right-8 -translate-y-1/2 bg-[#FF6B47] text-white text-[10px] uppercase tracking-[0.1em] px-3 py-1 rounded-full">
-                        Phổ biến
+                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#C45B17] text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
+                        PHỔ BIẾN
                       </div>
                     )}
-                    <h3 className="text-[13px] text-[#C8D0E8] mb-6">{tier.name}</h3>
-                    <div className="text-2xl font-light text-white mb-8">{tier.price} <span className="text-[10px] text-[#C8D0E8] uppercase tracking-widest ml-1">VNĐ/năm</span></div>
+                    <h3 className="text-xl font-bold text-[#0B4F6C] mb-1">{tier.name}</h3>
+                    <p className="text-sm text-[#7D9E94] mb-6">{tier.subtitle}</p>
                     
-                    <div className="space-y-4 text-[13px] text-white hairline-t pt-8 flex-1">
-                      <div className="flex justify-between items-center">
-                        <span className="text-[#C8D0E8]">Mã QR</span>
-                        <span>{tier.codes}</span>
+                    <div className="mb-8">
+                      <span className="text-4xl font-bold text-[#0B4F6C]">{tier.price}</span>
+                      <span className="text-sm text-[#7D9E94] ml-1">/tháng</span>
+                    </div>
+                    
+                    <div className="space-y-4 text-sm text-[#4A5868] flex-1 mb-8">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span><strong>{tier.codes}</strong> mã QR</span>
                       </div>
-                      <div className="flex justify-between items-center hairline-t pt-4">
-                        <span className="text-[#C8D0E8]">Tài khoản NVL</span>
-                        <span>Vô hạn</span>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span>Tài khoản NVL vô hạn</span>
                       </div>
-                      <div className="flex justify-between items-center hairline-t pt-4">
-                        <span className="text-[#C8D0E8]">Phân phối</span>
-                        <span>{tier.acc}</span>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span>Phân phối {tier.acc}</span>
                       </div>
-                      <div className="flex justify-between items-center hairline-t pt-4">
-                        <span className="text-[#C8D0E8]">Cổng QG</span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B47]"></span>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span>Kết nối Cổng QG</span>
                       </div>
                     </div>
                     
-                    <Link href="/contact" className="mt-10 block">
-                      <Button className={`w-full rounded-md tracking-[0.15em] uppercase text-[11px] h-12 ${tier.highlight ? "bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white" : "bg-transparent border border-white/20 text-white hover:bg-white hover:text-[#0A1340]"}`}>
-                        Lựa chọn
+                    <Link href="/contact" className="mt-auto block">
+                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#C45B17] hover:bg-[#D6711A] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0B4F6C] hover:bg-[#E5EAF0]"}`}>
+                        Chọn gói này
                       </Button>
                     </Link>
                   </div>
@@ -91,44 +105,48 @@ export default function Pricing() {
             )}
 
             {activeTab === "elabel" && (
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
                   { name: "Starter", price: "1.800.000", labels: "10 nhãn", scans: "5.000/th", lang: "Tiếng Việt" },
                   { name: "Growth", price: "4.800.000", labels: "50 nhãn", scans: "50.000/th", lang: "Việt + Anh", highlight: true },
                   { name: "Pro", price: "9.600.000", labels: "200 nhãn", scans: "500.000/th", lang: "Đa ngôn ngữ" },
                   { name: "Enterprise", price: "Liên hệ", labels: "Vô hạn", scans: "Vô hạn", lang: "Vô hạn" },
                 ].map((tier, i) => (
-                  <div key={i} className={`flex flex-col bg-[#16205A] p-8 rounded-md border ${tier.highlight ? "border-[#FF6B47] shadow-[0_0_20px_rgba(131,119,109,0.1)]" : "border-white/10"} relative`}>
+                  <div key={i} className={`flex flex-col bg-white p-8 rounded-2xl border ${tier.highlight ? "border-[#C45B17] border-2 shadow-xl" : "border-[#E5EAF0] shadow-sm"} relative transition-shadow hover:shadow-xl`}>
                     {tier.highlight && (
-                      <div className="absolute top-0 right-8 -translate-y-1/2 bg-[#FF6B47] text-white text-[10px] uppercase tracking-[0.1em] px-3 py-1 rounded-full">
-                        Phổ biến
+                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#C45B17] text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
+                        PHỔ BIẾN
                       </div>
                     )}
-                    <h3 className="text-[13px] text-[#C8D0E8] mb-6">{tier.name}</h3>
-                    <div className="text-2xl font-light text-white mb-8">{tier.price} {tier.price !== "Liên hệ" && <span className="text-[10px] text-[#C8D0E8] uppercase tracking-widest ml-1">VNĐ/năm</span>}</div>
+                    <h3 className="text-xl font-bold text-[#0B4F6C] mb-6">{tier.name}</h3>
                     
-                    <div className="space-y-4 text-[13px] text-white hairline-t pt-8 flex-1">
-                      <div className="flex justify-between items-center">
-                        <span className="text-[#C8D0E8]">Số nhãn</span>
-                        <span>{tier.labels}</span>
+                    <div className="mb-8">
+                      <span className="text-4xl font-bold text-[#0B4F6C]">{tier.price}</span>
+                      {tier.price !== "Liên hệ" && <span className="text-sm text-[#7D9E94] ml-1">/tháng</span>}
+                    </div>
+                    
+                    <div className="space-y-4 text-sm text-[#4A5868] flex-1 mb-8">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span><strong>{tier.labels}</strong></span>
                       </div>
-                      <div className="flex justify-between items-center hairline-t pt-4">
-                        <span className="text-[#C8D0E8]">Lượt quét</span>
-                        <span>{tier.scans}</span>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span>Lượt quét <strong>{tier.scans}</strong></span>
                       </div>
-                      <div className="flex justify-between items-center hairline-t pt-4">
-                        <span className="text-[#C8D0E8]">Ngôn ngữ</span>
-                        <span>{tier.lang}</span>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span>Ngôn ngữ <strong>{tier.lang}</strong></span>
                       </div>
-                      <div className="flex justify-between items-center hairline-t pt-4">
-                        <span className="text-[#C8D0E8]">Cập nhật</span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B47]"></span>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <span>Cập nhật tức thời</span>
                       </div>
                     </div>
                     
-                    <Link href="/contact" className="mt-10 block">
-                      <Button className={`w-full rounded-md tracking-[0.15em] uppercase text-[11px] h-12 ${tier.highlight ? "bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white" : "bg-transparent border border-white/20 text-white hover:bg-white hover:text-[#0A1340]"}`}>
-                        Lựa chọn
+                    <Link href="/contact" className="mt-auto block">
+                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#C45B17] hover:bg-[#D6711A] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0B4F6C] hover:bg-[#E5EAF0]"}`}>
+                        Chọn gói này
                       </Button>
                     </Link>
                   </div>
@@ -137,15 +155,52 @@ export default function Pricing() {
             )}
 
             {(activeTab === "dpp" || activeTab === "fnb" || activeTab === "tem") && (
-               <div className="py-24 text-center bg-[#16205A] rounded-md border border-white/10">
-                 <p className="text-[#C8D0E8] text-[13px] mb-8">Bảng giá chuyên sâu đang được biên soạn. Vui lòng liên hệ tư vấn viên.</p>
+               <div className="py-24 text-center bg-[#FAFBFC] rounded-2xl border border-[#E5EAF0]">
+                 <p className="text-[#4A5868] text-lg mb-8">Bảng giá chuyên sâu đang được biên soạn. Vui lòng liên hệ tư vấn viên.</p>
                  <Link href="/contact">
-                    <Button className="h-12 px-8 rounded-md bg-[#FF6B47] hover:bg-[#FF6B47]/90 text-white tracking-[0.15em] uppercase text-[11px]">
+                    <Button className="h-12 px-8 rounded-full bg-[#0B4F6C] hover:bg-[#0B4F6C]/90 text-white font-semibold">
                       Liên hệ trực tiếp
                     </Button>
                  </Link>
                </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 bg-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">CÂU HỎI THƯỜNG GẶP</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Giải đáp thắc mắc</h2>
+          </div>
+          <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-[#E5EAF0]">
+            <Accordion type="single" collapsible className="w-full">
+              {[
+                { q: "Có phí khởi tạo ban đầu không?", a: "Tùy thuộc vào gói dịch vụ và mức độ tích hợp tùy chỉnh với hệ thống nội bộ của bạn (ERP/SAP). Các gói tiêu chuẩn không có phí khởi tạo." },
+                { q: "Tôi có thể nâng cấp gói giữa chừng không?", a: "Có, bạn hoàn toàn có thể nâng cấp gói bất kỳ lúc nào. Chi phí sẽ được tính toán tỷ lệ theo thời gian sử dụng thực tế." },
+                { q: "Dữ liệu của tôi được bảo mật như thế nào?", a: "Chúng tôi tuân thủ các tiêu chuẩn bảo mật dữ liệu nghiêm ngặt nhất. Dữ liệu được mã hóa mã hash bất biến và có tùy chọn lưu trữ lên blockchain." },
+              ].map((faq, i) => (
+                <AccordionItem key={i} value={`item-${i}`}>
+                  <AccordionTrigger className="text-lg font-semibold text-[#0B4F6C]">{faq.q}</AccordionTrigger>
+                  <AccordionContent className="text-[#4A5868] text-base leading-relaxed">{faq.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 bg-[#0B4F6C] text-white text-center">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
+          <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Bắt đầu trải nghiệm ngay</h2>
+          <p className="text-lg text-[#D9EEF5]/80 max-w-2xl mx-auto">
+            Khám phá sức mạnh của việc số hóa sản phẩm.
+          </p>
+          <div className="pt-4 flex flex-col items-center gap-4">
+            <CtaButton href="/demo" size="large">Dùng thử miễn phí 14 ngày</CtaButton>
           </div>
         </div>
       </section>
