@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Phone, MapPin, Search, User } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, MapPin, User } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { CtaButton } from "@/components/ui/cta-button";
 import logoPng from "@/assets/logo.png";
@@ -221,17 +221,6 @@ export function Navbar() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
-            <button
-              aria-label="Tìm kiếm"
-              className={`p-2 rounded-full transition-colors ${
-                isTransparent
-                  ? "text-white hover:bg-white/10"
-                  : "text-[#0F1B2D] hover:bg-[#FAFBFC]"
-              }`}
-            >
-              <Search className="w-4 h-4" />
-            </button>
-
             <Link
               href="/login"
               className={`inline-flex items-center gap-2 px-3 py-2 rounded-full text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors ${
