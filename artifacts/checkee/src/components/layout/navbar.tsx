@@ -218,7 +218,7 @@ export function Navbar() {
               Liên hệ
             </Link>
           </nav>
-
+          <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
@@ -228,12 +228,14 @@ export function Navbar() {
                   ? "text-white hover:bg-white/10"
                   : "text-[#0F1B2D] hover:bg-[#FAFBFC]"
               }`}
+
+            
             >
               <User className="w-4 h-4" />
               Đăng nhập
             </Link>
 
-            <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
+          
           </div>
 
           {/* Mobile toggle */}

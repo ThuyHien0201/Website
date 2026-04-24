@@ -15,7 +15,6 @@ import {
   Workflow,
   Landmark,
   BadgeCheck,
-  Sparkles,
   Calendar,
 } from "lucide-react";
 
@@ -117,11 +116,6 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl space-y-7"
           >
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest">
-              <Sparkles className="w-3.5 h-3.5 text-[#F2A65A]" />
-              Hệ sinh thái truy xuất nguồn gốc số
-            </div>
-
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
               Minh bạch chuỗi cung ứng,<br />
               <span className="text-[#F2A65A]">nâng tầm thương hiệu Việt.</span>
