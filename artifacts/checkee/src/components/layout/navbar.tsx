@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, Phone, MapPin, User } from "lucide-react";
+import { Menu, X, ChevronDown, User } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { CtaButton } from "@/components/ui/cta-button";
 import logoPng from "@/assets/logo.png";
@@ -77,73 +77,6 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 z-50 w-full">
-      {/* Top utility bar */}
-      <div
-        className={`hidden lg:block transition-all duration-300 border-b ${
-          isTransparent
-            ? "bg-transparent border-white/10 text-white/70"
-            : "bg-[#FAF6F0] border-[#E5EAF0] text-[#4A5868]"
-        }`}
-      >
-        <div className="container max-w-[1440px] mx-auto px-6 md:px-10 h-9 flex items-center justify-between text-[12px]">
-          <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5" />
-              65 Nguyễn Huệ, Quận 1, TP.HCM
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Phone className="w-3.5 h-3.5" />
-              Hotline: 1900 1234
-            </span>
-          </div>
-
-          {/* Language switcher */}
-          <div
-            className="relative"
-            onMouseEnter={openLang}
-            onMouseLeave={scheduleLangClose}
-          >
-            <button
-              className={`inline-flex items-center gap-2 px-3 py-1 rounded-md border transition-colors ${
-                isTransparent
-                  ? "border-white/20 text-white hover:bg-white/10"
-                  : "border-[#E5EAF0] bg-white text-[#0F1B2D] hover:border-[#0B4F6C]"
-              }`}
-              onClick={() => setLangOpen((v) => !v)}
-            >
-              <span>{currentLang.flag}</span>
-              <span className="font-semibold">{currentLang.label}</span>
-              <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform ${langOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            <div
-              className={`absolute right-0 top-full pt-2 transition-all duration-200 ${
-                langOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
-              }`}
-            >
-              <div className="bg-white border border-[#E5EAF0] rounded-lg shadow-xl overflow-hidden min-w-[160px]">
-                {languages.map((l) => (
-                  <button
-                    key={l.code}
-                    onClick={() => {
-                      setActiveLang(l.code);
-                      setLangOpen(false);
-                    }}
-                    className={`w-full text-left px-3 py-2 text-[13px] hover:bg-[#FAFBFC] flex items-center gap-2 ${
-                      l.code === activeLang ? "text-[#1A6B52] font-semibold bg-[#F0F8F4]" : "text-[#0F1B2D]"
-                    }`}
-                  >
-                    <span>{l.flag}</span>
-                    <span>{l.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main navbar */}
       <div
         className={`transition-all duration-300 ${
@@ -218,7 +151,7 @@ export function Navbar() {
               Liên hệ
             </Link>
           </nav>
-          <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
+
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
@@ -228,14 +161,57 @@ export function Navbar() {
                   ? "text-white hover:bg-white/10"
                   : "text-[#0F1B2D] hover:bg-[#FAFBFC]"
               }`}
-
-            
             >
               <User className="w-4 h-4" />
               Đăng nhập
             </Link>
 
-          
+            <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
+
+            {/* Language switcher */}
+            <div
+              className="relative"
+              onMouseEnter={openLang}
+              onMouseLeave={scheduleLangClose}
+            >
+              <button
+                className={`inline-flex items-center gap-2 px-3 py-2 rounded-full border text-[13px] transition-colors ${
+                  isTransparent
+                    ? "border-white/20 text-white hover:bg-white/10"
+                    : "border-[#E5EAF0] bg-white text-[#0F1B2D] hover:border-[#0B4F6C]"
+                }`}
+                onClick={() => setLangOpen((v) => !v)}
+              >
+                <span>{currentLang.flag}</span>
+                <span className="font-semibold">{currentLang.label}</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform ${langOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <div
+                className={`absolute right-0 top-full pt-2 transition-all duration-200 ${
+                  langOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
+                }`}
+              >
+                <div className="bg-white border border-[#E5EAF0] rounded-lg shadow-xl overflow-hidden min-w-[160px]">
+                  {languages.map((l) => (
+                    <button
+                      key={l.code}
+                      onClick={() => {
+                        setActiveLang(l.code);
+                        setLangOpen(false);
+                      }}
+                      className={`w-full text-left px-3 py-2 text-[13px] hover:bg-[#FAFBFC] flex items-center gap-2 ${
+                        l.code === activeLang ? "text-[#1A6B52] font-semibold bg-[#F0F8F4]" : "text-[#0F1B2D]"
+                      }`}
+                    >
+                      <span>{l.flag}</span>
+                      <span>{l.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Mobile toggle */}
