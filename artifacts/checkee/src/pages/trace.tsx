@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { CtaButton } from "@/components/ui/cta-button";
 import { ProductHero } from "@/components/layout/product-hero";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { FileCheck, Award, Workflow, Database, Globe, QrCode, MapPin, Languages, BarChart3, Shield, ShieldCheck } from "lucide-react";
+import { FileCheck, Award, Workflow, Database, Globe, QrCode, MapPin, Languages, BarChart3, Shield, ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function Trace() {
   return (
@@ -90,8 +90,102 @@ export default function Trace() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* 6 NGÀNH ÁP DỤNG */}
       <section className="py-24 bg-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">6 NGÀNH ÁP DỤNG</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Hệ sinh thái Checkee Trace theo ngành</h2>
+            <p className="text-[#4A5868] text-base lg:text-lg mt-5 leading-relaxed">
+              Mỗi ngành hàng có đặc thù riêng. Checkee phát triển bộ giải pháp chuyên biệt — từ vùng trồng đến tay người tiêu dùng cuối.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+            {[
+              {
+                code: "AGR",
+                tag: "Nông sản",
+                title: "Checkee AGR",
+                desc: "Số hóa toàn bộ quy trình từ vùng trồng — thu hoạch — chế biến — phân phối. Kết nối Cổng TXNG Quốc gia, hỗ trợ EUDR, GlobalGAP, VietGAP.",
+                standards: ["TCVN 12850:2019", "GS1", "EUDR"],
+                img: "/images/industry-agr.png",
+              },
+              {
+                code: "MEAT",
+                tag: "Thịt & Chăn nuôi",
+                title: "Checkee MEAT",
+                desc: "Định danh từng cá thể bằng thẻ tai QR. Theo dõi xuyên suốt từ trang trại — thú y — giết mổ — vận chuyển — phân phối.",
+                standards: ["TCVN 13274–13275", "HACCP", "ISO 22000"],
+                img: "/images/industry-meat.png",
+              },
+              {
+                code: "SEAFOOD",
+                tag: "Thủy sản",
+                title: "Checkee SEAFOOD",
+                desc: "Từ vùng nuôi / tàu khai thác đến nhà máy chế biến và xuất khẩu. Hỗ trợ hồ sơ IUU, ATTP và thị trường quốc tế.",
+                standards: ["IUU", "ATTP", "GS1", "ESG"],
+                img: "/images/industry-seafood.png",
+              },
+              {
+                code: "PRO",
+                tag: "Hàng tiêu dùng",
+                title: "Checkee PRO",
+                desc: "Truy xuất nguồn gốc cho thực phẩm chế biến, đồ uống, mỹ phẩm, OCOP. Sẵn sàng vào siêu thị và sàn thương mại điện tử.",
+                standards: ["TCVN", "GS1", "OCOP"],
+                img: "/images/industry-pro.png",
+              },
+              {
+                code: "MED",
+                tag: "Dược phẩm",
+                title: "Checkee MED",
+                desc: "Định danh từng đơn vị thuốc bằng Data Matrix. Quản lý theo lô — hạn dùng, chống hàng giả và hỗ trợ thu hồi chính xác.",
+                standards: ["Data Matrix", "GS1", "Cục Dược"],
+                img: "/images/industry-med.png",
+              },
+              {
+                code: "IND",
+                tag: "Khí công nghiệp",
+                title: "Checkee IND",
+                desc: "Quản lý vòng đời bình gas / bồn chứa từ chiết nạp — vận chuyển — sử dụng — thu hồi. Minh bạch an toàn và trách nhiệm pháp lý.",
+                standards: ["Vòng đời sản phẩm", "An toàn công nghiệp"],
+                img: "/images/industry-ind.png",
+              },
+            ].map((ind, i) => (
+              <div key={i} className="group bg-white border border-[#E5EAF0] rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div className="aspect-[5/3] overflow-hidden relative">
+                  <img src={ind.img} alt={ind.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur text-[#0B4F6C] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                    {ind.code}
+                  </div>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="text-[10px] uppercase tracking-widest font-semibold text-[#7D9E94] mb-2">{ind.tag}</div>
+                  <h3 className="font-bold text-[#0B4F6C] text-xl mb-3">{ind.title}</h3>
+                  <p className="text-[#4A5868] text-sm leading-relaxed mb-4 flex-1">{ind.desc}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {ind.standards.map((s, j) => (
+                      <span key={j} className="text-[10px] font-semibold bg-[#D4EDE6] text-[#1A6B52] px-2 py-1 rounded-md">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#E5EAF0]">
+                    <Link href="/demo" className="text-[#C45B17] font-semibold text-sm hover:text-[#0B4F6C] inline-flex items-center gap-1">
+                      Dùng thử miễn phí <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <Link href="/contact" className="text-[#1A7EA4] font-semibold text-sm hover:text-[#0B4F6C] inline-flex items-center gap-1">
+                      Xem chi tiết
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 bg-white">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">CÂU HỎI THƯỜNG GẶP</span>

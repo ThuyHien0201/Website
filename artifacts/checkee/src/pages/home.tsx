@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle2, QrCode, ShieldCheck, Award, FileCheck, Globe, MapPin, Languages, BarChart3, Database, Shield, Quote, ArrowRight, Users, Building2 } from "lucide-react";
+import { CheckCircle2, QrCode, ShieldCheck, Award, FileCheck, Globe, MapPin, Languages, BarChart3, Database, Shield, Quote, ArrowRight, Cpu, Layers, Landmark, BadgeCheck, Workflow } from "lucide-react";
 
 export default function Home() {
   return (
@@ -14,13 +14,13 @@ export default function Home() {
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <div className="lg:col-span-7 space-y-8 relative z-10">
               <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
-                Nền tảng minh bạch sản phẩm Việt
+                Hệ sinh thái truy xuất nguồn gốc toàn diện
               </div>
               <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
-                Truy xuất nguồn gốc —<br/>Niềm tin được chứng thực
+                Minh bạch chuỗi cung ứng,<br/>nâng tầm thương hiệu Việt
               </h1>
               <p className="text-[#4A5868] text-lg max-w-xl leading-relaxed">
-                Bảo vệ thương hiệu khỏi hàng giả, minh bạch chuỗi cung ứng và đáp ứng hoàn hảo các tiêu chuẩn pháp lý khắt khe nhất: Thông tư 02/2024/TT-BKHCN và Quy định ESPR EU 2024.
+                Checkee phát triển nền tảng số phục vụ quản lý, định danh và truy xuất nguồn gốc sản phẩm hàng hóa — kết nối Cổng TXNG Quốc gia, chống hàng giả và thúc đẩy chuyển đổi số doanh nghiệp.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
@@ -83,9 +83,9 @@ export default function Home() {
       {/* 2. PARTNERS STRIP */}
       <section className="py-12 bg-[#FAFBFC] border-y border-[#E5EAF0]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center">
-          <p className="text-xs uppercase tracking-widest font-semibold text-[#7D9E94] mb-8">Được tin dùng bởi 200+ doanh nghiệp Việt</p>
+          <p className="text-xs uppercase tracking-widest font-semibold text-[#7D9E94] mb-8">1,234+ doanh nghiệp đã chọn Checkee</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 font-bold text-xl text-[#0B4F6C]">
-            <span>Vinamilk</span><span>TH True Milk</span><span>Vinatea</span><span>Vinamit</span><span>Trung Nguyên</span><span>Hapro</span><span>Saigon Co.op</span><span>Bách Hóa Xanh</span>
+            <span>PM Group</span><span>V-Gas</span><span>CF-15</span><span>Tâm Trà Thái</span><span>Gas South</span><span>Nam Trường Sơn</span>
           </div>
         </div>
       </section>
@@ -169,6 +169,37 @@ export default function Home() {
                     Tìm hiểu <ArrowRight className="ml-1 w-4 h-4"/>
                   </Link>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5b. SỨC MẠNH NỀN TẢNG */}
+      <section className="py-24 bg-[#FAFBFC]">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">SỨC MẠNH NỀN TẢNG</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Vì sao doanh nghiệp chọn Checkee?</h2>
+            <p className="text-[#4A5868] text-base lg:text-lg mt-5 leading-relaxed">
+              Một nền tảng — đầy đủ năng lực để minh bạch chuỗi cung ứng và bảo vệ thương hiệu Việt.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: Workflow, title: "Số hóa toàn bộ chuỗi cung ứng", desc: "Ghi nhận và quản lý dữ liệu từ sản xuất, kiểm định, phân phối đến tiêu dùng — minh bạch thông tin và tối ưu vận hành." },
+              { icon: Cpu, title: "Công nghệ tiên tiến, dữ liệu bất biến", desc: "Ứng dụng Blockchain, AI, IoT, RFID, NFC và mã định danh GS1 — đảm bảo dữ liệu truy xuất minh bạch, bảo mật và bất biến." },
+              { icon: Layers, title: "Linh hoạt mọi quy mô", desc: "Phù hợp hộ sản xuất, hợp tác xã đến doanh nghiệp lớn — dễ vận hành, chi phí tối ưu." },
+              { icon: Landmark, title: "Kết nối Cổng TXNG Quốc gia", desc: "Định danh và công bố sản phẩm chính thức trên nền tảng quốc gia — khẳng định uy tín và giá trị thương hiệu." },
+              { icon: BadgeCheck, title: "Tuân thủ TCVN & quốc tế", desc: "Phát triển theo TCVN truy xuất nguồn gốc và phù hợp yêu cầu quốc tế — sẵn sàng tham gia chuỗi cung ứng toàn cầu." },
+              { icon: ShieldCheck, title: "Chống hàng giả – Bảo vệ thương hiệu", desc: "Mỗi sản phẩm có mã truy xuất duy nhất, được chứng thực trên nền tảng dữ liệu bất biến — củng cố niềm tin thương hiệu Việt." },
+            ].map((item, i) => (
+              <motion.div key={i} whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="bg-white border border-[#E5EAF0] rounded-2xl p-7 hover:shadow-xl hover:-translate-y-1 transition-all">
+                <div className="bg-[#D9EEF5] text-[#0B4F6C] w-12 h-12 flex items-center justify-center rounded-xl mb-5">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-[#0B4F6C] text-lg mb-3">{item.title}</h3>
+                <p className="text-[#4A5868] text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>

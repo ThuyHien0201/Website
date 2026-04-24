@@ -96,3 +96,39 @@ id = "0QopX84stZC9o0RVd6xU2"
 uri = "file://artifacts/checkee/public/images/hero-tea.png"
 type = "image"
 title = "Bright emerald tea hills"
+
+[[generated]]
+id = "ZT0G7IyP2Pi33sjleXsaU"
+uri = "file://artifacts/checkee/public/images/industry-agr.png"
+type = "image"
+title = "agriculture-rice-paddy"
+
+[[generated]]
+id = "neipO5Yck9ZQYIG3PiYt1"
+uri = "file://artifacts/checkee/public/images/industry-meat.png"
+type = "image"
+title = "meat-livestock-farm"
+
+[[generated]]
+id = "k6c92ixDT45F5Z9pPcasx"
+uri = "file://artifacts/checkee/public/images/industry-seafood.png"
+type = "image"
+title = "seafood-fishing-boat"
+
+[[generated]]
+id = "Z9sJIgw_wuJKilhgCYn3-"
+uri = "file://artifacts/checkee/public/images/industry-pro.png"
+type = "image"
+title = "consumer-goods-shelf"
+
+[[generated]]
+id = "MjeJhu6p-8l25u5uD55IC"
+uri = "file://artifacts/checkee/public/images/industry-med.png"
+type = "image"
+title = "pharmaceutical-production"
+
+[[generated]]
+id = "17zpXsM4I35sXYthkMuUd"
+uri = "file://artifacts/checkee/public/images/industry-ind.png"
+type = "image"
+title = "industrial-gas-cylinders"
