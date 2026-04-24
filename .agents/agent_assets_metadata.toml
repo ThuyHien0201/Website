@@ -132,3 +132,9 @@ id = "17zpXsM4I35sXYthkMuUd"
 uri = "file://artifacts/checkee/public/images/industry-ind.png"
 type = "image"
 title = "industrial-gas-cylinders"
+
+[[generated]]
+id = "RCe61ph2O_XhXALpcDiWJ"
+uri = "file://attached_assets/generated_images/generated_image.png"
+type = "image"
+title = "generated_image"
