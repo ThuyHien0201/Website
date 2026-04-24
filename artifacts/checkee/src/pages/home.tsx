@@ -90,13 +90,6 @@ const solutions = [
     desc: "Lưu mẫu thức ăn số hoá cho nhà hàng, khách sạn, bếp ăn — tuân thủ ATTP, sẵn sàng đối chiếu khi cần.",
     href: "/fnb",
   },
-  {
-    img: "/images/hero-silk.png",
-    tag: "NĐ 43 phụ",
-    title: "Checkee Tem phụ",
-    desc: "Số hoá nhãn phụ cho hàng nhập khẩu — in nhanh, quản lý tập trung, đáp ứng kiểm tra hải quan.",
-    href: "/tem-phu",
-  },
 ];
 
 export default function Home() {
@@ -109,7 +102,7 @@ export default function Home() {
       <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#061826]">
         <div className="absolute inset-0">
           <img
-            src="/images/hero-tech.png"
+            src="/images/hero-tech-v2.png"
             alt="Hệ sinh thái Checkee"
             className="w-full h-full object-cover opacity-70"
           />
@@ -283,7 +276,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
             {solutions.map((s, i) => (
               <motion.div
                 key={i}
@@ -306,13 +299,13 @@ export default function Home() {
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="font-bold text-[#0B4F6C] text-xl mb-2">{s.title}</h3>
                   <p className="text-[#4A5868] text-sm leading-relaxed flex-1">{s.desc}</p>
-                  <div className="mt-6 pt-5 border-t border-[#E5EAF0] flex items-center justify-between gap-3">
-                    <CtaButton href={`/demo?solution=${encodeURIComponent(s.title)}`}>
+                  <div className="mt-6 pt-5 border-t border-[#E5EAF0] flex flex-col gap-3">
+                    <CtaButton href={`/demo?solution=${encodeURIComponent(s.title)}`} className="w-full justify-center">
                       Dùng thử miễn phí
                     </CtaButton>
                     <Link
                       href={s.href}
-                      className="text-[#1A7EA4] font-semibold text-sm hover:text-[#0B4F6C] inline-flex items-center gap-1 whitespace-nowrap"
+                      className="text-[#1A7EA4] font-semibold text-sm hover:text-[#0B4F6C] inline-flex items-center gap-1 justify-center"
                     >
                       Chi tiết <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
@@ -575,7 +568,7 @@ export default function Home() {
       {/* 10. FINAL CTA — dark with tech bg overlay */}
       <section className="relative py-24 bg-[#061826] text-white text-center overflow-hidden">
         <div className="absolute inset-0 opacity-25">
-          <img src="/images/hero-tech.png" alt="" className="w-full h-full object-cover" />
+          <img src="/images/hero-tech-v2.png" alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#061826] via-[#061826]/70 to-[#061826]" />
         </div>
         <div className="relative z-10 container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">

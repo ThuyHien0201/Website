@@ -11,7 +11,6 @@ import Trace from "@/pages/trace";
 import ELabel from "@/pages/e-label";
 import DPP from "@/pages/dpp";
 import FNB from "@/pages/fnb";
-import TemPhu from "@/pages/tem-phu";
 import Pricing from "@/pages/pricing";
 import Demo from "@/pages/demo";
 import DemoPreview from "@/pages/demo-preview";
@@ -36,7 +35,6 @@ function Router() {
               <Route path="/e-label" component={ELabel} />
               <Route path="/dpp" component={DPP} />
               <Route path="/fnb" component={FNB} />
-              <Route path="/tem-phu" component={TemPhu} />
               <Route path="/pricing" component={Pricing} />
               <Route path="/demo" component={Demo} />
               <Route path="/contact" component={Contact} />

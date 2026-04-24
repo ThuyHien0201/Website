@@ -12,8 +12,7 @@ export default function Pricing() {
     { id: "trace", label: "Trace" },
     { id: "elabel", label: "E-label" },
     { id: "dpp", label: "DPP" },
-    { id: "fnb", label: "F&B" },
-    { id: "tem", label: "Tem phụ" }
+    { id: "fnb", label: "F&B" }
   ];
 
   return (

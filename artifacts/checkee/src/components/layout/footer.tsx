@@ -37,7 +37,6 @@ export function Footer() {
               <li><Link href="/e-label" className="hover:text-white transition-colors">Checkee E-label</Link></li>
               <li><Link href="/dpp" className="hover:text-white transition-colors">Checkee DPP</Link></li>
               <li><Link href="/fnb" className="hover:text-white transition-colors">Checkee F&B</Link></li>
-              <li><Link href="/tem-phu" className="hover:text-white transition-colors">Checkee Tem Phụ</Link></li>
             </ul>
           </div>
           

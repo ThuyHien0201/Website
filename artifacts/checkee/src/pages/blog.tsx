@@ -46,7 +46,7 @@ export default function Blog() {
       author: "Tuấn Trần"
     },
     {
-      title: "Tem phụ điện tử — Giải pháp cho nhà nhập khẩu",
+      title: "Số hoá nhãn sản phẩm — Giải pháp cho nhà nhập khẩu",
       date: "10 Tháng 1, 2024",
       category: "E-label",
       excerpt: "Khắc phục triệt để vấn đề in sai nhãn, thiếu thông tin và ảnh hưởng thiết kế gốc của sản phẩm phân phối.",
