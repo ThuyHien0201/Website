@@ -152,6 +152,7 @@ export function Navbar() {
             </Link>
           </nav>
 
+                     <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
@@ -165,9 +166,6 @@ export function Navbar() {
               <User className="w-4 h-4" />
               Đăng nhập
             </Link>
-
-            <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
-
             {/* Language switcher */}
             <div
               className="relative"
