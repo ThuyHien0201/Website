@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  CheckCircle2,
   ShieldCheck,
   Award,
   Globe,
@@ -83,35 +82,6 @@ function PartnerLogo({ domain, name, color }: { domain: string; name: string; co
     />
   );
 }
-
-const cycleTabs = [
-  {
-    key: "compliance",
-    code: "C",
-    label: "Tuân thủ",
-    title: "Compliance — Đáp ứng pháp luật",
-    desc: "Mỗi sản phẩm Checkee được thiết kế để tuân thủ tuyệt đối Thông tư 02/2024/TT-BKHCN, Quyết định 100/QĐ-TTg, TCVN 12850:2019 và chuẩn dữ liệu toàn cầu GS1 EPCIS — sẵn sàng cho thị trường nội địa và xuất khẩu EU/Mỹ/Nhật.",
-    points: [
-      "10/10 trường thông tin bắt buộc",
-      "Kết nối Cổng TXNG Quốc gia",
-      "Tương thích ESPR EU 2024",
-    ],
-    img: "/images/hero-coffee.png",
-  },
-  {
-    key: "trust",
-    code: "B",
-    label: "Niềm tin",
-    title: "Brand Trust — Bảo vệ thương hiệu Việt",
-    desc: "Mỗi mã truy xuất là một cam kết — giúp người tiêu dùng phân biệt thật giả, củng cố uy tín thương hiệu và mở rộng kênh phân phối qua dữ liệu hành vi quét QR thực tế.",
-    points: [
-      "Chống hàng giả · hàng nhái",
-      "Dashboard hành vi người tiêu dùng",
-      "1,234+ doanh nghiệp tin dùng",
-    ],
-    img: "/images/hero-tea.png",
-  },
-];
 
 const solutions = [
   {
@@ -262,9 +232,6 @@ function HeroSlider() {
 }
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState(cycleTabs[0].key);
-  const active = cycleTabs.find((t) => t.key === activeTab) ?? cycleTabs[0];
-
   useEffect(() => {
     const hash = window.location.hash.slice(1);
     if (!hash) return;
@@ -401,69 +368,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* 3. CYCLE — Compliance / Technology / Trust (esgvalley-style tabs) */}
-      <section className="py-24 bg-white">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          {/* Tabs */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {cycleTabs.map((tab) => {
-              const isActive = tab.key === activeTab;
-              return (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`px-6 py-3 rounded-full font-semibold text-sm transition-all ${
-                    isActive
-                      ? "bg-[#0B4F6C] text-white shadow-lg"
-                      : "bg-[#F1F5F8] text-[#4A5868] hover:bg-[#D9EEF5] hover:text-[#0B4F6C]"
-                  }`}
-                >
-                  <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full mr-2 text-xs font-bold ${
-                    isActive ? "bg-[#F2A65A] text-[#061826]" : "bg-white text-[#0B4F6C]"
-                  }`}>{tab.code}</span>
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Tab content */}
-          <motion.div
-            key={active.key}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="grid lg:grid-cols-2 gap-12 items-center bg-[#FAFBFC] rounded-3xl p-8 lg:p-14 border border-[#E5EAF0]"
-          >
-            <div className="space-y-6">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#0B4F6C] text-[#F2A65A] text-xl font-bold">
-                {active.code}
-              </div>
-              <h3 className="text-2xl lg:text-4xl font-bold text-[#0B4F6C] leading-tight">
-                {active.title}
-              </h3>
-              <p className="text-[#4A5868] text-base lg:text-lg leading-relaxed">
-                {active.desc}
-              </p>
-              <ul className="space-y-3 pt-2">
-                {active.points.map((p, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="mt-1 text-[#1A6B52]">
-                      <CheckCircle2 className="w-5 h-5" />
-                    </span>
-                    <span className="text-[#0F1B2D] font-medium">{p}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
-              <img src={active.img} alt={active.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#061826]/40 to-transparent" />
-            </div>
-          </motion.div>
         </div>
       </section>
 
