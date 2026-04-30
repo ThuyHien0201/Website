@@ -430,40 +430,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. CERTIFICATIONS */}
-      <section className="py-20 bg-[#FAFBFC] border-y border-[#E5EAF0]">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
-              CHỨNG NHẬN & TIÊU CHUẨN
-            </span>
-            <p className="text-[#4A5868] text-base lg:text-lg leading-relaxed">
-              Checkee tuân thủ trọn vẹn các tiêu chuẩn pháp lý trong nước và quốc tế, đảm bảo dữ liệu truy xuất minh bạch và an toàn.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {[
-              { code: "TT 02", label: "BKHCN 2024" },
-              { code: "GS1", label: "EPCIS toàn cầu" },
-              { code: "TCVN", label: "12850:2019" },
-              { code: "ESPR", label: "EU 2024" },
-              { code: "ISO", label: "22000 · ATTP" },
-              { code: "VietGAP", label: "Nông nghiệp" },
-            ].map((c, i) => (
-              <div
-                key={i}
-                className="bg-white border border-[#E5EAF0] rounded-2xl p-6 text-center hover:shadow-lg hover:border-[#0B4F6C]/30 transition-all"
-              >
-                <div className="text-2xl lg:text-3xl font-bold text-[#0B4F6C] mb-1">{c.code}</div>
-                <div className="text-xs text-[#7D9E94] uppercase tracking-widest font-semibold">
-                  {c.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 7. NEWS */}
       <section className="py-24 bg-white">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
