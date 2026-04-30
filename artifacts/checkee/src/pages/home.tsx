@@ -7,14 +7,9 @@ import { CtaButton } from "@/components/ui/cta-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   ShieldCheck,
-  Award,
   Globe,
   Quote,
   ArrowRight,
-  Cpu,
-  Workflow,
-  Landmark,
-  BadgeCheck,
   Calendar,
   Headphones,
   TrendingUp,
@@ -429,36 +424,6 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. SỨC MẠNH NỀN TẢNG */}
-      <section className="py-24 bg-white">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">SỨC MẠNH NỀN TẢNG</span>
-            <p className="text-[#4A5868] text-base lg:text-lg leading-relaxed">
-              Một nền tảng — đầy đủ năng lực để minh bạch chuỗi cung ứng và bảo vệ thương hiệu Việt.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: Workflow, title: "Số hóa toàn bộ chuỗi cung ứng", desc: "Ghi nhận và quản lý dữ liệu từ sản xuất, kiểm định, phân phối đến tiêu dùng — minh bạch thông tin và tối ưu vận hành." },
-              { icon: Cpu, title: "Công nghệ tiên tiến, dữ liệu bất biến", desc: "Ứng dụng Blockchain, AI, IoT, RFID, NFC và mã định danh GS1 — đảm bảo dữ liệu truy xuất minh bạch, bảo mật và bất biến." },
-              { icon: Award, title: "Linh hoạt mọi quy mô", desc: "Phù hợp hộ sản xuất, hợp tác xã đến doanh nghiệp lớn — dễ vận hành, chi phí tối ưu." },
-              { icon: Landmark, title: "Kết nối Cổng TXNG Quốc gia", desc: "Định danh và công bố sản phẩm chính thức trên nền tảng quốc gia — khẳng định uy tín và giá trị thương hiệu." },
-              { icon: BadgeCheck, title: "Tuân thủ TCVN & quốc tế", desc: "Phát triển theo TCVN truy xuất nguồn gốc và phù hợp yêu cầu quốc tế — sẵn sàng tham gia chuỗi cung ứng toàn cầu." },
-              { icon: ShieldCheck, title: "Chống hàng giả – Bảo vệ thương hiệu", desc: "Mỗi sản phẩm có mã truy xuất duy nhất, được chứng thực trên nền tảng dữ liệu bất biến — củng cố niềm tin thương hiệu Việt." },
-            ].map((item, i) => (
-              <motion.div key={i} whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="bg-[#FAFBFC] border border-[#E5EAF0] rounded-2xl p-7 hover:shadow-xl hover:-translate-y-1 transition-all">
-                <div className="bg-[#D9EEF5] text-[#0B4F6C] w-12 h-12 flex items-center justify-center rounded-xl mb-5">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-bold text-[#0B4F6C] text-lg mb-3">{item.title}</h3>
-                <p className="text-[#4A5868] text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
