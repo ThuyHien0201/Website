@@ -6,13 +6,10 @@ import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  ShieldCheck,
   Globe,
   Quote,
   ArrowRight,
   Calendar,
-  Headphones,
-  TrendingUp,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -242,96 +239,6 @@ export default function Home() {
     <div className="flex flex-col w-full bg-white">
       {/* 1. HERO — bright slider with 3 backgrounds */}
       <HeroSlider />
-
-      {/* 2. FOUNDER + GLOBE — matbao-inspired */}
-      <section id="founder" className="relative bg-[#FFF7EC] overflow-hidden scroll-mt-24">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center relative">
-            {/* Globe (background on mobile, right column on desktop) */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[120%] opacity-20 lg:opacity-100 lg:relative lg:right-auto lg:top-auto lg:translate-y-0 lg:w-auto lg:order-2 pointer-events-none">
-              <img
-                src="/images/halftone-globe.png"
-                alt=""
-                className="w-full h-auto max-w-[640px] mx-auto spin-slow"
-              />
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative z-10 lg:order-1 space-y-6"
-            >
-              <p className="text-[#4A5868] text-lg lg:text-2xl max-w-xl leading-relaxed">
-                Với sứ mệnh đồng hành cùng doanh nghiệp Việt minh bạch chuỗi cung ứng và bảo vệ giá trị thương hiệu trên nền tảng số.
-              </p>
-              <p className="text-[#0F1B2D] text-base">
-                <span className="font-bold italic">Nguyễn Minh Đức</span>
-                <span className="text-[#7D9E94]"> · Nhà sáng lập & CEO Checkee</span>
-              </p>
-              <div className="pt-2">
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center gap-2 bg-[#C45B17] hover:bg-[#A04612] text-white font-semibold px-7 py-4 rounded-full transition-colors shadow-lg shadow-[#C45B17]/20"
-                >
-                  Khách hàng nói gì về Checkee
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* 3 feature cards */}
-          <div className="grid md:grid-cols-3 gap-6 mt-16 lg:mt-20 relative z-10">
-            {[
-              {
-                icon: ShieldCheck,
-                title: "An toàn & tin cậy",
-                desc: "Dữ liệu mã hoá chuẩn ISO 27001, lưu trên Blockchain bất biến — minh bạch, không thể chỉnh sửa.",
-                tags: ["Blockchain", "ISO 27001", "GS1"],
-              },
-              {
-                icon: Headphones,
-                title: "Đội ngũ hỗ trợ 24/7",
-                desc: "Cam kết phản hồi trong vòng 15 phút, kỹ thuật viên Checkee đồng hành cùng bạn từ ngày đầu triển khai.",
-                tags: ["Hotline 24/7", "Email", "Zalo OA"],
-              },
-              {
-                icon: TrendingUp,
-                title: "Đồng hành & phát triển cùng SME",
-                desc: "Checkee hiểu rõ doanh nghiệp Việt cần gì để vận hành và tăng trưởng trong thời đại số.",
-                tags: ["Tư vấn 1-1", "Onboarding", "Insights"],
-              },
-            ].map((f, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-7 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#C45B17] text-white mb-5">
-                  <f.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-bold text-[#0F1B2D] text-lg mb-3">{f.title}</h3>
-                <p className="text-[#4A5868] text-sm leading-relaxed mb-5">{f.desc}</p>
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-[#F1F5F8]">
-                  {f.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[11px] uppercase tracking-wide font-semibold text-[#7D9E94]"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 2b. PARTNER MARQUEE — matbao-style scrolling logos */}
       <section id="partners" className="py-20 bg-white border-y border-[#E5EAF0] scroll-mt-24">
