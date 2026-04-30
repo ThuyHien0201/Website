@@ -12,8 +12,8 @@ const products = [
 ];
 
 const languages = [
-  { code: "vi", label: "Tiếng Việt", flag: "🇻🇳" },
-  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "vi", label: "Tiếng Việt", short: "VI", flagSrc: "https://flagcdn.com/w40/vn.png" },
+  { code: "en", label: "English", short: "EN", flagSrc: "https://flagcdn.com/w40/gb.png" },
 ];
 
 export function Navbar() {
@@ -26,6 +26,7 @@ export function Navbar() {
   const [activeLang, setActiveLang] = useState("vi");
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const langTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  void langTimer;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -56,7 +57,7 @@ export function Navbar() {
   };
 
   const isProductActive = products.some((p) => p.href === location);
-  const currentLang = languages.find((l) => l.code === activeLang) ?? languages[0];
+  void langOpen; void openLang; void scheduleLangClose; void setLangOpen;
 
   const linkClass = (active: boolean) => {
     const base =
@@ -166,49 +167,34 @@ export function Navbar() {
               <User className="w-4 h-4" />
               Đăng nhập
             </Link>
-            {/* Language switcher */}
-            <div
-              className="relative"
-              onMouseEnter={openLang}
-              onMouseLeave={scheduleLangClose}
-            >
-              <button
-                className={`inline-flex items-center gap-2 px-3 py-2 rounded-full border text-[13px] transition-colors ${
-                  isTransparent
-                    ? "border-white/20 text-white hover:bg-white/10"
-                    : "border-[#E5EAF0] bg-white text-[#0F1B2D] hover:border-[#0B4F6C]"
-                }`}
-                onClick={() => setLangOpen((v) => !v)}
-              >
-                <span>{currentLang.flag}</span>
-                <span className="font-semibold">{currentLang.label}</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform ${langOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-              <div
-                className={`absolute right-0 top-full pt-2 transition-all duration-200 ${
-                  langOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
-                }`}
-              >
-                <div className="bg-white border border-[#E5EAF0] rounded-lg shadow-xl overflow-hidden min-w-[160px]">
-                  {languages.map((l) => (
-                    <button
-                      key={l.code}
-                      onClick={() => {
-                        setActiveLang(l.code);
-                        setLangOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-2 text-[13px] hover:bg-[#FAFBFC] flex items-center gap-2 ${
-                        l.code === activeLang ? "text-[#1A6B52] font-semibold bg-[#F0F8F4]" : "text-[#0F1B2D]"
-                      }`}
-                    >
-                      <span>{l.flag}</span>
-                      <span>{l.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+            {/* Language switcher — flag-only buttons */}
+            <div className="flex items-center gap-1.5 ml-1">
+              {languages.map((l) => {
+                const isActive = l.code === activeLang;
+                return (
+                  <button
+                    key={l.code}
+                    onClick={() => setActiveLang(l.code)}
+                    title={l.label}
+                    aria-label={l.label}
+                    className={`relative w-9 h-9 rounded-full overflow-hidden border-2 transition-all ${
+                      isActive
+                        ? isTransparent
+                          ? "border-[#F2A65A] scale-110 shadow-md"
+                          : "border-[#1A6B52] scale-110 shadow-md"
+                        : isTransparent
+                          ? "border-white/30 hover:border-white/60 opacity-70 hover:opacity-100"
+                          : "border-[#E5EAF0] hover:border-[#0B4F6C] opacity-70 hover:opacity-100"
+                    }`}
+                  >
+                    <img
+                      src={l.flagSrc}
+                      alt={l.label}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -295,21 +281,25 @@ export function Navbar() {
             <CtaButton href="/demo" className="w-full justify-center">
               Dùng thử miễn phí
             </CtaButton>
-            {/* Mobile language switcher */}
-            <div className="flex gap-2 pt-2">
-              {languages.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => setActiveLang(l.code)}
-                  className={`flex-1 py-2 rounded-md border text-[13px] inline-flex items-center justify-center gap-1.5 ${
-                    l.code === activeLang
-                      ? "border-[#1A6B52] bg-[#F0F8F4] text-[#1A6B52] font-semibold"
-                      : "border-[#E5EAF0] text-[#4A5868]"
-                  }`}
-                >
-                  <span>{l.flag}</span> {l.label}
-                </button>
-              ))}
+            {/* Mobile language switcher — flag buttons */}
+            <div className="flex justify-center gap-3 pt-2">
+              {languages.map((l) => {
+                const isActive = l.code === activeLang;
+                return (
+                  <button
+                    key={l.code}
+                    onClick={() => setActiveLang(l.code)}
+                    aria-label={l.label}
+                    className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${
+                      isActive
+                        ? "border-[#1A6B52] scale-110 shadow"
+                        : "border-[#E5EAF0] opacity-70"
+                    }`}
+                  >
+                    <img src={l.flagSrc} alt={l.label} className="absolute inset-0 w-full h-full object-cover" />
+                  </button>
+                );
+              })}
             </div>
           </div>
         </nav>

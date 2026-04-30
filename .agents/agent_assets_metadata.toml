@@ -138,3 +138,21 @@ id = "RCe61ph2O_XhXALpcDiWJ"
 uri = "file://attached_assets/generated_images/generated_image.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "PKjN4Vh3g6cnPZtM0-gd2"
+uri = "file://attached_assets/generated_images/generated_image_0.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "fYr7tl4Vgk0i_eoZwURvE"
+uri = "file://attached_assets/generated_images/generated_image_1.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "grS1uUPfoT9Lu1X6ecbdV"
+uri = "file://attached_assets/generated_images/generated_image_2.png"
+type = "image"
+title = "generated_image"

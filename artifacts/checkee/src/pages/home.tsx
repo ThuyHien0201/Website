@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -18,35 +19,70 @@ import {
   Calendar,
   Headphones,
   TrendingUp,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
+const heroSlides = [
+  "/images/hero-bright-1.png",
+  "/images/hero-bright-2.png",
+  "/images/hero-bright-3.png",
+];
+
 const partnerLogos = [
-  { name: "PM Group", color: "#1E5BA8" },
-  { name: "V-Gas", color: "#E8472C" },
-  { name: "CF-15", color: "#0B4F6C" },
-  { name: "Tâm Trà Thái", color: "#1A6B52" },
-  { name: "Gas South", color: "#F2A65A" },
-  { name: "Nam Trường Sơn", color: "#0B4F6C" },
-  { name: "Vinasoy", color: "#1A6B52" },
-  { name: "Mobifone", color: "#1B4FA0" },
-  { name: "Vietnam Rice", color: "#C45B17" },
-  { name: "TH True Milk", color: "#0E4A8A" },
-  { name: "Vinamilk", color: "#0B4F6C" },
-  { name: "Habeco", color: "#C45B17" },
-  { name: "Trung Nguyên", color: "#7A2E0E" },
-  { name: "Acecook", color: "#E8472C" },
-  { name: "Bibica", color: "#1A7EA4" },
-  { name: "Highlands", color: "#7A2E0E" },
-  { name: "Phúc Long", color: "#1A6B52" },
-  { name: "Ba Vì Milk", color: "#0B4F6C" },
-  { name: "AgriHub", color: "#1A6B52" },
-  { name: "FoodTech VN", color: "#C45B17" },
-  { name: "Sabeco", color: "#E8472C" },
+  { name: "Vinamilk", domain: "vinamilk.com.vn", color: "#0B4F6C" },
+  { name: "Vinasoy", domain: "vinasoy.com", color: "#1A6B52" },
+  { name: "Mobifone", domain: "mobifone.vn", color: "#1B4FA0" },
+  { name: "Viettel", domain: "viettel.vn", color: "#E8472C" },
+  { name: "TH True Milk", domain: "thmilk.vn", color: "#0E4A8A" },
+  { name: "Highlands Coffee", domain: "highlandscoffee.com.vn", color: "#7A2E0E" },
+  { name: "Phúc Long", domain: "phuclong.com.vn", color: "#1A6B52" },
+  { name: "Trung Nguyên", domain: "trungnguyenlegend.com", color: "#7A2E0E" },
+  { name: "Sabeco", domain: "sabeco.com.vn", color: "#E8472C" },
+  { name: "Habeco", domain: "habeco.com.vn", color: "#C45B17" },
+  { name: "Bibica", domain: "bibica.com.vn", color: "#1A7EA4" },
+  { name: "Acecook", domain: "acecookvietnam.com.vn", color: "#E8472C" },
+  { name: "Masan", domain: "masangroup.com", color: "#0B4F6C" },
+  { name: "PNJ", domain: "pnj.com.vn", color: "#C8A24A" },
+  { name: "Vietjet Air", domain: "vietjetair.com", color: "#E8472C" },
+  { name: "Vingroup", domain: "vingroup.net", color: "#0B4F6C" },
+  { name: "Hoa Sen", domain: "hoasengroup.vn", color: "#F2A65A" },
+  { name: "Coca-Cola", domain: "cocacolavietnam.com", color: "#E8472C" },
+  { name: "Nestlé", domain: "nestle.com.vn", color: "#0E4A8A" },
+  { name: "Unilever", domain: "unilever.com.vn", color: "#1B4FA0" },
+  { name: "PepsiCo", domain: "pepsico.com.vn", color: "#1B4FA0" },
 ];
 
 const partnerRow1 = partnerLogos.slice(0, 7);
 const partnerRow2 = partnerLogos.slice(7, 14);
 const partnerRow3 = partnerLogos.slice(14, 21);
+
+function PartnerLogo({ domain, name, color }: { domain: string; name: string; color: string }) {
+  const [step, setStep] = useState<0 | 1 | 2>(0);
+  if (step === 2) {
+    return (
+      <span
+        className="font-extrabold text-base tracking-tight text-center leading-tight"
+        style={{ color }}
+      >
+        {name}
+      </span>
+    );
+  }
+  const src =
+    step === 0
+      ? `https://unavatar.io/${domain}?fallback=false`
+      : `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+  return (
+    <img
+      src={src}
+      alt={name}
+      onError={() => setStep((s) => (s === 0 ? 1 : 2))}
+      className="max-h-14 max-w-[150px] object-contain"
+      loading="lazy"
+    />
+  );
+}
 
 const cycleTabs = [
   {
@@ -121,69 +157,142 @@ const solutions = [
   },
 ];
 
+function HeroSlider() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+    const interval = setInterval(() => emblaApi.scrollNext(), 6000);
+    return () => {
+      emblaApi.off("select", onSelect);
+      clearInterval(interval);
+    };
+  }, [emblaApi]);
+
+  return (
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#FFF7EC]">
+      {/* Slider track */}
+      <div className="absolute inset-0" ref={emblaRef}>
+        <div className="flex h-full">
+          {heroSlides.map((src, i) => (
+            <div key={i} className="relative flex-[0_0_100%] h-full">
+              <img
+                src={src}
+                alt={`Checkee hero ${i + 1}`}
+                className="w-full h-full object-cover"
+              />
+              {/* Soft gradient — keep right side bright, dim left for headline readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E2A]/85 via-[#0B1E2A]/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E2A]/40 via-transparent to-transparent" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="relative z-10 container max-w-[1280px] mx-auto px-6 lg:px-8 pt-32 pb-24 lg:pt-40 lg:pb-28">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-3xl space-y-7"
+        >
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight drop-shadow-lg">
+            Minh bạch chuỗi cung ứng,<br />
+            <span className="text-[#F2A65A]">nâng tầm thương hiệu Việt.</span>
+          </h1>
+
+          <p className="text-white/90 text-lg lg:text-xl max-w-2xl leading-relaxed drop-shadow">
+            Checkee phát triển nền tảng số phục vụ quản lý, định danh và truy xuất nguồn gốc sản phẩm hàng hoá — kết nối Cổng TXNG Quốc gia, chống hàng giả và thúc đẩy chuyển đổi số doanh nghiệp Việt.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
+            <a href="#solutions">
+              <Button
+                variant="outline"
+                className="rounded-full border-2 border-white/50 bg-white/10 text-white hover:bg-white hover:text-[#0B4F6C] px-8 py-4 h-auto font-semibold backdrop-blur-sm"
+              >
+                Khám phá giải pháp
+              </Button>
+            </a>
+          </div>
+
+          <div className="flex flex-wrap gap-x-10 gap-y-4 pt-10 border-t border-white/20">
+            <div>
+              <div className="text-3xl font-bold text-white">5,000<span className="text-[#F2A65A]">+</span></div>
+              <div className="text-xs uppercase tracking-widest text-white/70 mt-1">Sản phẩm đã định danh</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-white">1,234<span className="text-[#F2A65A]">+</span></div>
+              <div className="text-xs uppercase tracking-widest text-white/70 mt-1">Doanh nghiệp tin dùng</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-white">10/10</div>
+              <div className="text-xs uppercase tracking-widest text-white/70 mt-1">Tuân thủ TT 02/2024</div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Prev / Next arrows */}
+      <button
+        onClick={scrollPrev}
+        aria-label="Slide trước"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md border border-white/30 transition-all"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        onClick={scrollNext}
+        aria-label="Slide tiếp"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md border border-white/30 transition-all"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => emblaApi?.scrollTo(i)}
+            aria-label={`Slide ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all ${
+              selectedIndex === i ? "bg-[#F2A65A] w-10" : "bg-white/50 hover:bg-white/80 w-5"
+            }`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState(cycleTabs[0].key);
   const active = cycleTabs.find((t) => t.key === activeTab) ?? cycleTabs[0];
 
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const tryScroll = () => {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: "instant" as ScrollBehavior, block: "start" });
+    };
+    const t = setTimeout(tryScroll, 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div className="flex flex-col w-full bg-white">
-      {/* 1. HERO — full-bleed dark with tech image */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#061826]">
-        <div className="absolute inset-0">
-          <img
-            src="/images/hero-tech-v2.png"
-            alt="Hệ sinh thái Checkee"
-            className="w-full h-full object-cover opacity-70"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#061826] via-[#061826]/85 to-[#061826]/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#061826] via-transparent to-transparent" />
-        </div>
-
-        <div className="relative z-10 container max-w-[1280px] mx-auto px-6 lg:px-8 pt-32 pb-20 lg:pt-40 lg:pb-28">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl space-y-7"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight">
-              Minh bạch chuỗi cung ứng,<br />
-              <span className="text-[#F2A65A]">nâng tầm thương hiệu Việt.</span>
-            </h1>
-
-            <p className="text-white/80 text-lg lg:text-xl max-w-2xl leading-relaxed">
-              Checkee phát triển nền tảng số phục vụ quản lý, định danh và truy xuất nguồn gốc sản phẩm hàng hoá — kết nối Cổng TXNG Quốc gia, chống hàng giả và thúc đẩy chuyển đổi số doanh nghiệp Việt.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
-              <a href="#solutions">
-                <Button
-                  variant="outline"
-                  className="rounded-full border-2 border-white/40 bg-white/5 text-white hover:bg-white hover:text-[#0B4F6C] px-8 py-4 h-auto font-semibold backdrop-blur-sm"
-                >
-                  Khám phá giải pháp
-                </Button>
-              </a>
-            </div>
-
-            <div className="flex flex-wrap gap-x-10 gap-y-4 pt-10 border-t border-white/10">
-              <div>
-                <div className="text-3xl font-bold text-white">5,000<span className="text-[#F2A65A]">+</span></div>
-                <div className="text-xs uppercase tracking-widest text-white/60 mt-1">Sản phẩm đã định danh</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white">1,234<span className="text-[#F2A65A]">+</span></div>
-                <div className="text-xs uppercase tracking-widest text-white/60 mt-1">Doanh nghiệp tin dùng</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white">10/10</div>
-                <div className="text-xs uppercase tracking-widest text-white/60 mt-1">Tuân thủ TT 02/2024</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* 1. HERO — bright slider with 3 backgrounds */}
+      <HeroSlider />
 
       {/* 2. FOUNDER + GLOBE — matbao-inspired */}
       <section id="founder" className="relative bg-[#FFF7EC] overflow-hidden scroll-mt-24">
@@ -205,11 +314,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="relative z-10 lg:order-1 space-y-6"
             >
-              <h2 className="text-4xl lg:text-6xl font-bold text-[#0F1B2D] leading-[1.05] tracking-tight">
-                Hơn 5 năm sánh bước<br />
-                cùng <span className="text-[#C45B17]">1.234+</span> doanh chủ Việt
-              </h2>
-              <p className="text-[#4A5868] text-lg lg:text-xl max-w-xl leading-relaxed">
+              <p className="text-[#4A5868] text-lg lg:text-2xl max-w-xl leading-relaxed">
                 Với sứ mệnh đồng hành cùng doanh nghiệp Việt minh bạch chuỗi cung ứng và bảo vệ giá trị thương hiệu trên nền tảng số.
               </p>
               <p className="text-[#0F1B2D] text-base">
@@ -280,7 +385,7 @@ export default function Home() {
       </section>
 
       {/* 2b. PARTNER MARQUEE — matbao-style scrolling logos */}
-      <section className="py-20 bg-white border-y border-[#E5EAF0]">
+      <section id="partners" className="py-20 bg-white border-y border-[#E5EAF0] scroll-mt-24">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center mb-12">
           <h2 className="text-3xl lg:text-5xl font-bold text-[#0F1B2D] leading-tight">
             Đồng hành cùng các <span className="text-[#C45B17]">đối tác hàng đầu</span>
@@ -301,14 +406,9 @@ export default function Home() {
                 {[...row.logos, ...row.logos, ...row.logos, ...row.logos].map((p, i) => (
                   <div
                     key={`${ri}-${i}`}
-                    className="flex-shrink-0 bg-white rounded-2xl shadow-[0_4px_18px_rgb(0,0,0,0.06)] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-[180px] h-[88px] flex items-center justify-center px-4"
+                    className="flex-shrink-0 bg-white rounded-2xl shadow-[0_4px_18px_rgb(0,0,0,0.06)] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-[180px] h-[88px] flex items-center justify-center px-5"
                   >
-                    <span
-                      className="font-extrabold text-lg tracking-tight text-center leading-tight"
-                      style={{ color: p.color }}
-                    >
-                      {p.name}
-                    </span>
+                    <PartnerLogo domain={p.domain} name={p.name} color={p.color} />
                   </div>
                 ))}
               </div>
@@ -321,13 +421,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
-              VÒNG TUẦN HOÀN CHECKEE
-            </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">
-              Compliance · Technology · Brand Trust
-            </h2>
-            <p className="text-[#4A5868] text-base lg:text-lg mt-5 leading-relaxed">
+            <p className="text-[#4A5868] text-base lg:text-lg leading-relaxed">
               Ba trụ cột vận hành hệ sinh thái Checkee — từ tuân thủ pháp luật, công nghệ bất biến đến niềm tin thương hiệu.
             </p>
           </div>
@@ -461,8 +555,7 @@ export default function Home() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">SỨC MẠNH NỀN TẢNG</span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Vì sao doanh nghiệp chọn Checkee?</h2>
-            <p className="text-[#4A5868] text-base lg:text-lg mt-5 leading-relaxed">
+            <p className="text-[#4A5868] text-base lg:text-lg leading-relaxed">
               Một nền tảng — đầy đủ năng lực để minh bạch chuỗi cung ứng và bảo vệ thương hiệu Việt.
             </p>
           </div>
@@ -494,10 +587,7 @@ export default function Home() {
             <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
               CHỨNG NHẬN & TIÊU CHUẨN
             </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">
-              Tuân thủ — Bảo mật — Minh bạch
-            </h2>
-            <p className="text-[#4A5868] text-base lg:text-lg mt-4 leading-relaxed">
+            <p className="text-[#4A5868] text-base lg:text-lg leading-relaxed">
               Checkee tuân thủ trọn vẹn các tiêu chuẩn pháp lý trong nước và quốc tế, đảm bảo dữ liệu truy xuất minh bạch và an toàn.
             </p>
           </div>
