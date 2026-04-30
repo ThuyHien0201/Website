@@ -99,19 +99,6 @@ const cycleTabs = [
     img: "/images/hero-coffee.png",
   },
   {
-    key: "technology",
-    code: "T",
-    label: "Công nghệ",
-    title: "Technology — Nền tảng số bất biến",
-    desc: "Ứng dụng Blockchain, AI, IoT, RFID, NFC và mã định danh GS1 — đảm bảo dữ liệu truy xuất minh bạch, bảo mật, không thể chỉnh sửa và sẵn sàng tích hợp với hệ thống ERP/POS hiện hữu.",
-    points: [
-      "Blockchain anchor & hash bất biến",
-      "QR động chống nhân bản",
-      "API & Webhook tích hợp ERP/SAP/POS",
-    ],
-    img: "/images/hero-factory.png",
-  },
-  {
     key: "trust",
     code: "B",
     label: "Niềm tin",
