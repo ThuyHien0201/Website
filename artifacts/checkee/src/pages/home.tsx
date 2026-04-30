@@ -420,12 +420,6 @@ export default function Home() {
       {/* 3. CYCLE — Compliance / Technology / Trust (esgvalley-style tabs) */}
       <section className="py-24 bg-white">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <p className="text-[#4A5868] text-base lg:text-lg leading-relaxed">
-              Ba trụ cột vận hành hệ sinh thái Checkee — từ tuân thủ pháp luật, công nghệ bất biến đến niềm tin thương hiệu.
-            </p>
-          </div>
-
           {/* Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {cycleTabs.map((tab) => {
