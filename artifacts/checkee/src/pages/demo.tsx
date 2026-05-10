@@ -64,7 +64,7 @@ export default function Demo() {
   const handleNext = () => {
     if (currentStep === 4) {
       if (!user) {
-        openLoginModal(formData.name || "Sản phẩm demo");
+        openLoginModal({ redirect: "/demo" });
         return;
       }
       if (demoQuota <= 0) {

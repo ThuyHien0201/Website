@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { CtaButton } from "@/components/ui/cta-button";
+import { TrialButton } from "@/components/ui/trial-button";
 import { ProductHero } from "@/components/layout/product-hero";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { FileCheck, Award, Workflow, Database, Globe, QrCode, MapPin, Languages, BarChart3, Shield, ShieldCheck, ArrowRight } from "lucide-react";
@@ -217,7 +218,7 @@ export default function Trace() {
             Bảo vệ thương hiệu và mở rộng thị trường ngay hôm nay với Checkee Trace.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">
-            <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
+            <TrialButton size="large" />
           </div>
         </div>
       </section>

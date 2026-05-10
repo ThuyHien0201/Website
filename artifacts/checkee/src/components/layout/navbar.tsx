@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown, LayoutDashboard } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { CtaButton } from "@/components/ui/cta-button";
+import { TrialButton } from "@/components/ui/trial-button";
 import { useAuth } from "@/context/auth-context";
 import logoPng from "@/assets/logo.png";
 
@@ -151,7 +152,7 @@ export function Navbar() {
               </button>
             )}
 
-            <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
+            <TrialButton />
 
             {/* Language switcher */}
             <div className="flex items-center gap-1.5 ml-1">
@@ -220,7 +221,7 @@ export function Navbar() {
                 Đăng nhập
               </button>
             )}
-            <CtaButton href="/demo" className="w-full justify-center">Dùng thử miễn phí</CtaButton>
+            <TrialButton className="w-full justify-center" />
             <div className="flex justify-center gap-3 pt-2">
               {languages.map(l => {
                 const isActive = l.code === activeLang;

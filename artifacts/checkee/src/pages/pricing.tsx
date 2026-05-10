@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
+import { TrialButton } from "@/components/ui/trial-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle2 } from "lucide-react";
 
@@ -199,7 +200,7 @@ export default function Pricing() {
             Khám phá sức mạnh của việc số hóa sản phẩm.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">
-            <CtaButton href="/demo" size="large">Dùng thử miễn phí 14 ngày</CtaButton>
+            <TrialButton size="large">Dùng thử miễn phí 14 ngày</TrialButton>
           </div>
         </div>
       </section>

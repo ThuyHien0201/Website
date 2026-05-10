@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/ui/cta-button";
+import { TrialButton } from "@/components/ui/trial-button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Globe,
@@ -162,7 +163,7 @@ function HeroSlider() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
+            <TrialButton size="large" />
             <a href="#solutions">
               <Button
                 variant="outline"
@@ -531,7 +532,7 @@ export default function Home() {
             Bắt đầu minh bạch hoá chuỗi cung ứng và gia tăng niềm tin của khách hàng ngay hôm nay.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">
-            <CtaButton href="/demo" size="large">Dùng thử miễn phí 14 ngày</CtaButton>
+            <TrialButton size="large">Dùng thử miễn phí 14 ngày</TrialButton>
             <p className="text-sm text-white/50 mt-2">Không cần thẻ tín dụng · Huỷ bất kỳ lúc nào</p>
           </div>
         </div>

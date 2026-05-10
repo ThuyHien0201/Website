@@ -1,4 +1,4 @@
-import { CtaButton } from "@/components/ui/cta-button";
+import { TrialButton } from "@/components/ui/trial-button";
 import { ProductHero } from "@/components/layout/product-hero";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { FileCheck, RefreshCw, Languages, Smartphone, ShieldCheck, QrCode, Globe, BarChart3 } from "lucide-react";
@@ -97,7 +97,7 @@ export default function ELabel() {
             Số hóa thông tin sản phẩm bằng Checkee E-label.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">
-            <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
+            <TrialButton size="large" />
           </div>
         </div>
       </section>

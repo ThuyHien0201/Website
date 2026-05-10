@@ -24,6 +24,7 @@ type AuthContextType = {
   user: User | null;
   demoQuota: number;
   pendingProduct: string | null;
+  loginRedirect: string | null;
   businessInfo: BusinessInfo | null;
   activePlan: PlanInfo | null;
   demoQRLog: { product: string; createdAt: Date }[];
@@ -31,7 +32,7 @@ type AuthContextType = {
   showLoginModal: boolean;
   showPricingModal: boolean;
 
-  openLoginModal: (product?: string) => void;
+  openLoginModal: (opts?: { product?: string; redirect?: string }) => void;
   closeLoginModal: () => void;
   openPricingModal: () => void;
   closePricingModal: () => void;
@@ -51,6 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [demoQuota, setDemoQuota] = useState(1);
   const [pendingProduct, setPendingProduct] = useState<string | null>(null);
+  const [loginRedirect, setLoginRedirect] = useState<string | null>(null);
   const [businessInfo, setBusinessInfoState] = useState<BusinessInfo | null>(null);
   const [activePlan, setActivePlanState] = useState<PlanInfo | null>(null);
   const [demoQRLog, setDemoQRLog] = useState<{ product: string; createdAt: Date }[]>([]);
@@ -58,8 +60,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showPricingModal, setShowPricingModal] = useState(false);
 
-  const openLoginModal = useCallback((product?: string) => {
-    if (product) setPendingProduct(product);
+  const openLoginModal = useCallback((opts?: { product?: string; redirect?: string }) => {
+    if (opts?.product) setPendingProduct(opts.product);
+    if (opts?.redirect) setLoginRedirect(opts.redirect);
     setShowLoginModal(true);
   }, []);
 
@@ -92,6 +95,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setDemoQuota(1);
     setActivePlanState(null);
     setBusinessInfoState(null);
+    setLoginRedirect(null);
+    setPendingProduct(null);
   }, []);
 
   const consumeDemoQuota = useCallback((product: string) => {
@@ -112,7 +117,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider value={{
-      user, demoQuota, pendingProduct, businessInfo, activePlan, demoQRLog,
+      user, demoQuota, pendingProduct, loginRedirect, businessInfo, activePlan, demoQRLog,
       showLoginModal, showPricingModal,
       openLoginModal, closeLoginModal,
       openPricingModal, closePricingModal,

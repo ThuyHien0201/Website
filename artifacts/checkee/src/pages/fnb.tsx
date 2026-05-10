@@ -1,4 +1,4 @@
-import { CtaButton } from "@/components/ui/cta-button";
+import { TrialButton } from "@/components/ui/trial-button";
 import { ProductHero } from "@/components/layout/product-hero";
 import { FileCheck, ClipboardList, ShieldCheck, Clock } from "lucide-react";
 
@@ -70,7 +70,7 @@ export default function FNB() {
             Số hóa hoàn toàn quy trình lưu mẫu thực phẩm ngay hôm nay.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">
-            <CtaButton href="/demo" size="large">Dùng thử miễn phí</CtaButton>
+            <TrialButton size="large" />
           </div>
         </div>
       </section>

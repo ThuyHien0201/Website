@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/context/auth-context";
+import { useLocation } from "wouter";
 import logoPng from "@/assets/logo.png";
 
 export function LoginModal() {
-  const { showLoginModal, login, register, closeLoginModal, user } = useAuth();
-  const [mode, setMode] = useState<"login" | "register">("login");
+  const { showLoginModal, login, register, closeLoginModal, user, loginRedirect } = useAuth();
+  const [, navigate] = useLocation();
+  const [mode, setMode] = useState<"login" | "register">("register");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +19,11 @@ export function LoginModal() {
   const [error, setError] = useState("");
 
   if (!showLoginModal || user) return null;
+
+  const afterLogin = () => {
+    closeLoginModal();
+    if (loginRedirect) navigate(loginRedirect);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,12 +37,19 @@ export function LoginModal() {
       } else {
         await register(name, email, password);
       }
-      closeLoginModal();
+      afterLogin();
     } catch {
       setError("Đã có lỗi xảy ra. Vui lòng thử lại.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleGoogle = async () => {
+    setLoading(true);
+    await register("Demo User", "demo@google.com", "google");
+    setLoading(false);
+    afterLogin();
   };
 
   return (
@@ -57,16 +71,16 @@ export function LoginModal() {
         <div className="p-8">
           <div className="flex bg-[#F4F6F8] rounded-full p-1 mb-6">
             <button
-              onClick={() => setMode("login")}
-              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "login" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
-            >
-              Đăng nhập
-            </button>
-            <button
               onClick={() => setMode("register")}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "register" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
             >
               Đăng ký
+            </button>
+            <button
+              onClick={() => setMode("login")}
+              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "login" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+            >
+              Đã có tài khoản
             </button>
           </div>
 
@@ -117,7 +131,9 @@ export function LoginModal() {
               disabled={loading}
               className="w-full h-12 rounded-full bg-[#C45B17] hover:bg-[#D6711A] text-white font-semibold text-base mt-2"
             >
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : mode === "login" ? "Đăng nhập" : "Tạo tài khoản"}
+              {loading
+                ? <Loader2 className="w-5 h-5 animate-spin" />
+                : mode === "register" ? "Tạo tài khoản & Dùng thử" : "Đăng nhập"}
             </Button>
           </form>
 
@@ -128,13 +144,9 @@ export function LoginModal() {
 
           <button
             type="button"
-            onClick={async () => {
-              setLoading(true);
-              await register("Demo User", "demo@google.com", "google");
-              setLoading(false);
-              closeLoginModal();
-            }}
-            className="w-full h-12 rounded-full border-2 border-[#E5EAF0] flex items-center justify-center gap-3 font-semibold text-[#0F1B2D] hover:bg-[#FAFBFC] transition-colors"
+            onClick={handleGoogle}
+            disabled={loading}
+            className="w-full h-12 rounded-full border-2 border-[#E5EAF0] flex items-center justify-center gap-3 font-semibold text-[#0F1B2D] hover:bg-[#FAFBFC] transition-colors disabled:opacity-60"
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
