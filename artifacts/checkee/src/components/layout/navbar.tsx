@@ -1,7 +1,8 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, User } from "lucide-react";
+import { Menu, X, ChevronDown, LayoutDashboard } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { CtaButton } from "@/components/ui/cta-button";
+import { useAuth } from "@/context/auth-context";
 import logoPng from "@/assets/logo.png";
 
 const products = [
@@ -22,11 +23,12 @@ export function Navbar() {
   const [productOpen, setProductOpen] = useState(false);
   const [mobileProductOpen, setMobileProductOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
   const [activeLang, setActiveLang] = useState("vi");
+  const [avatarOpen, setAvatarOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const langTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  void langTimer;
+  const avatarTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const { user, logout, openLoginModal } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -47,93 +49,55 @@ export function Navbar() {
     closeTimer.current = setTimeout(() => setProductOpen(false), 150);
   };
 
-  const openLang = () => {
-    if (langTimer.current) clearTimeout(langTimer.current);
-    setLangOpen(true);
+  const openAvatar = () => {
+    if (avatarTimer.current) clearTimeout(avatarTimer.current);
+    setAvatarOpen(true);
   };
-  const scheduleLangClose = () => {
-    if (langTimer.current) clearTimeout(langTimer.current);
-    langTimer.current = setTimeout(() => setLangOpen(false), 150);
+  const closeAvatar = () => {
+    if (avatarTimer.current) clearTimeout(avatarTimer.current);
+    avatarTimer.current = setTimeout(() => setAvatarOpen(false), 150);
   };
 
   const isProductActive = products.some((p) => p.href === location);
-  void langOpen; void openLang; void scheduleLangClose; void setLangOpen;
 
   const linkClass = (active: boolean) => {
-    const base =
-      "transition-colors duration-300 text-[13px] font-semibold uppercase tracking-[0.08em]";
+    const base = "transition-colors duration-300 text-[13px] font-semibold uppercase tracking-[0.08em]";
     if (isTransparent) {
-      return `${base} ${
-        active
-          ? "text-[#F2A65A] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-[2px] after:bg-[#F2A65A]"
-          : "text-white/90 hover:text-white"
-      }`;
+      return `${base} ${active ? "text-[#F2A65A] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-[2px] after:bg-[#F2A65A]" : "text-white/90 hover:text-white"}`;
     }
-    return `${base} ${
-      active
-        ? "text-[#1A6B52] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-[2px] after:bg-[#1A6B52]"
-        : "text-[#0F1B2D] hover:text-[#1A6B52]"
-    }`;
+    return `${base} ${active ? "text-[#1A6B52] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-[2px] after:bg-[#1A6B52]" : "text-[#0F1B2D] hover:text-[#1A6B52]"}`;
   };
+
+  const initials = user ? user.name.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase() : "";
 
   return (
     <header className="fixed top-0 z-50 w-full">
-      {/* Main navbar */}
-      <div
-        className={`transition-all duration-300 ${
-          isTransparent ? "bg-transparent" : "bg-white shadow-sm"
-        }`}
-      >
+      <div className={`transition-all duration-300 ${isTransparent ? "bg-transparent" : "bg-white shadow-sm"}`}>
         <div className="container flex items-center justify-between px-6 md:px-10 max-w-[1440px] mx-auto h-[72px] lg:h-[80px]">
           <Link href="/" className="flex items-center shrink-0">
             <img
               src={logoPng}
               alt="Checkee"
-              className={`h-9 md:h-10 object-contain transition-all ${
-                isTransparent ? "brightness-0 invert" : ""
-              }`}
+              className={`h-9 md:h-10 object-contain transition-all ${isTransparent ? "brightness-0 invert" : ""}`}
             />
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
-            <Link href="/" className={linkClass(location === "/")}>
-              Trang chủ
-            </Link>
+            <Link href="/" className={linkClass(location === "/")}>Trang chủ</Link>
 
-            {/* Products dropdown */}
-            <div
-              className="relative h-full flex items-center"
-              onMouseEnter={openMenu}
-              onMouseLeave={scheduleClose}
-            >
-              <button
-                className={`flex items-center gap-1.5 ${linkClass(isProductActive)}`}
-                onClick={() => setProductOpen((v) => !v)}
-              >
+            <div className="relative h-full flex items-center" onMouseEnter={openMenu} onMouseLeave={scheduleClose}>
+              <button className={`flex items-center gap-1.5 ${linkClass(isProductActive)}`} onClick={() => setProductOpen(v => !v)}>
                 Giải pháp
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform ${productOpen ? "rotate-180" : ""}`}
-                />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${productOpen ? "rotate-180" : ""}`} />
               </button>
-              <div
-                className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-200 ${
-                  productOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
-                }`}
-              >
+              <div className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-200 ${productOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
                 <div className="bg-white border border-[#E5EAF0] rounded-xl shadow-xl p-3 w-[340px]">
-                  {products.map((p) => (
-                    <Link
-                      key={p.href}
-                      href={p.href}
-                      className="flex items-start gap-4 p-3 rounded-lg hover:bg-[#FAFBFC] transition-colors group"
-                      onClick={() => setProductOpen(false)}
-                    >
+                  {products.map(p => (
+                    <Link key={p.href} href={p.href} className="flex items-start gap-4 p-3 rounded-lg hover:bg-[#FAFBFC] transition-colors group" onClick={() => setProductOpen(false)}>
                       <div className="text-2xl mt-1">{p.icon}</div>
                       <div>
-                        <div className="text-[#0F1B2D] text-[15px] font-semibold group-hover:text-[#1A6B52] transition-colors">
-                          Checkee {p.label}
-                        </div>
+                        <div className="text-[#0F1B2D] text-[15px] font-semibold group-hover:text-[#1A6B52] transition-colors">Checkee {p.label}</div>
                         <div className="text-[#4A5868] text-[13px] mt-0.5">{p.desc}</div>
                       </div>
                     </Link>
@@ -142,34 +106,56 @@ export function Navbar() {
               </div>
             </div>
 
-            <Link href="/pricing" className={linkClass(location === "/pricing")}>
-              Bảng giá
-            </Link>
-            <Link href="/blog" className={linkClass(location === "/blog")}>
-              Tin tức
-            </Link>
-            <Link href="/contact" className={linkClass(location === "/contact")}>
-              Liên hệ
-            </Link>
+            <Link href="/pricing" className={linkClass(location === "/pricing")}>Bảng giá</Link>
+            <Link href="/blog" className={linkClass(location === "/blog")}>Tin tức</Link>
+            <Link href="/contact" className={linkClass(location === "/contact")}>Liên hệ</Link>
           </nav>
 
-                     <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link
-              href="/login"
-              className={`inline-flex items-center gap-2 px-3 py-2 rounded-full text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors ${
-                isTransparent
-                  ? "text-white hover:bg-white/10"
-                  : "text-[#0F1B2D] hover:bg-[#FAFBFC]"
-              }`}
-            >
-              <User className="w-4 h-4" />
-              Đăng nhập
-            </Link>
-            {/* Language switcher — flag-only buttons */}
+            {user ? (
+              <div className="relative" onMouseEnter={openAvatar} onMouseLeave={closeAvatar}>
+                <button className={`flex items-center gap-2.5 px-3 py-1.5 rounded-full transition-colors ${isTransparent ? "hover:bg-white/10" : "hover:bg-[#FAFBFC]"}`}>
+                  <div className="w-8 h-8 rounded-full bg-[#0B4F6C] text-white flex items-center justify-center text-xs font-bold">
+                    {initials}
+                  </div>
+                  <span className={`text-[13px] font-semibold ${isTransparent ? "text-white" : "text-[#0F1B2D]"}`}>
+                    {user.name.split(" ").pop()}
+                  </span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isTransparent ? "text-white/70" : "text-[#7D9E94]"} ${avatarOpen ? "rotate-180" : ""}`} />
+                </button>
+                <div className={`absolute right-0 top-full pt-2 transition-all duration-200 ${avatarOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
+                  <div className="bg-white border border-[#E5EAF0] rounded-xl shadow-xl p-2 w-[200px]">
+                    <div className="px-3 py-2 border-b border-[#E5EAF0] mb-1">
+                      <p className="text-sm font-semibold text-[#0F1B2D]">{user.name}</p>
+                      <p className="text-xs text-[#7D9E94]">{user.email}</p>
+                    </div>
+                    <Link href="/dashboard" className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#FAFBFC] text-[#0F1B2D] text-sm font-semibold" onClick={() => setAvatarOpen(false)}>
+                      <LayoutDashboard className="w-4 h-4 text-[#1A7EA4]" />
+                      Dashboard
+                    </Link>
+                    <button onClick={() => { logout(); setAvatarOpen(false); }} className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-red-50 text-red-500 text-sm font-semibold">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                      Đăng xuất
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={() => openLoginModal()}
+                className={`inline-flex items-center gap-2 px-3 py-2 rounded-full text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors ${isTransparent ? "text-white hover:bg-white/10" : "text-[#0F1B2D] hover:bg-[#FAFBFC]"}`}
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                Đăng nhập
+              </button>
+            )}
+
+            <CtaButton href="/demo">Dùng thử miễn phí</CtaButton>
+
+            {/* Language switcher */}
             <div className="flex items-center gap-1.5 ml-1">
-              {languages.map((l) => {
+              {languages.map(l => {
                 const isActive = l.code === activeLang;
                 return (
                   <button
@@ -179,19 +165,11 @@ export function Navbar() {
                     aria-label={l.label}
                     className={`relative w-9 h-9 rounded-full overflow-hidden border-2 transition-all ${
                       isActive
-                        ? isTransparent
-                          ? "border-[#F2A65A] scale-110 shadow-md"
-                          : "border-[#1A6B52] scale-110 shadow-md"
-                        : isTransparent
-                          ? "border-white/30 hover:border-white/60 opacity-70 hover:opacity-100"
-                          : "border-[#E5EAF0] hover:border-[#0B4F6C] opacity-70 hover:opacity-100"
+                        ? isTransparent ? "border-[#F2A65A] scale-110 shadow-md" : "border-[#1A6B52] scale-110 shadow-md"
+                        : isTransparent ? "border-white/30 hover:border-white/60 opacity-70 hover:opacity-100" : "border-[#E5EAF0] hover:border-[#0B4F6C] opacity-70 hover:opacity-100"
                     }`}
                   >
-                    <img
-                      src={l.flagSrc}
-                      alt={l.label}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
+                    <img src={l.flagSrc} alt={l.label} className="absolute inset-0 w-full h-full object-cover" />
                   </button>
                 );
               })}
@@ -199,103 +177,55 @@ export function Navbar() {
           </div>
 
           {/* Mobile toggle */}
-          <button
-            className={`lg:hidden p-2 ${isTransparent ? "text-white" : "text-[#0F1B2D]"}`}
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Menu"
-          >
+          <button className={`lg:hidden p-2 ${isTransparent ? "text-white" : "text-[#0F1B2D]"}`} onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
             {isOpen ? <X className="h-6 w-6 stroke-[1.5]" /> : <Menu className="h-6 w-6 stroke-[1.5]" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Nav */}
-      <div
-        className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-[#E5EAF0] shadow-lg transition-all duration-300 overflow-hidden ${
-          isOpen ? "max-h-[90vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0"
-        }`}
-      >
+      <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-[#E5EAF0] shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[90vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0"}`}>
         <nav className="flex flex-col p-6 space-y-1 text-[15px] font-medium">
-          <Link
-            href="/"
-            className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold"
-            onClick={() => setIsOpen(false)}
-          >
-            Trang chủ
-          </Link>
-          <button
-            className="flex items-center justify-between py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold"
-            onClick={() => setMobileProductOpen((v) => !v)}
-          >
+          <Link href="/" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Trang chủ</Link>
+          <button className="flex items-center justify-between py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setMobileProductOpen(v => !v)}>
             <span>Giải pháp</span>
             <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`} />
           </button>
           {mobileProductOpen && (
             <div className="bg-[#FAFBFC] rounded-lg p-2 my-2 space-y-1">
-              {products.map((p) => (
-                <Link
-                  key={p.href}
-                  href={p.href}
-                  className="flex items-center gap-3 p-3 text-[#4A5868] hover:text-[#0F1B2D] hover:bg-white rounded-md"
-                  onClick={() => {
-                    setIsOpen(false);
-                    setMobileProductOpen(false);
-                  }}
-                >
+              {products.map(p => (
+                <Link key={p.href} href={p.href} className="flex items-center gap-3 p-3 text-[#4A5868] hover:text-[#0F1B2D] hover:bg-white rounded-md" onClick={() => { setIsOpen(false); setMobileProductOpen(false); }}>
                   <span>{p.icon}</span>
                   <span className="font-semibold">Checkee {p.label}</span>
                 </Link>
               ))}
             </div>
           )}
-          <Link
-            href="/pricing"
-            className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold"
-            onClick={() => setIsOpen(false)}
-          >
-            Bảng giá
-          </Link>
-          <Link
-            href="/blog"
-            className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold"
-            onClick={() => setIsOpen(false)}
-          >
-            Tin tức
-          </Link>
-          <Link
-            href="/contact"
-            className="py-3 text-[#4A5868] hover:text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold"
-            onClick={() => setIsOpen(false)}
-          >
-            Liên hệ
-          </Link>
+          <Link href="/pricing" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Bảng giá</Link>
+          <Link href="/blog" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Tin tức</Link>
+          <Link href="/contact" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Liên hệ</Link>
 
           <div className="pt-4 border-t border-[#E5EAF0] space-y-3">
-            <Link
-              href="/login"
-              className="flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold"
-              onClick={() => setIsOpen(false)}
-            >
-              <User className="w-4 h-4" /> Đăng nhập
-            </Link>
-            <CtaButton href="/demo" className="w-full justify-center">
-              Dùng thử miễn phí
-            </CtaButton>
-            {/* Mobile language switcher — flag buttons */}
+            {user ? (
+              <>
+                <Link href="/dashboard" className="flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>
+                  <LayoutDashboard className="w-4 h-4" /> Dashboard
+                </Link>
+                <button onClick={() => { logout(); setIsOpen(false); }} className="w-full flex items-center justify-center gap-2 py-3 border border-red-100 rounded-full text-red-500 uppercase tracking-wide text-[13px] font-semibold">
+                  Đăng xuất
+                </button>
+              </>
+            ) : (
+              <button onClick={() => { openLoginModal(); setIsOpen(false); }} className="w-full flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold">
+                Đăng nhập
+              </button>
+            )}
+            <CtaButton href="/demo" className="w-full justify-center">Dùng thử miễn phí</CtaButton>
             <div className="flex justify-center gap-3 pt-2">
-              {languages.map((l) => {
+              {languages.map(l => {
                 const isActive = l.code === activeLang;
                 return (
-                  <button
-                    key={l.code}
-                    onClick={() => setActiveLang(l.code)}
-                    aria-label={l.label}
-                    className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${
-                      isActive
-                        ? "border-[#1A6B52] scale-110 shadow"
-                        : "border-[#E5EAF0] opacity-70"
-                    }`}
-                  >
+                  <button key={l.code} onClick={() => setActiveLang(l.code)} aria-label={l.label} className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${isActive ? "border-[#1A6B52] scale-110 shadow" : "border-[#E5EAF0] opacity-70"}`}>
                     <img src={l.flagSrc} alt={l.label} className="absolute inset-0 w-full h-full object-cover" />
                   </button>
                 );

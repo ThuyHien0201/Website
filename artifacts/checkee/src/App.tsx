@@ -4,6 +4,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { AuthProvider } from "@/context/auth-context";
+import { LoginModal } from "@/components/auth/login-modal";
+import { PricingModal } from "@/components/auth/pricing-modal";
 
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
@@ -17,6 +20,8 @@ import DemoPreview from "@/pages/demo-preview";
 import Contact from "@/pages/contact";
 import About from "@/pages/about";
 import Blog from "@/pages/blog";
+import Checkout from "@/pages/checkout";
+import Dashboard from "@/pages/dashboard";
 
 const queryClient = new QueryClient();
 
@@ -24,8 +29,9 @@ function Router() {
   return (
     <div className="min-h-[100dvh] flex flex-col">
       <Switch>
-        {/* Mobile landing pages shouldn't have the main navbar/footer */}
         <Route path="/demo/preview/:type" component={DemoPreview} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/checkout" component={Checkout} />
         <Route>
           <Navbar />
           <main className="flex-1">
@@ -46,6 +52,8 @@ function Router() {
           <Footer />
         </Route>
       </Switch>
+      <LoginModal />
+      <PricingModal />
     </div>
   );
 }
@@ -54,10 +62,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
+        <AuthProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+          <Toaster />
+        </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
