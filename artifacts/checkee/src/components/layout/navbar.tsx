@@ -6,12 +6,14 @@ import { TrialButton } from "@/components/ui/trial-button";
 import { useAuth } from "@/context/auth-context";
 import logoPng from "@/assets/logo.png";
 
+
 const products = [
   { href: "/trace", label: "Trace", desc: "Truy xuất nguồn gốc", icon: "🌱" },
   { href: "/e-label", label: "E-label", desc: "Nhãn điện tử", icon: "📱" },
   { href: "/dpp", label: "DPP", desc: "Hộ chiếu sản phẩm số EU", icon: "🛂" },
   { href: "/fnb", label: "F&B", desc: "Mẫu thử thực phẩm", icon: "🍱" },
 ];
+
 
 const languages = [
   { code: "vi", label: "Tiếng Việt", short: "VI", flagSrc: "https://flagcdn.com/w40/vn.png" },
@@ -25,6 +27,7 @@ export function Navbar() {
   const [mobileProductOpen, setMobileProductOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLang, setActiveLang] = useState("vi");
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const avatarTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -32,6 +35,7 @@ export function Navbar() {
   const { user, logout, openLoginModal } = useAuth();
 
   useEffect(() => {
+    
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     handleScroll();
@@ -73,18 +77,27 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 z-50 w-full">
-      <div className={`transition-all duration-300 ${isTransparent ? "bg-transparent" : "bg-white shadow-sm"}`}>
-        <div className="container flex items-center justify-between px-6 md:px-10 max-w-[1440px] mx-auto h-[72px] lg:h-[80px]">
-          <Link href="/" className="flex items-center shrink-0">
-            <img
-              src={logoPng}
-              alt="Checkee"
-              className={`h-9 md:h-10 object-contain transition-all ${isTransparent ? "brightness-0 invert" : ""}`}
-            />
-          </Link>
+      <div
+        className={`transition-all duration-300 ${
+          isTransparent ? "bg-transparent" : "bg-white shadow-sm"
+        }`}
+      >
+        <div className="container mx-auto max-w-[1440px] px-6 md:px-10">
+          <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+            {/* Logo */}
+            <Link href="/" className="flex items-center shrink-0 mr-10">
+              <img
+                src={logoPng}
+                alt="Checkee"
+                className={`h-9 md:h-10 object-contain transition-all ${
+                  isTransparent ? "brightness-0 invert" : ""
+                }`}
+              />
+            </Link>
+
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-7 xl:gap-9 flex-1">
             <Link href="/" className={linkClass(location === "/")}>Trang chủ</Link>
 
             <div className="relative h-full flex items-center" onMouseEnter={openMenu} onMouseLeave={scheduleClose}>
@@ -113,7 +126,7 @@ export function Navbar() {
           </nav>
 
           {/* Right actions */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             {user ? (
               <div className="relative" onMouseEnter={openAvatar} onMouseLeave={closeAvatar}>
                 <button className={`flex items-center gap-2.5 px-3 py-1.5 rounded-full transition-colors ${isTransparent ? "hover:bg-white/10" : "hover:bg-[#FAFBFC]"}`}>
@@ -154,35 +167,69 @@ export function Navbar() {
 
             <TrialButton />
 
-            {/* Language switcher */}
-            <div className="flex items-center gap-1.5 ml-1">
-              {languages.map(l => {
-                const isActive = l.code === activeLang;
-                return (
-                  <button
-                    key={l.code}
-                    onClick={() => setActiveLang(l.code)}
-                    title={l.label}
-                    aria-label={l.label}
-                    className={`relative w-9 h-9 rounded-full overflow-hidden border-2 transition-all ${
-                      isActive
-                        ? isTransparent ? "border-[#F2A65A] scale-110 shadow-md" : "border-[#1A6B52] scale-110 shadow-md"
-                        : isTransparent ? "border-white/30 hover:border-white/60 opacity-70 hover:opacity-100" : "border-[#E5EAF0] hover:border-[#0B4F6C] opacity-70 hover:opacity-100"
-                    }`}
-                  >
-                    <img src={l.flagSrc} alt={l.label} className="absolute inset-0 w-full h-full object-cover" />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+            {/* Language switcher dropdown */}
+            <div className="relative ml-1">
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className={`flex items-center gap-2 px-2 py-1 rounded-full border transition-all ${
+                  isTransparent
+                    ? "border-white/30 bg-white/10 text-white"
+                    : "border-[#E5EAF0] bg-white text-[#0F1B2D]"
+                }`}
+              >
+                {/* Active flag */}
+                <img
+                  src={languages.find(l => l.code === activeLang)?.flagSrc}
+                  alt={languages.find(l => l.code === activeLang)?.label}
+                  className="w-6 h-6 rounded-full object-cover"
+                />
 
-          {/* Mobile toggle */}
-          <button className={`lg:hidden p-2 ${isTransparent ? "text-white" : "text-[#0F1B2D]"}`} onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
-            {isOpen ? <X className="h-6 w-6 stroke-[1.5]" /> : <Menu className="h-6 w-6 stroke-[1.5]" />}
-          </button>
-        </div>
-      </div>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {/* Dropdown menu */}
+              {isLangOpen && (
+                <div
+                  className={`absolute right-0 mt-2 w-40 rounded-xl shadow-lg overflow-hidden z-50 ${
+                    isTransparent
+                      ? "bg-[#1A1A1A]/95 border border-white/10"
+                      : "bg-white border border-[#E5EAF0]"
+                  }`}
+                >
+                  {languages.map(l => {
+                    const isActive = l.code === activeLang;
+
+                    return (
+                      <button
+                        key={l.code}
+                        onClick={() => {
+                          setActiveLang(l.code);
+                          setIsLangOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-3 px-3 py-2 text-sm transition-all ${
+                          isActive
+                            ? isTransparent
+                              ? "bg-white/10 text-[#F2A65A]"
+                              : "bg-[#F5F9FC] text-[#1A6B52]"
+                            : isTransparent
+                            ? "text-white hover:bg-white/10"
+                            : "text-[#0F1B2D] hover:bg-[#F5F9FC]"
+                        }`}
+                      >
+                        <img
+                          src={l.flagSrc}
+                          alt={l.label}
+                          className="w-5 h-5 rounded-full object-cover"
+                        />
+
+                        <span>{l.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            </div>
 
       {/* Mobile Nav */}
       <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-[#E5EAF0] shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[90vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0"}`}>
@@ -233,8 +280,8 @@ export function Navbar() {
               })}
             </div>
           </div>
-        </nav>
+       
       </div>
     </header>
   );
-}
+{"}"}

@@ -71,17 +71,18 @@ export function LoginModal() {
         <div className="p-8">
           <div className="flex bg-[#F4F6F8] rounded-full p-1 mb-6">
             <button
+              onClick={() => setMode("login")}
+              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "login" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+            >
+             Đăng nhập
+            </button>
+            <button
               onClick={() => setMode("register")}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "register" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
             >
               Đăng ký
             </button>
-            <button
-              onClick={() => setMode("login")}
-              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "login" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
-            >
-              Đã có tài khoản
-            </button>
+            
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
