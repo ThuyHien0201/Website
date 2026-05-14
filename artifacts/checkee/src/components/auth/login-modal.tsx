@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, Eye, EyeOff, Loader2 } from "lucide-react";
+import { X, Eye, EyeOff, Loader2, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,8 +11,9 @@ export function LoginModal() {
   const { showLoginModal, login, register, closeLoginModal, user, loginRedirect } = useAuth();
   const [, navigate] = useLocation();
   const [mode, setMode] = useState<"login" | "register">("register");
+  const [loginMethod, setLoginMethod] = useState<"email" | "phone">("email");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,17 +26,27 @@ export function LoginModal() {
     if (loginRedirect) navigate(loginRedirect);
   };
 
+  const validateInput = () => {
+    if (!emailOrPhone || !password) return "Vui lòng điền đầy đủ thông tin.";
+    if (mode === "register" && !name) return "Vui lòng nhập họ tên.";
+    if (loginMethod === "email" && !emailOrPhone.includes("@")) return "Email không hợp lệ.";
+    if (loginMethod === "phone" && !/^(0|\+84)[0-9]{8,10}$/.test(emailOrPhone.replace(/\s/g, ""))) {
+      return "Số điện thoại không hợp lệ (VD: 0901234567).";
+    }
+    return null;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    if (!email || !password) { setError("Vui lòng điền đầy đủ thông tin."); return; }
-    if (mode === "register" && !name) { setError("Vui lòng nhập họ tên."); return; }
+    const validationError = validateInput();
+    if (validationError) { setError(validationError); return; }
     try {
       setLoading(true);
       if (mode === "login") {
-        await login(email, password);
+        await login(emailOrPhone, password);
       } else {
-        await register(name, email, password);
+        await register(name, emailOrPhone, password);
       }
       afterLogin();
     } catch {
@@ -52,9 +63,17 @@ export function LoginModal() {
     afterLogin();
   };
 
+  const switchMode = (m: "login" | "register") => {
+    setMode(m);
+    setError("");
+    setEmailOrPhone("");
+    setPassword("");
+    setName("");
+  };
+
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closeLoginModal} />
       <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-[440px] overflow-hidden">
         <div className="bg-gradient-to-br from-[#0B4F6C] to-[#1A7EA4] p-8 text-white text-center">
           <img src={logoPng} alt="Checkee" className="h-8 mx-auto mb-4 brightness-0 invert" />
@@ -71,18 +90,17 @@ export function LoginModal() {
         <div className="p-8">
           <div className="flex bg-[#F4F6F8] rounded-full p-1 mb-6">
             <button
-              onClick={() => setMode("login")}
+              onClick={() => switchMode("login")}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "login" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
             >
-             Đăng nhập
+              Đăng nhập
             </button>
             <button
-              onClick={() => setMode("register")}
+              onClick={() => switchMode("register")}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "register" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
             >
               Đăng ký
             </button>
-            
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -99,12 +117,32 @@ export function LoginModal() {
             )}
 
             <div className="space-y-1.5">
-              <Label className="text-[#0B4F6C] font-semibold text-sm">Email</Label>
+              <div className="flex items-center justify-between">
+                <Label className="text-[#0B4F6C] font-semibold text-sm">
+                  {loginMethod === "email" ? "Email" : "Số điện thoại"}
+                </Label>
+                <div className="flex items-center gap-1 bg-[#F4F6F8] rounded-full p-0.5">
+                  <button
+                    type="button"
+                    onClick={() => { setLoginMethod("email"); setEmailOrPhone(""); setError(""); }}
+                    className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${loginMethod === "email" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+                  >
+                    <Mail className="w-3 h-3" /> Email
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setLoginMethod("phone"); setEmailOrPhone(""); setError(""); }}
+                    className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${loginMethod === "phone" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+                  >
+                    <Phone className="w-3 h-3" /> SĐT
+                  </button>
+                </div>
+              </div>
               <Input
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder="email@doanhnghiep.com"
+                type={loginMethod === "email" ? "email" : "tel"}
+                value={emailOrPhone}
+                onChange={e => setEmailOrPhone(e.target.value)}
+                placeholder={loginMethod === "email" ? "email@doanhnghiep.com" : "0901234567"}
                 className="h-11 rounded-xl border-[#E5EAF0]"
               />
             </div>

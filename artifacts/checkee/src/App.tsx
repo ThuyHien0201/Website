@@ -22,6 +22,7 @@ import About from "@/pages/about";
 import Blog from "@/pages/blog";
 import Checkout from "@/pages/checkout";
 import Dashboard from "@/pages/dashboard";
+import Admin from "@/pages/admin";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ function Router() {
         <Route path="/demo/preview/:type" component={DemoPreview} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/admin" component={Admin} />
         <Route>
           <Navbar />
           <main className="flex-1">

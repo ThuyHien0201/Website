@@ -153,8 +153,8 @@ function HeroSlider() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl space-y-7"
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight drop-shadow-lg">
-            Minh bạch chuỗi cung ứng,<br />
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] tracking-tight drop-shadow-lg">
+            Minh bạch chuỗi cung ứng <br />
             <span className="text-[#F2A65A]">nâng tầm thương hiệu Việt.</span>
           </h1>
 
@@ -183,10 +183,7 @@ function HeroSlider() {
               <div className="text-3xl font-bold text-white">1,234<span className="text-[#F2A65A]">+</span></div>
               <div className="text-xs uppercase tracking-widest text-white/70 mt-1">Doanh nghiệp tin dùng</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-white">10/10</div>
-              <div className="text-xs uppercase tracking-widest text-white/70 mt-1">Tuân thủ TT 02/2024</div>
-            </div>
+            
           </div>
         </motion.div>
       </div>
@@ -240,54 +237,14 @@ export default function Home() {
     <div className="flex flex-col w-full bg-white">
       {/* 1. HERO — bright slider with 3 backgrounds */}
       <HeroSlider />
-
-      {/* 2b. PARTNER MARQUEE — matbao-style scrolling logos */}
-      <section id="partners" className="py-20 bg-white border-y border-[#E5EAF0] scroll-mt-24">
-        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center mb-12">
-          <h2 className="text-3xl lg:text-5xl font-bold text-[#0F1B2D] leading-tight">
-            Đồng hành cùng các <span className="text-[#C45B17]">đối tác hàng đầu</span>
-          </h2>
-          <p className="text-[#4A5868] text-base lg:text-lg mt-4 max-w-3xl mx-auto leading-relaxed">
-            Kết nối cùng những đối tác uy tín hàng đầu, chúng tôi mang đến giải pháp công nghệ toàn diện, hỗ trợ doanh nghiệp bạn phát triển bền vững.
-          </p>
-        </div>
-
-        <div className="space-y-5 marquee-mask">
-          {[
-            { logos: partnerRow1, dir: "marquee-left" },
-            { logos: partnerRow2, dir: "marquee-right" },
-            { logos: partnerRow3, dir: "marquee-left" },
-          ].map((row, ri) => (
-            <div key={ri} className="overflow-hidden">
-              <div className={`marquee-track ${row.dir} gap-5`}>
-                {[...row.logos, ...row.logos, ...row.logos, ...row.logos].map((p, i) => (
-                  <div
-                    key={`${ri}-${i}`}
-                    className="flex-shrink-0 bg-white rounded-2xl shadow-[0_4px_18px_rgb(0,0,0,0.06)] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-[180px] h-[88px] flex items-center justify-center px-5"
-                  >
-                    <PartnerLogo domain={p.domain} name={p.name} color={p.color} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* 4. SOLUTION BLOCKS — replaces "Featured Products" with free trial CTAs */}
       <section id="solutions" className="py-24 bg-[#FAFBFC] scroll-mt-20">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div className="max-w-2xl">
-              <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
-                BỘ GIẢI PHÁP CHECKEE
-              </span>
               <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">
                 Giải pháp cho mọi quy mô doanh nghiệp
               </h2>
-              <p className="text-[#4A5868] text-base lg:text-lg mt-4 leading-relaxed">
-                Năm giải pháp chuyên biệt — chọn ngay gói phù hợp với ngành hàng và quy mô của bạn.
-              </p>
             </div>
             <Link
               href="/pricing"
@@ -343,12 +300,13 @@ export default function Home() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div className="max-w-2xl">
-              <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
-                TIN TỨC GẦN ĐÂY
-              </span>
+             
               <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">
                 Câu chuyện cùng Checkee
               </h2>
+              <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
+                TIN TỨC GẦN ĐÂY
+              </span>
             </div>
             <Link
               href="/blog"
@@ -420,6 +378,40 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* 2b. PARTNER MARQUEE — matbao-style scrolling logos */}
+      <section id="partners" className="py-20 bg-white border-y border-[#E5EAF0] scroll-mt-24">
+        <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center mb-12">
+          <h2 className="text-3xl lg:text-5xl font-bold text-[#0F1B2D] leading-tight">
+            Đồng hành cùng các <span className="text-[#C45B17]">đối tác hàng đầu</span>
+          </h2>
+          <p className="text-[#4A5868] text-base lg:text-lg mt-4 max-w-3xl mx-auto leading-relaxed">
+            Kết nối cùng những đối tác uy tín hàng đầu, chúng tôi mang đến giải pháp công nghệ toàn diện, hỗ trợ doanh nghiệp bạn phát triển bền vững.
+          </p>
+        </div>
+
+        <div className="space-y-5 marquee-mask">
+          {[
+            { logos: partnerRow1, dir: "marquee-left" },
+            { logos: partnerRow2, dir: "marquee-right" },
+            { logos: partnerRow3, dir: "marquee-left" },
+          ].map((row, ri) => (
+            <div key={ri} className="overflow-hidden">
+              <div className={`marquee-track ${row.dir} gap-5`}>
+                {[...row.logos, ...row.logos, ...row.logos, ...row.logos].map((p, i) => (
+                  <div
+                    key={`${ri}-${i}`}
+                    className="flex-shrink-0 bg-white rounded-2xl shadow-[0_4px_18px_rgb(0,0,0,0.06)] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-[180px] h-[88px] flex items-center justify-center px-5"
+                  >
+                    <PartnerLogo domain={p.domain} name={p.name} color={p.color} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+     
 
       {/* 8. TESTIMONIALS */}
       <section className="py-24 bg-[#F5E8DC]">

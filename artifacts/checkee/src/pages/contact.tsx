@@ -32,8 +32,8 @@ export default function Contact() {
                       <Input placeholder="Nhập họ và tên..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-[#0B4F6C] font-semibold">Email *</Label>
-                      <Input type="email" placeholder="Địa chỉ email công việc..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
+                      <Label className="text-[#0B4F6C] font-semibold">Email </Label>
+                      <Input type="email" placeholder="Địa chỉ email liên hệ..." className="bg-[#FAFBFC] border-[#E5EAF0]" />
                     </div>
                   </div>
                   
@@ -80,7 +80,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-[#D9EEF5] text-sm uppercase tracking-wider font-semibold mb-1">Hotline tư vấn</div>
-                    <div className="text-3xl font-bold">1900 1234</div>
+                    <div className="text-3xl font-bold">0919802882</div>
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-[#7D9E94] text-sm uppercase tracking-wider font-semibold mb-1">Email hỗ trợ</div>
-                  <div className="text-lg font-bold text-[#0F1B2D]">hello@checkee.vn</div>
+                  <div className="text-lg font-bold text-[#0F1B2D]">support@checkee.vn</div>
                 </div>
               </div>
               
@@ -102,24 +102,13 @@ export default function Contact() {
                 <div>
                   <div className="text-[#7D9E94] text-sm uppercase tracking-wider font-semibold mb-1">Văn phòng TP.HCM</div>
                   <div className="text-base font-medium text-[#0F1B2D] leading-relaxed">
-                    Tầng 12, Tòa nhà Viettel<br/>
-                    285 Cách Mạng Tháng Tám, Quận 10
+                    1.06 Chung cư Asianacaple<br/>
+                    184 Trần Văn Kiểu, Phường Bình Phú, Hồ Chí Minh
                   </div>
                 </div>
               </div>
               
-              <div className="bg-white border border-[#E5EAF0] rounded-2xl p-8 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#D4EDE6] flex items-center justify-center shrink-0">
-                  <Clock className="w-6 h-6 text-[#1A6B52]" />
-                </div>
-                <div>
-                  <div className="text-[#7D9E94] text-sm uppercase tracking-wider font-semibold mb-1">Giờ làm việc</div>
-                  <div className="text-base font-medium text-[#0F1B2D]">
-                    Thứ Hai - Thứ Sáu<br/>
-                    08:00 - 17:30
-                  </div>
-                </div>
-              </div>
+           
             </div>
             
           </div>

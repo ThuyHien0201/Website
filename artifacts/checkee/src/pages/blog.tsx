@@ -57,12 +57,9 @@ export default function Blog() {
 
   return (
     <div className="flex flex-col w-full bg-white font-sans min-h-[100dvh]">
-      <section className="pt-32 pb-24 bg-[#FAFBFC] border-b border-[#E5EAF0]">
+      <section className="pt-32 pb-20 bg-[#FAFBFC] border-b border-[#E5EAF0]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] mb-6">Tin tức & Tài nguyên</h1>
-          <p className="text-lg text-[#4A5868] max-w-2xl mx-auto mb-10">
-            Cập nhật kiến thức pháp lý, xu hướng công nghệ và kinh nghiệm triển khai số hóa chuỗi cung ứng.
-          </p>
           
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((cat, i) => (

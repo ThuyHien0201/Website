@@ -229,59 +229,62 @@ export function Navbar() {
                 </div>
               )}
             </div>
-            </div>
-
-      {/* Mobile Nav */}
-      <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-[#E5EAF0] shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[90vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0"}`}>
-        <nav className="flex flex-col p-6 space-y-1 text-[15px] font-medium">
-          <Link href="/" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Trang chủ</Link>
-          <button className="flex items-center justify-between py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setMobileProductOpen(v => !v)}>
-            <span>Giải pháp</span>
-            <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`} />
-          </button>
-          {mobileProductOpen && (
-            <div className="bg-[#FAFBFC] rounded-lg p-2 my-2 space-y-1">
-              {products.map(p => (
-                <Link key={p.href} href={p.href} className="flex items-center gap-3 p-3 text-[#4A5868] hover:text-[#0F1B2D] hover:bg-white rounded-md" onClick={() => { setIsOpen(false); setMobileProductOpen(false); }}>
-                  <span>{p.icon}</span>
-                  <span className="font-semibold">Checkee {p.label}</span>
-                </Link>
-              ))}
-            </div>
-          )}
-          <Link href="/pricing" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Bảng giá</Link>
-          <Link href="/blog" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Tin tức</Link>
-          <Link href="/contact" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Liên hệ</Link>
-
-          <div className="pt-4 border-t border-[#E5EAF0] space-y-3">
-            {user ? (
-              <>
-                <Link href="/dashboard" className="flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>
-                  <LayoutDashboard className="w-4 h-4" /> Dashboard
-                </Link>
-                <button onClick={() => { logout(); setIsOpen(false); }} className="w-full flex items-center justify-center gap-2 py-3 border border-red-100 rounded-full text-red-500 uppercase tracking-wide text-[13px] font-semibold">
-                  Đăng xuất
-                </button>
-              </>
-            ) : (
-              <button onClick={() => { openLoginModal(); setIsOpen(false); }} className="w-full flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold">
-                Đăng nhập
-              </button>
-            )}
-            <TrialButton className="w-full justify-center" />
-            <div className="flex justify-center gap-3 pt-2">
-              {languages.map(l => {
-                const isActive = l.code === activeLang;
-                return (
-                  <button key={l.code} onClick={() => setActiveLang(l.code)} aria-label={l.label} className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${isActive ? "border-[#1A6B52] scale-110 shadow" : "border-[#E5EAF0] opacity-70"}`}>
-                    <img src={l.flagSrc} alt={l.label} className="absolute inset-0 w-full h-full object-cover" />
-                  </button>
-                );
-              })}
-            </div>
           </div>
-       
+        </div>
       </div>
-    </header>
+    </div>
+
+    {/* Mobile Nav */}
+    <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-[#E5EAF0] shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[90vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0"}`}>
+      <nav className="flex flex-col p-6 space-y-1 text-[15px] font-medium">
+        <Link href="/" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Trang chủ</Link>
+        <button className="flex items-center justify-between py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setMobileProductOpen(v => !v)}>
+          <span>Giải pháp</span>
+          <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`} />
+        </button>
+        {mobileProductOpen && (
+          <div className="bg-[#FAFBFC] rounded-lg p-2 my-2 space-y-1">
+            {products.map(p => (
+              <Link key={p.href} href={p.href} className="flex items-center gap-3 p-3 text-[#4A5868] hover:text-[#0F1B2D] hover:bg-white rounded-md" onClick={() => { setIsOpen(false); setMobileProductOpen(false); }}>
+                <span>{p.icon}</span>
+                <span className="font-semibold">Checkee {p.label}</span>
+              </Link>
+            ))}
+          </div>
+        )}
+        <Link href="/pricing" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Bảng giá</Link>
+        <Link href="/blog" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Tin tức</Link>
+        <Link href="/contact" className="py-3 text-[#4A5868] hover:text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Liên hệ</Link>
+
+        <div className="pt-4 border-t border-[#E5EAF0] space-y-3">
+          {user ? (
+            <>
+              <Link href="/dashboard" className="flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>
+                <LayoutDashboard className="w-4 h-4" /> Dashboard
+              </Link>
+              <button onClick={() => { logout(); setIsOpen(false); }} className="w-full flex items-center justify-center gap-2 py-3 border border-red-100 rounded-full text-red-500 uppercase tracking-wide text-[13px] font-semibold">
+                Đăng xuất
+              </button>
+            </>
+          ) : (
+            <button onClick={() => { openLoginModal(); setIsOpen(false); }} className="w-full flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold">
+              Đăng nhập
+            </button>
+          )}
+          <TrialButton className="w-full justify-center" />
+          <div className="flex justify-center gap-3 pt-2">
+            {languages.map(l => {
+              const isActive = l.code === activeLang;
+              return (
+                <button key={l.code} onClick={() => setActiveLang(l.code)} aria-label={l.label} className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${isActive ? "border-[#1A6B52] scale-110 shadow" : "border-[#E5EAF0] opacity-70"}`}>
+                  <img src={l.flagSrc} alt={l.label} className="absolute inset-0 w-full h-full object-cover" />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
   );
-{"}"}
+}

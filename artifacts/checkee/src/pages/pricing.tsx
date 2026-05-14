@@ -18,16 +18,16 @@ export default function Pricing() {
 
   return (
     <div className="flex flex-col w-full bg-white font-sans min-h-[100dvh]">
-      <section className="pt-32 pb-24 lg:pt-48 lg:pb-32 bg-[#FAFBFC] border-b border-[#E5EAF0]">
+      <section className="pt-24 pb-20 lg:pt-36 lg:pb-24 bg-[#FAFBFC] border-b border-[#E5EAF0]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-6">
-            <div className="text-[11px] uppercase tracking-[0.15em] text-[#C45B17] font-semibold">Đầu tư cho thương hiệu</div>
-            <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight">
+          <div className="max-w-2xl mx-auto text-center">
+
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#FFF3E8] border border-[#F5D2B8] text-[11px] uppercase tracking-[0.15em] text-[#C45B17] font-semibold">
+              Đầu tư cho thương hiệu
+            </div>
+            <h1 className="mt-5 text-4xl lg:text-5xl font-bold text-[#0B4F6C] leading-[1.15] tracking-tight">
               Bảng giá minh bạch
             </h1>
-            <p className="text-[#4A5868] text-lg leading-relaxed">
-              Chi phí được thiết kế linh hoạt cho mọi quy mô doanh nghiệp. Thanh toán hàng năm.
-            </p>
           </div>
         </div>
       </section>
