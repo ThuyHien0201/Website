@@ -231,7 +231,8 @@ export default function Demo() {
 
                         <div className="space-y-4">
                           <div className="space-y-1.5">
-                            <Label className="text-[#0B4F6C] font-semibold">Vùng / Địa chỉ sản xuất</Label>
+                            
+                            <Label className="text-[#0B4F6C] font-semibold">Địa chỉ sản xuất</Label>
                             <Input value={formData.region} onChange={e => setFormData({...formData, region: e.target.value})} placeholder="VD: Lâm Đồng, Việt Nam" />
                           </div>
                           <div className="space-y-1.5">
