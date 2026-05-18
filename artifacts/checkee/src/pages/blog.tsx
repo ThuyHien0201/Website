@@ -59,11 +59,11 @@ export default function Blog() {
     <div className="flex flex-col w-full bg-white font-sans min-h-[100dvh]">
       <section className="pt-32 pb-20 bg-[#FAFBFC] border-b border-[#E5EAF0]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] mb-6">Tin tức & Tài nguyên</h1>
+          <h1 className="text-4xl lg:text-6xl font-bold text-[#0c964b] mb-6">Tin tức & Tài nguyên</h1>
           
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((cat, i) => (
-              <button key={i} className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${i === 0 ? 'bg-[#0B4F6C] text-white' : 'bg-white border border-[#E5EAF0] text-[#4A5868] hover:bg-[#E5EAF0]'}`}>
+              <button key={i} className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${i === 0 ? 'bg-[#0c964b] text-white' : 'bg-white border border-[#E5EAF0] text-[#4A5868] hover:bg-[#E5EAF0]'}`}>
                 {cat}
               </button>
             ))}
@@ -77,21 +77,21 @@ export default function Blog() {
             {articles.map((article, i) => (
               <article key={i} className="group bg-white rounded-2xl overflow-hidden border border-[#E5EAF0] shadow-sm hover:shadow-xl transition-all">
                 <div className="aspect-video relative overflow-hidden">
-                  <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase">
+                  <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur text-[#0c964b] px-3 py-1 rounded-full text-xs font-semibold uppercase">
                     {article.category}
                   </div>
                   <img src={article.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={article.title} />
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-[#0B4F6C] mb-3 group-hover:text-[#1A7EA4] transition-colors leading-snug line-clamp-2">
+                  <h3 className="text-xl font-bold text-[#0c964b] mb-3 group-hover:text-[#0c964b] transition-colors leading-snug line-clamp-2">
                     <Link href="#">{article.title}</Link>
                   </h3>
                   <p className="text-[#4A5868] text-sm mb-6 line-clamp-2">{article.excerpt}</p>
                   
                   <div className="flex items-center justify-between pt-4 border-t border-[#E5EAF0]">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#D9EEF5] text-[#0B4F6C] flex items-center justify-center text-xs font-bold">
+                      <div className="w-8 h-8 rounded-full bg-[#dcf0e6] text-[#0c964b] flex items-center justify-center text-xs font-bold">
                         {article.author.split(' ').map(n=>n[0]).join('')}
                       </div>
                       <div>

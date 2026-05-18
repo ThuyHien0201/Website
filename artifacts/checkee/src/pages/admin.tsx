@@ -95,13 +95,13 @@ export default function Admin() {
   const statusBadge = (status: string) => {
     if (status === "active") return <span className="inline-flex items-center gap-1 bg-[#D4EDE6] text-[#1A6B52] text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-[#1A6B52]" />Hoạt động</span>;
     if (status === "expired") return <span className="inline-flex items-center gap-1 bg-red-50 text-red-500 text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-red-500" />Hết hạn</span>;
-    return <span className="inline-flex items-center gap-1 bg-[#FFF3E8] text-[#C45B17] text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-[#C45B17]" />Dùng thử</span>;
+    return <span className="inline-flex items-center gap-1 bg-[#fef3e2] text-[#ed8302] text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-[#ed8302]" />Dùng thử</span>;
   };
 
   const certBadge = (status: string) => {
     if (status === "valid") return <span className="inline-flex items-center gap-1 bg-[#D4EDE6] text-[#1A6B52] text-xs font-semibold px-2 py-0.5 rounded-full"><CheckCircle2 className="w-3 h-3" />Hợp lệ</span>;
     if (status === "rejected") return <span className="inline-flex items-center gap-1 bg-red-50 text-red-500 text-xs font-semibold px-2 py-0.5 rounded-full"><XCircle className="w-3 h-3" />Từ chối</span>;
-    return <span className="inline-flex items-center gap-1 bg-[#FFF3E8] text-[#C45B17] text-xs font-semibold px-2 py-0.5 rounded-full"><Clock className="w-3 h-3" />Chờ duyệt</span>;
+    return <span className="inline-flex items-center gap-1 bg-[#fef3e2] text-[#ed8302] text-xs font-semibold px-2 py-0.5 rounded-full"><Clock className="w-3 h-3" />Chờ duyệt</span>;
   };
 
   const allCustomersForDisplay = [
@@ -124,23 +124,23 @@ export default function Admin() {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-[100dvh] bg-gradient-to-br from-[#0B4F6C] to-[#1A7EA4] flex items-center justify-center p-4">
+      <div className="min-h-[100dvh] bg-gradient-to-br from-[#0c964b] to-[#0c964b] flex items-center justify-center p-4">
         <div className="bg-white rounded-3xl shadow-2xl w-full max-w-[420px] overflow-hidden">
           <div className="p-8 text-center border-b border-[#E5EAF0]">
             <button onClick={() => navigate("/")} className="block mx-auto mb-4">
               <img src={logoPng} alt="Checkee" className="h-9 mx-auto" />
             </button>
-            <h2 className="text-xl font-bold text-[#0B4F6C]">Admin Panel</h2>
+            <h2 className="text-xl font-bold text-[#0c964b]">Admin Panel</h2>
             <p className="text-sm text-[#7D9E94] mt-1">Đăng nhập với tài khoản quản trị</p>
           </div>
           <div className="p-8">
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-1.5">
-                <Label className="text-[#0B4F6C] font-semibold text-sm">Email admin</Label>
+                <Label className="text-[#0c964b] font-semibold text-sm">Email admin</Label>
                 <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@checkee.vn" className="h-11 rounded-xl border-[#E5EAF0]" />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-[#0B4F6C] font-semibold text-sm">Mật khẩu</Label>
+                <Label className="text-[#0c964b] font-semibold text-sm">Mật khẩu</Label>
                 <div className="relative">
                   <Input type={showPass ? "text" : "password"} value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" className="h-11 rounded-xl border-[#E5EAF0] pr-10" />
                   <button type="button" onClick={() => setShowPass(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7D9E94]">
@@ -149,7 +149,7 @@ export default function Admin() {
                 </div>
               </div>
               {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
-              <Button type="submit" disabled={loading} className="w-full h-11 rounded-full bg-[#0B4F6C] hover:bg-[#0A3F5A] text-white font-semibold">
+              <Button type="submit" disabled={loading} className="w-full h-11 rounded-full bg-[#0c964b] hover:bg-[#085c35] text-white font-semibold">
                 {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Đăng nhập"}
               </Button>
             </form>
@@ -172,7 +172,7 @@ export default function Admin() {
           <span className="text-xs font-bold text-red-500 uppercase tracking-wide">Admin</span>
         </div>
         <div className="flex-1" />
-        <button onClick={() => navigate("/")} className="text-xs text-[#7D9E94] hover:text-[#0B4F6C] font-semibold">
+        <button onClick={() => navigate("/")} className="text-xs text-[#7D9E94] hover:text-[#0c964b] font-semibold">
           Xem website
         </button>
         <button onClick={() => setIsLoggedIn(false)} className="flex items-center gap-1.5 text-xs text-[#7D9E94] hover:text-red-500 transition-colors px-3 py-2 rounded-full hover:bg-red-50">
@@ -185,13 +185,13 @@ export default function Admin() {
         <aside className="w-56 shrink-0 bg-white border-r border-[#E5EAF0] hidden md:flex flex-col p-3 gap-1">
           <button
             onClick={() => setTab("marketing")}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "marketing" ? "bg-[#0B4F6C] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0B4F6C]"}`}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "marketing" ? "bg-[#0c964b] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0c964b]"}`}
           >
             <Megaphone className="w-4 h-4 shrink-0" /> Quản lý Marketing
           </button>
           <button
             onClick={() => setTab("customers")}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "customers" ? "bg-[#0B4F6C] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0B4F6C]"}`}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "customers" ? "bg-[#0c964b] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0c964b]"}`}
           >
             <Users className="w-4 h-4 shrink-0" /> Quản lý Khách hàng
           </button>
@@ -203,7 +203,7 @@ export default function Admin() {
           {tab === "marketing" && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-xl font-bold text-[#0B4F6C]">Quản lý Marketing</h1>
+                <h1 className="text-xl font-bold text-[#0c964b]">Quản lý Marketing</h1>
               </div>
 
               {/* Sub-tabs */}
@@ -216,7 +216,7 @@ export default function Admin() {
                   <button
                     key={s.key}
                     onClick={() => setMarketingSection(s.key)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border transition-all ${marketingSection === s.key ? "bg-[#0B4F6C] text-white border-[#0B4F6C]" : "border-[#E5EAF0] text-[#4A5868] hover:border-[#0B4F6C] hover:text-[#0B4F6C]"}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border transition-all ${marketingSection === s.key ? "bg-[#0c964b] text-white border-[#0c964b]" : "border-[#E5EAF0] text-[#4A5868] hover:border-[#0c964b] hover:text-[#0c964b]"}`}
                   >
                     <s.icon className="w-4 h-4" /> {s.label}
                   </button>
@@ -229,7 +229,7 @@ export default function Admin() {
                   {/* Hero Section */}
                   <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-bold text-[#0B4F6C] flex items-center gap-2"><LayoutGrid className="w-4 h-4" /> Hero Section</h3>
+                      <h3 className="font-bold text-[#0c964b] flex items-center gap-2"><LayoutGrid className="w-4 h-4" /> Hero Section</h3>
                       {editingHero
                         ? <div className="flex gap-2">
                             <Button onClick={() => setEditingHero(false)} size="sm" className="h-8 rounded-full bg-[#1A6B52] text-white text-xs"><Save className="w-3 h-3 mr-1" />Lưu</Button>
@@ -241,15 +241,15 @@ export default function Admin() {
                     {editingHero ? (
                       <div className="space-y-4">
                         <div className="space-y-1.5">
-                          <Label className="text-[#0B4F6C] text-sm font-semibold">Tiêu đề chính (H1)</Label>
+                          <Label className="text-[#0c964b] text-sm font-semibold">Tiêu đề chính (H1)</Label>
                           <Textarea value={heroTitle} onChange={e => setHeroTitle(e.target.value)} rows={2} className="rounded-xl border-[#E5EAF0] text-sm" />
                         </div>
                         <div className="space-y-1.5">
-                          <Label className="text-[#0B4F6C] text-sm font-semibold">Mô tả ngắn</Label>
+                          <Label className="text-[#0c964b] text-sm font-semibold">Mô tả ngắn</Label>
                           <Textarea value={heroSubtitle} onChange={e => setHeroSubtitle(e.target.value)} rows={3} className="rounded-xl border-[#E5EAF0] text-sm" />
                         </div>
                         <div className="space-y-1.5">
-                          <Label className="text-[#0B4F6C] text-sm font-semibold">Nút CTA</Label>
+                          <Label className="text-[#0c964b] text-sm font-semibold">Nút CTA</Label>
                           <Input value={ctaText} onChange={e => setCtaText(e.target.value)} className="h-9 rounded-xl border-[#E5EAF0] text-sm" />
                         </div>
                       </div>
@@ -257,14 +257,14 @@ export default function Admin() {
                       <div className="bg-[#FAFBFC] rounded-xl p-4 space-y-2">
                         <p className="font-bold text-[#0F1B2D] text-lg leading-snug">{heroTitle}</p>
                         <p className="text-sm text-[#4A5868]">{heroSubtitle}</p>
-                        <div className="inline-block bg-[#C45B17] text-white text-xs font-bold px-4 py-1.5 rounded-full mt-1">{ctaText}</div>
+                        <div className="inline-block bg-[#ed8302] text-white text-xs font-bold px-4 py-1.5 rounded-full mt-1">{ctaText}</div>
                       </div>
                     )}
                   </div>
 
                   {/* Section Toggles */}
                   <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm">
-                    <h3 className="font-bold text-[#0B4F6C] flex items-center gap-2 mb-4"><Settings2 className="w-4 h-4" /> Hiển thị Sections</h3>
+                    <h3 className="font-bold text-[#0c964b] flex items-center gap-2 mb-4"><Settings2 className="w-4 h-4" /> Hiển thị Sections</h3>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {SECTION_TOGGLES.map(s => (
                         <div key={s.key} className="flex items-center justify-between p-3 border border-[#E5EAF0] rounded-xl">
@@ -286,25 +286,25 @@ export default function Admin() {
               {marketingSection === "news" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-[#0B4F6C]">Bài viết Tin tức ({news.length})</h3>
-                    <Button onClick={() => setAddingNews(true)} className="h-9 rounded-full bg-[#C45B17] hover:bg-[#D6711A] text-white text-sm px-4">
+                    <h3 className="font-bold text-[#0c964b]">Bài viết Tin tức ({news.length})</h3>
+                    <Button onClick={() => setAddingNews(true)} className="h-9 rounded-full bg-[#ed8302] hover:bg-[#d47200] text-white text-sm px-4">
                       <Plus className="w-4 h-4 mr-1" /> Thêm bài viết
                     </Button>
                   </div>
 
                   {addingNews && (
-                    <div className="bg-white rounded-2xl border-2 border-[#1A7EA4] p-6 shadow-sm space-y-4">
-                      <h4 className="font-bold text-[#0B4F6C]">Bài viết mới</h4>
+                    <div className="bg-white rounded-2xl border-2 border-[#0c964b] p-6 shadow-sm space-y-4">
+                      <h4 className="font-bold text-[#0c964b]">Bài viết mới</h4>
                       <div className="space-y-1.5">
-                        <Label className="text-[#0B4F6C] text-sm font-semibold">Tiêu đề bài viết</Label>
+                        <Label className="text-[#0c964b] text-sm font-semibold">Tiêu đề bài viết</Label>
                         <Input value={newTitle} onChange={e => setNewTitle(e.target.value)} placeholder="Nhập tiêu đề..." className="h-10 rounded-xl border-[#E5EAF0]" />
                       </div>
                       <div className="space-y-1.5">
-                        <Label className="text-[#0B4F6C] text-sm font-semibold">Tóm tắt</Label>
+                        <Label className="text-[#0c964b] text-sm font-semibold">Tóm tắt</Label>
                         <Textarea value={newSummary} onChange={e => setNewSummary(e.target.value)} rows={3} placeholder="Mô tả ngắn về bài viết..." className="rounded-xl border-[#E5EAF0]" />
                       </div>
                       <div className="flex gap-2">
-                        <Button onClick={addNews} className="h-9 rounded-full bg-[#0B4F6C] text-white text-sm"><Save className="w-4 h-4 mr-1" />Lưu bài viết</Button>
+                        <Button onClick={addNews} className="h-9 rounded-full bg-[#0c964b] text-white text-sm"><Save className="w-4 h-4 mr-1" />Lưu bài viết</Button>
                         <Button onClick={() => setAddingNews(false)} variant="outline" className="h-9 rounded-full text-sm">Huỷ</Button>
                       </div>
                     </div>
@@ -313,8 +313,8 @@ export default function Admin() {
                   <div className="space-y-3">
                     {news.map(article => (
                       <div key={article.id} className="bg-white rounded-2xl border border-[#E5EAF0] p-5 shadow-sm flex items-start gap-4">
-                        <div className="w-10 h-10 bg-[#D9EEF5] rounded-xl flex items-center justify-center shrink-0">
-                          <Newspaper className="w-5 h-5 text-[#0B4F6C]" />
+                        <div className="w-10 h-10 bg-[#dcf0e6] rounded-xl flex items-center justify-center shrink-0">
+                          <Newspaper className="w-5 h-5 text-[#0c964b]" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="font-bold text-[#0F1B2D] truncate">{article.title}</p>
@@ -342,8 +342,8 @@ export default function Admin() {
               {marketingSection === "images" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-[#0B4F6C]">Hình ảnh & Banner</h3>
-                    <Button className="h-9 rounded-full bg-[#0B4F6C] text-white text-sm px-4">
+                    <h3 className="font-bold text-[#0c964b]">Hình ảnh & Banner</h3>
+                    <Button className="h-9 rounded-full bg-[#0c964b] text-white text-sm px-4">
                       <Plus className="w-4 h-4 mr-1" /> Upload ảnh
                     </Button>
                   </div>
@@ -363,7 +363,7 @@ export default function Admin() {
                         </div>
                       </div>
                     ))}
-                    <div className="bg-white rounded-xl border-2 border-dashed border-[#E5EAF0] h-[156px] flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-[#1A7EA4] transition-colors">
+                    <div className="bg-white rounded-xl border-2 border-dashed border-[#E5EAF0] h-[156px] flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-[#0c964b] transition-colors">
                       <Plus className="w-8 h-8 text-[#E5EAF0]" />
                       <span className="text-xs text-[#7D9E94]">Thêm ảnh</span>
                     </div>
@@ -377,17 +377,17 @@ export default function Admin() {
           {tab === "customers" && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h1 className="text-xl font-bold text-[#0B4F6C]">Quản lý Khách hàng</h1>
+                <h1 className="text-xl font-bold text-[#0c964b]">Quản lý Khách hàng</h1>
                 <div className="text-sm text-[#7D9E94]">{allCustomersForDisplay.length} khách hàng</div>
               </div>
 
               {/* Summary Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  { label: "Tổng khách hàng", value: allCustomersForDisplay.length.toString(), icon: Users, color: "bg-[#D9EEF5] text-[#0B4F6C]" },
+                  { label: "Tổng khách hàng", value: allCustomersForDisplay.length.toString(), icon: Users, color: "bg-[#dcf0e6] text-[#0c964b]" },
                   { label: "Đang hoạt động", value: allCustomersForDisplay.filter(c => c.status === "active").length.toString(), icon: CheckCircle2, color: "bg-[#D4EDE6] text-[#1A6B52]" },
                   { label: "Hết hạn", value: allCustomersForDisplay.filter(c => c.status === "expired").length.toString(), icon: AlertTriangle, color: "bg-red-50 text-red-500" },
-                  { label: "Chờ duyệt chứng nhận", value: allCustomersForDisplay.reduce((acc, c) => acc + c.certs.filter(cert => cert.status === "pending").length, 0).toString(), icon: Clock, color: "bg-[#FFF3E8] text-[#C45B17]" },
+                  { label: "Chờ duyệt chứng nhận", value: allCustomersForDisplay.reduce((acc, c) => acc + c.certs.filter(cert => cert.status === "pending").length, 0).toString(), icon: Clock, color: "bg-[#fef3e2] text-[#ed8302]" },
                 ].map((stat, i) => (
                   <div key={i} className="bg-white rounded-2xl border border-[#E5EAF0] p-5 shadow-sm">
                     <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 ${stat.color}`}>
@@ -402,7 +402,7 @@ export default function Admin() {
               {/* Customer List */}
               <div className="bg-white rounded-2xl border border-[#E5EAF0] shadow-sm overflow-hidden">
                 <div className="p-5 border-b border-[#E5EAF0]">
-                  <h3 className="font-bold text-[#0B4F6C]">Danh sách khách hàng</h3>
+                  <h3 className="font-bold text-[#0c964b]">Danh sách khách hàng</h3>
                 </div>
                 <div className="divide-y divide-[#F4F6F8]">
                   {allCustomersForDisplay.map(customer => (
@@ -411,7 +411,7 @@ export default function Admin() {
                         className="flex items-center gap-4 px-5 py-4 hover:bg-[#FAFBFC] cursor-pointer transition-colors"
                         onClick={() => setExpandedCustomer(expandedCustomer === customer.id ? null : customer.id)}
                       >
-                        <div className="w-10 h-10 rounded-full bg-[#0B4F6C] text-white flex items-center justify-center text-sm font-bold shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-[#0c964b] text-white flex items-center justify-center text-sm font-bold shrink-0">
                           {customer.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -420,7 +420,7 @@ export default function Admin() {
                         </div>
                         <div className="hidden md:flex items-center gap-6 text-sm">
                           <div className="text-center">
-                            <p className="font-bold text-[#0B4F6C]">{customer.plan}</p>
+                            <p className="font-bold text-[#0c964b]">{customer.plan}</p>
                             <p className="text-xs text-[#7D9E94]">Gói</p>
                           </div>
                           <div className="text-center">
@@ -438,7 +438,7 @@ export default function Admin() {
                           {statusBadge(customer.status)}
                         </div>
                         {customer.certs.some(c => c.status === "pending") && (
-                          <span className="bg-[#FFF3E8] text-[#C45B17] text-xs font-semibold px-2 py-0.5 rounded-full shrink-0">
+                          <span className="bg-[#fef3e2] text-[#ed8302] text-xs font-semibold px-2 py-0.5 rounded-full shrink-0">
                             {customer.certs.filter(c => c.status === "pending").length} chờ duyệt
                           </span>
                         )}
@@ -460,8 +460,8 @@ export default function Admin() {
                               { icon: QrCode, label: "QR kích hoạt", value: `${customer.qrActivated} mã` },
                             ].map((item, i) => (
                               <div key={i} className="bg-white rounded-xl border border-[#E5EAF0] p-3 flex items-center gap-3">
-                                <div className="w-8 h-8 bg-[#D9EEF5] rounded-lg flex items-center justify-center shrink-0">
-                                  <item.icon className="w-4 h-4 text-[#0B4F6C]" />
+                                <div className="w-8 h-8 bg-[#dcf0e6] rounded-lg flex items-center justify-center shrink-0">
+                                  <item.icon className="w-4 h-4 text-[#0c964b]" />
                                 </div>
                                 <div>
                                   <p className="text-xs text-[#7D9E94]">{item.label}</p>
@@ -479,15 +479,15 @@ export default function Admin() {
 
                           {/* Certs */}
                           <div>
-                            <p className="text-sm font-bold text-[#0B4F6C] mb-3">Chứng nhận & Chứng chỉ</p>
+                            <p className="text-sm font-bold text-[#0c964b] mb-3">Chứng nhận & Chứng chỉ</p>
                             {customer.certs.length === 0 ? (
                               <p className="text-sm text-[#7D9E94] italic">Khách hàng chưa upload chứng nhận nào.</p>
                             ) : (
                               <div className="space-y-2">
                                 {customer.certs.map(cert => (
                                   <div key={cert.id} className="flex items-center gap-3 bg-white rounded-xl border border-[#E5EAF0] p-3">
-                                    <div className="w-8 h-8 bg-[#D9EEF5] rounded-lg flex items-center justify-center shrink-0">
-                                      <FileText className="w-4 h-4 text-[#0B4F6C]" />
+                                    <div className="w-8 h-8 bg-[#dcf0e6] rounded-lg flex items-center justify-center shrink-0">
+                                      <FileText className="w-4 h-4 text-[#0c964b]" />
                                     </div>
                                     <div className="flex-1 min-w-0">
                                       <p className="text-sm font-semibold text-[#0F1B2D]">{cert.name}</p>

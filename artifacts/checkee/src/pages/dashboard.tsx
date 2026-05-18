@@ -105,7 +105,7 @@ export default function Dashboard() {
       </span>
     );
     return (
-      <span className="inline-flex items-center gap-1.5 bg-[#FFF3E8] text-[#C45B17] text-xs font-semibold px-3 py-1 rounded-full">
+      <span className="inline-flex items-center gap-1.5 bg-[#fef3e2] text-[#ed8302] text-xs font-semibold px-3 py-1 rounded-full">
         <Clock className="w-3.5 h-3.5" /> Chờ xác nhận
       </span>
     );
@@ -116,7 +116,7 @@ export default function Dashboard() {
 
       {/* Expiry Notification Banner */}
       {showExpiryBanner && (
-        <div className={`relative px-6 py-3 flex items-center gap-3 text-sm font-semibold ${isExpired ? "bg-red-500 text-white" : "bg-[#FFF3E8] text-[#C45B17] border-b border-[#F2A65A]/30"}`}>
+        <div className={`relative px-6 py-3 flex items-center gap-3 text-sm font-semibold ${isExpired ? "bg-red-500 text-white" : "bg-[#fef3e2] text-[#ed8302] border-b border-[#fdba74]/30"}`}>
           <AlertTriangle className="w-4 h-4 shrink-0" />
           {isExpired
             ? `⚠️ Gói ${activePlan?.name} của bạn đã hết hạn. Vui lòng gia hạn để tiếp tục sử dụng đầy đủ tính năng.`
@@ -153,7 +153,7 @@ export default function Dashboard() {
             <p className="text-sm font-semibold text-[#0F1B2D]">{user.name}</p>
             <p className="text-xs text-[#7D9E94]">{user.phone || user.email}</p>
           </div>
-          <div className="w-9 h-9 rounded-full bg-[#0B4F6C] text-white flex items-center justify-center text-sm font-bold">{initials}</div>
+          <div className="w-9 h-9 rounded-full bg-[#0c964b] text-white flex items-center justify-center text-sm font-bold">{initials}</div>
           <button onClick={handleLogout} className="flex items-center gap-1.5 text-xs text-[#7D9E94] hover:text-red-500 transition-colors px-2">
             <LogOut className="w-4 h-4" />
             <span className="hidden sm:inline">Đăng xuất</span>
@@ -165,21 +165,21 @@ export default function Dashboard() {
         {/* Sidebar */}
         <aside className="w-64 shrink-0 bg-white border-r border-[#E5EAF0] hidden md:flex flex-col">
           {activePlan ? (
-            <div className="m-4 p-4 bg-[#D9EEF5] rounded-xl">
+            <div className="m-4 p-4 bg-[#dcf0e6] rounded-xl">
               <div className="flex items-center gap-2 mb-1">
-                <ShieldCheck className="w-4 h-4 text-[#0B4F6C]" />
-                <span className="text-xs font-bold text-[#0B4F6C] uppercase tracking-wide">Gói hiện tại</span>
+                <ShieldCheck className="w-4 h-4 text-[#0c964b]" />
+                <span className="text-xs font-bold text-[#0c964b] uppercase tracking-wide">Gói hiện tại</span>
               </div>
-              <p className="font-bold text-[#0B4F6C]">{activePlan.name}</p>
+              <p className="font-bold text-[#0c964b]">{activePlan.name}</p>
               {planExpiryDate && (
-                <p className={`text-xs mt-0.5 font-semibold ${isExpired ? "text-red-500" : isExpiringSoon ? "text-[#C45B17]" : "text-[#4A5868]"}`}>
+                <p className={`text-xs mt-0.5 font-semibold ${isExpired ? "text-red-500" : isExpiringSoon ? "text-[#ed8302]" : "text-[#4A5868]"}`}>
                   {isExpired ? "⚠️ Đã hết hạn" : `Hết hạn: ${planExpiryDate.toLocaleDateString("vi-VN")}`}
                 </p>
               )}
             </div>
           ) : (
-            <div className="m-4 p-4 bg-[#FFF3E8] rounded-xl border border-[#F2A65A]/30">
-              <p className="text-xs font-bold text-[#C45B17] uppercase tracking-wide mb-1">Demo</p>
+            <div className="m-4 p-4 bg-[#fef3e2] rounded-xl border border-[#fdba74]/30">
+              <p className="text-xs font-bold text-[#ed8302] uppercase tracking-wide mb-1">Demo</p>
               <p className="text-sm text-[#4A5868]">Tài khoản dùng thử</p>
             </div>
           )}
@@ -188,7 +188,7 @@ export default function Dashboard() {
               <button
                 key={item.id}
                 onClick={() => setTab(item.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold mb-1 transition-all ${tab === item.id ? "bg-[#0B4F6C] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0B4F6C]"}`}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold mb-1 transition-all ${tab === item.id ? "bg-[#0c964b] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0c964b]"}`}
               >
                 <item.icon className="w-4 h-4 shrink-0" />
                 {item.label}
@@ -203,7 +203,7 @@ export default function Dashboard() {
           {businessInfo && (
             <div className="m-4 p-3 bg-[#FAFBFC] border border-[#E5EAF0] rounded-xl text-xs text-[#4A5868]">
               <Building2 className="w-3.5 h-3.5 inline mr-1 text-[#7D9E94]" />
-              <span className="font-semibold text-[#0B4F6C]">{businessInfo.companyName}</span>
+              <span className="font-semibold text-[#0c964b]">{businessInfo.companyName}</span>
             </div>
           )}
         </aside>
@@ -215,10 +215,10 @@ export default function Dashboard() {
             <div className="space-y-6">
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  { label: "Tổng mã QR", value: allQRs.length.toString(), icon: QrCode, color: "bg-[#D9EEF5] text-[#0B4F6C]" },
+                  { label: "Tổng mã QR", value: allQRs.length.toString(), icon: QrCode, color: "bg-[#dcf0e6] text-[#0c964b]" },
                   { label: "Lượt quét hôm nay", value: "42", icon: TrendingUp, color: "bg-[#D4EDE6] text-[#1A6B52]" },
-                  { label: "Sản phẩm hoạt động", value: MOCK_SKUS.length.toString(), icon: Package, color: "bg-[#FFF3E8] text-[#C45B17]" },
-                  { label: "Lần tạo gần nhất", value: "Hôm nay", icon: Clock, color: "bg-[#F0F4FF] text-[#1B4FA0]" },
+                  { label: "Sản phẩm hoạt động", value: MOCK_SKUS.length.toString(), icon: Package, color: "bg-[#fef3e2] text-[#ed8302]" },
+                  { label: "Lần tạo gần nhất", value: "Hôm nay", icon: Clock, color: "bg-[#f0fdf4] text-[#1B4FA0]" },
                 ].map((stat, i) => (
                   <div key={i} className="bg-white rounded-2xl border border-[#E5EAF0] p-5 shadow-sm">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${stat.color}`}>
@@ -231,12 +231,12 @@ export default function Dashboard() {
               </div>
               <div className="bg-white rounded-2xl border border-[#E5EAF0] shadow-sm">
                 <div className="flex items-center gap-3 p-5 border-b border-[#E5EAF0]">
-                  <h2 className="font-bold text-[#0B4F6C] flex-1">Lịch sử mã QR</h2>
+                  <h2 className="font-bold text-[#0c964b] flex-1">Lịch sử mã QR</h2>
                   <div className="relative">
                     <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#7D9E94]" />
                     <Input value={search} onChange={e => setSearch(e.target.value)} placeholder="Tìm kiếm..." className="h-9 pl-9 rounded-xl border-[#E5EAF0] w-48 text-sm" />
                   </div>
-                  <Button onClick={() => navigate("/demo")} className="h-9 rounded-full bg-[#C45B17] hover:bg-[#D6711A] text-white text-sm font-semibold px-4">
+                  <Button onClick={() => navigate("/demo")} className="h-9 rounded-full bg-[#ed8302] hover:bg-[#d47200] text-white text-sm font-semibold px-4">
                     <Plus className="w-4 h-4 mr-1" /> Tạo mới
                   </Button>
                 </div>
@@ -256,13 +256,13 @@ export default function Dashboard() {
                     <tbody>
                       {filteredQRs.map((qr, i) => (
                         <tr key={i} className="border-t border-[#F4F6F8] hover:bg-[#FAFBFC] transition-colors">
-                          <td className="px-5 py-3.5 font-mono text-xs text-[#0B4F6C] font-semibold">{qr.id}</td>
+                          <td className="px-5 py-3.5 font-mono text-xs text-[#0c964b] font-semibold">{qr.id}</td>
                           <td className="px-5 py-3.5 font-semibold text-[#0F1B2D]">{qr.product}</td>
                           <td className="px-5 py-3.5 text-[#4A5868] hidden lg:table-cell">{qr.sku}</td>
                           <td className="px-5 py-3.5 text-[#4A5868] hidden lg:table-cell">{qr.batch}</td>
                           <td className="px-5 py-3.5 text-[#4A5868]">{qr.date}</td>
-                          <td className="px-5 py-3.5 text-right font-semibold text-[#0B4F6C]">{qr.scans}</td>
-                          <td className="px-5 py-3.5"><button className="text-[#7D9E94] hover:text-[#0B4F6C]"><Download className="w-4 h-4" /></button></td>
+                          <td className="px-5 py-3.5 text-right font-semibold text-[#0c964b]">{qr.scans}</td>
+                          <td className="px-5 py-3.5"><button className="text-[#7D9E94] hover:text-[#0c964b]"><Download className="w-4 h-4" /></button></td>
                         </tr>
                       ))}
                     </tbody>
@@ -277,8 +277,8 @@ export default function Dashboard() {
           {tab === "sku" && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-[#0B4F6C]">Quản lý SKU sản phẩm</h2>
-                <Button className="h-9 rounded-full bg-[#0B4F6C] hover:bg-[#0A3F5A] text-white text-sm px-4">
+                <h2 className="text-xl font-bold text-[#0c964b]">Quản lý SKU sản phẩm</h2>
+                <Button className="h-9 rounded-full bg-[#0c964b] hover:bg-[#085c35] text-white text-sm px-4">
                   <Plus className="w-4 h-4 mr-1" /> Thêm SKU
                 </Button>
               </div>
@@ -297,16 +297,16 @@ export default function Dashboard() {
                   <tbody>
                     {MOCK_SKUS.map((sku, i) => (
                       <tr key={i} className="border-t border-[#F4F6F8] hover:bg-[#FAFBFC] transition-colors">
-                        <td className="px-5 py-3.5 font-mono text-xs text-[#0B4F6C] font-semibold">{sku.code}</td>
+                        <td className="px-5 py-3.5 font-mono text-xs text-[#0c964b] font-semibold">{sku.code}</td>
                         <td className="px-5 py-3.5 font-semibold text-[#0F1B2D]">{sku.name}</td>
                         <td className="px-5 py-3.5 text-[#4A5868]">{sku.category}</td>
-                        <td className="px-5 py-3.5 text-right text-[#0B4F6C] font-semibold">{sku.qrCount}</td>
+                        <td className="px-5 py-3.5 text-right text-[#0c964b] font-semibold">{sku.qrCount}</td>
                         <td className="px-5 py-3.5 text-center">
                           <span className="inline-flex items-center gap-1 bg-[#D4EDE6] text-[#1A6B52] text-xs font-semibold px-2.5 py-1 rounded-full">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#1A6B52]" /> Hoạt động
                           </span>
                         </td>
-                        <td className="px-5 py-3.5"><button className="text-[#7D9E94] hover:text-[#0B4F6C]"><ChevronRight className="w-4 h-4" /></button></td>
+                        <td className="px-5 py-3.5"><button className="text-[#7D9E94] hover:text-[#0c964b]"><ChevronRight className="w-4 h-4" /></button></td>
                       </tr>
                     ))}
                   </tbody>
@@ -320,21 +320,21 @@ export default function Dashboard() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold text-[#0B4F6C]">Chứng chỉ & Chứng nhận</h2>
+                  <h2 className="text-xl font-bold text-[#0c964b]">Chứng chỉ & Chứng nhận</h2>
                   <p className="text-sm text-[#7D9E94] mt-0.5">Upload chứng nhận để admin xác thực. Sau khi duyệt, chứng nhận sẽ hiển thị trên trang sản phẩm.</p>
                 </div>
               </div>
 
               {/* Upload Zone */}
               <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm space-y-4">
-                <h3 className="font-bold text-[#0B4F6C]">Upload chứng nhận mới</h3>
+                <h3 className="font-bold text-[#0c964b]">Upload chứng nhận mới</h3>
                 <div className="grid sm:grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <Label className="text-[#0B4F6C] text-sm font-semibold">Chọn loại chứng nhận</Label>
+                    <Label className="text-[#0c964b] text-sm font-semibold">Chọn loại chứng nhận</Label>
                     <select
                       value={certName}
                       onChange={e => { setCertName(e.target.value); if (e.target.value !== "other") setCustomCertName(""); }}
-                      className="flex h-10 w-full rounded-xl border border-[#E5EAF0] bg-transparent px-3 py-1 text-sm text-[#0F1B2D] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#1A7EA4]"
+                      className="flex h-10 w-full rounded-xl border border-[#E5EAF0] bg-transparent px-3 py-1 text-sm text-[#0F1B2D] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#0c964b]"
                     >
                       <option value="">-- Chọn loại chứng nhận --</option>
                       {CERT_SUGGESTIONS.map(c => <option key={c} value={c === "Chứng nhận khác" ? "other" : c}>{c}</option>)}
@@ -342,7 +342,7 @@ export default function Dashboard() {
                   </div>
                   {(certName === "other" || !certName) && (
                     <div className="space-y-1.5">
-                      <Label className="text-[#0B4F6C] text-sm font-semibold">Tên chứng nhận (tự nhập)</Label>
+                      <Label className="text-[#0c964b] text-sm font-semibold">Tên chứng nhận (tự nhập)</Label>
                       <Input value={customCertName} onChange={e => setCustomCertName(e.target.value)} placeholder="VD: FSSC 22000, BRC..." className="h-10 rounded-xl border-[#E5EAF0]" />
                     </div>
                   )}
@@ -354,7 +354,7 @@ export default function Dashboard() {
                     if (!certName && !customCertName.trim()) { alert("Vui lòng chọn hoặc nhập tên chứng nhận."); return; }
                     fileInputRef.current?.click();
                   }}
-                  className="w-full h-24 border-2 border-dashed border-[#E5EAF0] rounded-xl flex flex-col items-center justify-center gap-2 hover:border-[#1A7EA4] hover:bg-[#F0F9FF] transition-colors text-[#7D9E94] cursor-pointer"
+                  className="w-full h-24 border-2 border-dashed border-[#E5EAF0] rounded-xl flex flex-col items-center justify-center gap-2 hover:border-[#0c964b] hover:bg-[#F0F9FF] transition-colors text-[#7D9E94] cursor-pointer"
                 >
                   <Upload className="w-6 h-6" />
                   <span className="text-sm font-medium">Nhấn để chọn file (PDF, JPG, PNG)</span>
@@ -371,11 +371,11 @@ export default function Dashboard() {
                 </div>
               ) : (
                 <div className="space-y-3">
-                  <h3 className="font-bold text-[#0B4F6C]">Chứng nhận đã upload ({userCerts.length})</h3>
+                  <h3 className="font-bold text-[#0c964b]">Chứng nhận đã upload ({userCerts.length})</h3>
                   {userCerts.map(cert => (
                     <div key={cert.id} className="bg-white rounded-2xl border border-[#E5EAF0] p-5 shadow-sm flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${cert.status === "valid" ? "bg-[#D4EDE6]" : cert.status === "rejected" ? "bg-red-50" : "bg-[#FFF3E8]"}`}>
-                        {cert.status === "valid" ? <CheckCircle2 className="w-6 h-6 text-[#1A6B52]" /> : cert.status === "rejected" ? <XCircle className="w-6 h-6 text-red-500" /> : <Clock className="w-6 h-6 text-[#C45B17]" />}
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${cert.status === "valid" ? "bg-[#D4EDE6]" : cert.status === "rejected" ? "bg-red-50" : "bg-[#fef3e2]"}`}>
+                        {cert.status === "valid" ? <CheckCircle2 className="w-6 h-6 text-[#1A6B52]" /> : cert.status === "rejected" ? <XCircle className="w-6 h-6 text-red-500" /> : <Clock className="w-6 h-6 text-[#ed8302]" />}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-3 flex-wrap">
@@ -388,7 +388,7 @@ export default function Dashboard() {
                           <p className="text-xs text-red-500 mt-1 font-medium">Chứng nhận bị từ chối. Vui lòng liên hệ admin để biết thêm chi tiết.</p>
                         )}
                         {cert.status === "pending" && (
-                          <p className="text-xs text-[#C45B17] mt-1">Đang chờ admin xác nhận. Thường trong vòng 1–2 ngày làm việc.</p>
+                          <p className="text-xs text-[#ed8302] mt-1">Đang chờ admin xác nhận. Thường trong vòng 1–2 ngày làm việc.</p>
                         )}
                       </div>
                       <button onClick={() => removeUserCert(cert.id)} className="text-[#7D9E94] hover:text-red-500 transition-colors shrink-0 p-1">
@@ -405,8 +405,8 @@ export default function Dashboard() {
           {tab === "staff" && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-[#0B4F6C]">Phân quyền nhân viên</h2>
-                <Button className="h-9 rounded-full bg-[#0B4F6C] hover:bg-[#0A3F5A] text-white text-sm px-4">
+                <h2 className="text-xl font-bold text-[#0c964b]">Phân quyền nhân viên</h2>
+                <Button className="h-9 rounded-full bg-[#0c964b] hover:bg-[#085c35] text-white text-sm px-4">
                   <Plus className="w-4 h-4 mr-1" /> Thêm tài khoản
                 </Button>
               </div>
@@ -425,10 +425,10 @@ export default function Dashboard() {
                       <tr key={i} className="border-t border-[#F4F6F8] hover:bg-[#FAFBFC]">
                         <td className="px-5 py-3.5 font-semibold text-[#0F1B2D]">{s.name}</td>
                         <td className="px-5 py-3.5 text-[#4A5868]">{s.email}</td>
-                        <td className="px-5 py-3.5"><span className="bg-[#D9EEF5] text-[#0B4F6C] text-xs font-semibold px-2.5 py-1 rounded-full">{s.role}</span></td>
+                        <td className="px-5 py-3.5"><span className="bg-[#dcf0e6] text-[#0c964b] text-xs font-semibold px-2.5 py-1 rounded-full">{s.role}</span></td>
                         <td className="px-5 py-3.5 text-center">
-                          <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full ${s.status === "Hoạt động" ? "bg-[#D4EDE6] text-[#1A6B52]" : "bg-[#FFF3E8] text-[#C45B17]"}`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${s.status === "Hoạt động" ? "bg-[#1A6B52]" : "bg-[#C45B17]"}`} />{s.status}
+                          <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full ${s.status === "Hoạt động" ? "bg-[#D4EDE6] text-[#1A6B52]" : "bg-[#fef3e2] text-[#ed8302]"}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${s.status === "Hoạt động" ? "bg-[#1A6B52]" : "bg-[#ed8302]"}`} />{s.status}
                           </span>
                         </td>
                       </tr>
@@ -442,7 +442,7 @@ export default function Dashboard() {
           {/* Contracts Tab */}
           {tab === "contracts" && (
             <div className="space-y-6">
-              <h2 className="text-xl font-bold text-[#0B4F6C]">Hợp đồng & Hóa đơn</h2>
+              <h2 className="text-xl font-bold text-[#0c964b]">Hợp đồng & Hóa đơn</h2>
               {activePlan ? (
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
@@ -450,16 +450,16 @@ export default function Dashboard() {
                     { title: "Hóa đơn VAT #INV-2026-001", date: "10/05/2026", expires: null, status: "Đã thanh toán" },
                   ].map((doc, i) => (
                     <div key={i} className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#D9EEF5] rounded-xl flex items-center justify-center shrink-0">
-                        <FileText className="w-6 h-6 text-[#0B4F6C]" />
+                      <div className="w-12 h-12 bg-[#dcf0e6] rounded-xl flex items-center justify-center shrink-0">
+                        <FileText className="w-6 h-6 text-[#0c964b]" />
                       </div>
                       <div className="flex-1">
-                        <p className="font-bold text-[#0B4F6C] mb-1">{doc.title}</p>
+                        <p className="font-bold text-[#0c964b] mb-1">{doc.title}</p>
                         <p className="text-xs text-[#7D9E94]">Ngày: {doc.date}</p>
                         {doc.expires && <p className="text-xs text-[#7D9E94]">Hết hạn: {doc.expires}</p>}
-                        <span className={`inline-block mt-2 text-xs font-semibold px-2.5 py-1 rounded-full ${doc.status === "Hết hạn" ? "bg-red-50 text-red-500" : doc.status === "Hiệu lực" ? "bg-[#D4EDE6] text-[#1A6B52]" : "bg-[#D9EEF5] text-[#0B4F6C]"}`}>{doc.status}</span>
+                        <span className={`inline-block mt-2 text-xs font-semibold px-2.5 py-1 rounded-full ${doc.status === "Hết hạn" ? "bg-red-50 text-red-500" : doc.status === "Hiệu lực" ? "bg-[#D4EDE6] text-[#1A6B52]" : "bg-[#dcf0e6] text-[#0c964b]"}`}>{doc.status}</span>
                       </div>
-                      <button className="text-[#1A7EA4] hover:text-[#0B4F6C]"><Download className="w-5 h-5" /></button>
+                      <button className="text-[#0c964b] hover:text-[#0c964b]"><Download className="w-5 h-5" /></button>
                     </div>
                   ))}
                 </div>
@@ -467,7 +467,7 @@ export default function Dashboard() {
                 <div className="bg-white rounded-2xl border border-[#E5EAF0] p-12 text-center">
                   <FileText className="w-12 h-12 text-[#E5EAF0] mx-auto mb-4" />
                   <p className="text-[#7D9E94]">Chưa có hợp đồng. Nâng cấp gói để bắt đầu.</p>
-                  <Button onClick={() => setTab("upgrade")} className="mt-4 rounded-full bg-[#C45B17] text-white">Xem gói nâng cấp</Button>
+                  <Button onClick={() => setTab("upgrade")} className="mt-4 rounded-full bg-[#ed8302] text-white">Xem gói nâng cấp</Button>
                 </div>
               )}
             </div>
@@ -476,12 +476,12 @@ export default function Dashboard() {
           {/* Upgrade Tab */}
           {tab === "upgrade" && (
             <div className="space-y-6">
-              <h2 className="text-xl font-bold text-[#0B4F6C]">Nâng cấp & Gia hạn</h2>
+              <h2 className="text-xl font-bold text-[#0c964b]">Nâng cấp & Gia hạn</h2>
               {activePlan && (
-                <div className={`rounded-2xl p-5 flex items-center gap-4 ${isExpired ? "bg-red-50 border border-red-100" : "bg-[#D9EEF5]"}`}>
-                  <ShieldCheck className={`w-8 h-8 shrink-0 ${isExpired ? "text-red-500" : "text-[#0B4F6C]"}`} />
+                <div className={`rounded-2xl p-5 flex items-center gap-4 ${isExpired ? "bg-red-50 border border-red-100" : "bg-[#dcf0e6]"}`}>
+                  <ShieldCheck className={`w-8 h-8 shrink-0 ${isExpired ? "text-red-500" : "text-[#0c964b]"}`} />
                   <div>
-                    <p className={`font-bold ${isExpired ? "text-red-600" : "text-[#0B4F6C]"}`}>
+                    <p className={`font-bold ${isExpired ? "text-red-600" : "text-[#0c964b]"}`}>
                       {isExpired ? `⚠️ Gói ${activePlan.name} đã hết hạn` : `Đang dùng gói ${activePlan.name}`}
                     </p>
                     <p className="text-sm text-[#4A5868]">
@@ -501,8 +501,8 @@ export default function Dashboard() {
                 ].map((plan, i) => {
                   const isCurrent = activePlan?.name === plan.name && !isExpired;
                   return (
-                    <div key={i} className={`bg-white rounded-2xl border p-5 shadow-sm ${plan.highlight && !isCurrent ? "border-[#C45B17] border-2" : "border-[#E5EAF0]"}`}>
-                      <h3 className="font-bold text-[#0B4F6C] mb-1">{plan.name}</h3>
+                    <div key={i} className={`bg-white rounded-2xl border p-5 shadow-sm ${plan.highlight && !isCurrent ? "border-[#ed8302] border-2" : "border-[#E5EAF0]"}`}>
+                      <h3 className="font-bold text-[#0c964b] mb-1">{plan.name}</h3>
                       <p className="text-xl font-bold text-[#0F1B2D] mb-4">{plan.price}<span className="text-xs text-[#7D9E94] font-normal">đ/năm</span></p>
                       {isCurrent ? (
                         <Button disabled className="w-full rounded-full h-9 text-sm bg-[#D4EDE6] text-[#1A6B52] border-none">
@@ -510,7 +510,7 @@ export default function Dashboard() {
                         </Button>
                       ) : (
                         <Button onClick={() => navigate(`/checkout?plan=${encodeURIComponent(plan.name)}&price=${plan.price}&period=${encodeURIComponent("/năm")}`)}
-                          className={`w-full rounded-full h-9 text-sm ${plan.highlight ? "bg-[#C45B17] hover:bg-[#D6711A] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0B4F6C] hover:bg-[#E5EAF0]"}`}>
+                          className={`w-full rounded-full h-9 text-sm ${plan.highlight ? "bg-[#ed8302] hover:bg-[#d47200] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0c964b] hover:bg-[#E5EAF0]"}`}>
                           {activePlan && !isExpired ? "Chuyển gói" : isExpired ? "Gia hạn" : "Đăng ký"}
                         </Button>
                       )}

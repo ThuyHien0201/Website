@@ -16,13 +16,14 @@ import {
 } from "lucide-react";
 
 const heroSlides = [
+  "/images/hero-vietnam-trace.png",
   "/images/hero-bright-1.png",
   "/images/hero-bright-2.png",
   "/images/hero-bright-3.png",
 ];
 
 const partnerLogos = [
-  { name: "Vinamilk", domain: "vinamilk.com.vn", color: "#0B4F6C" },
+  { name: "Vinamilk", domain: "vinamilk.com.vn", color: "#0c964b" },
   { name: "Vinasoy", domain: "vinasoy.com", color: "#1A6B52" },
   { name: "Mobifone", domain: "mobifone.vn", color: "#1B4FA0" },
   { name: "Viettel", domain: "viettel.vn", color: "#E8472C" },
@@ -31,14 +32,14 @@ const partnerLogos = [
   { name: "Phúc Long", domain: "phuclong.com.vn", color: "#1A6B52" },
   { name: "Trung Nguyên", domain: "trungnguyenlegend.com", color: "#7A2E0E" },
   { name: "Sabeco", domain: "sabeco.com.vn", color: "#E8472C" },
-  { name: "Habeco", domain: "habeco.com.vn", color: "#C45B17" },
-  { name: "Bibica", domain: "bibica.com.vn", color: "#1A7EA4" },
+  { name: "Habeco", domain: "habeco.com.vn", color: "#ed8302" },
+  { name: "Bibica", domain: "bibica.com.vn", color: "#0c964b" },
   { name: "Acecook", domain: "acecookvietnam.com.vn", color: "#E8472C" },
-  { name: "Masan", domain: "masangroup.com", color: "#0B4F6C" },
+  { name: "Masan", domain: "masangroup.com", color: "#0c964b" },
   { name: "PNJ", domain: "pnj.com.vn", color: "#C8A24A" },
   { name: "Vietjet Air", domain: "vietjetair.com", color: "#E8472C" },
-  { name: "Vingroup", domain: "vingroup.net", color: "#0B4F6C" },
-  { name: "Hoa Sen", domain: "hoasengroup.vn", color: "#F2A65A" },
+  { name: "Vingroup", domain: "vingroup.net", color: "#0c964b" },
+  { name: "Hoa Sen", domain: "hoasengroup.vn", color: "#fdba74" },
   { name: "Coca-Cola", domain: "cocacolavietnam.com", color: "#E8472C" },
   { name: "Nestlé", domain: "nestle.com.vn", color: "#0E4A8A" },
   { name: "Unilever", domain: "unilever.com.vn", color: "#1B4FA0" },
@@ -139,8 +140,8 @@ function HeroSlider() {
                 className="w-full h-full object-cover"
               />
               {/* Soft gradient — keep right side bright, dim left for headline readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E2A]/85 via-[#0B1E2A]/50 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E2A]/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0a1f0e]/85 via-[#0a1f0e]/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f0e]/40 via-transparent to-transparent" />
             </div>
           ))}
         </div>
@@ -155,7 +156,7 @@ function HeroSlider() {
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.05] tracking-tight drop-shadow-lg">
             Minh bạch chuỗi cung ứng <br />
-            <span className="text-[#F2A65A]">nâng tầm thương hiệu Việt.</span>
+            <span className="text-[#fdba74]">nâng tầm thương hiệu Việt.</span>
           </h1>
 
           <p className="text-white/90 text-lg lg:text-xl max-w-2xl leading-relaxed drop-shadow">
@@ -167,7 +168,7 @@ function HeroSlider() {
             <a href="#solutions">
               <Button
                 variant="outline"
-                className="rounded-full border-2 border-white/50 bg-white/10 text-white hover:bg-white hover:text-[#0B4F6C] px-8 py-4 h-auto font-semibold backdrop-blur-sm"
+                className="rounded-full border-2 border-white/50 bg-white/10 text-white hover:bg-white hover:text-[#0c964b] px-8 py-4 h-auto font-semibold backdrop-blur-sm"
               >
                 Khám phá giải pháp
               </Button>
@@ -176,11 +177,11 @@ function HeroSlider() {
 
           <div className="flex flex-wrap gap-x-10 gap-y-4 pt-10 border-t border-white/20">
             <div>
-              <div className="text-3xl font-bold text-white">5,000<span className="text-[#F2A65A]">+</span></div>
+              <div className="text-3xl font-bold text-white">5,000<span className="text-[#fdba74]">+</span></div>
               <div className="text-xs uppercase tracking-widest text-white/70 mt-1">Sản phẩm đã định danh</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white">1,234<span className="text-[#F2A65A]">+</span></div>
+              <div className="text-3xl font-bold text-white">1,234<span className="text-[#fdba74]">+</span></div>
               <div className="text-xs uppercase tracking-widest text-white/70 mt-1">Doanh nghiệp tin dùng</div>
             </div>
             
@@ -212,7 +213,7 @@ function HeroSlider() {
             onClick={() => emblaApi?.scrollTo(i)}
             aria-label={`Slide ${i + 1}`}
             className={`h-1.5 rounded-full transition-all ${
-              selectedIndex === i ? "bg-[#F2A65A] w-10" : "bg-white/50 hover:bg-white/80 w-5"
+              selectedIndex === i ? "bg-[#fdba74] w-10" : "bg-white/50 hover:bg-white/80 w-5"
             }`}
           />
         ))}
@@ -242,13 +243,13 @@ export default function Home() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div className="max-w-2xl">
-              <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">
+              <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">
                 Giải pháp cho mọi quy mô doanh nghiệp
               </h2>
             </div>
             <Link
               href="/pricing"
-              className="text-[#0B4F6C] font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all"
+              className="text-[#0c964b] font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all"
             >
               Xem bảng giá đầy đủ <ArrowRight className="w-4 h-4" />
             </Link>
@@ -270,12 +271,12 @@ export default function Home() {
                     alt={s.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#0B4F6C] text-[10px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full">
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#0c964b] text-[10px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full">
                     {s.tag}
                   </div>
                 </div>
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="font-bold text-[#0B4F6C] text-xl mb-2">{s.title}</h3>
+                  <h3 className="font-bold text-[#0c964b] text-xl mb-2">{s.title}</h3>
                   <p className="text-[#4A5868] text-sm leading-relaxed flex-1">{s.desc}</p>
                   <div className="mt-6 pt-5 border-t border-[#E5EAF0] flex flex-col gap-3">
                     <CtaButton href={`/demo?solution=${encodeURIComponent(s.title)}`} className="w-full justify-center">
@@ -283,7 +284,7 @@ export default function Home() {
                     </CtaButton>
                     <Link
                       href={s.href}
-                      className="text-[#1A7EA4] font-semibold text-sm hover:text-[#0B4F6C] inline-flex items-center gap-1 justify-center"
+                      className="text-[#0c964b] font-semibold text-sm hover:text-[#0c964b] inline-flex items-center gap-1 justify-center"
                     >
                       Chi tiết <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
@@ -301,16 +302,16 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
             <div className="max-w-2xl">
              
-              <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">
+              <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">
                 Câu chuyện cùng Checkee
               </h2>
-              <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
+              <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">
                 TIN TỨC GẦN ĐÂY
               </span>
             </div>
             <Link
               href="/blog"
-              className="text-[#0B4F6C] font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all"
+              className="text-[#0c964b] font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all"
             >
               Xem tất cả tin tức <ArrowRight className="w-4 h-4" />
             </Link>
@@ -353,22 +354,22 @@ export default function Home() {
                     alt={n.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 left-4 bg-white text-[#0B4F6C] text-center px-3 py-2 rounded-xl shadow-lg">
+                  <div className="absolute top-4 left-4 bg-white text-[#0c964b] text-center px-3 py-2 rounded-xl shadow-lg">
                     <div className="text-xl font-bold leading-none">{n.date.d}</div>
                     <div className="text-[10px] uppercase tracking-wide font-semibold mt-0.5">{n.date.m}</div>
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#C45B17] mb-3">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-[#ed8302] mb-3">
                     <Calendar className="w-3.5 h-3.5" /> {n.tag}
                   </div>
-                  <h3 className="font-bold text-[#0B4F6C] text-lg leading-snug mb-3 group-hover:text-[#1A7EA4] transition-colors">
+                  <h3 className="font-bold text-[#0c964b] text-lg leading-snug mb-3 group-hover:text-[#0c964b] transition-colors">
                     {n.title}
                   </h3>
                   <p className="text-[#4A5868] text-sm leading-relaxed mb-4">{n.desc}</p>
                   <Link
                     href="/blog"
-                    className="text-[#1A7EA4] font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all"
+                    className="text-[#0c964b] font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all"
                   >
                     Xem chi tiết <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
@@ -382,7 +383,7 @@ export default function Home() {
       <section id="partners" className="py-20 bg-white border-y border-[#E5EAF0] scroll-mt-24">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center mb-12">
           <h2 className="text-3xl lg:text-5xl font-bold text-[#0F1B2D] leading-tight">
-            Đồng hành cùng các <span className="text-[#C45B17]">đối tác hàng đầu</span>
+            Đồng hành cùng các <span className="text-[#ed8302]">đối tác hàng đầu</span>
           </h2>
           <p className="text-[#4A5868] text-base lg:text-lg mt-4 max-w-3xl mx-auto leading-relaxed">
             Kết nối cùng những đối tác uy tín hàng đầu, chúng tôi mang đến giải pháp công nghệ toàn diện, hỗ trợ doanh nghiệp bạn phát triển bền vững.
@@ -417,10 +418,10 @@ export default function Home() {
       <section className="py-24 bg-[#F5E8DC]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
+            <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">
               KHÁCH HÀNG TIN DÙNG
             </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">
               Doanh nghiệp Việt đã chọn Checkee
             </h2>
           </div>
@@ -449,15 +450,15 @@ export default function Home() {
               },
             ].map((t, i) => (
               <div key={i} className="bg-white p-8 rounded-2xl shadow-sm space-y-6">
-                <Quote className="w-8 h-8 text-[#C45B17]" />
+                <Quote className="w-8 h-8 text-[#ed8302]" />
                 <p className="italic text-[#0F1B2D] text-base leading-relaxed">"{t.quote}"</p>
                 <div className="h-[1px] w-full bg-[#E5EAF0]"></div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#D9EEF5] text-[#0B4F6C] font-bold flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-[#dcf0e6] text-[#0c964b] font-bold flex items-center justify-center">
                     {t.init}
                   </div>
                   <div>
-                    <div className="font-semibold text-[#0B4F6C]">{t.name}</div>
+                    <div className="font-semibold text-[#0c964b]">{t.name}</div>
                     <div className="text-xs text-[#7D9E94]">{t.role}</div>
                   </div>
                 </div>
@@ -471,10 +472,10 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">
+            <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">
               CÂU HỎI THƯỜNG GẶP
             </span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Mọi thắc mắc của bạn</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">Mọi thắc mắc của bạn</h2>
           </div>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
@@ -501,7 +502,7 @@ export default function Home() {
                 },
               ].map((faq, i) => (
                 <AccordionItem key={i} value={`item-${i}`}>
-                  <AccordionTrigger className="text-lg font-semibold text-[#0B4F6C]">{faq.q}</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold text-[#0c964b]">{faq.q}</AccordionTrigger>
                   <AccordionContent className="text-[#4A5868] text-base leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}

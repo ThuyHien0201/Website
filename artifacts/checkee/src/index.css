@@ -57,7 +57,7 @@
 
   --border: 212 28% 92%; /* #E5EAF0 */
   --input: 212 28% 92%;
-  --ring: 200 73% 37%; /* #1A7EA4 Arctic Blue */
+  --ring: 200 73% 37%; /* #0c964b Arctic Blue */
 
   --card: 0 0% 100%;
   --card-foreground: 216 50% 12%;
@@ -67,16 +67,16 @@
   --popover-foreground: 216 50% 12%;
   --popover-border: 212 28% 92%;
 
-  --primary: 200 82% 23%; /* #0B4F6C Deep Fjord */
+  --primary: 200 82% 23%; /* #0c964b Deep Fjord */
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 195 56% 91%; /* #D9EEF5 Mist */
+  --secondary: 195 56% 91%; /* #dcf0e6 Mist */
   --secondary-foreground: 200 82% 23%;
 
   --muted: 212 17% 35%; /* #4A5868 */
   --muted-foreground: 161 14% 55%; /* #7D9E94 Slate Sage */
 
-  --accent: 23 79% 43%; /* #C45B17 Amber Ember */
+  --accent: 23 79% 43%; /* #ed8302 Amber Ember */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
@@ -110,7 +110,7 @@
     border-top: 1px solid var(--border);
   }
   .link-hover {
-    @apply relative after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-[#1A7EA4] after:w-0 hover:after:w-full after:transition-all after:duration-300 hover:text-[#1A7EA4];
+    @apply relative after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-[#0c964b] after:w-0 hover:after:w-full after:transition-all after:duration-300 hover:text-[#0c964b];
   }
   .image-hover {
     @apply transition-transform duration-1000 ease-out hover:scale-105;

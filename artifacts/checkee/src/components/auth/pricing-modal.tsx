@@ -68,13 +68,13 @@ export function PricingModal() {
           <X className="w-4 h-4" />
         </button>
 
-        <div className="bg-gradient-to-br from-[#0B4F6C] to-[#1A7EA4] p-8 text-white text-center">
+        <div className="bg-gradient-to-br from-[#0c964b] to-[#0c964b] p-8 text-white text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
-            <Zap className="w-4 h-4 text-[#F2A65A]" />
+            <Zap className="w-4 h-4 text-[#fdba74]" />
             Nâng cấp để tiếp tục tạo QR
           </div>
           <h2 className="text-2xl lg:text-3xl font-bold mb-2">Bạn đã dùng hết lượt thử miễn phí</h2>
-          <p className="text-[#D9EEF5]/80 text-sm max-w-lg mx-auto">
+          <p className="text-[#dcf0e6]/80 text-sm max-w-lg mx-auto">
             Chọn gói phù hợp để tạo QR không giới hạn, quản lý SKU và phân quyền nhân viên.
           </p>
         </div>
@@ -86,19 +86,19 @@ export function PricingModal() {
                 key={i}
                 className={`flex flex-col rounded-2xl border p-6 relative transition-all hover:-translate-y-1 hover:shadow-xl ${
                   plan.highlight
-                    ? "border-[#C45B17] border-2 shadow-lg"
+                    ? "border-[#ed8302] border-2 shadow-lg"
                     : "border-[#E5EAF0]"
                 }`}
               >
                 {plan.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#C45B17] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ed8302] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
                     PHỔ BIẾN
                   </div>
                 )}
-                <h3 className="text-lg font-bold text-[#0B4F6C] mb-0.5">{plan.name}</h3>
+                <h3 className="text-lg font-bold text-[#0c964b] mb-0.5">{plan.name}</h3>
                 <p className="text-xs text-[#7D9E94] mb-4">{plan.subtitle}</p>
                 <div className="mb-4">
-                  <span className="text-2xl font-bold text-[#0B4F6C]">{plan.price}</span>
+                  <span className="text-2xl font-bold text-[#0c964b]">{plan.price}</span>
                   <span className="text-xs text-[#7D9E94] ml-1">đ{plan.period}</span>
                 </div>
                 <div className="space-y-2 text-xs text-[#4A5868] flex-1 mb-5">
@@ -113,8 +113,8 @@ export function PricingModal() {
                   onClick={() => handleSelect(plan)}
                   className={`w-full rounded-full h-10 text-sm font-semibold ${
                     plan.highlight
-                      ? "bg-[#C45B17] hover:bg-[#D6711A] text-white"
-                      : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0B4F6C] hover:bg-[#E5EAF0]"
+                      ? "bg-[#ed8302] hover:bg-[#d47200] text-white"
+                      : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0c964b] hover:bg-[#E5EAF0]"
                   }`}
                 >
                   Chọn gói này

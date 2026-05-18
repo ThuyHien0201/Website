@@ -9,10 +9,10 @@ export default function About() {
       {/* Hero */}
       <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-[#FAFBFC] to-white border-b border-[#E5EAF0]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 text-center max-w-4xl">
-          <div className="inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide mb-6">
+          <div className="inline-block bg-[#dcf0e6] text-[#0c964b] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide mb-6">
             SỨ MỆNH CỦA CHÚNG TÔI
           </div>
-          <h1 className="text-4xl lg:text-6xl font-bold text-[#0B4F6C] leading-tight mb-8">
+          <h1 className="text-4xl lg:text-6xl font-bold text-[#0c964b] leading-tight mb-8">
             Minh bạch hóa chuỗi giá trị toàn cầu
           </h1>
           <p className="text-[#4A5868] text-lg leading-relaxed">
@@ -29,7 +29,7 @@ export default function About() {
               <img src="/images/hero-coffee.png" className="w-full h-full object-cover" alt="Sứ mệnh" />
             </div>
             <div className="space-y-6">
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#0B4F6C]">Xây dựng cầu nối niềm tin</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#0c964b]">Xây dựng cầu nối niềm tin</h2>
               <p className="text-[#4A5868] text-base leading-relaxed">
                 Trong một thế giới đầy biến động về chuỗi cung ứng, người tiêu dùng ngày càng quan tâm đến nguồn gốc xuất xứ của những gì họ tiêu dùng hàng ngày. Họ cần biết sản phẩm đến từ đâu, được tạo ra như thế nào, và tác động của nó đến môi trường.
               </p>
@@ -45,7 +45,7 @@ export default function About() {
       <section className="py-24 bg-[#FAFBFC]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C]">Giá trị cốt lõi</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b]">Giá trị cốt lõi</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -55,10 +55,10 @@ export default function About() {
               { icon: Users, title: "Đồng hành", desc: "Luôn sát cánh cùng doanh nghiệp trên hành trình chuyển đổi số và nâng tầm thương hiệu." }
             ].map((val, i) => (
               <div key={i} className="bg-white border border-[#E5EAF0] p-8 rounded-2xl text-center hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-[#D9EEF5] text-[#0B4F6C] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-[#dcf0e6] text-[#0c964b] rounded-full flex items-center justify-center mx-auto mb-6">
                   <val.icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-[#0B4F6C] mb-3">{val.title}</h3>
+                <h3 className="text-xl font-bold text-[#0c964b] mb-3">{val.title}</h3>
                 <p className="text-[#4A5868] text-sm leading-relaxed">{val.desc}</p>
               </div>
             ))}
@@ -70,7 +70,7 @@ export default function About() {
       <section className="py-24 bg-white">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C]">Câu chuyện thương hiệu</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b]">Câu chuyện thương hiệu</h2>
           </div>
           <div className="max-w-4xl mx-auto space-y-12">
             {[
@@ -80,10 +80,10 @@ export default function About() {
               { year: "2026", title: "Tầm nhìn tương lai", desc: "Trở thành nền tảng định danh số hàng hóa hàng đầu khu vực, ứng dụng blockchain vào toàn chuỗi cung ứng." }
             ].map((milestone, i) => (
               <div key={i} className="flex gap-6">
-                <div className="w-24 shrink-0 text-right font-bold text-[#C45B17] text-xl pt-1">{milestone.year}</div>
+                <div className="w-24 shrink-0 text-right font-bold text-[#ed8302] text-xl pt-1">{milestone.year}</div>
                 <div className="relative border-l-2 border-[#E5EAF0] pl-8 pb-12 last:pb-0">
                   <div className="absolute w-4 h-4 rounded-full bg-[#1A6B52] -left-[9px] top-2" />
-                  <h3 className="text-xl font-bold text-[#0B4F6C] mb-2">{milestone.title}</h3>
+                  <h3 className="text-xl font-bold text-[#0c964b] mb-2">{milestone.title}</h3>
                   <p className="text-[#4A5868] text-base leading-relaxed">{milestone.desc}</p>
                 </div>
               </div>
@@ -92,10 +92,10 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0B4F6C] text-white text-center">
+      <section className="py-24 bg-[#0c964b] text-white text-center">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Cùng chúng tôi tạo nên thay đổi</h2>
-          <p className="text-lg text-[#D9EEF5]/80 max-w-2xl mx-auto">
+          <p className="text-lg text-[#dcf0e6]/80 max-w-2xl mx-auto">
             Liên hệ để trao đổi về cơ hội hợp tác và phát triển.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">

@@ -22,10 +22,10 @@ export default function Pricing() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
 
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#FFF3E8] border border-[#F5D2B8] text-[11px] uppercase tracking-[0.15em] text-[#C45B17] font-semibold">
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#fef3e2] border border-[#F5D2B8] text-[11px] uppercase tracking-[0.15em] text-[#ed8302] font-semibold">
               Đầu tư cho thương hiệu
             </div>
-            <h1 className="mt-5 text-4xl lg:text-5xl font-bold text-[#0B4F6C] leading-[1.15] tracking-tight">
+            <h1 className="mt-5 text-4xl lg:text-5xl font-bold text-[#0c964b] leading-[1.15] tracking-tight">
               Bảng giá minh bạch
             </h1>
           </div>
@@ -43,7 +43,7 @@ export default function Pricing() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-3 rounded-full text-sm font-semibold transition-all ${
                   activeTab === tab.id 
-                    ? "bg-[#0B4F6C] text-white shadow-md" 
+                    ? "bg-[#0c964b] text-white shadow-md" 
                     : "bg-[#FAFBFC] text-[#4A5868] hover:bg-[#E5EAF0] border border-[#E5EAF0]"
                 }`}
               >
@@ -61,17 +61,17 @@ export default function Pricing() {
                   { name: "Chuyên nghiệp", subtitle: "< 50 dòng SP", price: "6.000.000", codes: "50.000", acc: "Dưới 5 TK", highlight: false },
                   { name: "Doanh nghiệp", subtitle: "> 50 dòng SP", price: "9.000.000", codes: "100.000", acc: "Dưới 5 TK", highlight: false },
                 ].map((tier, i) => (
-                  <div key={i} className={`flex flex-col bg-white p-8 rounded-2xl border ${tier.highlight ? "border-[#C45B17] border-2 shadow-xl" : "border-[#E5EAF0] shadow-sm"} relative transition-shadow hover:shadow-xl`}>
+                  <div key={i} className={`flex flex-col bg-white p-8 rounded-2xl border ${tier.highlight ? "border-[#ed8302] border-2 shadow-xl" : "border-[#E5EAF0] shadow-sm"} relative transition-shadow hover:shadow-xl`}>
                     {tier.highlight && (
-                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#C45B17] text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
+                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#ed8302] text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
                         PHỔ BIẾN
                       </div>
                     )}
-                    <h3 className="text-xl font-bold text-[#0B4F6C] mb-1">{tier.name}</h3>
+                    <h3 className="text-xl font-bold text-[#0c964b] mb-1">{tier.name}</h3>
                     <p className="text-sm text-[#7D9E94] mb-6">{tier.subtitle}</p>
                     
                     <div className="mb-8">
-                      <span className="text-4xl font-bold text-[#0B4F6C]">{tier.price}</span>
+                      <span className="text-4xl font-bold text-[#0c964b]">{tier.price}</span>
                       <span className="text-sm text-[#7D9E94] ml-1">/tháng</span>
                     </div>
                     
@@ -95,7 +95,7 @@ export default function Pricing() {
                     </div>
                     
                     <Link href="/contact" className="mt-auto block">
-                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#C45B17] hover:bg-[#D6711A] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0B4F6C] hover:bg-[#E5EAF0]"}`}>
+                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#ed8302] hover:bg-[#d47200] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0c964b] hover:bg-[#E5EAF0]"}`}>
                         Chọn gói này
                       </Button>
                     </Link>
@@ -112,16 +112,16 @@ export default function Pricing() {
                   { name: "Pro", price: "9.600.000", labels: "200 nhãn", scans: "500.000/th", lang: "Đa ngôn ngữ" },
                   { name: "Enterprise", price: "Liên hệ", labels: "Vô hạn", scans: "Vô hạn", lang: "Vô hạn" },
                 ].map((tier, i) => (
-                  <div key={i} className={`flex flex-col bg-white p-8 rounded-2xl border ${tier.highlight ? "border-[#C45B17] border-2 shadow-xl" : "border-[#E5EAF0] shadow-sm"} relative transition-shadow hover:shadow-xl`}>
+                  <div key={i} className={`flex flex-col bg-white p-8 rounded-2xl border ${tier.highlight ? "border-[#ed8302] border-2 shadow-xl" : "border-[#E5EAF0] shadow-sm"} relative transition-shadow hover:shadow-xl`}>
                     {tier.highlight && (
-                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#C45B17] text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
+                      <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#ed8302] text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
                         PHỔ BIẾN
                       </div>
                     )}
-                    <h3 className="text-xl font-bold text-[#0B4F6C] mb-6">{tier.name}</h3>
+                    <h3 className="text-xl font-bold text-[#0c964b] mb-6">{tier.name}</h3>
                     
                     <div className="mb-8">
-                      <span className="text-4xl font-bold text-[#0B4F6C]">{tier.price}</span>
+                      <span className="text-4xl font-bold text-[#0c964b]">{tier.price}</span>
                       {tier.price !== "Liên hệ" && <span className="text-sm text-[#7D9E94] ml-1">/tháng</span>}
                     </div>
                     
@@ -145,7 +145,7 @@ export default function Pricing() {
                     </div>
                     
                     <Link href="/contact" className="mt-auto block">
-                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#C45B17] hover:bg-[#D6711A] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0B4F6C] hover:bg-[#E5EAF0]"}`}>
+                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#ed8302] hover:bg-[#d47200] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0c964b] hover:bg-[#E5EAF0]"}`}>
                         Chọn gói này
                       </Button>
                     </Link>
@@ -158,7 +158,7 @@ export default function Pricing() {
                <div className="py-24 text-center bg-[#FAFBFC] rounded-2xl border border-[#E5EAF0]">
                  <p className="text-[#4A5868] text-lg mb-8">Bảng giá chuyên sâu đang được biên soạn. Vui lòng liên hệ tư vấn viên.</p>
                  <Link href="/contact">
-                    <Button className="h-12 px-8 rounded-full bg-[#0B4F6C] hover:bg-[#0B4F6C]/90 text-white font-semibold">
+                    <Button className="h-12 px-8 rounded-full bg-[#0c964b] hover:bg-[#0c964b]/90 text-white font-semibold">
                       Liên hệ trực tiếp
                     </Button>
                  </Link>
@@ -172,8 +172,8 @@ export default function Pricing() {
       <section className="py-24 bg-[#FAFBFC]">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[#C45B17] uppercase tracking-widest text-xs font-semibold block mb-4">CÂU HỎI THƯỜNG GẶP</span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0B4F6C] leading-tight">Giải đáp thắc mắc</h2>
+            <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">CÂU HỎI THƯỜNG GẶP</span>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">Giải đáp thắc mắc</h2>
           </div>
           <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-[#E5EAF0]">
             <Accordion type="single" collapsible className="w-full">
@@ -183,7 +183,7 @@ export default function Pricing() {
                 { q: "Dữ liệu của tôi được bảo mật như thế nào?", a: "Chúng tôi tuân thủ các tiêu chuẩn bảo mật dữ liệu nghiêm ngặt nhất. Dữ liệu được mã hóa mã hash bất biến và có tùy chọn lưu trữ lên blockchain." },
               ].map((faq, i) => (
                 <AccordionItem key={i} value={`item-${i}`}>
-                  <AccordionTrigger className="text-lg font-semibold text-[#0B4F6C]">{faq.q}</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold text-[#0c964b]">{faq.q}</AccordionTrigger>
                   <AccordionContent className="text-[#4A5868] text-base leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -193,10 +193,10 @@ export default function Pricing() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-[#0B4F6C] text-white text-center">
+      <section className="py-24 bg-[#0c964b] text-white text-center">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Bắt đầu trải nghiệm ngay</h2>
-          <p className="text-lg text-[#D9EEF5]/80 max-w-2xl mx-auto">
+          <p className="text-lg text-[#dcf0e6]/80 max-w-2xl mx-auto">
             Khám phá sức mạnh của việc số hóa sản phẩm.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">

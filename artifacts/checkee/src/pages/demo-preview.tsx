@@ -26,7 +26,7 @@ export default function DemoPreview() {
         <div className="px-5 py-4 border-b border-[#E5EAF0] flex items-center justify-between bg-white shrink-0 sticky top-0 z-20">
           <div className="flex items-center gap-2">
             <img src={logoPng} className="h-6" alt="logo" />
-            <span className="text-lg font-bold text-[#0B4F6C]">Checkee</span>
+            <span className="text-lg font-bold text-[#0c964b]">Checkee</span>
           </div>
           <div className="bg-[#D4EDE6] text-[#1A6B52] px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
             <CheckCircle2 className="w-4 h-4" /> Đã xác thực
@@ -42,7 +42,7 @@ export default function DemoPreview() {
         <div className="px-6 py-6 bg-white shrink-0">
           <h2 className="text-2xl font-bold text-[#0F1B2D] mb-1">{params.name}</h2>
           <p className="text-base text-[#7D9E94]">{params.company}</p>
-          <div className="mt-3 inline-block bg-[#D9EEF5] text-[#0B4F6C] px-3 py-1 rounded-full text-xs font-semibold">
+          <div className="mt-3 inline-block bg-[#dcf0e6] text-[#0c964b] px-3 py-1 rounded-full text-xs font-semibold">
             Thực phẩm
           </div>
         </div>
@@ -129,12 +129,12 @@ export default function DemoPreview() {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-10 bg-[#0B4F6C] text-white text-center mt-auto shrink-0">
+        <div className="px-6 py-10 bg-[#0c964b] text-white text-center mt-auto shrink-0">
           <div className="bg-white p-3 rounded-xl w-fit mx-auto mb-4">
             <QRCodeCanvas value={window.location.href} size={100} fgColor="#0F1B2D" level="H" />
           </div>
-          <div className="text-sm font-medium text-[#D9EEF5] mb-2">Quét mã QR để kiểm tra</div>
-          <div className="text-xs text-[#D9EEF5]/70 mb-4">Powered by Checkee · checkee.vn</div>
+          <div className="text-sm font-medium text-[#dcf0e6] mb-2">Quét mã QR để kiểm tra</div>
+          <div className="text-xs text-[#dcf0e6]/70 mb-4">Powered by Checkee · checkee.vn</div>
         </div>
 
       </div>

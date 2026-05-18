@@ -75,12 +75,12 @@ export function LoginModal() {
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closeLoginModal} />
       <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-[440px] overflow-hidden">
-        <div className="bg-gradient-to-br from-[#0B4F6C] to-[#1A7EA4] p-8 text-white text-center">
+        <div className="bg-gradient-to-br from-[#0c964b] to-[#0c964b] p-8 text-white text-center">
           <img src={logoPng} alt="Checkee" className="h-8 mx-auto mb-4 brightness-0 invert" />
           <h2 className="text-2xl font-bold mb-1">
             {mode === "login" ? "Chào mừng trở lại" : "Tạo tài khoản miễn phí"}
           </h2>
-          <p className="text-[#D9EEF5]/80 text-sm">
+          <p className="text-[#dcf0e6]/80 text-sm">
             {mode === "login"
               ? "Đăng nhập để tiếp tục trải nghiệm"
               : "Đăng ký và nhận 1 lần dùng thử QR miễn phí"}
@@ -91,13 +91,13 @@ export function LoginModal() {
           <div className="flex bg-[#F4F6F8] rounded-full p-1 mb-6">
             <button
               onClick={() => switchMode("login")}
-              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "login" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "login" ? "bg-white text-[#0c964b] shadow-sm" : "text-[#7D9E94]"}`}
             >
               Đăng nhập
             </button>
             <button
               onClick={() => switchMode("register")}
-              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "register" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all ${mode === "register" ? "bg-white text-[#0c964b] shadow-sm" : "text-[#7D9E94]"}`}
             >
               Đăng ký
             </button>
@@ -106,7 +106,7 @@ export function LoginModal() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === "register" && (
               <div className="space-y-1.5">
-                <Label className="text-[#0B4F6C] font-semibold text-sm">Họ và tên</Label>
+                <Label className="text-[#0c964b] font-semibold text-sm">Họ và tên</Label>
                 <Input
                   value={name}
                   onChange={e => setName(e.target.value)}
@@ -118,21 +118,21 @@ export function LoginModal() {
 
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <Label className="text-[#0B4F6C] font-semibold text-sm">
+                <Label className="text-[#0c964b] font-semibold text-sm">
                   {loginMethod === "email" ? "Email" : "Số điện thoại"}
                 </Label>
                 <div className="flex items-center gap-1 bg-[#F4F6F8] rounded-full p-0.5">
                   <button
                     type="button"
                     onClick={() => { setLoginMethod("email"); setEmailOrPhone(""); setError(""); }}
-                    className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${loginMethod === "email" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+                    className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${loginMethod === "email" ? "bg-white text-[#0c964b] shadow-sm" : "text-[#7D9E94]"}`}
                   >
                     <Mail className="w-3 h-3" /> Email
                   </button>
                   <button
                     type="button"
                     onClick={() => { setLoginMethod("phone"); setEmailOrPhone(""); setError(""); }}
-                    className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${loginMethod === "phone" ? "bg-white text-[#0B4F6C] shadow-sm" : "text-[#7D9E94]"}`}
+                    className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${loginMethod === "phone" ? "bg-white text-[#0c964b] shadow-sm" : "text-[#7D9E94]"}`}
                   >
                     <Phone className="w-3 h-3" /> SĐT
                   </button>
@@ -148,7 +148,7 @@ export function LoginModal() {
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-[#0B4F6C] font-semibold text-sm">Mật khẩu</Label>
+              <Label className="text-[#0c964b] font-semibold text-sm">Mật khẩu</Label>
               <div className="relative">
                 <Input
                   type={showPass ? "text" : "password"}
@@ -168,7 +168,7 @@ export function LoginModal() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-12 rounded-full bg-[#C45B17] hover:bg-[#D6711A] text-white font-semibold text-base mt-2"
+              className="w-full h-12 rounded-full bg-[#ed8302] hover:bg-[#d47200] text-white font-semibold text-base mt-2"
             >
               {loading
                 ? <Loader2 className="w-5 h-5 animate-spin" />
