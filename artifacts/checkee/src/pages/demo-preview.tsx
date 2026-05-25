@@ -26,9 +26,9 @@ export default function DemoPreview() {
         <div className="px-5 py-4 border-b border-[#E5EAF0] flex items-center justify-between bg-white shrink-0 sticky top-0 z-20">
           <div className="flex items-center gap-2">
             <img src={logoPng} className="h-6" alt="logo" />
-            <span className="text-lg font-bold text-[#0c964b]">Checkee</span>
+            <span className="text-lg font-bold text-[#1557B0]">Checkee</span>
           </div>
-          <div className="bg-[#D4EDE6] text-[#1A6B52] px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+          <div className="bg-[#EFF5FF] text-[#1557B0] px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
             <CheckCircle2 className="w-4 h-4" /> Đã xác thực
           </div>
         </div>
@@ -42,7 +42,7 @@ export default function DemoPreview() {
         <div className="px-6 py-6 bg-white shrink-0">
           <h2 className="text-2xl font-bold text-[#0F1B2D] mb-1">{params.name}</h2>
           <p className="text-base text-[#7D9E94]">{params.company}</p>
-          <div className="mt-3 inline-block bg-[#dcf0e6] text-[#0c964b] px-3 py-1 rounded-full text-xs font-semibold">
+          <div className="mt-3 inline-block bg-[#EFF5FF] text-[#1557B0] px-3 py-1 rounded-full text-xs font-semibold">
             Thực phẩm
           </div>
         </div>
@@ -81,10 +81,10 @@ export default function DemoPreview() {
         <div className="px-6 py-5 bg-white border-b border-[#E5EAF0] shrink-0">
           <div className="uppercase text-xs text-[#7D9E94] font-bold mb-4 tracking-wider">CHỨNG NHẬN</div>
           <div className="flex flex-wrap gap-2">
-            <div className="bg-[#1A6B52] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+            <div className="bg-[#1557B0] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5" /> VietGAP
             </div>
-            <div className="bg-[#1A6B52] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+            <div className="bg-[#1557B0] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5" /> ISO 22000
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function DemoPreview() {
           <div className="space-y-6 relative">
             <div className="absolute left-[13px] top-6 bottom-[10px] w-px bg-[#E5EAF0]" />
             <div className="flex gap-4 relative">
-              <div className="w-7 h-7 rounded-full bg-[#1A6B52] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
+              <div className="w-7 h-7 rounded-full bg-[#1557B0] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
                 1
               </div>
               <div>
@@ -106,7 +106,7 @@ export default function DemoPreview() {
               </div>
             </div>
             <div className="flex gap-4 relative">
-              <div className="w-7 h-7 rounded-full bg-[#1A6B52] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
+              <div className="w-7 h-7 rounded-full bg-[#1557B0] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
                 2
               </div>
               <div>
@@ -116,7 +116,7 @@ export default function DemoPreview() {
               </div>
             </div>
             <div className="flex gap-4 relative">
-              <div className="w-7 h-7 rounded-full bg-[#1A6B52] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
+              <div className="w-7 h-7 rounded-full bg-[#1557B0] text-white text-xs font-bold flex items-center justify-center shrink-0 relative z-10">
                 3
               </div>
               <div>
@@ -129,12 +129,12 @@ export default function DemoPreview() {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-10 bg-[#0c964b] text-white text-center mt-auto shrink-0">
+        <div className="px-6 py-10 bg-[#1557B0] text-white text-center mt-auto shrink-0">
           <div className="bg-white p-3 rounded-xl w-fit mx-auto mb-4">
             <QRCodeCanvas value={window.location.href} size={100} fgColor="#0F1B2D" level="H" />
           </div>
-          <div className="text-sm font-medium text-[#dcf0e6] mb-2">Quét mã QR để kiểm tra</div>
-          <div className="text-xs text-[#dcf0e6]/70 mb-4">Powered by Checkee · checkee.vn</div>
+          <div className="text-sm font-medium text-[#EFF5FF] mb-2">Quét mã QR để kiểm tra</div>
+          <div className="text-xs text-[#EFF5FF]/70 mb-4">Powered by Checkee · checkee.vn</div>
         </div>
 
       </div>

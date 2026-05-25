@@ -131,7 +131,7 @@ export default function Demo() {
 
   const handleNext = () => {
     if (currentStep === 1) {
-      trackJourney("completed_step1", "Hoàn tất bước 1 - Thông tin doanh nghiệp", 1, { roles: roles.join(",") });
+      trackJourney("completed_step1", "Hoàn tất bước 1 - Thông tin doanh nghiệp", 1, { roles: roles.join(","), company: companyName, phone: companyPhone });
     } else if (currentStep === 2) {
       trackJourney("completed_step2", "Hoàn tất bước 2 - Thông tin sản phẩm", 2);
     } else if (currentStep === 3) {

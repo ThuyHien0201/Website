@@ -1,0 +1,66 @@
+1. Quản lý giao diện 
+Mục đích Cho phép admin chỉnh sửa nội dung hiển thị trên website/app mà không cần sửa code. 
+Yêu cầu chức năng Thiết kế tương tự Wordpress page builder / editor. 
+Các chức năng cần có: Chỉnh sửa text/nội dung 
+Chỉnh sửa hình ảnh Thay đổi banner 
+Thay đổi bố cục section Chỉnh kích thước chữ 
+Chỉnh màu chữ Chỉnh font chữ 
+Thêm/xóa section Ẩn/hiện section 
+Kéo thả vị trí section Chỉnh khoảng cách padding/margin 
+Responsive mobile/tablet/desktop Xem trước giao diện trước khi lưu 
+ Các khu vực cần quản lý: 
+Trang chủ  
+Trang truy xuất nguồn gốc Trang E -Label 
+Trang Checkee F&B Trang hộ chiếu số 
+Trang dùng thử miễn phí  
+Footer Header/Menu 
+Banner quảng cáo Section sự kiện 
+Section tin tức  
+Yêu cầu kỹ thuật Có nút: 
+Lưu nháp Xuất bản 
+Hoàn tác (undo)  
+ Có phân quyền admin/editor 
+Hỗ trợ upload ảnh Có media library quản lý ảnh giống Wordpress
+2. Quản lý tin tứcMục đích
+Cho phép admin tạo bài viết tin tức chuẩn SEO.
+Chức năng
+CRUD bài viết:Thêm bài viết
+Chỉnh sửa bài viếtXóa bài viết
+Ẩn/hiện bài viếtThông tin bài viết:
+Tiêu đềSlug URL
+Mô tả ngắnNội dung bài viết
+Ảnh thumbnailDanh mục bài viết
+TagsTác giả
+Ngày đăngTrạng thái:
+NhápĐã xuất bản
+SEOSEO title
+Meta descriptionMeta keywords
+Open Graph imagePreview Google Search
+EditorRich text editor
+Chèn ảnh vào nội dungChèn video
+Chèn bảngChèn button/link
+Hỗ trợ heading H1/H2/H3Auto save
+Danh sách bài viết
+Có:
+SearchFilter theo danh mục
+Filter theo trạng tháiSort theo ngày đăng
+3. Quản lý sự kiệnMục đích
+Cho phép admin tạo và quản lý các sự kiện marketing/hội thảo/chương trình.
+Chức năng
+CRUD sự kiệnThêm sự kiện
+Chỉnh sửa sự kiệnXóa sự kiện
+Ẩn/hiện sự kiệnThông tin sự kiện
+Tên sự kiệnMô tả ngắn
+Nội dung chi tiếtNgày bắt đầu
+Ngày kết thúcĐịa điểm tổ chức
+Link Google MapsBanner sự kiện
+Album hình ảnhVideo giới thiệu
+Trạng thái:Sắp diễn ra
+Đang diễn raĐã kết thúc
+Chức năng bổ sungHiển thị countdown sự kiện
+Đăng ký tham gia sự kiệnExport danh sách người đăng ký
+Hiển thị ngoài website/appDanh sách sự kiện
+Có:
+Search
+Filter theo trạng tháiFilter theo thời gian
+Sort theo ngày diễn ra

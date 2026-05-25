@@ -104,16 +104,16 @@ const INITIAL_ADMIN_CUSTOMERS: AdminCustomer[] = [
 
 const INITIAL_JOURNEY: JourneyEvent[] = [
   { id: "j1", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "clicked_trial", label: "Bấm Dùng thử", step: 0, timestamp: new Date(Date.now() - 86400000 * 3) },
-  { id: "j2", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 86400000 * 3 + 120000) },
+  { id: "j2", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 86400000 * 3 + 120000), meta: { company: "Công ty TNHH Nông sản Tây Nguyên", phone: "0901234567", roles: "manufacturer" } },
   { id: "j3", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "completed_step2", label: "Hoàn tất bước 2 - Sản phẩm", step: 2, timestamp: new Date(Date.now() - 86400000 * 3 + 300000) },
   { id: "j4", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "completed_step3", label: "Hoàn tất bước 3 - Hành trình", step: 3, timestamp: new Date(Date.now() - 86400000 * 3 + 480000) },
   { id: "j5", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "generated_qr", label: "Tạo mã QR thành công", step: 4, timestamp: new Date(Date.now() - 86400000 * 3 + 600000) },
   { id: "j6", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "selected_plan", label: "Chọn gói Tăng trưởng", step: 4, timestamp: new Date(Date.now() - 86400000 * 3 + 900000), meta: { plan: "Tăng trưởng" } },
   { id: "j7", sessionId: "session-def456", userId: "c3", userName: "Lê Minh Tuấn", event: "clicked_trial", label: "Bấm Dùng thử", step: 0, timestamp: new Date(Date.now() - 86400000 * 1) },
-  { id: "j8", sessionId: "session-def456", userId: "c3", userName: "Lê Minh Tuấn", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 86400000 * 1 + 90000) },
+  { id: "j8", sessionId: "session-def456", userId: "c3", userName: "Lê Minh Tuấn", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 86400000 * 1 + 90000), meta: { company: "Hộ kinh doanh Mật ong Tuấn", phone: "0923456789", roles: "farm" } },
   { id: "j9", sessionId: "session-def456", userId: "c3", userName: "Lê Minh Tuấn", event: "completed_step2", label: "Hoàn tất bước 2 - Sản phẩm", step: 2, timestamp: new Date(Date.now() - 86400000 * 1 + 200000) },
   { id: "j10", sessionId: "session-ghi789", sessionId2: undefined, event: "clicked_trial", label: "Bấm Dùng thử (khách vãng lai)", step: 0, timestamp: new Date(Date.now() - 7200000) } as JourneyEvent,
-  { id: "j11", sessionId: "session-ghi789", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 7200000 + 150000) },
+  { id: "j11", sessionId: "session-ghi789", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 7200000 + 150000), meta: { company: "Cơ sở sản xuất Thanh Hương", phone: "0977112233", roles: "manufacturer" } },
 ];
 
 type AuthContextType = {

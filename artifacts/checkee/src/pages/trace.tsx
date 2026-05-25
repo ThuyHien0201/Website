@@ -28,7 +28,7 @@ export default function Trace() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
 
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">Hệ sinh thái Checkee Trace theo ngành</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1557B0] leading-tight">Hệ sinh thái Checkee Trace theo ngành</h2>
             <p className="text-[#4A5868] text-base lg:text-lg mt-5 leading-relaxed">
               Mỗi ngành hàng có đặc thù riêng. Checkee phát triển bộ giải pháp chuyên biệt — từ vùng trồng đến tay người tiêu dùng cuối.
             </p>
@@ -87,26 +87,26 @@ export default function Trace() {
               <div key={i} className="group bg-white border border-[#E5EAF0] rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div className="aspect-[5/3] overflow-hidden relative">
                   <img src={ind.img} alt={ind.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur text-[#0c964b] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur text-[#1557B0] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
                     {ind.code}
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="text-[10px] uppercase tracking-widest font-semibold text-[#7D9E94] mb-2">{ind.tag}</div>
-                  <h3 className="font-bold text-[#0c964b] text-xl mb-3">{ind.title}</h3>
+                  <h3 className="font-bold text-[#1557B0] text-xl mb-3">{ind.title}</h3>
                   <p className="text-[#4A5868] text-sm leading-relaxed mb-4 flex-1">{ind.desc}</p>
                   <div className="flex flex-wrap gap-1.5 mb-5">
                     {ind.standards.map((s, j) => (
-                      <span key={j} className="text-[10px] font-semibold bg-[#D4EDE6] text-[#1A6B52] px-2 py-1 rounded-md">
+                      <span key={j} className="text-[10px] font-semibold bg-[#EFF5FF] text-[#1557B0] px-2 py-1 rounded-md">
                         {s}
                       </span>
                     ))}
                   </div>
                   <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#E5EAF0]">
-                    <Link href="/demo" className="text-[#ed8302] font-semibold text-sm hover:text-[#0c964b] inline-flex items-center gap-1">
+                    <Link href="/demo" className="text-[#ed8302] font-semibold text-sm hover:text-[#1557B0] inline-flex items-center gap-1">
                       Dùng thử miễn phí <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
-                    <Link href="/contact" className="text-[#0c964b] font-semibold text-sm hover:text-[#0c964b] inline-flex items-center gap-1">
+                    <Link href="/contact" className="text-[#1557B0] font-semibold text-sm hover:text-[#1557B0] inline-flex items-center gap-1">
                       Xem chi tiết
                     </Link>
                   </div>
@@ -121,7 +121,7 @@ export default function Trace() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">LỢI ÍCH</span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">Biến tuân thủ thành lợi thế</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1557B0] leading-tight">Biến tuân thủ thành lợi thế</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -131,10 +131,10 @@ export default function Trace() {
               { icon: Globe, title: "Sẵn sàng xuất khẩu", desc: "Đáp ứng tiêu chuẩn truy xuất nguồn gốc của các thị trường khó tính như EU, Mỹ, Nhật Bản." }
             ].map((item, i) => (
               <div key={i} className="bg-white border border-[#E5EAF0] rounded-2xl p-7 hover:shadow-xl transition-shadow">
-                <div className="bg-[#D4EDE6] text-[#1A6B52] w-12 h-12 flex items-center justify-center rounded-xl mb-5">
+                <div className="bg-[#EFF5FF] text-[#1557B0] w-12 h-12 flex items-center justify-center rounded-xl mb-5">
                   <item.icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-bold text-[#0c964b] text-lg mb-3">{item.title}</h3>
+                <h3 className="font-bold text-[#1557B0] text-lg mb-3">{item.title}</h3>
                 <p className="text-[#4A5868] text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -147,7 +147,7 @@ export default function Trace() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">TÍNH NĂNG</span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">Công cụ toàn diện</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1557B0] leading-tight">Công cụ toàn diện</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {[
@@ -159,7 +159,7 @@ export default function Trace() {
               { icon: Shield, title: "Blockchain Ready", desc: "Tùy chọn lưu trữ dữ liệu lên blockchain để đảm bảo tính bất biến của thông tin truy xuất." }
             ].map((feat, i) => (
               <div key={i} className="space-y-4">
-                <feat.icon className="w-8 h-8 text-[#0c964b]" />
+                <feat.icon className="w-8 h-8 text-[#1557B0]" />
                 <h4 className="text-[#0F1B2D] font-bold text-xl">{feat.title}</h4>
                 <p className="text-[#4A5868] text-base leading-relaxed">{feat.desc}</p>
               </div>
@@ -175,7 +175,7 @@ export default function Trace() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">CÂU HỎI THƯỜNG GẶP</span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">Giải đáp thắc mắc</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1557B0] leading-tight">Giải đáp thắc mắc</h2>
           </div>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
@@ -186,7 +186,7 @@ export default function Trace() {
                 { q: "Làm sao để chống làm giả mã QR?", a: "Chúng tôi có tùy chọn mã QR chứa mã PIN cào ẩn hoặc mã phủ cào. Ngoài ra, hệ thống tự động cảnh báo trên dashboard nếu một mã QR bị quét quá nhiều lần ở nhiều địa điểm khác nhau trong thời gian ngắn." }
               ].map((faq, i) => (
                 <AccordionItem key={i} value={`item-${i}`}>
-                  <AccordionTrigger className="text-lg font-semibold text-[#0c964b]">{faq.q}</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold text-[#1557B0]">{faq.q}</AccordionTrigger>
                   <AccordionContent className="text-[#4A5868] text-base leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -196,10 +196,10 @@ export default function Trace() {
       </section>
 
       {/* CTA Strip */}
-      <section className="py-24 bg-[#0c964b] text-white text-center">
+      <section className="py-24 bg-[#1557B0] text-white text-center">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Khởi tạo quy trình chuẩn mực</h2>
-          <p className="text-lg text-[#dcf0e6]/80 max-w-2xl mx-auto">
+          <p className="text-lg text-[#EFF5FF]/80 max-w-2xl mx-auto">
             Bảo vệ thương hiệu và mở rộng thị trường ngay hôm nay với Checkee Trace.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">

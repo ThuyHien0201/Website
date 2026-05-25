@@ -119,7 +119,7 @@ export default function Checkout() {
 
         {step !== "success" && (
           <div className="mb-10">
-            <h1 className="text-2xl lg:text-3xl font-bold text-[#0c964b] mb-2">Hoàn tất đăng ký</h1>
+            <h1 className="text-2xl lg:text-3xl font-bold text-[#1557B0] mb-2">Hoàn tất đăng ký</h1>
             <p className="text-[#4A5868]">Gói <strong>{planName}</strong> · <strong>{planPrice}đ</strong>{planPeriod}</p>
             <div className="flex items-center gap-3 mt-6">
               {[
@@ -131,7 +131,7 @@ export default function Checkout() {
                 return (
                   <div key={s.id} className="flex items-center gap-3">
                     {i > 0 && <ChevronRight className="w-4 h-4 text-[#7D9E94]" />}
-                    <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${isDone ? "bg-[#dcf0e6] text-[#1A6B52]" : isActive ? "bg-[#0c964b] text-white" : "bg-[#E5EAF0] text-[#7D9E94]"}`}>
+                    <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${isDone ? "bg-[#EFF5FF] text-[#1557B0]" : isActive ? "bg-[#1557B0] text-white" : "bg-[#E5EAF0] text-[#7D9E94]"}`}>
                       {isDone ? <CheckCircle2 className="w-4 h-4" /> : <s.icon className="w-4 h-4" />}
                       {s.label}
                     </div>
@@ -147,41 +147,41 @@ export default function Checkout() {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl border border-[#E5EAF0] p-8 shadow-sm">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-[#dcf0e6] rounded-xl flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-[#0c964b]" />
+                  <div className="w-10 h-10 bg-[#EFF5FF] rounded-xl flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-[#1557B0]" />
                   </div>
                   <div>
-                    <h2 className="font-bold text-[#0c964b]">Thông tin doanh nghiệp</h2>
+                    <h2 className="font-bold text-[#1557B0]">Thông tin doanh nghiệp</h2>
                     <p className="text-xs text-[#7D9E94]">Dùng để xuất hóa đơn VAT và ký hợp đồng</p>
                   </div>
                 </div>
                 <form onSubmit={handleBizSubmit} className="space-y-5">
                   <div className="space-y-1.5">
-                    <Label className="text-[#0c964b] font-semibold text-sm">Mã số thuế <span className="text-red-500">*</span></Label>
+                    <Label className="text-[#1557B0] font-semibold text-sm">Mã số thuế <span className="text-red-500">*</span></Label>
                     <div className="flex gap-2">
                       <Input value={biz.taxCode} onChange={e => setBiz(b => ({ ...b, taxCode: e.target.value }))} placeholder="VD: 0123456789" className="h-11 rounded-xl border-[#E5EAF0]" />
                       <button type="button" onClick={handleTaxLookup} disabled={taxLookup || !biz.taxCode}
-                        className="px-4 py-2 rounded-xl bg-[#dcf0e6] text-[#0c964b] font-semibold text-sm whitespace-nowrap disabled:opacity-50 hover:bg-[#b5d9c5] transition-colors">
+                        className="px-4 py-2 rounded-xl bg-[#EFF5FF] text-[#1557B0] font-semibold text-sm whitespace-nowrap disabled:opacity-50 hover:bg-[#DCEEFF] transition-colors">
                         {taxLookup ? <Loader2 className="w-4 h-4 animate-spin" /> : "Tra cứu"}
                       </button>
                     </div>
                     <p className="text-xs text-[#7D9E94]">Nhập MST để tự động điền tên và địa chỉ doanh nghiệp</p>
                   </div>
                   <div className="space-y-1.5">
-                    <Label className="text-[#0c964b] font-semibold text-sm">Tên doanh nghiệp <span className="text-red-500">*</span></Label>
+                    <Label className="text-[#1557B0] font-semibold text-sm">Tên doanh nghiệp <span className="text-red-500">*</span></Label>
                     <Input value={biz.companyName} onChange={e => setBiz(b => ({ ...b, companyName: e.target.value }))} placeholder="Tên chính thức theo đăng ký kinh doanh" className="h-11 rounded-xl border-[#E5EAF0]" />
                   </div>
                   <div className="space-y-1.5">
-                    <Label className="text-[#0c964b] font-semibold text-sm">Địa chỉ doanh nghiệp <span className="text-red-500">*</span></Label>
+                    <Label className="text-[#1557B0] font-semibold text-sm">Địa chỉ doanh nghiệp <span className="text-red-500">*</span></Label>
                     <Input value={biz.address} onChange={e => setBiz(b => ({ ...b, address: e.target.value }))} placeholder="Địa chỉ trên đăng ký kinh doanh" className="h-11 rounded-xl border-[#E5EAF0]" />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <Label className="text-[#0c964b] font-semibold text-sm">Người đại diện <span className="text-red-500">*</span></Label>
+                      <Label className="text-[#1557B0] font-semibold text-sm">Người đại diện <span className="text-red-500">*</span></Label>
                       <Input value={biz.representative} onChange={e => setBiz(b => ({ ...b, representative: e.target.value }))} placeholder="Họ và tên" className="h-11 rounded-xl border-[#E5EAF0]" />
                     </div>
                     <div className="space-y-1.5">
-                      <Label className="text-[#0c964b] font-semibold text-sm">Số điện thoại <span className="text-red-500">*</span></Label>
+                      <Label className="text-[#1557B0] font-semibold text-sm">Số điện thoại <span className="text-red-500">*</span></Label>
                       <Input value={biz.phone} onChange={e => setBiz(b => ({ ...b, phone: e.target.value }))} placeholder="0912 345 678" className="h-11 rounded-xl border-[#E5EAF0]" />
                     </div>
                   </div>
@@ -190,7 +190,7 @@ export default function Checkout() {
                       <AlertCircle className="w-4 h-4 shrink-0" />{bizError}
                     </div>
                   )}
-                  <Button type="submit" className="w-full h-12 rounded-full bg-[#0c964b] hover:bg-[#085c35] text-white font-semibold">
+                  <Button type="submit" className="w-full h-12 rounded-full bg-[#1557B0] hover:bg-[#085c35] text-white font-semibold">
                     Tiếp theo — Thông tin thanh toán
                   </Button>
                 </form>
@@ -206,11 +206,11 @@ export default function Checkout() {
               {/* Payment Method Toggle */}
               <div className="flex gap-2 p-1 bg-[#F4F6F8] rounded-2xl">
                 <button onClick={() => setPayMethod("transfer")}
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all ${payMethod === "transfer" ? "bg-white text-[#0c964b] shadow-sm" : "text-[#7D9E94]"}`}>
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all ${payMethod === "transfer" ? "bg-white text-[#1557B0] shadow-sm" : "text-[#7D9E94]"}`}>
                   <Smartphone className="w-4 h-4" /> Chuyển khoản ngân hàng
                 </button>
                 <button onClick={() => setPayMethod("card")}
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all ${payMethod === "card" ? "bg-white text-[#0c964b] shadow-sm" : "text-[#7D9E94]"}`}>
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold transition-all ${payMethod === "card" ? "bg-white text-[#1557B0] shadow-sm" : "text-[#7D9E94]"}`}>
                   <CreditCard className="w-4 h-4" /> Thẻ ngân hàng / Thẻ tín dụng
                 </button>
               </div>
@@ -220,18 +220,18 @@ export default function Checkout() {
                 {payMethod === "transfer" && (
                   <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-[#dcf0e6] rounded-xl flex items-center justify-center">
-                        <Smartphone className="w-5 h-5 text-[#0c964b]" />
+                      <div className="w-10 h-10 bg-[#EFF5FF] rounded-xl flex items-center justify-center">
+                        <Smartphone className="w-5 h-5 text-[#1557B0]" />
                       </div>
                       <div>
-                        <h2 className="font-bold text-[#0c964b]">Quét mã QR chuyển khoản</h2>
+                        <h2 className="font-bold text-[#1557B0]">Quét mã QR chuyển khoản</h2>
                         <p className="text-xs text-[#7D9E94]">Mở ứng dụng ngân hàng và quét mã QR bên dưới</p>
                       </div>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-6 items-start">
                       <div className="bg-white border-2 border-[#E5EAF0] rounded-2xl p-4 flex flex-col items-center gap-3 shrink-0">
-                        <QRCodeCanvas value={qrValue} size={160} level="H" includeMargin bgColor="#ffffff" fgColor="#0c964b" />
+                        <QRCodeCanvas value={qrValue} size={160} level="H" includeMargin bgColor="#ffffff" fgColor="#1557B0" />
                         <p className="text-xs text-[#7D9E94] text-center">Quét bằng ứng dụng ngân hàng bất kỳ</p>
                       </div>
                       <div className="flex-1 space-y-3">
@@ -248,8 +248,8 @@ export default function Checkout() {
                               <p className="text-sm font-semibold text-[#0F1B2D] mt-0.5">{item.value}</p>
                             </div>
                             <button onClick={() => copyText(item.value, item.key)}
-                              className="ml-3 w-8 h-8 rounded-lg bg-[#F4F6F8] flex items-center justify-center text-[#7D9E94] hover:bg-[#dcf0e6] hover:text-[#0c964b] transition-colors">
-                              {copied === item.key ? <Check className="w-4 h-4 text-[#1A6B52]" /> : <Copy className="w-4 h-4" />}
+                              className="ml-3 w-8 h-8 rounded-lg bg-[#F4F6F8] flex items-center justify-center text-[#7D9E94] hover:bg-[#EFF5FF] hover:text-[#1557B0] transition-colors">
+                              {copied === item.key ? <Check className="w-4 h-4 text-[#1557B0]" /> : <Copy className="w-4 h-4" />}
                             </button>
                           </div>
                         ))}
@@ -265,7 +265,7 @@ export default function Checkout() {
                       <p className="text-sm font-semibold text-[#0F1B2D]">Bạn đã hoàn tất chuyển khoản chưa?</p>
                       <div className="grid grid-cols-2 gap-3">
                         <button onClick={() => setTransferConfirmed(true)}
-                          className={`py-3 rounded-xl text-sm font-semibold border-2 transition-all ${transferConfirmed === true ? "border-[#1A6B52] bg-[#dcf0e6] text-[#1A6B52]" : "border-[#E5EAF0] text-[#4A5868] hover:border-[#0c964b]"}`}>
+                          className={`py-3 rounded-xl text-sm font-semibold border-2 transition-all ${transferConfirmed === true ? "border-[#1557B0] bg-[#EFF5FF] text-[#1557B0]" : "border-[#E5EAF0] text-[#4A5868] hover:border-[#1557B0]"}`}>
                           <CheckCircle2 className="w-4 h-4 inline mr-1.5" /> Tôi đã chuyển khoản
                         </button>
                         <button onClick={() => setTransferConfirmed(false)}
@@ -284,30 +284,30 @@ export default function Checkout() {
                 {payMethod === "card" && (
                   <div>
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 bg-[#dcf0e6] rounded-xl flex items-center justify-center">
-                        <CreditCard className="w-5 h-5 text-[#0c964b]" />
+                      <div className="w-10 h-10 bg-[#EFF5FF] rounded-xl flex items-center justify-center">
+                        <CreditCard className="w-5 h-5 text-[#1557B0]" />
                       </div>
                       <div>
-                        <h2 className="font-bold text-[#0c964b]">Thông tin thẻ thanh toán</h2>
+                        <h2 className="font-bold text-[#1557B0]">Thông tin thẻ thanh toán</h2>
                         <p className="text-xs text-[#7D9E94]">Visa, Mastercard hoặc thẻ ATM nội địa</p>
                       </div>
                     </div>
                     <div className="space-y-5">
                       <div className="space-y-1.5">
-                        <Label className="text-[#0c964b] font-semibold text-sm">Số thẻ <span className="text-red-500">*</span></Label>
+                        <Label className="text-[#1557B0] font-semibold text-sm">Số thẻ <span className="text-red-500">*</span></Label>
                         <Input value={cardNumber} onChange={e => setCardNumber(formatCard(e.target.value))} placeholder="1234 5678 9012 3456" className="h-11 rounded-xl border-[#E5EAF0] font-mono tracking-widest" maxLength={19} />
                       </div>
                       <div className="space-y-1.5">
-                        <Label className="text-[#0c964b] font-semibold text-sm">Tên chủ thẻ <span className="text-red-500">*</span></Label>
+                        <Label className="text-[#1557B0] font-semibold text-sm">Tên chủ thẻ <span className="text-red-500">*</span></Label>
                         <Input value={cardName} onChange={e => setCardName(e.target.value.toUpperCase())} placeholder="NGUYEN VAN A" className="h-11 rounded-xl border-[#E5EAF0] uppercase" />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1.5">
-                          <Label className="text-[#0c964b] font-semibold text-sm">Ngày hết hạn <span className="text-red-500">*</span></Label>
+                          <Label className="text-[#1557B0] font-semibold text-sm">Ngày hết hạn <span className="text-red-500">*</span></Label>
                           <Input value={expiry} onChange={e => setExpiry(formatExpiry(e.target.value))} placeholder="MM/YY" className="h-11 rounded-xl border-[#E5EAF0]" maxLength={5} />
                         </div>
                         <div className="space-y-1.5">
-                          <Label className="text-[#0c964b] font-semibold text-sm">CVV <span className="text-red-500">*</span></Label>
+                          <Label className="text-[#1557B0] font-semibold text-sm">CVV <span className="text-red-500">*</span></Label>
                           <Input value={cvv} onChange={e => setCvv(e.target.value.replace(/\D/g, "").slice(0, 4))} placeholder="•••" type="password" className="h-11 rounded-xl border-[#E5EAF0]" />
                         </div>
                       </div>
@@ -319,13 +319,13 @@ export default function Checkout() {
                 <div className="mt-6 space-y-4">
                   <div className="bg-[#FAFBFC] rounded-xl p-4 border border-[#E5EAF0]">
                     <label className="flex items-start gap-3 cursor-pointer">
-                      <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-0.5 w-4 h-4 rounded border-[#E5EAF0] accent-[#0c964b]" />
+                      <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-0.5 w-4 h-4 rounded border-[#E5EAF0] accent-[#1557B0]" />
                       <span className="text-sm text-[#4A5868] leading-relaxed">
-                        <FileText className="w-4 h-4 inline mr-1 text-[#0c964b]" />
+                        <FileText className="w-4 h-4 inline mr-1 text-[#1557B0]" />
                         Tôi đã đọc và đồng ý với{" "}
-                        <button type="button" className="text-[#0c964b] font-semibold underline">Điều khoản sử dụng</button>
+                        <button type="button" className="text-[#1557B0] font-semibold underline">Điều khoản sử dụng</button>
                         {" "}và{" "}
-                        <button type="button" className="text-[#0c964b] font-semibold underline">Hợp đồng dịch vụ</button>
+                        <button type="button" className="text-[#1557B0] font-semibold underline">Hợp đồng dịch vụ</button>
                         {" "}của Checkee. Thông tin đồng ý được ghi nhận kèm thời điểm và địa chỉ IP.
                       </span>
                     </label>
@@ -335,7 +335,7 @@ export default function Checkout() {
                   <div className="space-y-1.5">
                     <Label className="text-[#4A5868] font-semibold text-sm">Mã người giới thiệu <span className="text-xs font-normal text-[#7D9E94]">(Không bắt buộc)</span></Label>
                     <Input value={referralCode} onChange={e => setReferralCode(e.target.value.toUpperCase())} placeholder="VD: PARTNER2026" className="h-10 rounded-xl border-[#E5EAF0] font-mono text-sm" />
-                    {referralCode && <p className="text-xs text-[#1A6B52] font-medium">✓ Mã giới thiệu hợp lệ — bạn sẽ nhận ưu đãi thêm!</p>}
+                    {referralCode && <p className="text-xs text-[#1557B0] font-medium">✓ Mã giới thiệu hợp lệ — bạn sẽ nhận ưu đãi thêm!</p>}
                   </div>
 
                   {payError && (
@@ -363,7 +363,7 @@ export default function Checkout() {
                 </div>
               </div>
 
-              <button onClick={() => setStep("business")} className="text-sm text-[#7D9E94] hover:text-[#0c964b] flex items-center gap-1">
+              <button onClick={() => setStep("business")} className="text-sm text-[#7D9E94] hover:text-[#1557B0] flex items-center gap-1">
                 ← Quay lại thông tin doanh nghiệp
               </button>
             </div>
@@ -373,19 +373,19 @@ export default function Checkout() {
 
         {step === "success" && (
           <div className="max-w-[560px] mx-auto text-center py-16">
-            <div className="w-24 h-24 bg-[#dcf0e6] rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle2 className="w-12 h-12 text-[#1A6B52]" />
+            <div className="w-24 h-24 bg-[#EFF5FF] rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 className="w-12 h-12 text-[#1557B0]" />
             </div>
-            <h1 className="text-3xl font-bold text-[#0c964b] mb-3">Thanh toán thành công!</h1>
+            <h1 className="text-3xl font-bold text-[#1557B0] mb-3">Thanh toán thành công!</h1>
             <p className="text-[#4A5868] mb-2">
               Gói <strong>{planName}</strong> đã được kích hoạt. Email xác nhận kèm hợp đồng PDF đã gửi.
             </p>
             <p className="text-sm text-[#7D9E94] mb-10">Bạn có thể quản lý gói và xem hóa đơn trong Dashboard.</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <button onClick={() => navigate("/dashboard")} className="px-8 py-3 rounded-full bg-[#0c964b] text-white font-semibold hover:bg-[#085c35] transition-colors">
+              <button onClick={() => navigate("/dashboard")} className="px-8 py-3 rounded-full bg-[#1557B0] text-white font-semibold hover:bg-[#085c35] transition-colors">
                 Vào Dashboard
               </button>
-              <button onClick={() => navigate("/demo")} className="px-8 py-3 rounded-full border border-[#E5EAF0] text-[#0c964b] font-semibold hover:bg-[#FAFBFC] transition-colors">
+              <button onClick={() => navigate("/demo")} className="px-8 py-3 rounded-full border border-[#E5EAF0] text-[#1557B0] font-semibold hover:bg-[#FAFBFC] transition-colors">
                 Tạo QR ngay
               </button>
             </div>
@@ -402,32 +402,32 @@ function OrderSummary({ planName, planPrice, planPeriod, biz }: {
   return (
     <div className="space-y-4">
       <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm">
-        <h3 className="font-bold text-[#0c964b] mb-4 text-sm uppercase tracking-wide">Tóm tắt đơn hàng</h3>
+        <h3 className="font-bold text-[#1557B0] mb-4 text-sm uppercase tracking-wide">Tóm tắt đơn hàng</h3>
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
             <span className="text-[#4A5868]">Gói Checkee Trace</span>
-            <span className="font-semibold text-[#0c964b]">{planName}</span>
+            <span className="font-semibold text-[#1557B0]">{planName}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-[#4A5868]">Chu kỳ</span>
-            <span className="font-semibold text-[#0c964b]">Hàng năm</span>
+            <span className="font-semibold text-[#1557B0]">Hàng năm</span>
           </div>
           <div className="border-t border-[#E5EAF0] pt-3 flex justify-between font-bold">
-            <span className="text-[#0c964b]">Tổng cộng</span>
+            <span className="text-[#1557B0]">Tổng cộng</span>
             <span className="text-[#ed8302] text-lg">{planPrice}đ</span>
           </div>
         </div>
-        <div className="mt-4 bg-[#dcf0e6] rounded-xl p-3 text-xs text-[#1A6B52] font-semibold text-center">
+        <div className="mt-4 bg-[#EFF5FF] rounded-xl p-3 text-xs text-[#1557B0] font-semibold text-center">
           Hóa đơn VAT xuất ngay sau thanh toán
         </div>
       </div>
       {biz && biz.companyName && (
         <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm">
-          <h3 className="font-bold text-[#0c964b] mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-[#1A6B52]" /> Doanh nghiệp
+          <h3 className="font-bold text-[#1557B0] mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-[#1557B0]" /> Doanh nghiệp
           </h3>
           <div className="text-sm text-[#4A5868] space-y-1">
-            <p className="font-semibold text-[#0c964b]">{biz.companyName}</p>
+            <p className="font-semibold text-[#1557B0]">{biz.companyName}</p>
             <p>MST: {biz.taxCode}</p>
             <p>{biz.address}</p>
           </div>
