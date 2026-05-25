@@ -25,7 +25,7 @@ export default function Pricing() {
             <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#fef3e2] border border-[#F5D2B8] text-[11px] uppercase tracking-[0.15em] text-[#ed8302] font-semibold">
               Đầu tư cho thương hiệu
             </div>
-            <h1 className="mt-5 text-4xl lg:text-5xl font-bold text-[#0c964b] leading-[1.15] tracking-tight">
+            <h1 className="mt-5 text-4xl lg:text-5xl font-bold text-[#1557B0] leading-[1.15] tracking-tight">
               Bảng giá minh bạch
             </h1>
           </div>
@@ -43,7 +43,7 @@ export default function Pricing() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-3 rounded-full text-sm font-semibold transition-all ${
                   activeTab === tab.id 
-                    ? "bg-[#0c964b] text-white shadow-md" 
+                    ? "bg-[#1557B0] text-white shadow-md" 
                     : "bg-[#FAFBFC] text-[#4A5868] hover:bg-[#E5EAF0] border border-[#E5EAF0]"
                 }`}
               >
@@ -67,35 +67,35 @@ export default function Pricing() {
                         PHỔ BIẾN
                       </div>
                     )}
-                    <h3 className="text-xl font-bold text-[#0c964b] mb-1">{tier.name}</h3>
+                    <h3 className="text-xl font-bold text-[#1557B0] mb-1">{tier.name}</h3>
                     <p className="text-sm text-[#7D9E94] mb-6">{tier.subtitle}</p>
                     
                     <div className="mb-8">
-                      <span className="text-4xl font-bold text-[#0c964b]">{tier.price}</span>
+                      <span className="text-4xl font-bold text-[#1557B0]">{tier.price}</span>
                       <span className="text-sm text-[#7D9E94] ml-1">/tháng</span>
                     </div>
                     
                     <div className="space-y-4 text-sm text-[#4A5868] flex-1 mb-8">
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span><strong>{tier.codes}</strong> mã QR</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span>Tài khoản NVL vô hạn</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span>Phân phối {tier.acc}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span>Kết nối Cổng QG</span>
                       </div>
                     </div>
                     
                     <Link href="/contact" className="mt-auto block">
-                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#ed8302] hover:bg-[#d47200] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0c964b] hover:bg-[#E5EAF0]"}`}>
+                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#ed8302] hover:bg-[#d47200] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#1557B0] hover:bg-[#E5EAF0]"}`}>
                         Chọn gói này
                       </Button>
                     </Link>
@@ -118,34 +118,34 @@ export default function Pricing() {
                         PHỔ BIẾN
                       </div>
                     )}
-                    <h3 className="text-xl font-bold text-[#0c964b] mb-6">{tier.name}</h3>
+                    <h3 className="text-xl font-bold text-[#1557B0] mb-6">{tier.name}</h3>
                     
                     <div className="mb-8">
-                      <span className="text-4xl font-bold text-[#0c964b]">{tier.price}</span>
+                      <span className="text-4xl font-bold text-[#1557B0]">{tier.price}</span>
                       {tier.price !== "Liên hệ" && <span className="text-sm text-[#7D9E94] ml-1">/tháng</span>}
                     </div>
                     
                     <div className="space-y-4 text-sm text-[#4A5868] flex-1 mb-8">
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span><strong>{tier.labels}</strong></span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span>Lượt quét <strong>{tier.scans}</strong></span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span>Ngôn ngữ <strong>{tier.lang}</strong></span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[#1A6B52] shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-[#1557B0] shrink-0" />
                         <span>Cập nhật tức thời</span>
                       </div>
                     </div>
                     
                     <Link href="/contact" className="mt-auto block">
-                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#ed8302] hover:bg-[#d47200] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0c964b] hover:bg-[#E5EAF0]"}`}>
+                      <Button className={`w-full rounded-full font-semibold h-12 ${tier.highlight ? "bg-[#ed8302] hover:bg-[#d47200] text-white" : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#1557B0] hover:bg-[#E5EAF0]"}`}>
                         Chọn gói này
                       </Button>
                     </Link>
@@ -158,7 +158,7 @@ export default function Pricing() {
                <div className="py-24 text-center bg-[#FAFBFC] rounded-2xl border border-[#E5EAF0]">
                  <p className="text-[#4A5868] text-lg mb-8">Bảng giá chuyên sâu đang được biên soạn. Vui lòng liên hệ tư vấn viên.</p>
                  <Link href="/contact">
-                    <Button className="h-12 px-8 rounded-full bg-[#0c964b] hover:bg-[#0c964b]/90 text-white font-semibold">
+                    <Button className="h-12 px-8 rounded-full bg-[#1557B0] hover:bg-[#1557B0]/90 text-white font-semibold">
                       Liên hệ trực tiếp
                     </Button>
                  </Link>
@@ -173,7 +173,7 @@ export default function Pricing() {
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#ed8302] uppercase tracking-widest text-xs font-semibold block mb-4">CÂU HỎI THƯỜNG GẶP</span>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#0c964b] leading-tight">Giải đáp thắc mắc</h2>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#1557B0] leading-tight">Giải đáp thắc mắc</h2>
           </div>
           <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-[#E5EAF0]">
             <Accordion type="single" collapsible className="w-full">
@@ -183,7 +183,7 @@ export default function Pricing() {
                 { q: "Dữ liệu của tôi được bảo mật như thế nào?", a: "Chúng tôi tuân thủ các tiêu chuẩn bảo mật dữ liệu nghiêm ngặt nhất. Dữ liệu được mã hóa mã hash bất biến và có tùy chọn lưu trữ lên blockchain." },
               ].map((faq, i) => (
                 <AccordionItem key={i} value={`item-${i}`}>
-                  <AccordionTrigger className="text-lg font-semibold text-[#0c964b]">{faq.q}</AccordionTrigger>
+                  <AccordionTrigger className="text-lg font-semibold text-[#1557B0]">{faq.q}</AccordionTrigger>
                   <AccordionContent className="text-[#4A5868] text-base leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -193,10 +193,10 @@ export default function Pricing() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-[#0c964b] text-white text-center">
+      <section className="py-24 bg-[#1557B0] text-white text-center">
         <div className="container max-w-[1280px] mx-auto px-6 lg:px-8 space-y-8">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">Bắt đầu trải nghiệm ngay</h2>
-          <p className="text-lg text-[#dcf0e6]/80 max-w-2xl mx-auto">
+          <p className="text-lg text-[#DCEEFF]/80 max-w-2xl mx-auto">
             Khám phá sức mạnh của việc số hóa sản phẩm.
           </p>
           <div className="pt-4 flex flex-col items-center gap-4">
