@@ -67,7 +67,7 @@ export function Navbar() {
       {showNudge && (
         <div className="bg-gradient-to-r from-[#4A8FE0] to-[#0B2D8A] text-white text-xs flex items-center justify-center gap-3 px-4 py-2 relative">
           <Zap className="w-3.5 h-3.5 text-[#fdba74] shrink-0" />
-          <span>Bạn đang dùng bản thử nghiệm — Nâng cấp để tạo QR không giới hạn & quản lý nhiều sản phẩm.</span>
+          <span>Bạn đang dùng bản dùng thử — Nâng cấp để tạo QR không giới hạn & quản lý nhiều sản phẩm.</span>
           <button
             onClick={() => openPricingModal()}
             className="shrink-0 bg-white text-[#1557B0] font-bold rounded-full px-3 py-0.5 text-[11px] hover:bg-[#EFF5FF] transition-colors"
