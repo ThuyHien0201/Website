@@ -486,9 +486,7 @@ export default function Demo() {
                           <CtaButton className="w-full justify-center" onClick={handleDownload}>
                             <Download className="w-4 h-4 mr-1" /> Tải mã QR
                           </CtaButton>
-                          <Button variant="outline" onClick={() => window.open(previewUrl, "_blank")} className="w-full border-[#0c964b] text-[#0c964b] hover:bg-[#f0fdf4]">
-                            Xem trang công khai
-                          </Button>
+                          
                           <Link href="/dashboard">
                             <Button variant="outline" className="w-full border-[#E5EAF0] text-[#4A5868] hover:bg-[#FAFBFC]">
                               Vào Dashboard
