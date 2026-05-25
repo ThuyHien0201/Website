@@ -36,6 +36,18 @@ export type AdminCert = {
   status: "pending" | "valid" | "rejected";
 };
 
+export type JourneyEvent = {
+  id: string;
+  sessionId: string;
+  userId?: string;
+  userName?: string;
+  event: string;
+  label: string;
+  step?: number;
+  timestamp: Date;
+  meta?: Record<string, string | number | boolean>;
+};
+
 export type AdminCustomer = {
   id: string;
   name: string;
@@ -50,6 +62,8 @@ export type AdminCustomer = {
   status: "active" | "expired" | "trial";
   certs: AdminCert[];
 };
+
+const SESSION_ID = `session-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
 const INITIAL_ADMIN_CUSTOMERS: AdminCustomer[] = [
   {
@@ -88,6 +102,20 @@ const INITIAL_ADMIN_CUSTOMERS: AdminCustomer[] = [
   },
 ];
 
+const INITIAL_JOURNEY: JourneyEvent[] = [
+  { id: "j1", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "clicked_trial", label: "Bấm Dùng thử", step: 0, timestamp: new Date(Date.now() - 86400000 * 3) },
+  { id: "j2", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 86400000 * 3 + 120000) },
+  { id: "j3", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "completed_step2", label: "Hoàn tất bước 2 - Sản phẩm", step: 2, timestamp: new Date(Date.now() - 86400000 * 3 + 300000) },
+  { id: "j4", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "completed_step3", label: "Hoàn tất bước 3 - Hành trình", step: 3, timestamp: new Date(Date.now() - 86400000 * 3 + 480000) },
+  { id: "j5", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "generated_qr", label: "Tạo mã QR thành công", step: 4, timestamp: new Date(Date.now() - 86400000 * 3 + 600000) },
+  { id: "j6", sessionId: "session-abc123", userId: "c1", userName: "Nguyễn Văn Hùng", event: "selected_plan", label: "Chọn gói Tăng trưởng", step: 4, timestamp: new Date(Date.now() - 86400000 * 3 + 900000), meta: { plan: "Tăng trưởng" } },
+  { id: "j7", sessionId: "session-def456", userId: "c3", userName: "Lê Minh Tuấn", event: "clicked_trial", label: "Bấm Dùng thử", step: 0, timestamp: new Date(Date.now() - 86400000 * 1) },
+  { id: "j8", sessionId: "session-def456", userId: "c3", userName: "Lê Minh Tuấn", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 86400000 * 1 + 90000) },
+  { id: "j9", sessionId: "session-def456", userId: "c3", userName: "Lê Minh Tuấn", event: "completed_step2", label: "Hoàn tất bước 2 - Sản phẩm", step: 2, timestamp: new Date(Date.now() - 86400000 * 1 + 200000) },
+  { id: "j10", sessionId: "session-ghi789", sessionId2: undefined, event: "clicked_trial", label: "Bấm Dùng thử (khách vãng lai)", step: 0, timestamp: new Date(Date.now() - 7200000) } as JourneyEvent,
+  { id: "j11", sessionId: "session-ghi789", event: "completed_step1", label: "Hoàn tất bước 1 - Doanh nghiệp", step: 1, timestamp: new Date(Date.now() - 7200000 + 150000) },
+];
+
 type AuthContextType = {
   user: User | null;
   demoQuota: number;
@@ -99,13 +127,15 @@ type AuthContextType = {
   demoQRLog: { product: string; createdAt: Date }[];
   userCerts: UserCert[];
   adminCustomers: AdminCustomer[];
+  journeyEvents: JourneyEvent[];
 
   showLoginModal: boolean;
   showPricingModal: boolean;
+  pricingModalContext: string;
 
   openLoginModal: (opts?: { product?: string; redirect?: string }) => void;
   closeLoginModal: () => void;
-  openPricingModal: () => void;
+  openPricingModal: (context?: string) => void;
   closePricingModal: () => void;
 
   login: (emailOrPhone: string, password: string) => Promise<void>;
@@ -120,6 +150,8 @@ type AuthContextType = {
   removeUserCert: (id: string) => void;
   adminVerifyCert: (certId: string, status: "valid" | "rejected") => void;
   adminVerifyCustomerCert: (customerId: string, certId: string, status: "valid" | "rejected") => void;
+
+  trackJourney: (event: string, label: string, step?: number, meta?: Record<string, string | number | boolean>) => void;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -135,9 +167,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [demoQRLog, setDemoQRLog] = useState<{ product: string; createdAt: Date }[]>([]);
   const [userCerts, setUserCerts] = useState<UserCert[]>([]);
   const [adminCustomers, setAdminCustomers] = useState<AdminCustomer[]>(INITIAL_ADMIN_CUSTOMERS);
+  const [journeyEvents, setJourneyEvents] = useState<JourneyEvent[]>(INITIAL_JOURNEY);
 
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showPricingModal, setShowPricingModal] = useState(false);
+  const [pricingModalContext, setPricingModalContext] = useState("default");
 
   const openLoginModal = useCallback((opts?: { product?: string; redirect?: string }) => {
     if (opts?.product) setPendingProduct(opts.product);
@@ -146,7 +180,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const closeLoginModal = useCallback(() => setShowLoginModal(false), []);
-  const openPricingModal = useCallback(() => setShowPricingModal(true), []);
+
+  const openPricingModal = useCallback((context = "default") => {
+    setPricingModalContext(context);
+    setShowPricingModal(true);
+  }, []);
+
   const closePricingModal = useCallback(() => setShowPricingModal(false), []);
 
   const isPhone = (val: string) => /^(0|\+84)[0-9]{8,10}$/.test(val.replace(/\s/g, ""));
@@ -226,16 +265,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ));
   }, []);
 
+  const trackJourney = useCallback((event: string, label: string, step?: number, meta?: Record<string, string | number | boolean>) => {
+    setJourneyEvents(prev => [...prev, {
+      id: `j-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      sessionId: SESSION_ID,
+      userId: undefined,
+      userName: undefined,
+      event,
+      label,
+      step,
+      timestamp: new Date(),
+      meta,
+    }]);
+  }, []);
+
   return (
     <AuthContext.Provider value={{
       user, demoQuota, pendingProduct, loginRedirect, businessInfo, activePlan,
-      planExpiryDate, demoQRLog, userCerts, adminCustomers,
-      showLoginModal, showPricingModal,
+      planExpiryDate, demoQRLog, userCerts, adminCustomers, journeyEvents,
+      showLoginModal, showPricingModal, pricingModalContext,
       openLoginModal, closeLoginModal,
       openPricingModal, closePricingModal,
       login, register, logout,
       consumeDemoQuota, setBusinessInfo, activatePlan,
       addUserCert, removeUserCert, adminVerifyCert, adminVerifyCustomerCert,
+      trackJourney,
     }}>
       {children}
     </AuthContext.Provider>

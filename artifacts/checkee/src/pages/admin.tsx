@@ -4,7 +4,7 @@ import {
   LayoutGrid, Users, Megaphone, Eye, EyeOff, Loader2, LogOut,
   Plus, Trash2, CheckCircle2, XCircle, Clock, ChevronDown, ChevronRight,
   FileText, Image, Newspaper, Settings2, Shield, QrCode, Package, Calendar,
-  AlertTriangle, Edit3, Save, X
+  AlertTriangle, Edit3, Save, X, Activity, TrendingUp, Filter
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,7 +16,7 @@ import logoPng from "@/assets/logo.png";
 const ADMIN_EMAIL = "admin@checkee.vn";
 const ADMIN_PASSWORD = "Admin@2026";
 
-type AdminTab = "marketing" | "customers";
+type AdminTab = "marketing" | "customers" | "journey";
 type MarketingSection = "content" | "news" | "images";
 
 type NewsArticle = { id: string; title: string; summary: string; date: string; published: boolean };
@@ -36,9 +36,29 @@ const SECTION_TOGGLES = [
   { key: "cta", label: "CTA cuối trang" },
 ];
 
+const JOURNEY_EVENT_COLORS: Record<string, string> = {
+  clicked_trial: "bg-[#EFF5FF] text-[#1557B0] border-[#DCEEFF]",
+  completed_step1: "bg-[#EFF5FF] text-[#1557B0] border-[#DCEEFF]",
+  completed_step2: "bg-[#EFF5FF] text-[#1557B0] border-[#DCEEFF]",
+  completed_step3: "bg-[#EFF5FF] text-[#1557B0] border-[#DCEEFF]",
+  generated_qr: "bg-[#D4EDE6] text-[#1A5C3A] border-[#B8E0D2]",
+  selected_plan: "bg-[#fef3e2] text-[#ed8302] border-[#fdba74]",
+  clicked_download_qr: "bg-[#fef3e2] text-[#ed8302] border-[#fdba74]",
+  clicked_print_qr: "bg-[#fef3e2] text-[#ed8302] border-[#fdba74]",
+};
+
+const FUNNEL_STEPS = [
+  { key: "clicked_trial", label: "Bấm Dùng thử" },
+  { key: "completed_step1", label: "Bước 1: Doanh nghiệp" },
+  { key: "completed_step2", label: "Bước 2: Sản phẩm" },
+  { key: "completed_step3", label: "Bước 3: Hành trình" },
+  { key: "generated_qr", label: "Tạo mã QR" },
+  { key: "selected_plan", label: "Chọn gói" },
+];
+
 export default function Admin() {
   const [, navigate] = useLocation();
-  const { adminCustomers, adminVerifyCustomerCert, userCerts, adminVerifyCert, user: authUser } = useAuth();
+  const { adminCustomers, adminVerifyCustomerCert, userCerts, adminVerifyCert, user: authUser, journeyEvents } = useAuth();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
@@ -64,6 +84,7 @@ export default function Admin() {
   const [newSummary, setNewSummary] = useState("");
 
   const [expandedCustomer, setExpandedCustomer] = useState<string | null>(null);
+  const [journeyFilter, setJourneyFilter] = useState<string>("all");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,13 +114,13 @@ export default function Admin() {
   const togglePublish = (id: string) => setNews(prev => prev.map(n => n.id === id ? { ...n, published: !n.published } : n));
 
   const statusBadge = (status: string) => {
-    if (status === "active") return <span className="inline-flex items-center gap-1 bg-[#D4EDE6] text-[#1A6B52] text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-[#1A6B52]" />Hoạt động</span>;
+    if (status === "active") return <span className="inline-flex items-center gap-1 bg-[#D4EDE6] text-[#1A5C3A] text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-[#1A5C3A]" />Hoạt động</span>;
     if (status === "expired") return <span className="inline-flex items-center gap-1 bg-red-50 text-red-500 text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-red-500" />Hết hạn</span>;
     return <span className="inline-flex items-center gap-1 bg-[#fef3e2] text-[#ed8302] text-xs font-semibold px-2.5 py-1 rounded-full"><span className="w-1.5 h-1.5 rounded-full bg-[#ed8302]" />Dùng thử</span>;
   };
 
   const certBadge = (status: string) => {
-    if (status === "valid") return <span className="inline-flex items-center gap-1 bg-[#D4EDE6] text-[#1A6B52] text-xs font-semibold px-2 py-0.5 rounded-full"><CheckCircle2 className="w-3 h-3" />Hợp lệ</span>;
+    if (status === "valid") return <span className="inline-flex items-center gap-1 bg-[#D4EDE6] text-[#1A5C3A] text-xs font-semibold px-2 py-0.5 rounded-full"><CheckCircle2 className="w-3 h-3" />Hợp lệ</span>;
     if (status === "rejected") return <span className="inline-flex items-center gap-1 bg-red-50 text-red-500 text-xs font-semibold px-2 py-0.5 rounded-full"><XCircle className="w-3 h-3" />Từ chối</span>;
     return <span className="inline-flex items-center gap-1 bg-[#fef3e2] text-[#ed8302] text-xs font-semibold px-2 py-0.5 rounded-full"><Clock className="w-3 h-3" />Chờ duyệt</span>;
   };
@@ -122,25 +143,45 @@ export default function Admin() {
     }] : []),
   ];
 
+  // Journey funnel counts
+  const funnelCounts = FUNNEL_STEPS.map(step => ({
+    ...step,
+    count: journeyEvents.filter(e => e.event === step.key).length,
+    sessions: new Set(journeyEvents.filter(e => e.event === step.key).map(e => e.sessionId)).size,
+  }));
+
+  const maxFunnelCount = Math.max(...funnelCounts.map(s => s.sessions), 1);
+
+  const filteredJourney = journeyFilter === "all"
+    ? journeyEvents
+    : journeyEvents.filter(e => e.sessionId === journeyFilter);
+
+  const uniqueSessions = [...new Set(journeyEvents.map(e => e.sessionId))];
+
+  const formatTime = (date: Date) => {
+    const d = new Date(date);
+    return d.toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+  };
+
   if (!isLoggedIn) {
     return (
-      <div className="min-h-[100dvh] bg-gradient-to-br from-[#0c964b] to-[#0c964b] flex items-center justify-center p-4">
+      <div className="min-h-[100dvh] bg-gradient-to-br from-[#4A8FE0] to-[#0B2D8A] flex items-center justify-center p-4">
         <div className="bg-white rounded-3xl shadow-2xl w-full max-w-[420px] overflow-hidden">
           <div className="p-8 text-center border-b border-[#E5EAF0]">
             <button onClick={() => navigate("/")} className="block mx-auto mb-4">
               <img src={logoPng} alt="Checkee" className="h-9 mx-auto" />
             </button>
-            <h2 className="text-xl font-bold text-[#0c964b]">Admin Panel</h2>
+            <h2 className="text-xl font-bold text-[#1557B0]">Admin Panel</h2>
             <p className="text-sm text-[#7D9E94] mt-1">Đăng nhập với tài khoản quản trị</p>
           </div>
           <div className="p-8">
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-1.5">
-                <Label className="text-[#0c964b] font-semibold text-sm">Email admin</Label>
+                <Label className="text-[#1557B0] font-semibold text-sm">Email admin</Label>
                 <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@checkee.vn" className="h-11 rounded-xl border-[#E5EAF0]" />
               </div>
               <div className="space-y-1.5">
-                <Label className="text-[#0c964b] font-semibold text-sm">Mật khẩu</Label>
+                <Label className="text-[#1557B0] font-semibold text-sm">Mật khẩu</Label>
                 <div className="relative">
                   <Input type={showPass ? "text" : "password"} value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" className="h-11 rounded-xl border-[#E5EAF0] pr-10" />
                   <button type="button" onClick={() => setShowPass(v => !v)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#7D9E94]">
@@ -149,7 +190,7 @@ export default function Admin() {
                 </div>
               </div>
               {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
-              <Button type="submit" disabled={loading} className="w-full h-11 rounded-full bg-[#0c964b] hover:bg-[#085c35] text-white font-semibold">
+              <Button type="submit" disabled={loading} className="w-full h-11 rounded-full bg-[#1557B0] hover:bg-[#0D3F8A] text-white font-semibold">
                 {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Đăng nhập"}
               </Button>
             </form>
@@ -162,7 +203,6 @@ export default function Admin() {
 
   return (
     <div className="min-h-[100dvh] bg-[#F4F6F8] font-sans flex flex-col">
-      {/* Header */}
       <header className="h-16 bg-white border-b border-[#E5EAF0] flex items-center px-6 gap-4 sticky top-0 z-40 shadow-sm">
         <button onClick={() => navigate("/")} className="flex items-center gap-2 shrink-0">
           <img src={logoPng} alt="Checkee" className="h-7" />
@@ -172,7 +212,7 @@ export default function Admin() {
           <span className="text-xs font-bold text-red-500 uppercase tracking-wide">Admin</span>
         </div>
         <div className="flex-1" />
-        <button onClick={() => navigate("/")} className="text-xs text-[#7D9E94] hover:text-[#0c964b] font-semibold">
+        <button onClick={() => navigate("/")} className="text-xs text-[#7D9E94] hover:text-[#1557B0] font-semibold">
           Xem website
         </button>
         <button onClick={() => setIsLoggedIn(false)} className="flex items-center gap-1.5 text-xs text-[#7D9E94] hover:text-red-500 transition-colors px-3 py-2 rounded-full hover:bg-red-50">
@@ -185,15 +225,21 @@ export default function Admin() {
         <aside className="w-56 shrink-0 bg-white border-r border-[#E5EAF0] hidden md:flex flex-col p-3 gap-1">
           <button
             onClick={() => setTab("marketing")}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "marketing" ? "bg-[#0c964b] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0c964b]"}`}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "marketing" ? "bg-[#1557B0] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#1557B0]"}`}
           >
             <Megaphone className="w-4 h-4 shrink-0" /> Quản lý Marketing
           </button>
           <button
             onClick={() => setTab("customers")}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "customers" ? "bg-[#0c964b] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#0c964b]"}`}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "customers" ? "bg-[#1557B0] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#1557B0]"}`}
           >
             <Users className="w-4 h-4 shrink-0" /> Quản lý Khách hàng
+          </button>
+          <button
+            onClick={() => setTab("journey")}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${tab === "journey" ? "bg-[#1557B0] text-white" : "text-[#4A5868] hover:bg-[#FAFBFC] hover:text-[#1557B0]"}`}
+          >
+            <Activity className="w-4 h-4 shrink-0" /> Hành trình KH
           </button>
         </aside>
 
@@ -203,10 +249,9 @@ export default function Admin() {
           {tab === "marketing" && (
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-xl font-bold text-[#0c964b]">Quản lý Marketing</h1>
+                <h1 className="text-xl font-bold text-[#1557B0]">Quản lý Marketing</h1>
               </div>
 
-              {/* Sub-tabs */}
               <div className="flex gap-2 flex-wrap">
                 {[
                   { key: "content" as MarketingSection, label: "Nội dung Website", icon: Edit3 },
@@ -216,23 +261,21 @@ export default function Admin() {
                   <button
                     key={s.key}
                     onClick={() => setMarketingSection(s.key)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border transition-all ${marketingSection === s.key ? "bg-[#0c964b] text-white border-[#0c964b]" : "border-[#E5EAF0] text-[#4A5868] hover:border-[#0c964b] hover:text-[#0c964b]"}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border transition-all ${marketingSection === s.key ? "bg-[#1557B0] text-white border-[#1557B0]" : "border-[#E5EAF0] text-[#4A5868] hover:border-[#1557B0] hover:text-[#1557B0]"}`}
                   >
                     <s.icon className="w-4 h-4" /> {s.label}
                   </button>
                 ))}
               </div>
 
-              {/* Content Editor */}
               {marketingSection === "content" && (
                 <div className="space-y-5">
-                  {/* Hero Section */}
                   <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-bold text-[#0c964b] flex items-center gap-2"><LayoutGrid className="w-4 h-4" /> Hero Section</h3>
+                      <h3 className="font-bold text-[#1557B0] flex items-center gap-2"><LayoutGrid className="w-4 h-4" /> Hero Section</h3>
                       {editingHero
                         ? <div className="flex gap-2">
-                            <Button onClick={() => setEditingHero(false)} size="sm" className="h-8 rounded-full bg-[#1A6B52] text-white text-xs"><Save className="w-3 h-3 mr-1" />Lưu</Button>
+                            <Button onClick={() => setEditingHero(false)} size="sm" className="h-8 rounded-full bg-[#1557B0] text-white text-xs"><Save className="w-3 h-3 mr-1" />Lưu</Button>
                             <Button onClick={() => setEditingHero(false)} variant="outline" size="sm" className="h-8 rounded-full text-xs"><X className="w-3 h-3" /></Button>
                           </div>
                         : <Button onClick={() => setEditingHero(true)} variant="outline" size="sm" className="h-8 rounded-full text-xs border-[#E5EAF0]"><Edit3 className="w-3 h-3 mr-1" />Chỉnh sửa</Button>
@@ -241,15 +284,15 @@ export default function Admin() {
                     {editingHero ? (
                       <div className="space-y-4">
                         <div className="space-y-1.5">
-                          <Label className="text-[#0c964b] text-sm font-semibold">Tiêu đề chính (H1)</Label>
+                          <Label className="text-[#1557B0] text-sm font-semibold">Tiêu đề chính (H1)</Label>
                           <Textarea value={heroTitle} onChange={e => setHeroTitle(e.target.value)} rows={2} className="rounded-xl border-[#E5EAF0] text-sm" />
                         </div>
                         <div className="space-y-1.5">
-                          <Label className="text-[#0c964b] text-sm font-semibold">Mô tả ngắn</Label>
+                          <Label className="text-[#1557B0] text-sm font-semibold">Mô tả ngắn</Label>
                           <Textarea value={heroSubtitle} onChange={e => setHeroSubtitle(e.target.value)} rows={3} className="rounded-xl border-[#E5EAF0] text-sm" />
                         </div>
                         <div className="space-y-1.5">
-                          <Label className="text-[#0c964b] text-sm font-semibold">Nút CTA</Label>
+                          <Label className="text-[#1557B0] text-sm font-semibold">Nút CTA</Label>
                           <Input value={ctaText} onChange={e => setCtaText(e.target.value)} className="h-9 rounded-xl border-[#E5EAF0] text-sm" />
                         </div>
                       </div>
@@ -262,16 +305,15 @@ export default function Admin() {
                     )}
                   </div>
 
-                  {/* Section Toggles */}
                   <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm">
-                    <h3 className="font-bold text-[#0c964b] flex items-center gap-2 mb-4"><Settings2 className="w-4 h-4" /> Hiển thị Sections</h3>
+                    <h3 className="font-bold text-[#1557B0] flex items-center gap-2 mb-4"><Settings2 className="w-4 h-4" /> Hiển thị Sections</h3>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {SECTION_TOGGLES.map(s => (
                         <div key={s.key} className="flex items-center justify-between p-3 border border-[#E5EAF0] rounded-xl">
                           <span className="text-sm font-semibold text-[#0F1B2D]">{s.label}</span>
                           <button
                             onClick={() => setSectionToggles(prev => ({ ...prev, [s.key]: !prev[s.key] }))}
-                            className={`relative w-10 h-5 rounded-full transition-colors ${sectionToggles[s.key] ? "bg-[#1A6B52]" : "bg-[#E5EAF0]"}`}
+                            className={`relative w-10 h-5 rounded-full transition-colors ${sectionToggles[s.key] ? "bg-[#1557B0]" : "bg-[#E5EAF0]"}`}
                           >
                             <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${sectionToggles[s.key] ? "translate-x-5" : "translate-x-0.5"}`} />
                           </button>
@@ -282,29 +324,28 @@ export default function Admin() {
                 </div>
               )}
 
-              {/* News Management */}
               {marketingSection === "news" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-[#0c964b]">Bài viết Tin tức ({news.length})</h3>
+                    <h3 className="font-bold text-[#1557B0]">Bài viết Tin tức ({news.length})</h3>
                     <Button onClick={() => setAddingNews(true)} className="h-9 rounded-full bg-[#ed8302] hover:bg-[#d47200] text-white text-sm px-4">
                       <Plus className="w-4 h-4 mr-1" /> Thêm bài viết
                     </Button>
                   </div>
 
                   {addingNews && (
-                    <div className="bg-white rounded-2xl border-2 border-[#0c964b] p-6 shadow-sm space-y-4">
-                      <h4 className="font-bold text-[#0c964b]">Bài viết mới</h4>
+                    <div className="bg-white rounded-2xl border-2 border-[#1557B0] p-6 shadow-sm space-y-4">
+                      <h4 className="font-bold text-[#1557B0]">Bài viết mới</h4>
                       <div className="space-y-1.5">
-                        <Label className="text-[#0c964b] text-sm font-semibold">Tiêu đề bài viết</Label>
+                        <Label className="text-[#1557B0] text-sm font-semibold">Tiêu đề bài viết</Label>
                         <Input value={newTitle} onChange={e => setNewTitle(e.target.value)} placeholder="Nhập tiêu đề..." className="h-10 rounded-xl border-[#E5EAF0]" />
                       </div>
                       <div className="space-y-1.5">
-                        <Label className="text-[#0c964b] text-sm font-semibold">Tóm tắt</Label>
+                        <Label className="text-[#1557B0] text-sm font-semibold">Tóm tắt</Label>
                         <Textarea value={newSummary} onChange={e => setNewSummary(e.target.value)} rows={3} placeholder="Mô tả ngắn về bài viết..." className="rounded-xl border-[#E5EAF0]" />
                       </div>
                       <div className="flex gap-2">
-                        <Button onClick={addNews} className="h-9 rounded-full bg-[#0c964b] text-white text-sm"><Save className="w-4 h-4 mr-1" />Lưu bài viết</Button>
+                        <Button onClick={addNews} className="h-9 rounded-full bg-[#1557B0] text-white text-sm"><Save className="w-4 h-4 mr-1" />Lưu bài viết</Button>
                         <Button onClick={() => setAddingNews(false)} variant="outline" className="h-9 rounded-full text-sm">Huỷ</Button>
                       </div>
                     </div>
@@ -313,8 +354,8 @@ export default function Admin() {
                   <div className="space-y-3">
                     {news.map(article => (
                       <div key={article.id} className="bg-white rounded-2xl border border-[#E5EAF0] p-5 shadow-sm flex items-start gap-4">
-                        <div className="w-10 h-10 bg-[#dcf0e6] rounded-xl flex items-center justify-center shrink-0">
-                          <Newspaper className="w-5 h-5 text-[#0c964b]" />
+                        <div className="w-10 h-10 bg-[#EFF5FF] rounded-xl flex items-center justify-center shrink-0">
+                          <Newspaper className="w-5 h-5 text-[#1557B0]" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="font-bold text-[#0F1B2D] truncate">{article.title}</p>
@@ -324,7 +365,7 @@ export default function Admin() {
                         <div className="flex items-center gap-2 shrink-0">
                           <button
                             onClick={() => togglePublish(article.id)}
-                            className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-all ${article.published ? "bg-[#D4EDE6] text-[#1A6B52]" : "bg-[#F4F6F8] text-[#7D9E94]"}`}
+                            className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-all ${article.published ? "bg-[#D4EDE6] text-[#1A5C3A]" : "bg-[#F4F6F8] text-[#7D9E94]"}`}
                           >
                             {article.published ? "Đã đăng" : "Bản nháp"}
                           </button>
@@ -338,12 +379,11 @@ export default function Admin() {
                 </div>
               )}
 
-              {/* Image Gallery */}
               {marketingSection === "images" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-bold text-[#0c964b]">Hình ảnh & Banner</h3>
-                    <Button className="h-9 rounded-full bg-[#0c964b] text-white text-sm px-4">
+                    <h3 className="font-bold text-[#1557B0]">Hình ảnh & Banner</h3>
+                    <Button className="h-9 rounded-full bg-[#1557B0] text-white text-sm px-4">
                       <Plus className="w-4 h-4 mr-1" /> Upload ảnh
                     </Button>
                   </div>
@@ -363,7 +403,7 @@ export default function Admin() {
                         </div>
                       </div>
                     ))}
-                    <div className="bg-white rounded-xl border-2 border-dashed border-[#E5EAF0] h-[156px] flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-[#0c964b] transition-colors">
+                    <div className="bg-white rounded-xl border-2 border-dashed border-[#E5EAF0] h-[156px] flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-[#1557B0] transition-colors">
                       <Plus className="w-8 h-8 text-[#E5EAF0]" />
                       <span className="text-xs text-[#7D9E94]">Thêm ảnh</span>
                     </div>
@@ -377,15 +417,14 @@ export default function Admin() {
           {tab === "customers" && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h1 className="text-xl font-bold text-[#0c964b]">Quản lý Khách hàng</h1>
+                <h1 className="text-xl font-bold text-[#1557B0]">Quản lý Khách hàng</h1>
                 <div className="text-sm text-[#7D9E94]">{allCustomersForDisplay.length} khách hàng</div>
               </div>
 
-              {/* Summary Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
-                  { label: "Tổng khách hàng", value: allCustomersForDisplay.length.toString(), icon: Users, color: "bg-[#dcf0e6] text-[#0c964b]" },
-                  { label: "Đang hoạt động", value: allCustomersForDisplay.filter(c => c.status === "active").length.toString(), icon: CheckCircle2, color: "bg-[#D4EDE6] text-[#1A6B52]" },
+                  { label: "Tổng khách hàng", value: allCustomersForDisplay.length.toString(), icon: Users, color: "bg-[#EFF5FF] text-[#1557B0]" },
+                  { label: "Đang hoạt động", value: allCustomersForDisplay.filter(c => c.status === "active").length.toString(), icon: CheckCircle2, color: "bg-[#D4EDE6] text-[#1A5C3A]" },
                   { label: "Hết hạn", value: allCustomersForDisplay.filter(c => c.status === "expired").length.toString(), icon: AlertTriangle, color: "bg-red-50 text-red-500" },
                   { label: "Chờ duyệt chứng nhận", value: allCustomersForDisplay.reduce((acc, c) => acc + c.certs.filter(cert => cert.status === "pending").length, 0).toString(), icon: Clock, color: "bg-[#fef3e2] text-[#ed8302]" },
                 ].map((stat, i) => (
@@ -399,10 +438,9 @@ export default function Admin() {
                 ))}
               </div>
 
-              {/* Customer List */}
               <div className="bg-white rounded-2xl border border-[#E5EAF0] shadow-sm overflow-hidden">
                 <div className="p-5 border-b border-[#E5EAF0]">
-                  <h3 className="font-bold text-[#0c964b]">Danh sách khách hàng</h3>
+                  <h3 className="font-bold text-[#1557B0]">Danh sách khách hàng</h3>
                 </div>
                 <div className="divide-y divide-[#F4F6F8]">
                   {allCustomersForDisplay.map(customer => (
@@ -411,7 +449,7 @@ export default function Admin() {
                         className="flex items-center gap-4 px-5 py-4 hover:bg-[#FAFBFC] cursor-pointer transition-colors"
                         onClick={() => setExpandedCustomer(expandedCustomer === customer.id ? null : customer.id)}
                       >
-                        <div className="w-10 h-10 rounded-full bg-[#0c964b] text-white flex items-center justify-center text-sm font-bold shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-[#1557B0] text-white flex items-center justify-center text-sm font-bold shrink-0">
                           {customer.name.split(" ").map(w => w[0]).slice(0, 2).join("")}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -420,7 +458,7 @@ export default function Admin() {
                         </div>
                         <div className="hidden md:flex items-center gap-6 text-sm">
                           <div className="text-center">
-                            <p className="font-bold text-[#0c964b]">{customer.plan}</p>
+                            <p className="font-bold text-[#1557B0]">{customer.plan}</p>
                             <p className="text-xs text-[#7D9E94]">Gói</p>
                           </div>
                           <div className="text-center">
@@ -448,10 +486,8 @@ export default function Admin() {
                         }
                       </div>
 
-                      {/* Expanded Detail */}
                       {expandedCustomer === customer.id && (
                         <div className="bg-[#FAFBFC] border-t border-[#E5EAF0] px-5 py-5 space-y-5">
-                          {/* Info Grid */}
                           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {[
                               { icon: FileText, label: "HĐ bắt đầu", value: customer.contractStart },
@@ -460,8 +496,8 @@ export default function Admin() {
                               { icon: QrCode, label: "QR kích hoạt", value: `${customer.qrActivated} mã` },
                             ].map((item, i) => (
                               <div key={i} className="bg-white rounded-xl border border-[#E5EAF0] p-3 flex items-center gap-3">
-                                <div className="w-8 h-8 bg-[#dcf0e6] rounded-lg flex items-center justify-center shrink-0">
-                                  <item.icon className="w-4 h-4 text-[#0c964b]" />
+                                <div className="w-8 h-8 bg-[#EFF5FF] rounded-lg flex items-center justify-center shrink-0">
+                                  <item.icon className="w-4 h-4 text-[#1557B0]" />
                                 </div>
                                 <div>
                                   <p className="text-xs text-[#7D9E94]">{item.label}</p>
@@ -471,23 +507,21 @@ export default function Admin() {
                             ))}
                           </div>
 
-                          {/* Contact */}
                           <div className="flex gap-4 text-sm text-[#4A5868]">
                             <span className="flex items-center gap-1.5"><span className="text-[#7D9E94]">📧</span>{customer.email}</span>
                             <span className="flex items-center gap-1.5"><span className="text-[#7D9E94]">📱</span>{customer.phone}</span>
                           </div>
 
-                          {/* Certs */}
                           <div>
-                            <p className="text-sm font-bold text-[#0c964b] mb-3">Chứng nhận & Chứng chỉ</p>
+                            <p className="text-sm font-bold text-[#1557B0] mb-3">Chứng nhận & Chứng chỉ</p>
                             {customer.certs.length === 0 ? (
                               <p className="text-sm text-[#7D9E94] italic">Khách hàng chưa upload chứng nhận nào.</p>
                             ) : (
                               <div className="space-y-2">
                                 {customer.certs.map(cert => (
                                   <div key={cert.id} className="flex items-center gap-3 bg-white rounded-xl border border-[#E5EAF0] p-3">
-                                    <div className="w-8 h-8 bg-[#dcf0e6] rounded-lg flex items-center justify-center shrink-0">
-                                      <FileText className="w-4 h-4 text-[#0c964b]" />
+                                    <div className="w-8 h-8 bg-[#EFF5FF] rounded-lg flex items-center justify-center shrink-0">
+                                      <FileText className="w-4 h-4 text-[#1557B0]" />
                                     </div>
                                     <div className="flex-1 min-w-0">
                                       <p className="text-sm font-semibold text-[#0F1B2D]">{cert.name}</p>
@@ -500,7 +534,7 @@ export default function Admin() {
                                           onClick={() => customer.id === "current-user"
                                             ? adminVerifyCert(cert.id, "valid")
                                             : adminVerifyCustomerCert(customer.id, cert.id, "valid")}
-                                          className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#D4EDE6] text-[#1A6B52] text-xs font-semibold hover:bg-[#B8E0D2] transition-colors"
+                                          className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#D4EDE6] text-[#1A5C3A] text-xs font-semibold hover:bg-[#B8E0D2] transition-colors"
                                         >
                                           <CheckCircle2 className="w-3.5 h-3.5" /> Duyệt
                                         </button>
@@ -527,6 +561,117 @@ export default function Admin() {
               </div>
             </div>
           )}
+
+          {/* ===== JOURNEY TAB ===== */}
+          {tab === "journey" && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-xl font-bold text-[#1557B0]">Hành trình Khách hàng</h1>
+                  <p className="text-sm text-[#7D9E94] mt-0.5">Theo dõi từng bước trong hành trình dùng thử — xác định điểm nghẽn để Sale tư vấn kịp thời.</p>
+                </div>
+              </div>
+
+              {/* Funnel Overview */}
+              <div className="bg-white rounded-2xl border border-[#E5EAF0] p-6 shadow-sm">
+                <div className="flex items-center gap-2 mb-5">
+                  <TrendingUp className="w-5 h-5 text-[#1557B0]" />
+                  <h3 className="font-bold text-[#1557B0]">Phễu chuyển đổi</h3>
+                  <span className="text-xs text-[#7D9E94] ml-1">({journeyEvents.length} sự kiện, {uniqueSessions.length} phiên)</span>
+                </div>
+                <div className="space-y-3">
+                  {funnelCounts.map((step, i) => {
+                    const pct = Math.round((step.sessions / maxFunnelCount) * 100);
+                    const dropOff = i > 0 ? funnelCounts[i - 1].sessions - step.sessions : 0;
+                    return (
+                      <div key={step.key} className="space-y-1">
+                        <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-[#1557B0] text-white text-[10px] font-bold flex items-center justify-center shrink-0">{i + 1}</div>
+                            <span className="font-semibold text-[#0F1B2D]">{step.label}</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-xs">
+                            {dropOff > 0 && (
+                              <span className="text-red-500 font-semibold">-{dropOff} rớt</span>
+                            )}
+                            <span className="font-bold text-[#1557B0]">{step.sessions} phiên</span>
+                            <span className="text-[#7D9E94]">{pct}%</span>
+                          </div>
+                        </div>
+                        <div className="h-2.5 bg-[#F4F6F8] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-[#4A8FE0] to-[#0B2D8A] rounded-full transition-all"
+                            style={{ width: `${pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Bottleneck insight */}
+                {funnelCounts.length > 1 && (() => {
+                  let maxDrop = 0;
+                  let bottleneckStep = "";
+                  for (let i = 1; i < funnelCounts.length; i++) {
+                    const drop = funnelCounts[i - 1].sessions - funnelCounts[i].sessions;
+                    if (drop > maxDrop) { maxDrop = drop; bottleneckStep = funnelCounts[i].label; }
+                  }
+                  if (!bottleneckStep || maxDrop === 0) return null;
+                  return (
+                    <div className="mt-4 bg-[#fef3e2] border border-[#fdba74]/40 rounded-xl p-4 flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-[#ed8302] shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-sm font-semibold text-[#ed8302]">Điểm nghẽn chính: {bottleneckStep}</p>
+                        <p className="text-xs text-[#4A5868] mt-0.5">{maxDrop} phiên bị rớt tại bước này. Sale nên chủ động tư vấn những khách chưa hoàn thành.</p>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Session timeline */}
+              <div className="bg-white rounded-2xl border border-[#E5EAF0] shadow-sm overflow-hidden">
+                <div className="p-5 border-b border-[#E5EAF0] flex items-center justify-between">
+                  <h3 className="font-bold text-[#1557B0] flex items-center gap-2"><Activity className="w-4 h-4" /> Lịch sử hành trình ({journeyEvents.length} sự kiện)</h3>
+                  <div className="flex items-center gap-2">
+                    <Filter className="w-4 h-4 text-[#7D9E94]" />
+                    <select
+                      value={journeyFilter}
+                      onChange={e => setJourneyFilter(e.target.value)}
+                      className="text-xs border border-[#E5EAF0] rounded-lg px-2 py-1.5 text-[#0F1B2D] bg-white"
+                    >
+                      <option value="all">Tất cả phiên ({uniqueSessions.length})</option>
+                      {uniqueSessions.map(sid => (
+                        <option key={sid} value={sid}>{sid.slice(0, 20)}...</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="divide-y divide-[#F4F6F8] max-h-[480px] overflow-y-auto">
+                  {[...filteredJourney].reverse().map(event => (
+                    <div key={event.id} className="flex items-start gap-3 px-5 py-3 hover:bg-[#FAFBFC]">
+                      <div className={`shrink-0 mt-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold border ${JOURNEY_EVENT_COLORS[event.event] ?? "bg-[#F4F6F8] text-[#4A5868] border-[#E5EAF0]"}`}>
+                        {event.step !== undefined ? `B${event.step}` : "—"}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-[#0F1B2D]">{event.label}</p>
+                        <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                          {event.userName && <span className="text-xs text-[#1557B0] font-semibold">{event.userName}</span>}
+                          <span className="text-xs text-[#7D9E94] font-mono">{event.sessionId.slice(0, 18)}…</span>
+                          {event.meta && Object.entries(event.meta).map(([k, v]) => (
+                            <span key={k} className="text-[10px] bg-[#fef3e2] text-[#ed8302] px-1.5 py-0.5 rounded font-semibold">{k}: {String(v)}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <span className="text-xs text-[#7D9E94] shrink-0 whitespace-nowrap">{formatTime(event.timestamp)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
         </main>
       </div>
     </div>

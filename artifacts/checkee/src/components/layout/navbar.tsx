@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown, LayoutDashboard } from "lucide-react";
+import { Menu, X, ChevronDown, LayoutDashboard, Zap } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { CtaButton } from "@/components/ui/cta-button";
 import { TrialButton } from "@/components/ui/trial-button";
@@ -26,10 +26,13 @@ export function Navbar() {
   const [activeLang, setActiveLang] = useState("vi");
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [avatarOpen, setAvatarOpen] = useState(false);
+  const [nudgeDismissed, setNudgeDismissed] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const avatarTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const { user, logout, openLoginModal } = useAuth();
+  const { user, logout, openLoginModal, openPricingModal, activePlan } = useAuth();
+
+  const showNudge = !!user && !activePlan && !nudgeDismissed;
 
   const openMenu = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -54,16 +57,36 @@ export function Navbar() {
   const linkClass = (active: boolean) => {
     const base = "transition-colors duration-200 text-[13px] font-semibold uppercase tracking-[0.08em]";
     return `${base} ${active
-      ? "text-[#0c964b] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-[2px] after:bg-[#0c964b]"
-      : "text-[#0F1B2D] hover:text-[#0c964b]"}`;
+      ? "text-[#1557B0] relative after:absolute after:bottom-[-6px] after:left-0 after:right-0 after:h-[2px] after:bg-[#1557B0]"
+      : "text-[#0F1B2D] hover:text-[#1557B0]"}`;
   };
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white shadow-sm border-b border-[#E5EAF0]">
+      {/* Upsell nudge banner — shown to logged-in users without a plan */}
+      {showNudge && (
+        <div className="bg-gradient-to-r from-[#4A8FE0] to-[#0B2D8A] text-white text-xs flex items-center justify-center gap-3 px-4 py-2 relative">
+          <Zap className="w-3.5 h-3.5 text-[#fdba74] shrink-0" />
+          <span>Bạn đang dùng bản thử nghiệm — Nâng cấp để tạo QR không giới hạn & quản lý nhiều sản phẩm.</span>
+          <button
+            onClick={() => openPricingModal()}
+            className="shrink-0 bg-white text-[#1557B0] font-bold rounded-full px-3 py-0.5 text-[11px] hover:bg-[#EFF5FF] transition-colors"
+          >
+            Xem gói
+          </button>
+          <button
+            onClick={() => setNudgeDismissed(true)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 hover:text-white"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       <div className="container mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="flex items-center justify-between h-[72px] lg:h-[80px]">
 
-          {/* Logo — always shows in original color */}
+          {/* Logo */}
           <Link href="/" className="flex items-center shrink-0 mr-10">
             <img src={logoPng} alt="Checkee" className="h-9 md:h-10 object-contain" />
           </Link>
@@ -81,15 +104,21 @@ export function Navbar() {
                 <div className="bg-white border border-[#E5EAF0] rounded-xl shadow-xl p-3 w-[340px]">
                   {products.map(p => (
                     <Link key={p.href} href={p.href}
-                      className="flex items-start gap-4 p-3 rounded-lg hover:bg-[#f0fdf4] transition-colors group"
+                      className="flex items-start gap-4 p-3 rounded-lg hover:bg-[#EFF5FF] transition-colors group"
                       onClick={() => setProductOpen(false)}>
                       <div className="text-2xl mt-1">{p.icon}</div>
                       <div>
-                        <div className="text-[#0F1B2D] text-[15px] font-semibold group-hover:text-[#0c964b] transition-colors">Checkee {p.label}</div>
+                        <div className="text-[#0F1B2D] text-[15px] font-semibold group-hover:text-[#1557B0] transition-colors">Checkee {p.label}</div>
                         <div className="text-[#4A5868] text-[13px] mt-0.5">{p.desc}</div>
                       </div>
                     </Link>
                   ))}
+                  {!activePlan && (
+                    <div className="mt-2 mx-1 bg-gradient-to-r from-[#EFF5FF] to-[#DCEEFF] rounded-lg p-3 border border-[#DCEEFF]">
+                      <p className="text-xs font-bold text-[#1557B0] mb-1">Dùng thử miễn phí ngay</p>
+                      <p className="text-[11px] text-[#4A5868]">Tạo trang truy xuất và QR code trong 2 phút — không cần thẻ ngân hàng.</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -102,34 +131,52 @@ export function Navbar() {
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             {user ? (
-              <div className="relative" onMouseEnter={openAvatar} onMouseLeave={closeAvatar}>
-                <button className="flex items-center gap-2.5 px-3 py-1.5 rounded-full hover:bg-[#f0fdf4] transition-colors">
-                  <div className="w-8 h-8 rounded-full bg-[#0c964b] text-white flex items-center justify-center text-xs font-bold">
-                    {initials}
-                  </div>
-                  <span className="text-[13px] font-semibold text-[#0F1B2D]">{user.name.split(" ").pop()}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 text-[#7D9E94] transition-transform ${avatarOpen ? "rotate-180" : ""}`} />
-                </button>
-                <div className={`absolute right-0 top-full pt-2 transition-all duration-200 ${avatarOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
-                  <div className="bg-white border border-[#E5EAF0] rounded-xl shadow-xl p-2 w-[200px]">
-                    <div className="px-3 py-2 border-b border-[#E5EAF0] mb-1">
-                      <p className="text-sm font-semibold text-[#0F1B2D]">{user.name}</p>
-                      <p className="text-xs text-[#7D9E94]">{user.phone || user.email}</p>
+              <div className="flex items-center gap-2">
+                {!activePlan && (
+                  <button
+                    onClick={() => openPricingModal()}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EFF5FF] border border-[#DCEEFF] text-[#1557B0] text-[12px] font-bold hover:bg-[#DCEEFF] transition-colors"
+                  >
+                    <Zap className="w-3 h-3 text-[#ed8302]" /> Nâng cấp
+                  </button>
+                )}
+                <div className="relative" onMouseEnter={openAvatar} onMouseLeave={closeAvatar}>
+                  <button className="flex items-center gap-2.5 px-3 py-1.5 rounded-full hover:bg-[#EFF5FF] transition-colors">
+                    <div className="w-8 h-8 rounded-full bg-[#1557B0] text-white flex items-center justify-center text-xs font-bold">
+                      {initials}
                     </div>
-                    <Link href="/dashboard" className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#f0fdf4] text-[#0F1B2D] text-sm font-semibold" onClick={() => setAvatarOpen(false)}>
-                      <LayoutDashboard className="w-4 h-4 text-[#0c964b]" />
-                      Dashboard
-                    </Link>
-                    <button onClick={() => { logout(); setAvatarOpen(false); }} className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-red-50 text-red-500 text-sm font-semibold">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
-                      Đăng xuất
-                    </button>
+                    <span className="text-[13px] font-semibold text-[#0F1B2D]">{user.name.split(" ").pop()}</span>
+                    <ChevronDown className={`w-3.5 h-3.5 text-[#7D9E94] transition-transform ${avatarOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  <div className={`absolute right-0 top-full pt-2 transition-all duration-200 ${avatarOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
+                    <div className="bg-white border border-[#E5EAF0] rounded-xl shadow-xl p-2 w-[220px]">
+                      <div className="px-3 py-2 border-b border-[#E5EAF0] mb-1">
+                        <p className="text-sm font-semibold text-[#0F1B2D]">{user.name}</p>
+                        <p className="text-xs text-[#7D9E94]">{user.phone || user.email}</p>
+                        {!activePlan && (
+                          <button
+                            onClick={() => { setAvatarOpen(false); openPricingModal(); }}
+                            className="mt-2 w-full py-1.5 rounded-full bg-gradient-to-r from-[#4A8FE0] to-[#0B2D8A] text-white text-[11px] font-bold flex items-center justify-center gap-1"
+                          >
+                            <Zap className="w-3 h-3 text-[#fdba74]" /> Nâng cấp gói ngay
+                          </button>
+                        )}
+                      </div>
+                      <Link href="/dashboard" className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-[#EFF5FF] text-[#0F1B2D] text-sm font-semibold" onClick={() => setAvatarOpen(false)}>
+                        <LayoutDashboard className="w-4 h-4 text-[#1557B0]" />
+                        Dashboard
+                      </Link>
+                      <button onClick={() => { logout(); setAvatarOpen(false); }} className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-red-50 text-red-500 text-sm font-semibold">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+                        Đăng xuất
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             ) : (
               <button onClick={() => openLoginModal()}
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-[13px] font-semibold uppercase tracking-[0.08em] text-[#0F1B2D] hover:bg-[#f0fdf4] transition-colors">
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-[13px] font-semibold uppercase tracking-[0.08em] text-[#0F1B2D] hover:bg-[#EFF5FF] transition-colors">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                 Đăng nhập
               </button>
@@ -140,7 +187,7 @@ export function Navbar() {
             {/* Language switcher */}
             <div className="relative ml-1">
               <button onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-1.5 px-2 py-1 rounded-full border border-[#E5EAF0] bg-white text-[#0F1B2D] hover:border-[#0c964b] transition-colors">
+                className="flex items-center gap-1.5 px-2 py-1 rounded-full border border-[#E5EAF0] bg-white text-[#0F1B2D] hover:border-[#1557B0] transition-colors">
                 <img src={languages.find(l => l.code === activeLang)?.flagSrc} alt="lang" className="w-5 h-5 rounded-full object-cover" />
                 <ChevronDown className="w-3.5 h-3.5 text-[#7D9E94]" />
               </button>
@@ -148,7 +195,7 @@ export function Navbar() {
                 <div className="absolute right-0 mt-2 w-40 rounded-xl shadow-lg overflow-hidden z-50 bg-white border border-[#E5EAF0]">
                   {languages.map(l => (
                     <button key={l.code} onClick={() => { setActiveLang(l.code); setIsLangOpen(false); }}
-                      className={`w-full flex items-center gap-3 px-3 py-2 text-sm transition-all ${activeLang === l.code ? "bg-[#f0fdf4] text-[#0c964b] font-semibold" : "text-[#0F1B2D] hover:bg-[#f0fdf4]"}`}>
+                      className={`w-full flex items-center gap-3 px-3 py-2 text-sm transition-all ${activeLang === l.code ? "bg-[#EFF5FF] text-[#1557B0] font-semibold" : "text-[#0F1B2D] hover:bg-[#EFF5FF]"}`}>
                       <img src={l.flagSrc} alt={l.label} className="w-5 h-5 rounded-full object-cover" />
                       <span>{l.label}</span>
                     </button>
@@ -159,7 +206,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile hamburger */}
-          <button className="lg:hidden p-2 rounded-xl text-[#0F1B2D] hover:bg-[#f0fdf4]" onClick={() => setIsOpen(v => !v)}>
+          <button className="lg:hidden p-2 rounded-xl text-[#0F1B2D] hover:bg-[#EFF5FF]" onClick={() => setIsOpen(v => !v)}>
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -168,27 +215,35 @@ export function Navbar() {
       {/* Mobile Nav */}
       <div className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-[#E5EAF0] shadow-lg transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[90vh] opacity-100 overflow-y-auto" : "max-h-0 opacity-0"}`}>
         <nav className="flex flex-col p-6 space-y-1 text-[15px] font-medium">
-          <Link href="/" className="py-3 text-[#4A5868] hover:text-[#0c964b] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Trang chủ</Link>
-          <button className="flex items-center justify-between py-3 text-[#4A5868] hover:text-[#0c964b] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setMobileProductOpen(v => !v)}>
+          <Link href="/" className="py-3 text-[#4A5868] hover:text-[#1557B0] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Trang chủ</Link>
+          <button className="flex items-center justify-between py-3 text-[#4A5868] hover:text-[#1557B0] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setMobileProductOpen(v => !v)}>
             <span>Giải pháp</span>
             <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`} />
           </button>
           {mobileProductOpen && (
             <div className="bg-[#FAFBFC] rounded-lg p-2 my-2 space-y-1">
               {products.map(p => (
-                <Link key={p.href} href={p.href} className="flex items-center gap-3 p-3 text-[#4A5868] hover:text-[#0c964b] hover:bg-[#f0fdf4] rounded-md" onClick={() => { setIsOpen(false); setMobileProductOpen(false); }}>
+                <Link key={p.href} href={p.href} className="flex items-center gap-3 p-3 text-[#4A5868] hover:text-[#1557B0] hover:bg-[#EFF5FF] rounded-md" onClick={() => { setIsOpen(false); setMobileProductOpen(false); }}>
                   <span>{p.icon}</span>
                   <span className="font-semibold">Checkee {p.label}</span>
                 </Link>
               ))}
             </div>
           )}
-          <Link href="/pricing" className="py-3 text-[#4A5868] hover:text-[#0c964b] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Bảng giá</Link>
-          <Link href="/blog" className="py-3 text-[#4A5868] hover:text-[#0c964b] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Tin tức</Link>
-          <Link href="/contact" className="py-3 text-[#4A5868] hover:text-[#0c964b] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Liên hệ</Link>
+          <Link href="/pricing" className="py-3 text-[#4A5868] hover:text-[#1557B0] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Bảng giá</Link>
+          <Link href="/blog" className="py-3 text-[#4A5868] hover:text-[#1557B0] border-b border-[#FAFBFC] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Tin tức</Link>
+          <Link href="/contact" className="py-3 text-[#4A5868] hover:text-[#1557B0] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>Liên hệ</Link>
           <div className="pt-4 border-t border-[#E5EAF0] space-y-3">
             {user ? (
               <>
+                {!activePlan && (
+                  <button
+                    onClick={() => { openPricingModal(); setIsOpen(false); }}
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-gradient-to-r from-[#4A8FE0] to-[#0B2D8A] text-white font-bold text-[13px]"
+                  >
+                    <Zap className="w-4 h-4 text-[#fdba74]" /> Nâng cấp gói ngay
+                  </button>
+                )}
                 <Link href="/dashboard" className="flex items-center justify-center gap-2 py-3 border border-[#E5EAF0] rounded-full text-[#0F1B2D] uppercase tracking-wide text-[13px] font-semibold" onClick={() => setIsOpen(false)}>
                   <LayoutDashboard className="w-4 h-4" /> Dashboard
                 </Link>
@@ -201,7 +256,7 @@ export function Navbar() {
             <div className="flex justify-center gap-3 pt-2">
               {languages.map(l => (
                 <button key={l.code} onClick={() => setActiveLang(l.code)} aria-label={l.label}
-                  className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${activeLang === l.code ? "border-[#0c964b] scale-110 shadow" : "border-[#E5EAF0] opacity-70"}`}>
+                  className={`relative w-10 h-10 rounded-full overflow-hidden border-2 transition-all ${activeLang === l.code ? "border-[#1557B0] scale-110 shadow" : "border-[#E5EAF0] opacity-70"}`}>
                   <img src={l.flagSrc} alt={l.label} className="absolute inset-0 w-full h-full object-cover" />
                 </button>
               ))}

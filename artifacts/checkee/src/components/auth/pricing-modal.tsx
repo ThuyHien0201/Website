@@ -1,4 +1,4 @@
-import { X, CheckCircle2, Zap } from "lucide-react";
+import { X, CheckCircle2, Zap, SkipForward } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/auth-context";
 import { useLocation } from "wouter";
@@ -46,37 +46,64 @@ const PLANS = [
   },
 ];
 
-export function PricingModal() {
-  const { showPricingModal, closePricingModal } = useAuth();
+const CONTEXT_MESSAGES: Record<string, { title: string; subtitle: string }> = {
+  download_qr: {
+    title: "In nhiều mã QR với gói trả phí",
+    subtitle: "Gói miễn phí chỉ cho in 1 mã. Nâng cấp để in không giới hạn, quản lý nhiều SKU và phân quyền nhân viên.",
+  },
+  quota_exceeded: {
+    title: "Bạn đã dùng hết lượt thử miễn phí",
+    subtitle: "Chọn gói phù hợp để tạo QR không giới hạn, quản lý SKU và phân quyền nhân viên.",
+  },
+  default: {
+    title: "Nâng cấp để mở khóa toàn bộ tính năng",
+    subtitle: "Chọn gói phù hợp và bắt đầu tạo QR không giới hạn, quản lý SKU, phân quyền nhân viên.",
+  },
+};
+
+interface PricingModalProps {
+  onSkip?: () => void;
+}
+
+export function PricingModal({ onSkip }: PricingModalProps) {
+  const { showPricingModal, closePricingModal, pricingModalContext, activatePlan, trackJourney } = useAuth();
   const [, navigate] = useLocation();
 
   if (!showPricingModal) return null;
 
+  const msg = CONTEXT_MESSAGES[pricingModalContext] ?? CONTEXT_MESSAGES.default;
+  const showSkip = pricingModalContext === "download_qr";
+
   const handleSelect = (plan: typeof PLANS[0]) => {
+    activatePlan({ name: plan.name, price: plan.price, period: plan.period });
+    trackJourney("selected_plan", `Chọn gói ${plan.name}`, 4, { plan: plan.name });
     closePricingModal();
     navigate(`/checkout?plan=${encodeURIComponent(plan.name)}&price=${plan.price}&period=${encodeURIComponent(plan.period)}`);
+  };
+
+  const handleSkip = () => {
+    closePricingModal();
+    if (onSkip) onSkip();
   };
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closePricingModal} />
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-[900px] overflow-hidden max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-[920px] overflow-hidden max-h-[90vh] overflow-y-auto">
         <button
           onClick={closePricingModal}
-          className="absolute top-5 right-5 z-10 w-8 h-8 rounded-full bg-[#E5EAF0] hover:bg-[#D0D7E0] flex items-center justify-center text-[#4A5868] transition-colors"
+          className="absolute top-5 right-5 z-10 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
-        <div className="bg-gradient-to-br from-[#0c964b] to-[#0c964b] p-8 text-white text-center">
+        <div className="bg-gradient-to-br from-[#4A8FE0] to-[#0B2D8A] p-8 text-white text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5 text-sm font-semibold mb-4">
             <Zap className="w-4 h-4 text-[#fdba74]" />
-            Nâng cấp để tiếp tục tạo QR
+            Nâng cấp gói
           </div>
-          <h2 className="text-2xl lg:text-3xl font-bold mb-2">Bạn đã dùng hết lượt thử miễn phí</h2>
-          <p className="text-[#dcf0e6]/80 text-sm max-w-lg mx-auto">
-            Chọn gói phù hợp để tạo QR không giới hạn, quản lý SKU và phân quyền nhân viên.
-          </p>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-2">{msg.title}</h2>
+          <p className="text-white/80 text-sm max-w-lg mx-auto">{msg.subtitle}</p>
         </div>
 
         <div className="p-6 lg:p-8">
@@ -95,16 +122,16 @@ export function PricingModal() {
                     PHỔ BIẾN
                   </div>
                 )}
-                <h3 className="text-lg font-bold text-[#0c964b] mb-0.5">{plan.name}</h3>
+                <h3 className="text-lg font-bold text-[#1557B0] mb-0.5">{plan.name}</h3>
                 <p className="text-xs text-[#7D9E94] mb-4">{plan.subtitle}</p>
                 <div className="mb-4">
-                  <span className="text-2xl font-bold text-[#0c964b]">{plan.price}</span>
+                  <span className="text-2xl font-bold text-[#1557B0]">{plan.price}</span>
                   <span className="text-xs text-[#7D9E94] ml-1">đ{plan.period}</span>
                 </div>
                 <div className="space-y-2 text-xs text-[#4A5868] flex-1 mb-5">
                   {[plan.codes, "Tài khoản NVL vô hạn", `Phân phối ${plan.accounts}`, "Kết nối Cổng QG"].map((f, j) => (
                     <div key={j} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#1A6B52] shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#1557B0] shrink-0" />
                       <span>{f}</span>
                     </div>
                   ))}
@@ -114,7 +141,7 @@ export function PricingModal() {
                   className={`w-full rounded-full h-10 text-sm font-semibold ${
                     plan.highlight
                       ? "bg-[#ed8302] hover:bg-[#d47200] text-white"
-                      : "bg-[#FAFBFC] border border-[#E5EAF0] text-[#0c964b] hover:bg-[#E5EAF0]"
+                      : "bg-[#EFF5FF] border border-[#DCEEFF] text-[#1557B0] hover:bg-[#DCEEFF]"
                   }`}
                 >
                   Chọn gói này
@@ -123,7 +150,19 @@ export function PricingModal() {
             ))}
           </div>
 
-          <p className="text-center text-xs text-[#7D9E94] mt-6">
+          {showSkip && (
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={handleSkip}
+                className="flex items-center gap-2 text-sm text-[#7D9E94] hover:text-[#4A5868] transition-colors underline underline-offset-2"
+              >
+                <SkipForward className="w-4 h-4" />
+                Bỏ qua — chỉ in 1 mã QR (gói miễn phí)
+              </button>
+            </div>
+          )}
+
+          <p className="text-center text-xs text-[#7D9E94] mt-4">
             Thanh toán hàng năm · Hóa đơn VAT · Hợp đồng điện tử
           </p>
         </div>
