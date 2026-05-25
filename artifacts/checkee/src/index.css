@@ -51,13 +51,13 @@
 }
 
 :root, .dark {
-  /* OCEAN BLUE PROFESSIONAL THEME */
-  --background: 0 0% 100%;
-  --foreground: 216 50% 12%;
+  /* LIGHT PROFESSIONAL THEME */
+  --background: 0 0% 100%; /* #FFFFFF pure white */
+  --foreground: 216 50% 12%; /* #0F1B2D near black */
 
-  --border: 212 28% 92%;
+  --border: 212 28% 92%; /* #E5EAF0 */
   --input: 212 28% 92%;
-  --ring: 213 76% 39%;
+  --ring: 200 73% 37%; /* #0c964b Arctic Blue */
 
   --card: 0 0% 100%;
   --card-foreground: 216 50% 12%;
@@ -67,16 +67,16 @@
   --popover-foreground: 216 50% 12%;
   --popover-border: 212 28% 92%;
 
-  --primary: 213 76% 39%; /* #1557B0 deep blue */
+  --primary: 200 82% 23%; /* #0c964b Deep Fjord */
   --primary-foreground: 0 0% 100%;
+  
+  --secondary: 195 56% 91%; /* #dcf0e6 Mist */
+  --secondary-foreground: 200 82% 23%;
 
-  --secondary: 213 60% 93%; /* #DCEEFF light blue */
-  --secondary-foreground: 213 76% 30%;
+  --muted: 212 17% 35%; /* #4A5868 */
+  --muted-foreground: 161 14% 55%; /* #7D9E94 Slate Sage */
 
-  --muted: 212 17% 35%;
-  --muted-foreground: 212 14% 55%;
-
-  --accent: 23 79% 43%; /* #ed8302 Amber Ember - keep orange accent */
+  --accent: 23 79% 43%; /* #ed8302 Amber Ember */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
@@ -84,7 +84,7 @@
 
   --app-font-sans: 'Inter', sans-serif;
   --app-font-mono: Menlo, monospace;
-
+  
   --radius: 0.5rem;
 }
 
@@ -101,7 +101,8 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-sans text-foreground tracking-tight font-bold;
   }
-
+  
+  /* Utilities for the aesthetic */
   .hairline-b {
     border-bottom: 1px solid var(--border);
   }
@@ -109,7 +110,7 @@
     border-top: 1px solid var(--border);
   }
   .link-hover {
-    @apply relative after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-[#1557B0] after:w-0 hover:after:w-full after:transition-all after:duration-300 hover:text-[#1557B0];
+    @apply relative after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-[#0c964b] after:w-0 hover:after:w-full after:transition-all after:duration-300 hover:text-[#0c964b];
   }
   .image-hover {
     @apply transition-transform duration-1000 ease-out hover:scale-105;

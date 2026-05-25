@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./button";
+import { useAuth } from "@/context/auth-context";
 import { useLocation } from "wouter";
 
 interface TrialButtonProps {
@@ -9,10 +10,20 @@ interface TrialButtonProps {
 }
 
 export function TrialButton({ size = "default", className = "", children = "Dùng thử miễn phí" }: TrialButtonProps) {
+  const { user, demoQuota, openLoginModal, openPricingModal } = useAuth();
   const [, navigate] = useLocation();
+
   const isLarge = size === "large";
 
   const handleClick = () => {
+    if (!user) {
+      openLoginModal({ redirect: "/demo" });
+      return;
+    }
+    if (demoQuota <= 0) {
+      openPricingModal();
+      return;
+    }
     navigate("/demo");
   };
 
