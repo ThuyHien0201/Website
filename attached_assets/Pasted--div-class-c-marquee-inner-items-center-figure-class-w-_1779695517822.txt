@@ -1,0 +1,197 @@
+<div class="c-marquee__inner items-center">
+															<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#dcrd">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-dcrd.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vca">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-vca.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[5rem]" style="width: 11rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#khuyennongvn">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-khuyennong.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11.5rem] h-[3.7rem]" style="width: 11.5rem; height: 3.7rem;">
+						<a href="https://sorimachi.vn/partner/#sagri">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-sagri.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[3.4rem]" style="width: 11rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#hitachi">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-hitachi.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[10.9rem] h-[3.4rem]" style="width: 10.9rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#techcoop">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-techcoop-1024x470.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[3.4rem]" style="width: 11rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#foodmap">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/Frame-144-1.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vju">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/05/Logo_vju.svg-1024x1024.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vnua">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/98377128-ee86-4d05-a0f6-ac124505b2c3.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#tuaf">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/05/Truong_Dai_hoc_Nong_lam_Dai_hoc_Thai_Nguyen.svg.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#nagaokaut">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/nagaoka_logo.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#hcmut">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/HCMUT_official_logo-1014x1024.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[5rem]" style="width: 11rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#iuh">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/logo-iuh-inkythuatso-01-08-11-08-01.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+																<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#dcrd">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-dcrd.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vca">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-vca.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[5rem]" style="width: 11rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#khuyennongvn">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-khuyennong.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11.5rem] h-[3.7rem]" style="width: 11.5rem; height: 3.7rem;">
+						<a href="https://sorimachi.vn/partner/#sagri">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-sagri.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[3.4rem]" style="width: 11rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#hitachi">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-hitachi.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[10.9rem] h-[3.4rem]" style="width: 10.9rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#techcoop">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-techcoop-1024x470.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[3.4rem]" style="width: 11rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#foodmap">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/Frame-144-1.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vju">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/05/Logo_vju.svg-1024x1024.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vnua">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/98377128-ee86-4d05-a0f6-ac124505b2c3.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#tuaf">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/05/Truong_Dai_hoc_Nong_lam_Dai_hoc_Thai_Nguyen.svg.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#nagaokaut">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/nagaoka_logo.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#hcmut">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/HCMUT_official_logo-1014x1024.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[5rem]" style="width: 11rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#iuh">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/logo-iuh-inkythuatso-01-08-11-08-01.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+																<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#dcrd">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-dcrd.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vca">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-vca.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[5rem]" style="width: 11rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#khuyennongvn">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/02/logo-khuyennong.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11.5rem] h-[3.7rem]" style="width: 11.5rem; height: 3.7rem;">
+						<a href="https://sorimachi.vn/partner/#sagri">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-sagri.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[3.4rem]" style="width: 11rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#hitachi">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-hitachi.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[10.9rem] h-[3.4rem]" style="width: 10.9rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#techcoop">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/logo-techcoop-1024x470.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[3.4rem]" style="width: 11rem; height: 3.4rem;">
+						<a href="https://sorimachi.vn/partner/#foodmap">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/01/Frame-144-1.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vju">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/05/Logo_vju.svg-1024x1024.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#vnua">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/98377128-ee86-4d05-a0f6-ac124505b2c3.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#tuaf">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/05/Truong_Dai_hoc_Nong_lam_Dai_hoc_Thai_Nguyen.svg.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#nagaokaut">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/nagaoka_logo.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[5rem] h-[5rem]" style="width: 5rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#hcmut">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/HCMUT_official_logo-1014x1024.png" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									<figure class="w-[11rem] h-[5rem]" style="width: 11rem; height: 5rem;">
+						<a href="https://sorimachi.vn/partner/#iuh">
+							<img src="https://sorimachi.vn/wp-content/uploads/2025/06/logo-iuh-inkythuatso-01-08-11-08-01.jpg" alt="" class="w-full h-full object-cover">
+						</a>
+					</figure>
+									</div>

@@ -22,60 +22,39 @@ const heroSlides = [
   "/images/hero-bright-3.png",
 ];
 
-const partnerLogos = [
-  { name: "Vinamilk", domain: "vinamilk.com.vn", color: "#0c964b" },
-  { name: "Vinasoy", domain: "vinasoy.com", color: "#1A6B52" },
-  { name: "Mobifone", domain: "mobifone.vn", color: "#1B4FA0" },
-  { name: "Viettel", domain: "viettel.vn", color: "#E8472C" },
-  { name: "TH True Milk", domain: "thmilk.vn", color: "#0E4A8A" },
-  { name: "Highlands Coffee", domain: "highlandscoffee.com.vn", color: "#7A2E0E" },
-  { name: "Phúc Long", domain: "phuclong.com.vn", color: "#1A6B52" },
-  { name: "Trung Nguyên", domain: "trungnguyenlegend.com", color: "#7A2E0E" },
-  { name: "Sabeco", domain: "sabeco.com.vn", color: "#E8472C" },
-  { name: "Habeco", domain: "habeco.com.vn", color: "#ed8302" },
-  { name: "Bibica", domain: "bibica.com.vn", color: "#0c964b" },
-  { name: "Acecook", domain: "acecookvietnam.com.vn", color: "#E8472C" },
-  { name: "Masan", domain: "masangroup.com", color: "#0c964b" },
-  { name: "PNJ", domain: "pnj.com.vn", color: "#C8A24A" },
-  { name: "Vietjet Air", domain: "vietjetair.com", color: "#E8472C" },
-  { name: "Vingroup", domain: "vingroup.net", color: "#0c964b" },
-  { name: "Hoa Sen", domain: "hoasengroup.vn", color: "#fdba74" },
-  { name: "Coca-Cola", domain: "cocacolavietnam.com", color: "#E8472C" },
-  { name: "Nestlé", domain: "nestle.com.vn", color: "#0E4A8A" },
-  { name: "Unilever", domain: "unilever.com.vn", color: "#1B4FA0" },
-  { name: "PepsiCo", domain: "pepsico.com.vn", color: "#1B4FA0" },
+type PartnerItem = { name: string; src: string; w: string; h: string };
+
+const partnerLogos: PartnerItem[] = [
+  { name: "DCRD", src: "https://sorimachi.vn/wp-content/uploads/2025/02/logo-dcrd.png", w: "5rem", h: "5rem" },
+  { name: "VCA", src: "https://sorimachi.vn/wp-content/uploads/2025/02/logo-vca.png", w: "5rem", h: "5rem" },
+  { name: "Khuyến nông VN", src: "https://sorimachi.vn/wp-content/uploads/2025/02/logo-khuyennong.png", w: "11rem", h: "5rem" },
+  { name: "SAGRI", src: "https://sorimachi.vn/wp-content/uploads/2025/01/logo-sagri.png", w: "11.5rem", h: "3.7rem" },
+  { name: "Hitachi", src: "https://sorimachi.vn/wp-content/uploads/2025/01/logo-hitachi.png", w: "11rem", h: "3.4rem" },
+  { name: "Techcoop", src: "https://sorimachi.vn/wp-content/uploads/2025/01/logo-techcoop-1024x470.png", w: "10.9rem", h: "3.4rem" },
+  { name: "Foodmap", src: "https://sorimachi.vn/wp-content/uploads/2025/01/Frame-144-1.jpg", w: "11rem", h: "3.4rem" },
+  { name: "VJU", src: "https://sorimachi.vn/wp-content/uploads/2025/05/Logo_vju.svg-1024x1024.png", w: "5rem", h: "5rem" },
+  { name: "VNUA", src: "https://sorimachi.vn/wp-content/uploads/2025/06/98377128-ee86-4d05-a0f6-ac124505b2c3.jpg", w: "5rem", h: "5rem" },
+  { name: "TUAF", src: "https://sorimachi.vn/wp-content/uploads/2025/05/Truong_Dai_hoc_Nong_lam_Dai_hoc_Thai_Nguyen.svg.png", w: "5rem", h: "5rem" },
+  { name: "Nagaoka", src: "https://sorimachi.vn/wp-content/uploads/2025/06/nagaoka_logo.jpg", w: "5rem", h: "5rem" },
+  { name: "HCMUT", src: "https://sorimachi.vn/wp-content/uploads/2025/06/HCMUT_official_logo-1014x1024.png", w: "5rem", h: "5rem" },
+  { name: "IUH", src: "https://sorimachi.vn/wp-content/uploads/2025/06/logo-iuh-inkythuatso-01-08-11-08-01.jpg", w: "11rem", h: "5rem" },
 ];
 
 const partnerRow1 = partnerLogos.slice(0, 7);
-const partnerRow2 = partnerLogos.slice(7, 14);
-const partnerRow3 = partnerLogos.slice(14, 21);
+const partnerRow2 = partnerLogos.slice(7, 13);
+const partnerRow3 = partnerLogos;
 
-function PartnerLogo({ domain, name, color }: { domain: string; name: string; color: string }) {
-  const [step, setStep] = useState<0 | 1 | 2>(0);
-  if (step === 2) {
-    return (
-      <span
-        className="font-extrabold text-base tracking-tight text-center leading-tight"
-        style={{ color }}
-      >
-        {name}
-      </span>
-    );
-  }
-  const src =
-    step === 0
-      ? `https://unavatar.io/${domain}?fallback=false`
-      : `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+function PartnerLogo({ src, name, w, h }: PartnerItem) {
   return (
     <img
       src={src}
       alt={name}
-      onError={() => setStep((s) => (s === 0 ? 1 : 2))}
-      className="max-h-14 max-w-[150px] object-contain"
-      loading="lazy"
+      style={{ width: w, height: h }}
+      className="object-contain"
     />
   );
 }
+
 
 const solutions = [
   {
@@ -403,7 +382,7 @@ export default function Home() {
                     key={`${ri}-${i}`}
                     className="flex-shrink-0 bg-white rounded-2xl shadow-[0_4px_18px_rgb(0,0,0,0.06)] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-[180px] h-[88px] flex items-center justify-center px-5"
                   >
-                    <PartnerLogo domain={p.domain} name={p.name} color={p.color} />
+                    <PartnerLogo src={p.src} name={p.name} w={p.w} h={p.h} />
                   </div>
                 ))}
               </div>
