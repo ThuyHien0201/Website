@@ -285,6 +285,20 @@ export default function Admin() {
   // Journey state
   const [journeyFilter, setJourneyFilter] = useState<string>("all");
   const [journeyViewMode, setJourneyViewMode] = useState<"funnel" | "leads" | "timeline">("leads");
+  type LeadStatus = "need_support" | "purchased" | "trialed";
+  const [leadStatuses, setLeadStatuses] = useState<Record<string, LeadStatus>>({});
+  const [openStatusMenu, setOpenStatusMenu] = useState<string | null>(null);
+
+  const setLeadStatus = (sessionId: string, status: LeadStatus) => {
+    setLeadStatuses(prev => ({ ...prev, [sessionId]: status }));
+    setOpenStatusMenu(null);
+  };
+
+  const LEAD_STATUS_CONFIG: Record<LeadStatus, { label: string; bg: string; text: string; dot: string }> = {
+    need_support: { label: "Cần hỗ trợ", bg: "bg-[#fef3e2]", text: "text-[#ed8302]", dot: "bg-[#ed8302]" },
+    purchased:    { label: "Đã mua gói",  bg: "bg-[#EFF5FF]", text: "text-[#1557B0]", dot: "bg-[#1557B0]" },
+    trialed:      { label: "Đã dùng thử", bg: "bg-[#F4F6F8]", text: "text-[#4A5868]", dot: "bg-[#7D9E94]" },
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1568,8 +1582,11 @@ export default function Admin() {
                         <p className="text-xs text-[#4A5868] mt-1">Những khách đã điền thông tin bước 1 nhưng chưa hoàn thành. Số điện thoại và tên doanh nghiệp đã được ghi lại.</p>
                       </div>
                       <div className="divide-y divide-[#F4F6F8]">
-                        {stuckLeads.map(lead => (
-                          <div key={lead.sessionId} className="flex items-center gap-4 px-5 py-4">
+                        {stuckLeads.map(lead => {
+                          const status = leadStatuses[lead.sessionId];
+                          const cfg = status ? LEAD_STATUS_CONFIG[status] : null;
+                          return (
+                          <div key={lead.sessionId} className="flex items-center gap-3 px-5 py-4 flex-wrap">
                             <div className="w-9 h-9 rounded-full bg-[#fef3e2] text-[#ed8302] flex items-center justify-center shrink-0 font-bold text-sm">
                               {lead.userName?.[0] || "K"}
                             </div>
@@ -1578,8 +1595,8 @@ export default function Admin() {
                               {lead.company !== "—" && <p className="text-xs text-[#1557B0] font-semibold">{lead.company}</p>}
                               <p className="text-xs text-[#7D9E94] mt-0.5 font-mono">{lead.sessionId.slice(0, 20)}…</p>
                             </div>
-                            <div className="text-center">
-                              <p className="text-xs text-[#7D9E94]">Đang dừng tại</p>
+                            <div className="text-center shrink-0">
+                              <p className="text-xs text-[#7D9E94]">Dừng tại</p>
                               <p className="text-xs font-semibold text-[#ed8302]">{lead.lastStep}</p>
                             </div>
                             {lead.phone !== "—" && (
@@ -1588,11 +1605,37 @@ export default function Admin() {
                                 <Phone className="w-3.5 h-3.5" /> {lead.phone}
                               </a>
                             )}
+                            {/* Status picker */}
+                            <div className="relative shrink-0">
+                              <button
+                                onClick={() => setOpenStatusMenu(openStatusMenu === lead.sessionId ? null : lead.sessionId)}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${cfg ? `${cfg.bg} ${cfg.text} border-transparent` : "bg-white border-[#E5EAF0] text-[#4A5868] hover:border-[#1557B0]"}`}
+                              >
+                                {cfg && <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />}
+                                {cfg ? cfg.label : "Cập nhật trạng thái"}
+                                <ChevronDown className="w-3 h-3" />
+                              </button>
+                              {openStatusMenu === lead.sessionId && (
+                                <div className="absolute right-0 top-full mt-1.5 bg-white rounded-xl border border-[#E5EAF0] shadow-xl z-50 w-40 overflow-hidden">
+                                  {(Object.entries(LEAD_STATUS_CONFIG) as [LeadStatus, typeof LEAD_STATUS_CONFIG[LeadStatus]][]).map(([key, s]) => (
+                                    <button
+                                      key={key}
+                                      onClick={() => setLeadStatus(lead.sessionId, key)}
+                                      className={`w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold hover:bg-[#F4F6F8] transition-colors ${status === key ? `${s.bg} ${s.text}` : "text-[#0F1B2D]"}`}
+                                    >
+                                      <span className={`w-2 h-2 rounded-full ${s.dot}`} />
+                                      {s.label}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                             {lead.time && (
                               <span className="text-xs text-[#7D9E94] shrink-0 whitespace-nowrap">{formatTime(lead.time)}</span>
                             )}
                           </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   )}
@@ -1603,8 +1646,12 @@ export default function Admin() {
                       <h3 className="font-bold text-[#1557B0]">Tất cả phiên ({sessionLeads.length})</h3>
                     </div>
                     <div className="divide-y divide-[#F4F6F8]">
-                      {sessionLeads.map(lead => (
-                        <div key={lead.sessionId} className="flex items-center gap-4 px-5 py-3">
+                      {sessionLeads.map(lead => {
+                        const status = leadStatuses[lead.sessionId];
+                        const cfg = status ? LEAD_STATUS_CONFIG[status] : null;
+                        const menuId = `all-${lead.sessionId}`;
+                        return (
+                        <div key={lead.sessionId} className="flex items-center gap-3 px-5 py-3">
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-bold text-xs ${lead.completed ? "bg-[#EFF5FF] text-[#1557B0]" : lead.stuck ? "bg-[#fef3e2] text-[#ed8302]" : "bg-[#F4F6F8] text-[#7D9E94]"}`}>
                             {lead.userName?.[0] || "K"}
                           </div>
@@ -1612,17 +1659,42 @@ export default function Admin() {
                             <div className="flex items-center gap-2 flex-wrap">
                               <p className="font-semibold text-sm text-[#0F1B2D]">{lead.userName}</p>
                               {lead.completed && <span className="text-[10px] bg-[#EFF5FF] text-[#1557B0] px-2 py-0.5 rounded-full font-bold border border-[#DCEEFF]">Đã chuyển đổi</span>}
-                              {lead.stuck && <span className="text-[10px] bg-[#fef3e2] text-[#ed8302] px-2 py-0.5 rounded-full font-bold">Cần hỗ trợ</span>}
                             </div>
                             {lead.company !== "—" && <p className="text-xs text-[#1557B0] font-semibold">{lead.company}</p>}
                           </div>
-                          <div className="text-right">
+                          <div className="text-right shrink-0">
                             <p className="text-xs font-semibold text-[#0F1B2D]">{lead.lastStep}</p>
                             {lead.phone !== "—" && <p className="text-xs text-[#7D9E94]">{lead.phone}</p>}
                           </div>
+                          {/* Status picker */}
+                          <div className="relative shrink-0">
+                            <button
+                              onClick={() => setOpenStatusMenu(openStatusMenu === menuId ? null : menuId)}
+                              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold border transition-all ${cfg ? `${cfg.bg} ${cfg.text} border-transparent` : "bg-white border-[#E5EAF0] text-[#4A5868] hover:border-[#1557B0]"}`}
+                            >
+                              {cfg && <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />}
+                              {cfg ? cfg.label : "Trạng thái"}
+                              <ChevronDown className="w-3 h-3" />
+                            </button>
+                            {openStatusMenu === menuId && (
+                              <div className="absolute right-0 top-full mt-1.5 bg-white rounded-xl border border-[#E5EAF0] shadow-xl z-50 w-40 overflow-hidden">
+                                {(Object.entries(LEAD_STATUS_CONFIG) as [LeadStatus, typeof LEAD_STATUS_CONFIG[LeadStatus]][]).map(([key, s]) => (
+                                  <button
+                                    key={key}
+                                    onClick={() => setLeadStatus(lead.sessionId, key)}
+                                    className={`w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold hover:bg-[#F4F6F8] transition-colors ${status === key ? `${s.bg} ${s.text}` : "text-[#0F1B2D]"}`}
+                                  >
+                                    <span className={`w-2 h-2 rounded-full ${s.dot}`} />
+                                    {s.label}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
                           {lead.time && <span className="text-xs text-[#7D9E94] shrink-0 whitespace-nowrap">{formatTime(lead.time)}</span>}
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
