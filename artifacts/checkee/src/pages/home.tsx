@@ -135,7 +135,6 @@ function HeroSlider() {
           ))}
         </div>
       </div>
-
       <div className="relative z-10 container max-w-[1280px] mx-auto px-6 lg:px-8 pt-32 pb-24 lg:pt-40 lg:pb-28">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -143,11 +142,7 @@ function HeroSlider() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl space-y-7"
         >
-          {/* Label pill */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-dashed border-[#F58023] rounded-full px-5 py-2 text-sm font-semibold text-white">
-            <span className="w-2 h-2 rounded-full bg-[#F58023]" />
-            Đối tác
-          </div>
+         
 
           <h1 className="text-4xl md:text-5xl lg:text-[3.6rem] font-bold text-white leading-[1.08] tracking-tight drop-shadow-lg">
             Minh bạch chuỗi cung ứng <br />
@@ -164,14 +159,12 @@ function HeroSlider() {
               <Button
                 variant="outline"
                 className="rounded-full border-2 border-white/40 bg-white/10 text-white hover:bg-white hover:text-[#13399E] px-8 py-4 h-auto font-semibold backdrop-blur-sm"
-              >
-                Khám phá giải pháp
-              </Button>
+              >Đăng ký sử dụng
+</Button>
             </a>
           </div>
         </motion.div>
       </div>
-
       {/* Prev / Next arrows */}
       <button
         onClick={scrollPrev}
@@ -187,7 +180,6 @@ function HeroSlider() {
       >
         <ChevronRight className="w-6 h-6" />
       </button>
-
       {/* Dot indicators */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
         {heroSlides.map((_, i) => (

@@ -246,7 +246,7 @@ export default function Dashboard() {
                       <tr className="bg-[#FAFBFC] text-[#7D9E94] text-xs uppercase tracking-wide">
                         <th className="text-left px-5 py-3 font-semibold">Mã QR</th>
                         <th className="text-left px-5 py-3 font-semibold">Sản phẩm</th>
-                        <th className="text-left px-5 py-3 font-semibold hidden lg:table-cell">SKU</th>
+                        <th className="text-left px-5 py-3 font-semibold hidden lg:table-cell">Sản phẩm</th>
                         <th className="text-left px-5 py-3 font-semibold hidden lg:table-cell">Lô hàng</th>
                         <th className="text-left px-5 py-3 font-semibold">Ngày tạo</th>
                         <th className="text-right px-5 py-3 font-semibold">Lượt quét</th>
